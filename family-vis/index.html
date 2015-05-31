@@ -356,6 +356,7 @@ var r = 20;
   node.append("circle")
     .attr("class", "circle")
     .attr("r", r)
+    .attr("id", function(d) {return d.name})
     .attr("fill", function(d) {if (d.gender == "m") {
         return "blue"
       } else {
@@ -451,12 +452,14 @@ function mouseout() {
 
         var noodle = 'obj';
       json.forEach(function(d) {
+        console.log(d,that);
         if (d.name == that.id) {
           noodle = d;
+
         }
         return noodle;
       });
-
+console.log(noodle);
       tip.append("text")
         .text(function() {
           return that.id;
