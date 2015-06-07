@@ -1,3 +1,6 @@
+//sans chelsea chel = 2;
+var chel = 0;
+
 json = [
   { 
     "born": new Date("1995-04-01"),
@@ -96,7 +99,7 @@ json = [
     "x": 17,
     "y": 5,
     "file": "collin"
-  },/*
+  },
   { 
   "born": new Date("1995-11-08"),
     "name": "Chelsea Brown",
@@ -107,7 +110,7 @@ json = [
     "x": 19,
     "y": 5,
     "file": "chelsea"
-  },*/
+  },
   { 
     "born": new Date("1995-11-08"),
     "name": "Evan Sandhoefner",
@@ -115,7 +118,7 @@ json = [
     "gender": "m",
     "description":
     "Pursuing a BA in either economics or computer science at Harvard College. Loves you very much. Enjoys rock climbing and playing string instruments.",
-    "x": 21-2,
+    "x": 21-chel,
     "y": 5,
     "file": "evan"
   },
@@ -126,7 +129,7 @@ json = [
     "gender": "f",
     "description":
     "The most beautiful girl in the world. Kind and brilliant and pure of heart. Passionate about child mental health and emotional intelligence and housing the housingless.",
-    "x": 23-2,
+    "x": 23-chel,
     "y": 5,
     "file": "amy"
   },
@@ -137,7 +140,7 @@ json = [
     "gender": "m",
     "description":
     "Graduating high school senior, to attend UC Davis in the fall. Plays baseball. Doesn't know what he wants to do with his life. Good at math?",
-    "x": 25-2,
+    "x": 25-chel,
     "y": 5,
     "file": "aidan"
   },
@@ -148,7 +151,7 @@ json = [
     "gender": "f",
     "description":
     "A mystery. The youngest of four Bulones, all of whom went to Oxford. Her older siblings, from oldest to youngest: Daniel, Joe, and Anne-Marie.",
-    "x": 27-2,
+    "x": 27-chel,
     "y": 5,
     "file": "megan"
   },
