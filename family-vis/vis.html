@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+<title>Sandhoefner Family Vis</title>
+
+<style>
+.text {
+    font-family: "Lucida Console";
+    font-size: 11.5px;
+}
+.col-sm-4, .col-sm-8 {
+    font-family: "Lucida Console";
+    font-size: 13px;
+}
+
+.table col:nth-child(1){width:300px;}
+.table col:nth-child(2){width:100px;}
+
+</style>
+<script src="
+jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script src="
+bootstrap/js/bootstrap.min.js" charset="utf-8"></script></head>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+
+<div id="vis"></div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <span id="text"></span>
+    <span id="age" class="text2"><br><br>*All information is approximate.</span>
+  </div>
+  <div class="col-sm-4" id="photo"></div>
+</div>
+
+
+
+<script>
+
+//
+//
+//
+// should plug in birth date and year and make current age formula-based to update... could also display birthday
+//
+//
+//
+
+
+
+// create svg canvas
+var margin = {top: 50, bottom: 10, left: 300, right: 40};
+var width = 1650 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+
+var svg = d3.select("#vis").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+var l = 30;
+var m = 40;
+  var l2 = 40;
+  for (i = 0; i < 7; i++) {
+    var pasta;
+    if (i>4) {pasta = m*2} else {pasta = 0};
+    if (i != 4) {
+    svg.append("line")
+      .attr("x1", (2+4*i)*m-l-pasta)
+      .attr("x2", (2+4*i)*m+l-pasta)
+      .attr("y1", m*5)
+      .attr("y2", m*5)
+      .attr("stroke", "black")
+    }
+
+    svg.append("line")
+      .attr("x1", (1+4*i)*m - pasta)
+      .attr("x2", (1+4*i)*m - pasta)
+      .attr("y1", m*4)
+      .attr("y2", m*5-10)
+      .attr("stroke", "black")
+
+  }
+
+  svg.append("line")
+    .attr("x1", 13*m-l)
+    .attr("x2", 13*m+l)
+    .attr("y1", 3*m)
+    .attr("y2", 3*m)
+    .attr("stroke", "black");
+
+  svg.append("line")
+    .attr("x1", 6*m-l2)
+    .attr("x2", 6*m+l2)
+    .attr("y1", 6*m)
+    .attr("y2", 6*m)
+    .attr("stroke", "black");
+
+  svg.append("line")
+    .attr("x1", 5*m)
+    .attr("x2", 5*m)
+    .attr("y1", 6*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 7*m)
+    .attr("x2", 7*m)
+    .attr("y1", 6*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 6*m)
+    .attr("x2", 6*m)
+    .attr("y1", 5*m)
+    .attr("y2", 6*m)
+    .attr("stroke", "black");
+
+  svg.append("line")
+    .attr("x1", 14*m)
+    .attr("x2", 14*m)
+    .attr("y1", 10+m)
+    .attr("y2", 3*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 14*m)
+    .attr("x2", 14*m)
+    .attr("y1", 5*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 13*m)
+    .attr("x2", 13*m)
+    .attr("y1", 3*m)
+    .attr("y2", 4*m)
+    .attr("stroke", "black");
+
+    // the long one
+    svg.append("line")
+    .attr("x1", m)
+    .attr("x2", 23*m)
+    .attr("y1", 4*m)
+    .attr("y2", 4*m)
+    .attr("stroke", "black");
+
+// load data
+d3.json("family_new.json", function(data) {
+
+  // make global
+
+  json = [
+  { 
+    "born": new Date("1995-04-01"),
+    "name": "Jason Sandhoefner",
+    "age": 40,
+    "gender": "m",
+    "description": "Competitive arm wrestler. Manager at The Home Depot. Likes guns. Briefly studied architecture in community college, no degree.",
+    "x": 1,
+    "y": 5,
+    "file": "jason"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Kristen Sandhoefner",
+    "age": 35,
+    "gender": "f",
+    "description":
+    "Massage therapist. Enjoys things with zebra-print patterns on them. Very excited to be married, judging by her Instagram.",
+    "x": 3,
+    "y": 5,
+    "file": "kristen"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Shannon Senglaub",
+    "age": 35,
+    "gender": "f",
+    "description":
+    "Associate's degree in something like computer programming. Used to work for a company called Oncotech, which did cancer research. That was a long time ago.",
+    "x": 5,
+    "y": 5,
+    "file": "shannon"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Greg Senglaub",
+    "age": 35,
+    "gender": "m",
+    "description":
+    "High school history teacher. Took many years to graduate from CSULB while working at Ralph's or something. Teaches bad kids at bad schools. Cool guy.",
+    "x": 7,
+    "y": 5,
+    "file": "greg"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Erin Ketchum",
+    "age": 29,
+    "gender": "f",
+    "description":
+    "Elementary school teacher. BA in liberal studies from Chapman University. Teaches bad kids. Will be excited to meet you.",
+    "x": 9,
+    "y": 5,
+    "file": "erin"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Andrew Ketchum",
+    "age": 29,
+    "gender": "m",
+
+    "description": "Shy. Quality assurance engineer at Broadcom, where your uncle also works, and which was recently acquired by Avago.",
+    "x": 11,
+    "y": 5,
+    "file": "andrew"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Corinne Lyons",
+    "age": 25,
+    "gender": "f",
+    "description":
+    "Master's degree (!!!) from CSUF, where she also got her bachelor's. Speech therapist working in schools - high schools, I think.",
+    "x": 13,
+    "y": 5,
+    "file": "corinne"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Scott Lyons",
+    "age": 28,
+    "gender": "m",
+    "description":
+    "Does some kind of insurance stuff at Travelers. Flies to Minnesota once in a while for business. Bachelor's from CSUF in business administration.",
+    "x": 15,
+    "y": 5,
+    "file": "scott"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Collin Sandhoefner",
+    "age": 23,
+    "gender": "m",
+    "description":
+    "Smart. Enjoys creative writing. Pursuing a bachelor's in mathematics from CSULB, but struggling to get back to it after taking time off.",
+    "x": 17,
+    "y": 5,
+    "file": "collin"
+  },/*
+  { 
+  "born": new Date("1995-11-08"),
+    "name": "Chelsea Brown",
+    "age": 23,
+    "gender": "f",
+    "description":
+    "Goes to / went to CSULB. Enjoys smoking weed. Has worked at Sprouts & Lazy Dog Cafe. Relationship status with Collin presently unclear. Not expected to attend.",
+    "x": 19,
+    "y": 5,
+    "file": "chelsea"
+  },*/
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Evan Sandhoefner",
+    "age": 19,
+    "gender": "m",
+    "description":
+    "Pursuing a BA in either economics or computer science at Harvard College. Loves you very much. Enjoys rock climbing and playing string instruments.",
+    "x": 21-2,
+    "y": 5,
+    "file": "evan"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Amy Huang",
+    "age": 20,
+    "gender": "f",
+    "description":
+    "The most beautiful girl in the world. Kind and brilliant and pure of heart. Passionate about child mental health and emotional intelligence and housing the housingless.",
+    "x": 23-2,
+    "y": 5,
+    "file": "amy"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Aidan Sandhoefner",
+    "age": 17,
+    "gender": "m",
+    "description":
+    "Graduating high school senior, to attend UC Davis in the fall. Plays baseball. Doesn't know what he wants to do with his life. Good at math?",
+    "x": 25-2,
+    "y": 5,
+    "file": "aidan"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Megan Bulone",
+    "age": 17,
+    "gender": "f",
+    "description":
+    "A mystery. The youngest of four Bulones, all of whom went to Oxford. Her older siblings, from oldest to youngest: Daniel, Joe, and Anne-Marie.",
+    "x": 27-2,
+    "y": 5,
+    "file": "megan"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Carter Senglaub",
+    "age": 8,
+    "gender": "m",
+    "description": 
+    "Currently attending elementary school. Enjoys cars, legos, and horseplay. Has yellow hair. Is eight years old.",
+    "x": 5,
+    "y": 7,
+    "file": "carter"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Makenna Senglaub",
+    "age": 4,
+    "gender": "f",
+    "description":
+    "Not yet enrolled in school. Enjoys babies, both living and plastic. Spends time playing, eating, and sleeping.",
+    "x": 7,
+    "y": 7,
+    "file": "makenna"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Emmy Lyons",
+    "age": 0,
+    "gender": "f",
+    "description":
+    "Is an actual infant child. I don't know if you can tell, but I'm kinda rushing here so sorry about the lack of good information.",
+    "x": 14,
+    "y": 7,
+    "file": "emmy"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Jim Sandhoefner",
+    "age": 60,
+    "gender": "m",
+    "description":
+    "Some community college. Hates Democrats. Likes guns. Mechanic and security guard. Works a lot. Doesn't believe in climate change.",
+    "x": 12,
+    "y": 3,
+    "file": "jim"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Cathy Sandhoefner",
+    "age": 59,
+    "gender": "f",
+    "description":
+    "Hasn't been officially employed in many, many years. Enjoys sewing and quilting. Political ideology: 'why can't everyone just get along?'",
+    "x": 14,
+    "y": 3,
+    "file": "cathy"
+  },
+  { 
+    "born": new Date("1995-11-08"),
+    "name": "Joe Matthews",
+    "age": 80,
+    "gender": "m",
+    "description":
+    "Worked for IBM in his heyday. Has hearing aids. Likes to make jokes & spend money on his grandchildren. Seems to be fond of you.",
+    "x": 14,
+    "y": 1,
+    "file": "joe"
+  }
+];
+  
+  
+
+  var node = svg.selectAll(".node")
+    .data(json)
+    .enter()
+    .append("g").attr("class", "node")
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .attr("transform", function(d, i) {
+      return "translate("+(m*json[18].x)+","+(m*json[18].y)+")"
+    });
+
+  // var groups = svg.selectAll("g")          
+  //   .append("text")
+  //   .attr("dx", 6)
+  //   .attr("dy", 4.5)
+  //   .text(function(d) {return d.name});
+
+var r = 20;
+  node.append("circle")
+    .attr("class", "circle")
+    .attr("r", r)
+    .attr("id", function(d) {return d.name})
+    .attr("fill", function(d) {if (d.gender == "m") {
+        return "blue"
+      } else {
+        return "#FF66FF"
+      }})
+    .on("mouseover", function (d) {document.getElementById('text').innerText =d.description;
+
+      if (d.file == "andrew" ||d.file ==  "chelsea"||d.file ==  "erin" ||d.file == "jim"||d.file ==  'joe') {
+      document.getElementById("photo").innerHTML = "<img src='" + d.file + ".jpg' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
+    } else {
+      document.getElementById("photo").innerHTML = "<img src='" + d.file + ".JPG' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
+  }});
+
+// http://javascript.about.com/library/blage.htm
+  Date.prototype.ageLastBirthday = function(dob) {
+var cy = this.getFullYear();
+var by = dob.getFullYear();
+var db = new Date(dob);
+db.setFullYear(cy);
+var adj = (this-db<0) ? 1 : 0;
+return cy - by - adj;
+}
+    
+    var today=new Date();
+
+  d3.selectAll(".node")
+    // .transition(1000)
+    .attr("transform", function(d, i) {
+      return "translate("+(m*d.x)+","+(m*d.y)+")"
+    })
+
+
+
+    function mouseover() {
+  d3.select(this).select("circle").transition()
+      .duration(500)
+      .attr("r", 35);
+
+
+      
+}
+
+
+
+function mouseout() {
+  d3.select(this).select("circle").transition()
+      .duration(500)
+      .attr("r", r);
+}
+
+
+  var nodes = d3.selectAll(".circle")
+  nodes
+    .on("mouseenter", function(d) {
+      var that = this;
+      d3.selectAll("node")
+        .transition().duration(250)
+        .attr("r", function(d) {
+          if (d.name == that.id) {
+            // console.log("y");
+            return 40;
+          }
+        }); 
+      var noodle = 0;
+      json.forEach(function(d) {
+        if (d.name == that.id) {
+          noodle = d.x;
+        }
+        return noodle;
+      });
+  
+      var x = m*noodle;
+      json.forEach(function(d) {
+        if (d.name == that.id) {
+          noodle = d.y;
+        }
+        return noodle;
+      });
+      var y = m*noodle;
+
+      var tip = svg.append("g")
+          .attr("id", "toolTip");
+
+          var width = 140;
+
+      tip.append("rect")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 40;
+          } else {
+            return x - width - 40;
+          }
+        })
+        .attr("y", function(d) {
+          return y - 20;
+        })
+        .attr("width", width)
+        .attr("height", 75)
+        .attr("fill", "black")
+        .attr("fill-opacity", .75);
+
+        var noodle = 'obj';
+      json.forEach(function(d) {
+        // console.log(d,that);
+        if (d.name == that.id) {
+          noodle = d;
+
+        }
+        return noodle;
+      });
+// console.log(noodle);
+      tip.append("text")
+        .text(function() {
+          return that.id;
+        })
+        .attr("text-decoration", "underline")
+        .attr("fill", "white")
+        .attr("class", "text")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y - 5;
+        });
+
+      tip.append("text")
+      .attr("class", "text")
+        .text(function() {
+          return noodle.age + " years old";
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 12;
+        });
+
+        tip.append("text")
+        .attr("class", "text")
+        .text(function() {
+          if (noodle.gender == "f") {return "Female"} else {return "Male"}
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 29+17;
+        });
+
+
+        var months  = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+        tip.append("text")
+        .attr("class", "text")
+        .text(function() {
+          console.log(today.ageLastBirthday(noodle.born));
+          return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 29;
+        });
+
+    
+})
+    .on("mouseleave", function(d) {
+      d3.select("#toolTip").remove();});
+   
+  
+    // var circles = d3.selectAll("circle");
+  lines = d3.selectAll("line")
+
+  
+  
+  // nodes
+  //   .transition().duration(fade).attr("fill", function(d) {
+  //     if (d.gender == "m") {
+  //       return "blue"
+  //     } else {
+  //       return "#FF66FF"
+  //     }})
+
+});
+
+  
+
+
+</script>
+</body>
+</html>
