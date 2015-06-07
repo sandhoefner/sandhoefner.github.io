@@ -30,7 +30,7 @@ bootstrap/js/bootstrap.min.js" charset="utf-8"></script></head>
 <div class="row">
   <div class="col-sm-8">
     <span id="text"></span>
-    <span id="age" class="text2"><br><br>*Ages and information are approximate.</span>
+    <span id="age" class="text2"><br><br>*All information is approximate.</span>
   </div>
   <div class="col-sm-4" id="photo"></div>
 </div>
@@ -62,16 +62,20 @@ var l = 30;
 var m = 40;
   var l2 = 40;
   for (i = 0; i < 7; i++) {
+    var pasta;
+    if (i>4) {pasta = m*2} else {pasta = 0};
+    if (i != 4) {
     svg.append("line")
-      .attr("x1", (2+4*i)*m-l)
-      .attr("x2", (2+4*i)*m+l)
+      .attr("x1", (2+4*i)*m-l-pasta)
+      .attr("x2", (2+4*i)*m+l-pasta)
       .attr("y1", m*5)
       .attr("y2", m*5)
       .attr("stroke", "black")
+    }
 
     svg.append("line")
-      .attr("x1", (1+4*i)*m)
-      .attr("x2", (1+4*i)*m)
+      .attr("x1", (1+4*i)*m - pasta)
+      .attr("x2", (1+4*i)*m - pasta)
       .attr("y1", m*4)
       .attr("y2", m*5-10)
       .attr("stroke", "black")
@@ -134,9 +138,10 @@ var m = 40;
     .attr("y2", 4*m)
     .attr("stroke", "black");
 
+    // the long one
     svg.append("line")
     .attr("x1", m)
-    .attr("x2", 25*m)
+    .attr("x2", 23*m)
     .attr("y1", 4*m)
     .attr("y2", 4*m)
     .attr("stroke", "black");
@@ -147,7 +152,8 @@ d3.json("family_new.json", function(data) {
   // make global
 
   json = [
-  {
+  { 
+    "born": new Date("1995-04-01"),
     "name": "Jason Sandhoefner",
     "age": 40,
     "gender": "m",
@@ -156,7 +162,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "jason"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Kristen Sandhoefner",
     "age": 35,
     "gender": "f",
@@ -166,7 +173,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "kristen"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Shannon Senglaub",
     "age": 35,
     "gender": "f",
@@ -176,7 +184,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "shannon"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Greg Senglaub",
     "age": 35,
     "gender": "m",
@@ -186,7 +195,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "greg"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Erin Ketchum",
     "age": 29,
     "gender": "f",
@@ -196,7 +206,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "erin"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Andrew Ketchum",
     "age": 29,
     "gender": "m",
@@ -206,7 +217,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "andrew"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Corinne Lyons",
     "age": 25,
     "gender": "f",
@@ -216,7 +228,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "corinne"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Scott Lyons",
     "age": 28,
     "gender": "m",
@@ -226,7 +239,8 @@ d3.json("family_new.json", function(data) {
     "y": 5,
     "file": "scott"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Collin Sandhoefner",
     "age": 23,
     "gender": "m",
@@ -235,8 +249,9 @@ d3.json("family_new.json", function(data) {
     "x": 17,
     "y": 5,
     "file": "collin"
-  },
-  {
+  },/*
+  { 
+  "born": new Date("1995-11-08"),
     "name": "Chelsea Brown",
     "age": 23,
     "gender": "f",
@@ -245,48 +260,53 @@ d3.json("family_new.json", function(data) {
     "x": 19,
     "y": 5,
     "file": "chelsea"
-  },
-  {
+  },*/
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Evan Sandhoefner",
     "age": 19,
     "gender": "m",
     "description":
     "Pursuing a BA in either economics or computer science at Harvard College. Loves you very much. Enjoys rock climbing and playing string instruments.",
-    "x": 21,
+    "x": 21-2,
     "y": 5,
     "file": "evan"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Amy Huang",
     "age": 20,
     "gender": "f",
     "description":
     "The most beautiful girl in the world. Kind and brilliant and pure of heart. Passionate about child mental health and emotional intelligence and housing the housingless.",
-    "x": 23,
+    "x": 23-2,
     "y": 5,
     "file": "amy"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Aidan Sandhoefner",
     "age": 17,
     "gender": "m",
     "description":
     "Graduating high school senior, to attend UC Davis in the fall. Plays baseball. Doesn't know what he wants to do with his life. Good at math?",
-    "x": 25,
+    "x": 25-2,
     "y": 5,
     "file": "aidan"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Megan Bulone",
     "age": 17,
     "gender": "f",
     "description":
     "A mystery. The youngest of four Bulones, all of whom went to Oxford. Her older siblings, from oldest to youngest: Daniel, Joe, and Anne-Marie.",
-    "x": 27,
+    "x": 27-2,
     "y": 5,
     "file": "megan"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Carter Senglaub",
     "age": 8,
     "gender": "m",
@@ -296,7 +316,8 @@ d3.json("family_new.json", function(data) {
     "y": 7,
     "file": "carter"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Makenna Senglaub",
     "age": 4,
     "gender": "f",
@@ -306,7 +327,8 @@ d3.json("family_new.json", function(data) {
     "y": 7,
     "file": "makenna"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Emmy Lyons",
     "age": 0,
     "gender": "f",
@@ -316,7 +338,8 @@ d3.json("family_new.json", function(data) {
     "y": 7,
     "file": "emmy"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Jim Sandhoefner",
     "age": 60,
     "gender": "m",
@@ -326,7 +349,8 @@ d3.json("family_new.json", function(data) {
     "y": 3,
     "file": "jim"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Cathy Sandhoefner",
     "age": 59,
     "gender": "f",
@@ -336,7 +360,8 @@ d3.json("family_new.json", function(data) {
     "y": 3,
     "file": "cathy"
   },
-  {
+  { 
+    "born": new Date("1995-11-08"),
     "name": "Joe Matthews",
     "age": 80,
     "gender": "m",
@@ -357,7 +382,7 @@ d3.json("family_new.json", function(data) {
     .on("mouseover", mouseover)
     .on("mouseout", mouseout)
     .attr("transform", function(d, i) {
-      return "translate("+(m*json[19].x)+","+(m*json[19].y)+")"
+      return "translate("+(m*json[18].x)+","+(m*json[18].y)+")"
     });
 
   // var groups = svg.selectAll("g")          
@@ -384,9 +409,17 @@ var r = 20;
       document.getElementById("photo").innerHTML = "<img src='" + d.file + ".JPG' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
   }});
 
-
-  
+// http://javascript.about.com/library/blage.htm
+  Date.prototype.ageLastBirthday = function(dob) {
+var cy = this.getFullYear();
+var by = dob.getFullYear();
+var db = new Date(dob);
+db.setFullYear(cy);
+var adj = (this-db<0) ? 1 : 0;
+return cy - by - adj;
+}
     
+    var today=new Date();
 
   d3.selectAll(".node")
     // .transition(1000)
@@ -460,7 +493,7 @@ function mouseout() {
           return y - 20;
         })
         .attr("width", width)
-        .attr("height", 55)
+        .attr("height", 75)
         .attr("fill", "black")
         .attr("fill-opacity", .75);
 
@@ -513,6 +546,27 @@ function mouseout() {
         .attr("class", "text")
         .text(function() {
           if (noodle.gender == "f") {return "Female"} else {return "Male"}
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 29+17;
+        });
+
+
+        var months  = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+        tip.append("text")
+        .attr("class", "text")
+        .text(function() {
+          console.log(today.ageLastBirthday(noodle.born));
+          return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
         })
         .attr("fill", "white")
         .attr("x", function(d) {
