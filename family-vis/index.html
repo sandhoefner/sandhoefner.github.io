@@ -104,6 +104,18 @@ var m = 40;
     .attr("y2", 6*m)
     .attr("stroke", "black");
 
+    String.prototype.repeat = function(times){
+    var result="";
+    var pattern=this+" ";
+    while (times > 0) {
+        if (times&1)
+            result+=pattern;
+        times>>=1;
+        pattern+=pattern;
+    }
+    return result;
+};
+
   svg.append("line")
     .attr("x1", 5*m)
     .attr("x2", 5*m)
@@ -155,10 +167,6 @@ var m = 40;
     .attr("y2", 4*m)
     .attr("stroke", "black");
 
-// load data
-d3.json("family_new.json", function(data) {
-
-  // make global
 
   
   
@@ -353,8 +361,11 @@ function mouseout() {
 
         tip.append("text")
         .attr("class", "text")
-        .text(function() {
+        .text(function() {if (noodle.born.getDate() == 31) {
+return "Born " + months[noodle.born.getMonth()+1] + " 1, " + noodle.born.getFullYear();
+          } else {
                    return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
+                 }
         })
         .attr("fill", "white")
         .attr("x", function(d) {
@@ -387,7 +398,7 @@ function mouseout() {
   //       return "#FF66FF"
   //     }})
 
-});
+
 
   
 

@@ -3,7 +3,7 @@ var chel = 0;
 
 json = [
   { 
-    "born": new Date("1995-04-01"),
+    "born": new Date("1976-04-01"),
     "name": "Jason Sandhoefner",
     "age": 40,
     "gender": "m",
@@ -13,7 +13,7 @@ json = [
     "file": "jason"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1984-12-14"),
     "name": "Kristen Sandhoefner",
     "age": 35,
     "gender": "f",
@@ -24,7 +24,7 @@ json = [
     "file": "kristen"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1977-04-19"),
     "name": "Shannon Senglaub",
     "age": 35,
     "gender": "f",
@@ -35,7 +35,7 @@ json = [
     "file": "shannon"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1976-11-15"),
     "name": "Greg Senglaub",
     "age": 35,
     "gender": "m",
@@ -46,7 +46,7 @@ json = [
     "file": "greg"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1985-10-29"),
     "name": "Erin Ketchum",
     "age": 29,
     "gender": "f",
@@ -57,7 +57,7 @@ json = [
     "file": "erin"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1986-05-21"),
     "name": "Andrew Ketchum",
     "age": 29,
     "gender": "m",
@@ -68,7 +68,7 @@ json = [
     "file": "andrew"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1989-05-09"),
     "name": "Corinne Lyons",
     "age": 25,
     "gender": "f",
@@ -79,7 +79,7 @@ json = [
     "file": "corinne"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1983-05-09"),
     "name": "Scott Lyons",
     "age": 28,
     "gender": "m",
@@ -90,7 +90,7 @@ json = [
     "file": "scott"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1991-05-07"),
     "name": "Collin Sandhoefner",
     "age": 23,
     "gender": "m",
@@ -101,7 +101,7 @@ json = [
     "file": "collin"
   },
   { 
-  "born": new Date("1995-11-08"),
+  "born": new Date("1992-05-02"),
     "name": "Chelsea Brown",
     "age": 23,
     "gender": "f",
@@ -123,7 +123,7 @@ json = [
     "file": "evan"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1995-01-31"),
     "name": "Amy Huang",
     "age": 20,
     "gender": "f",
@@ -134,7 +134,7 @@ json = [
     "file": "amy"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1997-11-01"),
     "name": "Aidan Sandhoefner",
     "age": 17,
     "gender": "m",
@@ -145,7 +145,7 @@ json = [
     "file": "aidan"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1997-01-08"),
     "name": "Megan Bulone",
     "age": 17,
     "gender": "f",
@@ -156,7 +156,7 @@ json = [
     "file": "megan"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("2006-03-23"),
     "name": "Carter Senglaub",
     "age": 8,
     "gender": "m",
@@ -167,7 +167,7 @@ json = [
     "file": "carter"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("2011-01-04"),
     "name": "Makenna Senglaub",
     "age": 4,
     "gender": "f",
@@ -178,7 +178,7 @@ json = [
     "file": "makenna"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("2015-04-14"),
     "name": "Emmy Lyons",
     "age": 0,
     "gender": "f",
@@ -189,7 +189,7 @@ json = [
     "file": "emmy"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1955-05-07"),
     "name": "Jim Sandhoefner",
     "age": 60,
     "gender": "m",
@@ -200,7 +200,7 @@ json = [
     "file": "jim"
   },
   { 
-    "born": new Date("1995-11-08"),
+    "born": new Date("1955-03-27"),
     "name": "Cathy Sandhoefner",
     "age": 59,
     "gender": "f",
@@ -211,7 +211,8 @@ json = [
     "file": "cathy"
   },
   { 
-    "born": new Date("1995-11-08"),
+    // year uncertain
+    "born": new Date("1931-11-20"),
     "name": "Joe Matthews",
     "age": 80,
     "gender": "m",

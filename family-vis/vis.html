@@ -65,18 +65,25 @@ var m = 40;
   for (i = 0; i < 7; i++) {
     var pasta;
     if (i>4) {pasta = m*2} else {pasta = 0};
-    if (i != 4) {
+    //sans chelsea if (i != 4) 
+    {
     svg.append("line")
-      .attr("x1", (2+4*i)*m-l-pasta)
-      .attr("x2", (2+4*i)*m+l-pasta)
+      // sans chelsea
+      //.attr("x1", (2+4*i)*m-l-pasta)
+      //.attr("x2", (2+4*i)*m+l-pasta)
+      .attr("x1", (2+4*i)*m-l)
+      .attr("x2", (2+4*i)*m+l)
       .attr("y1", m*5)
       .attr("y2", m*5)
       .attr("stroke", "black")
     }
 
     svg.append("line")
-      .attr("x1", (1+4*i)*m - pasta)
-      .attr("x2", (1+4*i)*m - pasta)
+      // sans chelsea
+      // .attr("x1", (1+4*i)*m - pasta)
+      // .attr("x2", (1+4*i)*m - pasta)
+      .attr("x1", (1+4*i)*m)
+      .attr("x2", (1+4*i)*m)
       .attr("y1", m*4)
       .attr("y2", m*5-10)
       .attr("stroke", "black")
@@ -96,6 +103,18 @@ var m = 40;
     .attr("y1", 6*m)
     .attr("y2", 6*m)
     .attr("stroke", "black");
+
+    String.prototype.repeat = function(times){
+    var result="";
+    var pattern=this+" ";
+    while (times > 0) {
+        if (times&1)
+            result+=pattern;
+        times>>=1;
+        pattern+=pattern;
+    }
+    return result;
+};
 
   svg.append("line")
     .attr("x1", 5*m)
@@ -142,15 +161,12 @@ var m = 40;
     // the long one
     svg.append("line")
     .attr("x1", m)
-    .attr("x2", 23*m)
+    // sans chelsea .attr("x2", 23*m)
+    .attr("x2", 25*m)
     .attr("y1", 4*m)
     .attr("y2", 4*m)
     .attr("stroke", "black");
 
-// load data
-d3.json("family_new.json", function(data) {
-
-  // make global
 
   
   
@@ -182,7 +198,7 @@ var r = 20;
       } else {
         return "#FF66FF"
       }})
-    .on("mouseover", function (d) {document.getElementById('text').innerText =d.description;
+    .on("mouseover", function (d) {document.getElementById('text').innerText =d.name.repeat(30);
 
       if (d.file == "andrew" ||d.file ==  "chelsea"||d.file ==  "erin" ||d.file == "jim"||d.file ==  'joe') {
       document.getElementById("photo").innerHTML = "<img src='" + d.file + ".jpg' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
@@ -309,7 +325,7 @@ function mouseout() {
       tip.append("text")
       .attr("class", "text")
         .text(function() {
-          return noodle.age + " years old";
+          return today.ageLastBirthday(noodle.born) + " years old";
         })
         .attr("fill", "white")
         .attr("x", function(d) {
@@ -345,9 +361,11 @@ function mouseout() {
 
         tip.append("text")
         .attr("class", "text")
-        .text(function() {
-          console.log(today.ageLastBirthday(noodle.born));
-          return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
+        .text(function() {if (noodle.born.getDate() == 31) {
+return "Born " + months[noodle.born.getMonth()+1] + " 1, " + noodle.born.getFullYear();
+          } else {
+                   return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
+                 }
         })
         .attr("fill", "white")
         .attr("x", function(d) {
@@ -380,7 +398,7 @@ function mouseout() {
   //       return "#FF66FF"
   //     }})
 
-});
+
 
   
 
