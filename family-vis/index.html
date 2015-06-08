@@ -31,7 +31,8 @@ bootstrap/js/bootstrap.min.js" charset="utf-8"></script></head>
 <div class="row">
   <div class="col-sm-8">
     <span id="text"></span>
-    <span id="age" class="text2"><br><br>*All information is approximate.</span>
+    <span id="age"><br><br>All information is approximate.</span>
+    <!-- <button onclick="switch">Click me for an adventure!</button> -->
   </div>
   <div class="col-sm-4" id="photo"></div>
 </div>
@@ -48,7 +49,9 @@ bootstrap/js/bootstrap.min.js" charset="utf-8"></script></head>
 //
 //
 
-
+// function switch() {
+//   console.log('s');
+// }
 
 // create svg canvas
 var margin = {top: 50, bottom: 10, left: 300, right: 40};
@@ -177,10 +180,8 @@ var m = 40;
     .enter()
     .append("g").attr("class", "node")
     .on("mouseover", mouseover)
-    .on("mouseout", mouseout)
-    .attr("transform", function(d, i) {
-      return "translate("+(m*json[18].x)+","+(m*json[18].y)+")"
-    });
+    .on("mouseout", mouseout);
+    
 
   // var groups = svg.selectAll("g")          
   //   .append("text")
@@ -198,6 +199,9 @@ var r = 20;
       } else {
         return "#FF66FF"
       }})
+    .attr("transform", function(d, i) {
+      return "translate("+(m*d.x)+","+(m*d.y)+")"
+    })
     .on("mouseover", function (d) {document.getElementById('text').innerText =d.description;
 
       if (d.file == "andrew" ||d.file ==  "chelsea"||d.file ==  "erin" ||d.file == "jim"||d.file ==  'joe') {
@@ -218,17 +222,14 @@ return cy - by - adj;
     
     var today=new Date();
 
-  d3.selectAll(".node")
-    // .transition(1000)
-    .attr("transform", function(d, i) {
-      return "translate("+(m*d.x)+","+(m*d.y)+")"
-    })
+
 
 
 
     function mouseover() {
   d3.select(this).select("circle").transition()
       .duration(500)
+      // 35 vs 40 what's going on
       .attr("r", 35);
 
 
@@ -243,9 +244,43 @@ function mouseout() {
       .attr("r", r);
 }
 
+var time = 750;
 
   var nodes = d3.selectAll(".circle")
   nodes
+    .on("click", function(d) {
+      var that = this;
+      if (that.id == "Amy Huang") {
+          nodes
+          .transition().duration(time)
+          .attr("transform", function(d) {
+            if (d.name == "Amy Huang") {
+              d.x = 14;
+              d.y = 1;
+              return "translate("+(m*14)+","+(m*1)+")"
+            // don't get soft when you take a break from rigorous programming. if you need to debug then fucking look at the DOM
+              // return "translate("+(8)+","+(8)+")"
+            } else {
+              return "translate("+(m*14)+","+(m*1-60)+")"
+              return 50
+            }
+
+          });
+
+          nodes
+            .attr("r", r);
+
+          d3.selectAll("rect")
+            .remove();
+
+          d3.selectAll("line")
+          .transition().duration(time)
+          .attr("x1", m*14)
+          .attr("x2", m*14)
+          .attr("y1", m*1-60)
+          .attr("y2", m*1-60);
+        }
+        })
     .on("mouseenter", function(d) {
       var that = this;
       d3.selectAll("node")
