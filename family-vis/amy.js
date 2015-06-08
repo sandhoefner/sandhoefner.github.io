@@ -40,7 +40,7 @@ json = [
     "age": 35,
     "gender": "m",
     "description":
-    "High school history teacher. Took many years to graduate from CSULB while working at Ralph's or something. Teaches bad kids at bad schools. Cool guy.",
+    "High school world history teacher. Took many years to graduate from CSULB while working as a cashier at Albertson's. Teaches bad kids at bad schools (Magnolia, as of 2014-2015). Cool guy.",
     "x": 7,
     "y": 5,
     "file": "greg"
