@@ -1,22 +1,51 @@
-<!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-<title>Sandhoefner Family Vis</title>
-
-<style>
-</style>
-
-<script src="
-javascripts/drag_iframe.js" charset="utf-8"></script>
-<script>
-</script>
-
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Countdown</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+  #draggable { width: 352px; height: 262px; padding-top:0px; padding-left:2px; border-radius: 15px 15px 5px 5px;}
+  #handle {cursor: pointer; height:20px;}
+  /*  http://sixrevisions.com/css/responsive-background-image/  */
+  body {
+  /* Location of the image */
+  background-image: url(beach_crop.jpg);
+  
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+}
+  </style>
+  <script>
+  $(function() {
+    $( "#draggable" ).draggable({ iframeFix: true });
+  });
+  </script>
+</head>
 <body>
+ 
+<div id="draggable" class="ui-widget-content"><div id="handle" align="center">Click here and drag!</div>
   <!-- based on 8:30 hug time -->
-<p></p>
-<!-- original 350x240 -->
-<iframe width="350" height="240" src="https://w2.countingdownto.com/948561" frameborder="0"></iframe>
-<!-- <p><a href="https://countingdownto.com">Website Countdowns</a></p> -->
+  <iframe width="350" height="240" src="https://w2.countingdownto.com/948561" frameborder="0"></iframe>
+</div>
+ 
+ 
 </body>
 </html>
