@@ -52,13 +52,18 @@ function reloadScrollBars() {
     document.body.scroll = "no"; // ie only
 }
 
-unloadScrollBars();
+
+
+$(window).load(function() {
+  document.getElementById("handle").innerText = "Click here and drag!";
+  unloadScrollBars();
+  });
   </script>
 </head>
 <body>
  <!-- could add another handle at the bottom to snap back to a given position -->
  <!-- font may be too big -->
-<div id="draggable" class="ui-widget-content"><div id="handle" align="center">Click here and drag!</div>
+<div id="draggable" class="ui-widget-content"><div id="handle" align="center"></div>
   <!-- based on 8:30 hug time -->
   <iframe width="350" height="240" src="https://w2.countingdownto.com/948561" frameborder="0"></iframe>
 </div>
