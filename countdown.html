@@ -35,16 +35,31 @@
   </style>
   <script>
   $(function() {
-    $( "#draggable" ).draggable({ iframeFix: true });
+    $( "#draggable" ).draggable({ iframeFix: true,containment: "window" });
   });
+// http://stackoverflow.com/questions/242608/disable-browsers-vertical-and-horizontal-scrollbars
+
+function reloadScrollBars() {
+    document.documentElement.style.overflow = 'auto';  // firefox, chrome
+    document.body.scroll = "yes"; // ie only
+}
+
+  function unloadScrollBars() {
+    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+    document.body.scroll = "no"; // ie only
+}
+
+unloadScrollBars();
   </script>
 </head>
 <body>
- 
+ <!-- could add another handle at the bottom to snap back to a given position -->
 <div id="draggable" class="ui-widget-content"><div id="handle" align="center">Click here and drag!</div>
   <!-- based on 8:30 hug time -->
   <iframe width="350" height="240" src="https://w2.countingdownto.com/948561" frameborder="0"></iframe>
 </div>
+
+
  
  
 </body>
