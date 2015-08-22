@@ -1,0 +1,187 @@
+<center><font size=18>Introduction</font></center>	
+
+HTML stands for Hyper Text Markup Language. Basically, it is a programming language that deals with the organization of text and graphics (pictures) within a webpage. For this reason, it is entirely more simple than anything like Javascript or Python, which would be used to program interactive games and the like. HTML only uses one base: tags. For example, if you want to make something bold, you would type (b)This is bold.(/b) Read this next section thoroughly, as it will explain all of the different parts of a tag. Once you understand this, the only thing left to learn is the tags themselves, which must simply be memorized. WARNING: some tags do not work in Internet Explorer but do in Netscape, etc.
+If you wanted to actually make something bold on a webpage, you would use the shift-comma and shift-period brackets instead of parentheses, but I use parentheses so you can see the tag how it would actually look Do you understand that at all? Oh well, you don't need to. Just remember, I typed (b)This is bold.(/b) so you should type (shift-comma)b(shift-period)This is bold.(shift-comma)/b(shift-period) That is really complicated, but you can get through it. So, on to the next section.<p>
+
+<font size=18><center>Tags: What are They?</center></font><p>
+
+There are two kinds of tags: tags that need to be ended, and tags that don't. Example: typing (p) anywhere on a page will double-space the text where (p) was placed. (p) does not need to be ended. If you want to make some text bold, however, it is entirely different. If you type<br>  (b)This is  bold. This is not bold.<br>You will be lying. That is because you need to tell the computer when to stop making text bold. This is why the (/b) tag is necessary. The / shows that you are ending the tag. If you type<br>(b)This is bold(/b) This is not bold.<br>You will not be lying, because you ended the tag before you typed "this is not bold." Oh, by the way, in case you haven't noticed yet, the text in between the (b) and (/b) is what actually shows up on your page. Now you will learn a third tag, (i). This tag makes text italic, and hence needs to be ended. The reason you need to know two tags in this section is for the sake of example. This example is the constant question: "What if I want my text bold AND italic?" Well, here is your answer. Just type <br>(b)(i)This is bold and italic.(/i)(/b)<br> As long as you end all of your tags at the end, you can put infinite tags on a sentence in this way. Don't try, though, your computer will crash, or even more likely, you will die before you reach infinity. If you understand this, go ahead to the next section. If you don't, post a comment on my blog saying what you didn't understand and I will modify this tutorial. You MUST NOT go on unprepared, because this one section is the most complicated and essential part of HTML programming you will ever learn. Oh, sorry, I forgot to tell you how you can even use all of this information! If you think you understand HTML already, just use Google or Yahoo and search for "free website". Eventually, you will find one that lets you use HTML. Or you could just try some programming in your blog. If you want to practice HTML without actually putting it on the WWW (World Wide Web), read on. You will want to use a program called Notepad that comes on any Windows computer. To get to it, open your start toolbar and go to Programs, Accessories, Notepad. Do your programming and then save it as <br>title.htm<br>You must save it as .htm for it to work. Now, If you open your file, it will come up in your Internet browser, but not actually be on the Internet for everyone to see. In order to open it in both Notepad and your Internet Browser, right-click on the file, go to Open With, and pick what you want to open it with.<p>
+
+<center><font size=18>Basic Font Modifications</font></center><p>
+
+The following is a list of the most basic things you can possibly do with HTML:  change text appearance.<p>
+<ul>
+<li>(u)This is underlined.(/u)
+<li>(b)This is bold.(/b)
+<li>(i)This is italic.(/i)
+<li>(small)This text is smaller than normal.(/small)
+<li>(big)This text is bigger than normal.(/big)
+</ul><p>
+
+The following is a list of some slightly more complicated commands, but which serve the same basic purpose: to change the actual appearance of text.<p>
+
+<ul>
+<li>(font color="red")This is red.(/font)
+<li>(font size=-2)This is 2 sizes smaller than normal.(/font)
+<li>(font size=+2)This is 2 font sizes larger than normal.(/font)
+<li>(font size=18)This is in font size 18.(/font)
+<li>(font face="garamond")This is in the Garamond font.(/font)
+</ul><p>
+
+Some notes must be made on these more complicated commands. While you can just use font colors like red or yellow or blue (the basic colors), if you want a detailed color, burgundy, for example, you would type a hexadecimal (six characters) code. For burgundy, you would type (font color="#800000"). I find these codes too much of a burden, and just use basic colors. Also, although this may be rather obvious, you can use most any font instead of Garamond, like Arial or Comic Sans. Also, possibly the most important, if you want to make some text green and size 18 and in Arial font, you can type <br>(font size=18 face="garamond" color="green")This is green and size 18 and in Arial font.(/font)<p>
+
+<center><font size=18>How to Insert Images</font></center><p>
+
+The main part of the image tag is img src. To memorize this, just think of image search or image source. When you enter an image using HTML, you are not entering an image from your computer. You are entering an image that you found on the Internet. For an example, I will use the image located at<br>http://thmg.photobucket.com/albums/v602/bfraz/th_ChinOnDeck.jpg <br>when you pick your own image, be careful. If you like an image at fhfhf.com you must right-click on the image and click View Image. Then use the address of the new window that comes up with just the image  in it. You also may enter a .gif file (moving cartoon-type file) in the same way as an  image. So anyway, moving on. To enter the picture I am using, you would type <br>
+(img src="http://thmg.photobucket.com/albums/v602/bfraz/th_ChinOnDeck.jpg")<br>
+This tag does not need to be ended. As a special add-on, you can put a border on the image. <br>
+(img src="http://thmg.photobucket.com/albums/v602/bfraz/th_ChinOnDeck.jpg" border=1)<br>
+will insert the same image with a thin border around it. Typing border 2  instead of border1 will make a thick border. Another add-on is to change the placement of the image. To do this, type<br> (div align="center")(img src="http://thmg.photobucket.com/albums/v602/bfraz/th_ChinOnDeck.jpg")(/div)<br> This will center the  image. You can also replace center with left or right.
+
+<center><font size=18>Links to Other Sites</font></center><p>
+
+<ul>
+<li>(a href="google.com") ----will enter a link to google.com<br>
+<li>(a href="google.com")Click Here.(/a) ----will enter a link to google that shows up on the page as 		Click Here.<br>
+<li>(a href="google.com" target="_blank") ----is a link to google that will open in a new window<br>
+<li>(a href="google.com")(img src="j.com")(/a) ----will enter a link to google that will appear as a picture.<br>
+<li>typing at the top of your page (body link="blue" vlink="red") will make all links on the page show up in blue and change to red after visited.
+</ol><p>
+Naturally, as with the "font" commands, you can also type<br>
+(a href="google.com" target="_blank")(div align="center")(img src="j.com")(/div)(/a)<p>
+
+<center><font size=18>How to Enter a Horizontal Rule (Line)</font></center><p>
+
+Typing (hr) will enter a horizontal rule (line) that stretches across the whole page.<br>
+There are many variables of this, however.<br>
+(hr width="x") ---- x being a number or a % ---- is one of them.<br>
+(hr size="x") ---- x being a number or a % ---- is another.<br>
+(hr noshade) ---- which changes the appearance but not size of an hr ---- is the last.<br>  
+(hr noshade width="x" size="x") ---- is allowed as well.<p>
+
+<center><font size=18>How to Make a List</font></center><p>
+
+There are two kinds of lists: ordered and unordered.
+
+<table border=3>
+<tr>
+<td>
+(ul)<br>(li)cookies<br>(li)cake<br>(li)fudge<br>(/ul)
+</td>
+<td>
+<ul>
+<li>cookies
+<li>cake
+<li>fudge
+</ul>
+</td>
+</tr>
+</table><br>
+
+Above is an unordered list.<p>
+
+<table border=3>
+<tr>
+<td>
+(ol)<br>(li)cookies<br>(li)cake<br>(li)fudge<br>(/ol)
+</td>
+<td>
+<ol>
+<li>cookies
+<li>cake
+<li>fudge
+</ol>
+</td>
+</tr>
+</table><p>
+
+Above is an ordered list.<p>
+
+There is more than one kind of ordered list, though. Instead of typing (ol), you can type:<br>
+(ol type="A") ---- A. B  C.<br>
+(ol type="a") ---- a. b. c.<br>
+(ol type="I") ---- I. II. III.<br>
+(ol type="i") ---- i. ii. iii.<p>
+
+<center><font size=18>How to Make a Table</font></center><p>
+
+<table border=3>
+<tr>
+<td>
+(table border=3)<br>
+(tr)<br>
+(td)<br>
+cookies<br>
+(/td)<br>
+(td)<br>
+cookies<br>
+(/td)<br>
+(/tr)<br>
+(tr)<br>
+(td)<br>
+cookies<br>
+(/td)<br>
+(td)<br>
+cookies<br>
+(/td)<br>
+(/tr)<br>
+(/table)
+</td>
+</tr>
+</table>
+
+Would look like
+
+<table border=3>
+<tr>
+<td>
+cookies
+</td>
+<td>
+cookies
+</td>
+</tr>
+<tr>
+<td>
+cookies
+</td>
+<td>
+cookies
+</td>
+</tr>
+</table><p>
+
+I know that this is confusing, so let me shed a little light on it. Firstly, the matter of the tr and td tags. Tr stands for <b>t</b>able <b>r</b>ow. Td stands for <b>t</b>able <b>d</b>ata cell.<br>
+Secondly...there is no secondly. There is another way to customize your table, though.<br>
+Instead of (table border=3) at the top, you can put<br>
+(table width="a" height="b" border="c" bordercolor="d")<br>
+"a" is a number or a percentage<br>
+"b" is a number or a percentage<br>
+"c" is 1(thin), 2(normal), or 3(thick)<br>
+"d" is a color<p>
+
+<center><font size=18>Some More Random Tags</font></center><p>
+
+(blink)This text is blinking, but not in Internet Explorer.(/blink)<br>
+(marquee)This text is scrolling horizontally across the page.(/marquee)<br>
+(center)This text is centered.(/center)<br>
+(body bgcolor="blue") typed at the top of a page changes the background color to blue<br>
+(body background="j.com") typed at the top of a page will place the image found at j.com in the background<br>
+<table border=3>
+<tr>
+<td>
+This line is (br)broken.
+</td>
+<td>
+This line is <br>broken.
+</td>
+</tr>
+</table><p>
+
+(span id='anId' class='aClass' style='color:red;' title='Cats')HTML(/span)<br>
+shows up as HTML in red, and will pop up a box saying Cats when the cursor is moved over it.<br>
+This is what it would be like:<br>
+<span id='anId' class='aClass' style='color:red;' title='Cats'>HTML</span><br>
+Obviously, if you choose to use this tag, you can change the color and the phrases "Hyper Text Markup Language" and "Cats"<p>
+
+Well, I'm almost sad I'm done writing this tutorial now. I'll have nothing to do all day. Oh well, don't forget to mention me when you become billionaire computer programmers.

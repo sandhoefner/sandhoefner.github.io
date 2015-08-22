@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+<title>Sandhoefner Family Vis</title>
+
+<style>
+.text {
+    font-family: "Lucida Console";
+    font-size: 11.5px;
+}
+.col-sm-4, .col-sm-8 {
+    font-family: "Lucida Console";
+    font-size: 13px;
+}
+
+.table col:nth-child(1){width:300px;}
+.table col:nth-child(2){width:100px;}
+
+</style>
+<script src="
+jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script src="
+bootstrap/js/bootstrap.min.js" charset="utf-8"></script></head>
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>  <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.min.css">
+<script src="amy.js"></script>
+
+<div id="vis"></div>
+
+<div class="row">
+  <div class="col-sm-8">
+    <span id="text"></span>
+    <span id="age" class="text2"><br><br>*All information is approximate.</span>
+  </div>
+  <div class="col-sm-4" id="photo"></div>
+</div>
+
+
+
+<script>
+
+//
+//
+//
+// should plug in birth date and year and make current age formula-based to update... could also display birthday
+//
+//
+//
+
+
+
+// create svg canvas
+var margin = {top: 50, bottom: 10, left: 300, right: 40};
+var width = 1650 - margin.left - margin.right;
+var height = 400 - margin.top - margin.bottom;
+
+var svg = d3.select("#vis").append("svg")
+  .attr("width", width)
+  .attr("height", height);
+
+var l = 30;
+var m = 40;
+  var l2 = 40;
+  for (i = 0; i < 7; i++) {
+    var pasta;
+    if (i>4) {pasta = m*2} else {pasta = 0};
+    //sans chelsea if (i != 4) 
+    {
+    svg.append("line")
+      // sans chelsea
+      //.attr("x1", (2+4*i)*m-l-pasta)
+      //.attr("x2", (2+4*i)*m+l-pasta)
+      .attr("x1", (2+4*i)*m-l)
+      .attr("x2", (2+4*i)*m+l)
+      .attr("y1", m*5)
+      .attr("y2", m*5)
+      .attr("stroke", "black")
+    }
+
+    svg.append("line")
+      // sans chelsea
+      // .attr("x1", (1+4*i)*m - pasta)
+      // .attr("x2", (1+4*i)*m - pasta)
+      .attr("x1", (1+4*i)*m)
+      .attr("x2", (1+4*i)*m)
+      .attr("y1", m*4)
+      .attr("y2", m*5-10)
+      .attr("stroke", "black")
+
+  }
+
+  svg.append("line")
+    .attr("x1", 13*m-l)
+    .attr("x2", 13*m+l)
+    .attr("y1", 3*m)
+    .attr("y2", 3*m)
+    .attr("stroke", "black");
+
+  svg.append("line")
+    .attr("x1", 6*m-l2)
+    .attr("x2", 6*m+l2)
+    .attr("y1", 6*m)
+    .attr("y2", 6*m)
+    .attr("stroke", "black");
+
+    String.prototype.repeat = function(times){
+    var result="";
+    var pattern=this+" ";
+    while (times > 0) {
+        if (times&1)
+            result+=pattern;
+        times>>=1;
+        pattern+=pattern;
+    }
+    return result;
+};
+
+  svg.append("line")
+    .attr("x1", 5*m)
+    .attr("x2", 5*m)
+    .attr("y1", 6*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 7*m)
+    .attr("x2", 7*m)
+    .attr("y1", 6*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 6*m)
+    .attr("x2", 6*m)
+    .attr("y1", 5*m)
+    .attr("y2", 6*m)
+    .attr("stroke", "black");
+
+  svg.append("line")
+    .attr("x1", 14*m)
+    .attr("x2", 14*m)
+    .attr("y1", 10+m)
+    .attr("y2", 3*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 14*m)
+    .attr("x2", 14*m)
+    .attr("y1", 5*m)
+    .attr("y2", 7*m-10)
+    .attr("stroke", "black");
+
+    svg.append("line")
+    .attr("x1", 13*m)
+    .attr("x2", 13*m)
+    .attr("y1", 3*m)
+    .attr("y2", 4*m)
+    .attr("stroke", "black");
+
+    // the long one
+    svg.append("line")
+    .attr("x1", m)
+    // sans chelsea .attr("x2", 23*m)
+    .attr("x2", 25*m)
+    .attr("y1", 4*m)
+    .attr("y2", 4*m)
+    .attr("stroke", "black");
+
+
+  
+  
+  
+
+  var node = svg.selectAll(".node")
+    .data(json)
+    .enter()
+    .append("g").attr("class", "node")
+    .on("mouseover", mouseover)
+    .on("mouseout", mouseout)
+    .attr("transform", function(d, i) {
+      return "translate("+(m*json[18].x)+","+(m*json[18].y)+")"
+    });
+
+  // var groups = svg.selectAll("g")          
+  //   .append("text")
+  //   .attr("dx", 6)
+  //   .attr("dy", 4.5)
+  //   .text(function(d) {return d.name});
+
+var r = 20;
+  node.append("circle")
+    .attr("class", "circle")
+    .attr("r", r)
+    .attr("id", function(d) {return d.name})
+    .attr("fill", function(d) {if (d.gender == "m") {
+        return "blue"
+      } else {
+        return "#FF66FF"
+      }})
+    .on("mouseover", function (d) {document.getElementById('text').innerText =d.name.repeat(30);
+
+      if (d.file == "andrew" ||d.file ==  "chelsea"||d.file ==  "erin" ||d.file == "jim"||d.file ==  'joe') {
+      document.getElementById("photo").innerHTML = "<img src='" + d.file + ".jpg' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
+    } else {
+      document.getElementById("photo").innerHTML = "<img src='" + d.file + ".JPG' alt='Photo of " + d.name + "' style='width:228px;height:228px;'>";
+  }});
+
+// http://javascript.about.com/library/blage.htm
+  Date.prototype.ageLastBirthday = function(dob) {
+var cy = this.getFullYear();
+var by = dob.getFullYear();
+var db = new Date(dob);
+db.setFullYear(cy);
+var adj = (this-db<0) ? 1 : 0;
+return cy - by - adj;
+}
+    
+    var today=new Date();
+
+  d3.selectAll(".node")
+    // .transition(1000)
+    .attr("transform", function(d, i) {
+      return "translate("+(m*d.x)+","+(m*d.y)+")"
+    })
+
+
+
+    function mouseover() {
+  d3.select(this).select("circle").transition()
+      .duration(500)
+      .attr("r", 35);
+
+
+      
+}
+
+
+
+function mouseout() {
+  d3.select(this).select("circle").transition()
+      .duration(500)
+      .attr("r", r);
+}
+
+
+  var nodes = d3.selectAll(".circle")
+  nodes
+    .on("mouseenter", function(d) {
+      var that = this;
+      d3.selectAll("node")
+        .transition().duration(250)
+        .attr("r", function(d) {
+          if (d.name == that.id) {
+            // console.log("y");
+            return 40;
+          }
+        }); 
+      var noodle = 0;
+      json.forEach(function(d) {
+        if (d.name == that.id) {
+          noodle = d.x;
+        }
+        return noodle;
+      });
+  
+      var x = m*noodle;
+      json.forEach(function(d) {
+        if (d.name == that.id) {
+          noodle = d.y;
+        }
+        return noodle;
+      });
+      var y = m*noodle;
+
+      var tip = svg.append("g")
+          .attr("id", "toolTip");
+
+          var width = 140;
+
+      tip.append("rect")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 40;
+          } else {
+            return x - width - 40;
+          }
+        })
+        .attr("y", function(d) {
+          return y - 20;
+        })
+        .attr("width", width)
+        .attr("height", 75)
+        .attr("fill", "black")
+        .attr("fill-opacity", .75);
+
+        var noodle = 'obj';
+      json.forEach(function(d) {
+        // console.log(d,that);
+        if (d.name == that.id) {
+          noodle = d;
+
+        }
+        return noodle;
+      });
+// console.log(noodle);
+      tip.append("text")
+        .text(function() {
+          return that.id;
+        })
+        .attr("text-decoration", "underline")
+        .attr("fill", "white")
+        .attr("class", "text")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y - 5;
+        });
+
+      tip.append("text")
+      .attr("class", "text")
+        .text(function() {
+          return today.ageLastBirthday(noodle.born) + " years old";
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 12;
+        });
+
+        tip.append("text")
+        .attr("class", "text")
+        .text(function() {
+          if (noodle.gender == "f") {return "Female"} else {return "Male"}
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 29+17;
+        });
+
+
+        var months  = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+        tip.append("text")
+        .attr("class", "text")
+        .text(function() {if (noodle.born.getDate() == 31) {
+return "Born " + months[noodle.born.getMonth()+1] + " 1, " + noodle.born.getFullYear();
+          } else {
+                   return "Born " + months[noodle.born.getMonth()] + " " + (noodle.born.getDate()+1) + ", " + noodle.born.getFullYear();
+                 }
+        })
+        .attr("fill", "white")
+        .attr("x", function(d) {
+          if (x <= 14*m) {
+            return x + 45;
+          } else {
+            return x - width - 37.5;
+          }
+        })
+        .attr("y", function(d) {
+          return y + 29;
+        });
+
+    
+})
+    .on("mouseleave", function(d) {
+      d3.select("#toolTip").remove();});
+   
+  
+    // var circles = d3.selectAll("circle");
+  lines = d3.selectAll("line")
+
+  
+  
+  // nodes
+  //   .transition().duration(fade).attr("fill", function(d) {
+  //     if (d.gender == "m") {
+  //       return "blue"
+  //     } else {
+  //       return "#FF66FF"
+  //     }})
+
+
+
+  
+
+
+</script>
+</body>
+</html>
