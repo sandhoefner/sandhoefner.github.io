@@ -12,7 +12,7 @@
   "author": "Evan Sandhoefner",
 
   "background": {
-    "scripts": ["script.js", "jquery-2.1.1.min.js"]
+    "page": "background.html"
   },
 
   "icons": {
