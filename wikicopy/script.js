@@ -60,6 +60,7 @@ var funcToInject = function() {
 // (and makes sure it will be called instantly)
 var jsCodeStr = ';(' + funcToInject + ')();';
 
+/*
 chrome.commands.onCommand.addListener(function(cmd) {
   if (cmd === 'copy') {
     // inject the code into all frames of the active tab,
@@ -78,3 +79,4 @@ chrome.commands.onCommand.addListener(function(cmd) {
     );
   }
 });
+*/
