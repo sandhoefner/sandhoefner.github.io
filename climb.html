@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
   <meta charset="UTF-8">
-  <title>Climbing Vis Sandbox</title>
+  <title>Crusher Crew</title>
   <style>
   </style>
   <script src="http://d3js.org/d3.v3.min.js"></script>
+  Can statistical analysis help you crush V15 boulders?<br>
+  Maybe a little.
+  <div id="pie"></div>
+  <script src="libs/d3/d3.min.js" charset="utf-8"></script>
+  <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+  <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+  <script src="http://d3js.org/queue.v1.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" type="text/css" href="content/style-index.css"> -->
   <script>
     // http://www.99boulders.com/blog/hardest-boulder-problems/
 
@@ -17,5 +26,121 @@
     
     // get hard copies of these to cover your ass
 
+    // birth country pie chart
+    // height-weight scatter with fit line, comp. country avgs, other elite sports
+
+    // potential other data:  time between starting climbing and first v15
+    // number of v15s
+
+
+d3.csv("climbers-partial.csv", function(data) {
+var pie_svg = d3.select("#pie")
+  .append("svg")
+  .attr("width", getInnerWidth(d3.select("#pie")))
+  .attr("height", 1000);
+
+  var pie = d3.layout.pie()
+  .sort(null)
+  .value(function(d) { return d; }); 
+
+console.log(data);
+var countries  = [];
+data.forEach(function(d) {
+  if (countries.indexOf(d["birth_country"]) == -1) {
+    countries.push(d["birth_country"]);
+  }
+});
+
+
+var freq = [];
+for (i = 0; i < countries.length; i++) {
+  freq.push(0);
+}
+data.forEach(function(d){
+  freq[countries.indexOf(d["birth_country"])] += 1;
+
+});
+
+
+    // select pie paths
+  var pie_path = pie_svg.selectAll("#categ")
+      .data(pie(freq));
+
+function getInnerWidth(element) {
+    var style = window.getComputedStyle(element.node(), null);
+    return parseInt(style.getPropertyValue('width'));
+};
+
+  var pie_group = pie_path.enter().append("g");
+
+var arc = d3.svg.arc()
+  .outerRadius(100)
+  .innerRadius(0);
+
+var domain = [];
+for (i = 0; i < countries.length; i++) {
+  domain.push(i);
+}
+
+var colors = ["red","orange","yellow","green","blue","purple","darkred","darkorange","greenyellow","lightblue","indigo","lawngreen","indianred","mediumAquaMarine","mediumorchid"];
+
+  var pie_color_scale = d3.scale.ordinal()
+  .domain(domain) 
+  .range(colors);
+
+  // add new slices for first time
+  pie_group.append("path")
+      .attr("id", "categ")
+      .attr("fill", function(d, i) {
+        return pie_color_scale(i);
+      })
+      .attr("d", function(d) {
+        return arc(d);
+      })
+      .attr("transform", "translate(130, 120)")
+      .each(function(d) { this._current = d; });
+
+
+  pie_labels = pie_group.append("text")
+    .attr("class", "text")
+    .attr("transform", function(d) {
+      var x = arc.centroid(d)[0] + 130;
+      var y = arc.centroid(d)[1] + 120;
+      return "translate(" + x + ", " + y + ")";
+    })
+    .attr("text-anchor", "middle")
+    .attr("fill", "black")
+    .text(function(d) {
+      // return total 
+      if(d.value > 0) {
+        return d.value;
+      }
+    });
+
+// construct legend
+var i_mod = 0;
+    for (i = 0; i < countries.length; i++) {
+      pie_svg.append("rect")
+      .attr("x", function() {if (i < 8) {return 250} else {return 450}})
+    .attr("y", 40*i_mod)
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", colors[i]);
+
+    pie_svg.append("text")
+      .attr("x", function() {if (i < 8) {return 280} else {return 480}})
+    .attr("y", 40*i_mod+15)
+    .text(countries[i]);
+
+    if (i == 7) {
+      i_mod = 0;
+    }
+    i_mod++;
+    }
+
+
+
+
+});
   </script>
 </html>

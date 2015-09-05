@@ -1,0 +1,37 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:300,400);
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400);
+
+
+h1, .header-right-clickable {
+  /*font-family: 'Raleway', sans-serif;*/
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  /*font-family: 'Raleway', sans-serif;*/
+  /*font-family: 'Josefin Slab', serif;*/
+  font-family: 'Lato', sans-serif;
+  /*font-family: 'Source Sans Pro', sans-serif;*/
+  /*font-family: 'Alegreya Sans SC', sans-serif;*/
+  background-color: #ddd;
+}
+
+#title {
+  text-align: center;
+}
+
+.page-header {
+  font-family: 'Alegreya Sans SC', sans-serif;
+}
+
+#processbook {
+  font-size: 125%;
+}
+/*
+#blurb {
+  font-size: 125%;
+}*/

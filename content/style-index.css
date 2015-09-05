@@ -1,0 +1,126 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:100);
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:200);
+@import url(http://fonts.googleapis.com/css?family=Lato:300);
+@import url(http://fonts.googleapis.com/css?family=Josefin+Slab:300,400);
+@import url(http://fonts.googleapis.com/css?family=Alegreya+Sans+SC:100,300,400);
+
+.states {
+    fill: #FFFFFF
+}
+
+.centered {
+  text-align: center;
+  text-decoration: underline;
+}
+
+h1 {
+  /*font-family: 'Raleway', sans-serif;*/
+  font-family: 'Alegreya Sans SC', sans-serif;
+  font-weight: 400;
+}
+
+body {
+  /*font-family: 'Raleway', sans-serif;*/
+  /*font-family: 'Josefin Slab', serif;*/
+  /*font-family: 'Lato', sans-serif;*/
+  /*font-family: 'Source Sans Pro', sans-serif;*/
+  /*font-family: 'Alegreya Sans SC', sans-serif;*/
+  background-color: #ddd;
+}
+
+#slider {
+  text-align: center;
+}
+
+#title {
+  text-align: center;
+}
+
+#col1, #presVis, #storyCol {
+  box-shadow: 0 0 2px black;
+  background-color: #FFFFFF;
+  height:710px;
+}
+
+
+#state-div {
+  box-shadow: 0 0 2px black;
+  text-align: center;
+}
+
+#row2 {
+  box-shadow: 0 0 2px black;
+}
+
+#stCompare, #stDemographic0 {
+  height:700px;
+  box-shadow: 0 0 2px black;
+}
+
+#stCompare {
+  background-color:#E8AEB7;
+}
+
+#stDemographic0 {
+  background-color: #FFD6D6;
+}
+
+#stParty, #stTurnt, #stInc {
+  box-shadow: 0 0 2px black;
+  height:500px;
+}
+
+#stParty {
+  /*background-color: #D6FF65;*/
+  background-color: #B2FFFF;
+}
+
+#stTurnt {
+  background-color: #BBFBEB;
+}
+
+#stInc {
+  background-color: #E0FFF0;
+}
+
+
+
+
+.axis path,
+.axis line {
+        fill: none;
+        stroke: black;
+        shape-rendering: crispEdges;
+}
+
+/*.Arizona {
+    fill: #456712
+}*/
+
+/*.q0-8 { fill:#b2182b; }
+  .q1-8 { fill:#d6604d; }
+  .q2-8 { fill:#f4a582; }
+  .q3-8 { fill:#fddbc7; }
+  .q4-8 { fill:#f7f7f7; }
+  .q5-8 { fill:#d1e5f0; }
+  .q6-8 { fill:#92c5de; }
+  .q7-8 { fill:#4393c3; }
+  .q8-8 { fill:#2166ac; }*/
+
+/*.q0-8 { fill:#cc0000; }
+.q1-8 { fill:#d63333; }
+.q2-8 { fill:#e06666; }
+.q3-8 { fill:#eb9999; }
+.q4-8 { fill:#99ccff; }
+.q5-8 { fill:#5cadff; }
+.q6-8 { fill:#3399ff; }
+.q7-8 { fill:#297acc; }*/
+
+.q0-8 { fill:#ff8383; }
+.q1-8 { fill:#ff9e9e; }
+.q2-8 { fill:#ffbaba; }
+.q3-8 { fill:#ffd6d6; }
+.q4-8 { fill:#c2eaff; }
+.q5-8 { fill:#aae2ff; }
+.q6-8 { fill:#91daff; }
+.q7-8 { fill:#75d1ff; }
