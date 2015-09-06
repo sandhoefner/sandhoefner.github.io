@@ -17,10 +17,10 @@
 <style>
 
 /*only remaining issue: switching horizontally between rect and text, momentary de-bold. try grouping rect with text. next up: pull out pie slices. highlighting legend rects with black border is a final tweak if it's easy. also 5 rows of 3 might be sexier. also complete data. also don't spend too much time on this; there are cooler components ahead like the height-weight scatter. do I want mouseover the actual pie to be functional, or just mouseover legend?"*/
-.legend-text:hover {
+/*.legend-text:hover {
     
     font-weight: 700;
-}
+}*/
 .strongbold {
   font-weight: 700;
 }
@@ -161,7 +161,14 @@ d3.select(text_id).classed("strongbold",false);
 // construct legend
 var i_mod = 0;
     for (i = 0; i < countries.length; i++) {
-      pie_svg.append("rect")
+      var group = pie_svg.append("g")
+      .attr("id", i)
+      .on("mouseover",function(){var noodle = this; bold(this);})
+    .on("mouseout",function(){var noodle = this; unbold(this);});
+
+    
+      group.append("rect")
+
       .attr("id", i)
 
       .attr("class","legend-rect")
@@ -170,14 +177,14 @@ var i_mod = 0;
     .attr("y", function() {if (i > 7) {return 40*i_mod-20} else {return 40*i_mod}})
     .attr("width", 20)
     .attr("height", 20)
-    .on("mouseover",function(){var noodle = this; bold(this);})
-    .on("mouseout",function(){var noodle = this; unbold(this);})
+    // .on("mouseover",function(){var noodle = this; bold(this);})
+    // .on("mouseout",function(){var noodle = this; unbold(this);})
     .attr("fill", colors[i]);
 
-    pie_svg.append("text")
+    group.append("text")
       .attr("id", "text" + i)
-        .on("mouseover",function(){var noodle = this; bold(this);})
-    .on("mouseout",function(){var noodle = this; unbold(this);})
+    //     .on("mouseover",function(){var noodle = this; bold(this);})
+    // .on("mouseout",function(){var noodle = this; unbold(this);})
 
   
       .attr("class", "legend-text")
