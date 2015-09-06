@@ -16,7 +16,7 @@
   <!-- <link rel="stylesheet" type="text/css" href="content/style-index.css"> -->
 <style>
 
-
+/*only remaining issue: switching horizontally between rect and text, momentary de-bold. try grouping rect with text. next up: pull out pie slices. highlighting legend rects with black border is a final tweak if it's easy. also 5 rows of 3 might be sexier. also complete data. also don't spend too much time on this; there are cooler components ahead like the height-weight scatter. do I want mouseover the actual pie to be functional, or just mouseover legend?"*/
 .legend-text:hover {
     
     font-weight: 700;
@@ -122,6 +122,7 @@ var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,16
 
   pie_labels = pie_group.append("text")
     .attr("class", "text")
+    .style("font-weight", "bold")
     .attr("transform", function(d) {
       var x = arc_text.centroid(d)[0] + 130;
       var y = arc_text.centroid(d)[1] + 124;
