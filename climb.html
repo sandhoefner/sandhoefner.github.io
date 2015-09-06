@@ -138,9 +138,19 @@ var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,16
 
 function bold(categ) {
   
-  var text_id = "text" + categ.id;
-var fish = document.getElementById(text_id);
-fish.attr("stroke-width", "2px");
+  var text_id = "#text" + categ.id;
+  // can't use stroke-width for text, dummy!
+d3.select(text_id).style("font-weight","bold");
+
+}
+
+function unbold(categ) {
+
+  
+  var text_id = "#text" + categ.id;
+  // can't use stroke-width for text, dummy!
+d3.select(text_id).style("font-weight","normal");
+
 }
 
 // construct legend
@@ -156,11 +166,13 @@ var i_mod = 0;
     .attr("width", 20)
     .attr("height", 20)
     .on("mouseover",function(){var noodle = this; bold(this);})
+    .on("mouseout",function(){var noodle = this; unbold(this);})
     .attr("fill", colors[i]);
 
     pie_svg.append("text")
       .attr("id", "text" + i)
-        .on("mouseover",function(d){var noodle = this; /*bold(this);*/})
+        .on("mouseover",function(){var noodle = this; bold(this);})
+    .on("mouseout",function(){var noodle = this; unbold(this);})
 
   
       .attr("class", "legend-text")
