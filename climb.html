@@ -16,7 +16,7 @@
   <!-- <link rel="stylesheet" type="text/css" href="content/style-index.css"> -->
 <style>
 
-/*only remaining issue: switching horizontally between rect and text, momentary de-bold. try grouping rect with text. next up: pull out pie slices. highlighting legend rects with black border is a final tweak if it's easy. also 5 rows of 3 might be sexier. also complete data. also don't spend too much time on this; there are cooler components ahead like the height-weight scatter. do I want mouseover the actual pie to be functional, or just mouseover legend?"*/
+/*only remaining issue: switching horizontally between rect and text, momentary de-bold. try grouping rect with text. next up: pull out pie slices. highlighting legend rects with black border is a final tweak if it's easy. also 5 rows of 3 might be sexier. also complete data. also don't spend too much time on this; there are cooler components ahead like the height-weight scatter. do I want mouseover the actual pie to be functional, or just mouseover legend? should I sort the legend and slices alphabetically or by frequency? let's start pubbing shit! interact with audience, explain motivation and usage, sand down rough edges, technical walkthroughs, literally pub as in get viewers (and traffic analytics), comments sections, a real working infrastructure. also color scheme.*/
 /*.legend-text:hover {
     
     font-weight: 700;
@@ -101,7 +101,7 @@ for (i = 0; i < countries.length; i++) {
   domain.push(i);
 }
 
-var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)','rgb(253,191,111)','rgb(255,127,0)','rgb(202,178,214)','rgb(106,61,154)','rgb(255,255,153)','rgb(177,89,40)','#D6AD33','#996600','#669999'];
+var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,160,44)','rgb(251,154,153)','rgb(227,26,28)','rgb(253,191,111)','rgb(255,127,0)','rgb(202,178,214)','rgb(106,61,154)','#8585AD','rgb(177,89,40)','#D6AD33','#996600','#669999'];
 
   var pie_color_scale = d3.scale.ordinal()
   .domain(domain) 
