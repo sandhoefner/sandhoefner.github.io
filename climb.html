@@ -86,7 +86,7 @@ function getInnerWidth(element) {
     return parseInt(style.getPropertyValue('width'));
 };
 
-  var pie_group = pie_path.enter().append("g");
+  var pie_group = pie_path.enter().append("g").attr("class",function(d,i){return i});
 
 var arc = d3.svg.arc()
   .outerRadius(100)
@@ -109,7 +109,9 @@ var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,16
 
   // add new slices for first time
   pie_group.append("path")
-      .attr("id", "categ")
+      // .attr("class", "categ")
+
+      .attr("class", function(d,i){return "categ" + i})
       .attr("fill", function(d, i) {
         return pie_color_scale(i);
       })
@@ -120,12 +122,15 @@ var colors = ['rgb(166,206,227)','rgb(31,120,180)','rgb(178,223,138)','rgb(51,16
       .each(function(d) { this._current = d; });
 
 
+var lab_x = 130;
+var lab_y = 124;
   pie_labels = pie_group.append("text")
-    .attr("class", "text")
+    .attr("class", function(d,i){return "label" + i})
+    .attr("id", function(d,i){return i})
     .style("font-weight", "bold")
     .attr("transform", function(d) {
-      var x = arc_text.centroid(d)[0] + 130;
-      var y = arc_text.centroid(d)[1] + 124;
+      var x = arc_text.centroid(d)[0] + lab_x;
+      var y = arc_text.centroid(d)[1] + lab_y;
       return "translate(" + x + ", " + y + ")";
     })
 
@@ -146,6 +151,19 @@ function bold(categ) {
   // can't use stroke-width for text, dummy!
 // d3.select(text_id).style("font-weight","bold");
 d3.select(text_id).classed("strongbold",true);
+var slice_id = ".categ" + categ.id;
+var fish = d3.select(slice_id);
+fish
+.transition(1000)
+.attr("transform",function(d) {return "translate(" +(130+.2*arc_text.centroid(d)[0]) +", "+(120+.2*arc_text.centroid(d)[1])+")"});
+
+var label_id = ".label" + categ.id;
+var fish = d3.select(label_id);
+fish
+.transition(1000)
+.attr("transform",function(d) {return "translate(" +(arc_text.centroid(d)[0] + lab_x+.2*arc_text.centroid(d)[0]) +", "+(arc_text.centroid(d)[1] + lab_y+.2*arc_text.centroid(d)[1])+")"});
+
+
 
 }
 
@@ -156,6 +174,18 @@ function unbold(categ) {
   // can't use stroke-width for text, dummy!
 // d3.select(text_id).style("font-weight","normal");
 d3.select(text_id).classed("strongbold",false);
+
+var slice_id = ".categ" + categ.id;
+var fish = d3.select(slice_id);
+fish
+.transition(1000)
+.attr("transform", "translate(130, 120)")
+
+var label_id = ".label" + categ.id;
+var fish = d3.select(label_id);
+fish
+.transition(1000)
+.attr("transform",function(d) {return "translate(" +(arc_text.centroid(d)[0] + lab_x)+", "+(arc_text.centroid(d)[1] + lab_y)+")"});
 }
 
 // construct legend
@@ -166,7 +196,7 @@ var i_mod = 0;
       .on("mouseover",function(){var noodle = this; bold(this);})
     .on("mouseout",function(){var noodle = this; unbold(this);});
 
-    
+
       group.append("rect")
 
       .attr("id", i)
@@ -180,6 +210,13 @@ var i_mod = 0;
     // .on("mouseover",function(){var noodle = this; bold(this);})
     // .on("mouseout",function(){var noodle = this; unbold(this);})
     .attr("fill", colors[i]);
+
+    group.append("rect")
+      .attr("x", function() {if (i < 8) {return 270} else {return 470}})
+    .attr("y", function() {if (i > 7) {return 40*i_mod-20} else {return 40*i_mod}})
+    .attr("width", 20)
+    .attr("height", 20)
+    .attr("fill", "white");
 
     group.append("text")
       .attr("id", "text" + i)
