@@ -2,12 +2,24 @@
 <html>
   <meta charset="UTF-8">
   <title>Crusher Crew</title>
-  <style>
-  </style>
+
   <script src="http://d3js.org/d3.v3.min.js"></script>
   Can statistical analysis help you crush V15 boulders?<br>
   Maybe a little.
   <div id="pie"></div>
+  Above: the birth countries of 43 climbers who have reported V15 ascents.
+  <div id="scatter"></div>
+  Above: height and weight for the same 43 climbers. Ordinary least-squares regression of weight on height yields the following model:
+  <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W(kg) = .7951332 * H(cm) - 74.32127<br>
+  with a p-value of 0.000 and an R<sup>2</sup> of 0.4471. <br><br>
+  Use the calculator below to determine your ideal V15 weight!<br>
+  Height (cm): <input type="text" id="height_cm_calc">
+  <!-- can't press enter? -->
+  <button name="height_kg" onclick="calc()">Calculate</button><br>
+   (OR) Height (ft + in): <input type="text" id="height_ft_calc"> <input type="text" id="height_in_calc">
+    <button name="height_imp" onclick="calc_imp()">Calculate</button><br>
+  Weight (kg):<span id="result_kg"> _____</span><br>
+  Weight (lb):<span id="result_lb"> _____</span>
   <script src="libs/d3/d3.min.js" charset="utf-8"></script>
   <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
   <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
@@ -23,6 +35,17 @@
 }*/
 .strongbold {
   font-weight: 700;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.dot {
+  stroke: #000;
 }
 
 </style>
@@ -45,17 +68,54 @@
     // potential other data:  time between starting climbing and first v15
     // number of v15s
 
+var pretty = d3.format(".2f");
 
+function calc() {
+  var cm = document.getElementById("height_cm_calc").value;
+  // credit for next 3 lines to user Guffa at stackOverflow
+  // http://stackoverflow.com/questions/2134146/display-feet-decimals-in-feet-and-inches-javascript
+  var realFeet = cm/2.54/12;
+  var feet = Math.floor(realFeet);
+  var inches = (realFeet - feet) * 12;
+  document.getElementById("height_in_calc").value = inches;
+  document.getElementById("height_ft_calc").value = feet;
+  document.getElementById("result_kg").innerHTML = " " +pretty(.7951332*cm-74.32127);
+  document.getElementById("result_lb").innerHTML = " " +pretty(2.20462*(.7951332*cm-74.32127));
+}
+
+function calc_imp() {
+  var ft; var inch;
+  
+  if (document.getElementById("height_in_calc").value == "") {
+    inch = 0;
+  } else {
+    inch = parseFloat(document.getElementById("height_in_calc").value);
+  }
+
+
+  if (document.getElementById("height_ft_calc").value == "") {
+    ft = 0;
+  } else {
+    ft = parseFloat(document.getElementById("height_ft_calc").value);
+  }
+
+
+  var inches =  inch + 12*ft;
+  document.getElementById("height_cm_calc").value = inches*2.54;
+  document.getElementById("result_kg").innerHTML = " " +pretty(.7951332*2.54*inches-74.32127);
+  document.getElementById("result_lb").innerHTML = " " +pretty(2.20462*(.7951332*2.54*inches-74.32127));
+}
 
 d3.csv("climbers-partial.csv", function(data) {
 var pie_svg = d3.select("#pie")
   .append("svg")
   .attr("width", getInnerWidth(d3.select("#pie")))
-  .attr("height", 1000);
+  .attr("height", 300);
 
   var pie = d3.layout.pie()
   .sort(null)
   .value(function(d) { return d; }); 
+
 
  
 
@@ -65,6 +125,9 @@ data.forEach(function(d) {
     countries.push(d["birth_country"]);
   }
 });
+
+
+
 
 
 var freq = [];
@@ -238,6 +301,189 @@ var i_mod = 0;
 
 var legend_texts = d3.selectAll(".legend-text");
 var legend_rects = d3.selectAll(".legend-rect");
+
+// scatter plot
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 960 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var scatter_x = d3.scale.linear()
+    .range([0, width]);
+
+var scatter_y = d3.scale.linear()
+    .range([height, 0]);
+
+    var xAxis = d3.svg.axis()
+    .scale(scatter_x)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(scatter_y)
+    .orient("left");
+
+
+
+  var scatter_svg = d3.select("#scatter").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+
+  //  data.forEach(function(d) {
+  //   d.sepalLength = +d.sepalLength;
+  //   d.sepalWidth = +d.sepalWidth;
+  // });
+
+// this isn't shipping code. don't get hung up on the most elegant solution if you can code it faster otherwise. loading efficiency isn't a huge concern here.
+
+
+  scatter_x.domain(d3.extent(data, function(d) { return parseFloat(d.height_cm); }));//.nice();
+  scatter_y.domain(d3.extent(data, function(d) { return parseFloat(d.weight_kg); }));//.nice();
+
+
+
+  scatter_svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("x", width)
+      .attr("y", -6)
+      .style("text-anchor", "end")
+      .text("Height (cm)");
+
+  scatter_svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+    .append("text")
+      .attr("class", "label")
+      .attr("transform", "rotate(-90)")
+      .attr("y", 6)
+      .attr("dy", ".71em")
+      .style("text-anchor", "end")
+      .text("Weight (kg)")
+
+var color = d3.scale.category10();
+
+  scatter_svg.selectAll(".dot")
+      .data(data)
+    .enter().append("circle")
+      .attr("class", "dot")
+      .attr("r", 3.5)
+      .attr("cx", function(d) { return scatter_x(d.height_cm); })
+      .attr("cy", function(d) { return scatter_y(d.weight_kg); })
+      .style("fill", function(d) { return color(1); });
+
+scatter_svg.selectAll(".label_first")
+      .data(data)
+    .enter()
+      .append("text")
+      .attr("font-size","10px")
+      .attr("class", "label_first")
+      .attr("id", function(d, i) {return "name" +d.id})
+      .on("mouseover", function(d) {
+        var current = this;
+        for (i=0;i<data.length;i++){
+          var selector = "#name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d, i){console.log(d,this.id);
+            if ("name" +d.id != current.id) {return "0px";}
+            else {return "10px";}
+          });
+        }
+        })
+      .on("mouseout", function(d){
+        for (i=0;i<data.length;i++){
+          var selector = "#name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d){
+            return "10px";});
+          }
+        })
+      
+      
+      .text(function(d) {return d.first_name+ ' ' + d.last_name})
+      .attr("x", function(d) { return scatter_x(d.height_cm)+5; })
+      .attr("y", function(d) { return scatter_y(d.weight_kg)-2; });
+
+      /*scatter_svg.selectAll(".label_last")
+      .data(data)
+    .enter()
+      .append("text")
+      .attr("class", function(d, i) {return "lastname" +d.id})
+      .attr("font-size","10px")
+      .attr("class", "label_last")
+.on("mouseover", function(d) {
+        var current = this;
+        for (i=0;i<data.length;i++){
+          var selector = ".name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d, i){console.log(d,this.id);
+            if ("name" +d.id != current.id) {return "0px";}
+            else {return "10px";}
+          });
+        }
+        for (i=0;i<data.length;i++){
+          var selector = ".lastname" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d, i){console.log(d,this.id);
+            if ("lastname" +d.class != current.class) {return "0px";}
+            else {return "10px";}
+          });
+        }
+        })
+      .on("mouseout", function(d){
+        for (i=0;i<data.length;i++){
+          var selector = ".name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d){
+            return "10px";});
+          }
+          for (i=0;i<data.length;i++){
+          var selector = ".lastname" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d){
+            return "10px";});
+          }
+        })
+      .text(function(d) {return d.last_name})
+      .attr("x", function(d) { return scatter_x(d.height_cm)+5; })
+      .attr("y", function(d) { return scatter_y(d.weight_kg)+8; });*/
+      
+
+      var fit = scatter_svg.append("line")
+      .attr("stroke","black")
+      .attr("stroke-width","2px")
+      .attr("x1",scatter_x(164))
+      .attr("x2",scatter_x(187))
+      .attr("y1",scatter_y(56.0805748))
+      .attr("y2",scatter_y(74.3686384));
+
+
+
+  // var legend = scatter_svg.selectAll(".legend")
+  //     .data(color.domain())
+  //   .enter().append("g")
+  //     .attr("class", "legend")
+  //     .attr("transform", function(d, i) { return "translate(0," + i * 20 + ")"; });
+
+  // legend.append("rect")
+  //     .attr("x", width - 18)
+  //     .attr("width", 18)
+  //     .attr("height", 18)
+  //     .style("fill", color);
+
+  // legend.append("text")
+  //     .attr("x", width - 24)
+  //     .attr("y", 9)
+  //     .attr("dy", ".35em")
+  //     .style("text-anchor", "end")
+  //     .text(function(d) { return d; });
+
+
 
 
 
