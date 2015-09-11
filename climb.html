@@ -372,10 +372,30 @@ var color = d3.scale.category10();
       .data(data)
     .enter().append("circle")
       .attr("class", "dot")
+      .attr("id", function(d) {return d.id;})
       .attr("r", 3.5)
+      .on("mouseover", function(d) {
+        var current = this;
+        for (i=0;i<data.length;i++){
+          var selector = "#name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d, i){
+            if (d.id != current.id) {return "0px";}
+            else {return "10px";}
+          });
+        }
+        })
+      .on("mouseout", function(d){
+        for (i=0;i<data.length;i++){
+          var selector = "#name" + i;
+          var lab = scatter_svg.select(selector);
+          lab.attr("font-size",function(d){
+            return "10px";});
+          }
+        })
       .attr("cx", function(d) { return scatter_x(d.height_cm); })
       .attr("cy", function(d) { return scatter_y(d.weight_kg); })
-      .style("fill", function(d) { return color(1); });
+      .style("fill", function(d) { return pie_color_scale(countries.indexOf(d.birth_country)); });
 
 scatter_svg.selectAll(".label_first")
       .data(data)
@@ -389,7 +409,7 @@ scatter_svg.selectAll(".label_first")
         for (i=0;i<data.length;i++){
           var selector = "#name" + i;
           var lab = scatter_svg.select(selector);
-          lab.attr("font-size",function(d, i){console.log(d,this.id);
+          lab.attr("font-size",function(d, i){
             if ("name" +d.id != current.id) {return "0px";}
             else {return "10px";}
           });
