@@ -4,11 +4,16 @@
   <title>Crusher Crew</title>
 
   <script src="http://d3js.org/d3.v3.min.js"></script>
+  <div class="gray">
   Can statistical analysis help you crush V15 boulders?<br>
   Maybe a little.
+</div>
   <div id="pie"></div>
+  <div class="gray">
   Above: the birth countries of 43 climbers who have reported V15 ascents.
+</div>
   <div id="scatter"></div>
+  <div class="gray">
   Above: height and weight for the same 43 climbers. Ordinary least-squares regression of weight on height yields the following model:
   <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W(kg) = .7951332 * H(cm) - 74.32127<br>
   with a p-value of 0.000 and an R<sup>2</sup> of 0.4471. <br><br>
@@ -20,6 +25,7 @@
     <button name="height_imp" onclick="calc_imp()">Calculate</button><br>
   Weight (kg):<span id="result_kg"> _____</span><br>
   Weight (lb):<span id="result_lb"> _____</span>
+</div>
   <script src="libs/d3/d3.min.js" charset="utf-8"></script>
   <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
   <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
@@ -36,6 +42,9 @@
 .strongbold {
   font-weight: 700;
 }
+
+
+.gray {background-color:#E0E0EB}
 
 .axis path,
 .axis line {
@@ -325,7 +334,7 @@ var yAxis = d3.svg.axis()
 
 
   var scatter_svg = d3.select("#scatter").append("svg")
-    .attr("width", width + margin.left + margin.right)
+    .attr("width", width + margin.left + margin.right+55)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
