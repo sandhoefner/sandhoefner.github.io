@@ -5,19 +5,25 @@
   <title>Agar</title>
 
 <div id="wrapper">
-<h1>Current mass:</h1> <input type="text" id="mass">
-  <br><br><button id="button" onclick="start()">Start Timer</button><br>
-<br><br>
+  <!-- paragraph tags clutch for lining up box with button -->
+<h1>Current mass:</h1> <p><input class="box" type="text" id="mass"></p>
+  <button id="button" onclick="start()">Start Timer</button><br>
+<!-- <br><br> -->
 <div id="status"></div>
 <div id="done"></div>
 </div>
 <style>
 
 #button {
-    width: 8em;  height: 4em;
+    width: 7em;  height: 4em;
 }
 
+.box {
+text-align: center; width: 7em;  height: 2em;
+  }
+
 #wrapper {
+
   text-align: center;
   width: 100%;     /* specify a width! */
   margin: 0 auto; /* center */
@@ -49,6 +55,7 @@ location.reload();
 
 
 function start() {
+
   document.getElementById("status").innerHTML="";
   document.getElementById("done").innerHTML = '';
 countDown(Math.round(30+(7/300)*document.getElementById("mass").value),"status");
