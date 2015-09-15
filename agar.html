@@ -30,6 +30,18 @@ text-align: center; width: 7em;  height: 2em;
 }
 </style>
 <script>
+
+// issues:
+/*
+
+won't keep counting on mobile if minimized or locked
+attempts simultaneous countdowns if you press start multiple times
+should fundamentally be automatic in-game if possible
+hard to get to url in mobile; app would be better
+not beautiful
+
+*/
+
 // credit https://www.developphp.com/video/JavaScript/Countdown-Timer-Tutorial-setTimeout-clearTimeout
 function countDown(secs,elem) {
   var element = document.getElementById(elem);
