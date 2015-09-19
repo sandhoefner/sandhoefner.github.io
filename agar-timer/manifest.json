@@ -1,0 +1,33 @@
+{
+  "name": "Agar.io Merge Timer",
+
+  "short_name": "AgarTimer",
+
+  "description": "A timer to inform your tactics in the crucial moments between split and merge.",
+
+  "version": "1.0.0",
+
+  "permissions": ["contextMenus", "<agar.io>"],
+
+  "author": "Evan Sandhoefner",
+
+  "background": {
+    "page": "background.html"
+  },
+
+  "icons": {
+    "16": "doge-16-.png",
+    "48": "doge-48-.png",
+    "128": "doge-128-.png"
+  },
+
+  "commands": {
+    "copy": {
+      "suggested_key": {"default": "space"},
+      "description": "Copy",
+      "global": false
+    }
+  },
+
+  "manifest_version": 2
+}
