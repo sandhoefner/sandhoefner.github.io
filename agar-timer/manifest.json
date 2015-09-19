@@ -7,9 +7,20 @@
 
   "version": "1.0.0",
 
-  "permissions": ["contextMenus", "<agar.io>"],
+  "permissions": ["http://agar.io/*"],
 
   "author": "Evan Sandhoefner",
+
+  // "background": {
+  //   "scripts": ["script.js"]
+  // },
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.agar.io/*"],
+      "js": ["jquery.js", "content.js"]
+    }
+  ],
 
   "background": {
     "page": "background.html"
@@ -19,14 +30,6 @@
     "16": "doge-16-.png",
     "48": "doge-48-.png",
     "128": "doge-128-.png"
-  },
-
-  "commands": {
-    "copy": {
-      "suggested_key": {"default": "space"},
-      "description": "Copy",
-      "global": false
-    }
   },
 
   "manifest_version": 2
