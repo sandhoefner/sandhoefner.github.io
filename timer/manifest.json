@@ -4,8 +4,8 @@
   "description": "Times how long it takes to send a message to a content script and back.",
   "content_scripts": [
     {
-      "matches": ["http://*/*"],
-      "js": ["page.js"]
+      "matches": ["http://agar.io/*"],
+      "js": ["d3.js","page.js","jquery.js"]
     }
   ],
   "browser_action": {
