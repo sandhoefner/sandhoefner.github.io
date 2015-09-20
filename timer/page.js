@@ -3,6 +3,7 @@
 // found in the LICENSE file.
 
 var secs = 0;
+var k = .02;
 
 var mass_input = "";
 
@@ -20,7 +21,7 @@ window.onkeyup = function(e) {
     } else if (e.keyCode == 13) {
    
       console.log(mass_input);
-      secs += (7/300)*parseInt(mass_input);
+      secs += k*parseInt(mass_input);
 
 //       var margin = {top: 50, bottom: 10, left: 300, right: 40};
 // var width = 1650 - margin.left - margin.right;
