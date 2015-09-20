@@ -20,7 +20,7 @@ window.onkeyup = function(e) {
 
     } else if (e.keyCode == 13) {
    
-      console.log(mass_input);
+      
       secs += k*parseInt(mass_input);
       mass_input = "";
 
