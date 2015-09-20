@@ -2,35 +2,48 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+var secs = 0;
+
+var mass_input = "";
+
 window.onkeyup = function(e) {
+    var adder = 0;
     if (e.keyCode == 32) {
       console.log("spacebar!");
-      start();
+      secs += 30;
+      countDown(secs);
+      
     } else if (e.keyCode >= 48 && e.keyCode <= 57) {
       console.log(parseInt(e.keyCode) - 48);
+      mass_input += (parseInt(e.keyCode) - 48);
+
     } else if (e.keyCode == 13) {
       console.log('enter!');
-      var margin = {top: 50, bottom: 10, left: 300, right: 40};
-var width = 1650 - margin.left - margin.right;
-var height = 400 - margin.top - margin.bottom;
+      console.log(mass_input);
+      secs += (7/300)*parseInt(mass_input);
 
-var timer_box = d3.select("body").append("svg")
-  .attr("id", "box")
-  .attr("width", width)
-  .attr("height", height);
+//       var margin = {top: 50, bottom: 10, left: 300, right: 40};
+// var width = 1650 - margin.left - margin.right;
+// var height = 400 - margin.top - margin.bottom;
 
-  timer_box.append("rect") 
-        .attr("x", 200)
-        .attr("y", 200)
-        .attr("width", 200)
-        .attr("height", 200)
-        .attr("fill", "black")
-        .attr("fill-opacity", .75);
+// var timer_box = d3.select("body").append("svg")
+//   .attr("id", "box")
+//   .attr("width", width)
+//   .attr("height", height);
+
+//   timer_box.append("rect") 
+//         .attr("x", 200)
+//         .attr("y", 200)
+//         .attr("width", 200)
+//         .attr("height", 200)
+//         .attr("fill", "black")
+//         .attr("fill-opacity", .75);
 
     }
+    
   }
 
-console.log("launch");
+
 
 var x = document.getElementsByTagName("INPUT");
 var y = [];
@@ -64,10 +77,9 @@ iframe.id = "iframe";
 
 
 
+function countDown(segs) {
 
-function countDown(secs) {
-
-    console.log(secs);
+    console.log(segs);
     if (secs > 0) {
     setTimeout(function() {
       secs--;
@@ -78,18 +90,15 @@ function countDown(secs) {
   }
 
 
-function start() {
-var mass = 0;
-countDown(Math.round(30+(7/300)*mass));
-  }
+
 
 
 
 // create svg canvas
-window.onload = function() {
-  console.log("loaded");
+// window.onload = function() {
+//   console.log("loaded");
 
-        }
+//         }
 
 chrome.runtime.onConnect.addListener(function(port) {
   port.onMessage.addListener(function(msg) {
