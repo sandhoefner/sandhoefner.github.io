@@ -47,6 +47,8 @@ window.onkeyup = function(e) {
       }
     }
 
+    console.log(document.getElementById("No skins"));
+
 
 
 var x = document.getElementsByTagName("INPUT");
