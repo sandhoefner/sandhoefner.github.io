@@ -22,6 +22,7 @@ window.onkeyup = function(e) {
    
       console.log(mass_input);
       secs += k*parseInt(mass_input);
+      mass_input = "";
 
 //       var margin = {top: 50, bottom: 10, left: 300, right: 40};
 // var width = 1650 - margin.left - margin.right;
