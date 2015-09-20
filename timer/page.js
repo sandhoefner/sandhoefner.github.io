@@ -9,16 +9,16 @@ var mass_input = "";
 window.onkeyup = function(e) {
     var adder = 0;
     if (e.keyCode == 32) {
-      console.log("spacebar!");
+      
       secs += 30;
-      countDown(secs);
+      countDown();
       
     } else if (e.keyCode >= 48 && e.keyCode <= 57) {
-      console.log(parseInt(e.keyCode) - 48);
+      
       mass_input += (parseInt(e.keyCode) - 48);
 
     } else if (e.keyCode == 13) {
-      console.log('enter!');
+   
       console.log(mass_input);
       secs += (7/300)*parseInt(mass_input);
 
@@ -77,10 +77,10 @@ iframe.id = "iframe";
 
 
 
-function countDown(segs) {
+function countDown() {
 
-    console.log(segs);
-    if (secs > 0) {
+    console.log(secs);
+    if (secs >= 1) {
     setTimeout(function() {
       secs--;
       countDown(secs);
