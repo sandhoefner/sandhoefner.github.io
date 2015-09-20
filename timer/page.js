@@ -4,7 +4,7 @@
 
 var secs = 0;
 var k = .02;
-
+  
 var mass_input = "";
 
 window.onkeyup = function(e) {
@@ -41,9 +41,11 @@ window.onkeyup = function(e) {
 //         .attr("fill", "black")
 //         .attr("fill-opacity", .75);
 
-    }
+    } else if (e.keyCode == 83 /*s*/) {
+      console.log("register");
     
-  }
+      }
+    }
 
 
 
@@ -113,3 +115,9 @@ chrome.extension.onRequest.addListener(
   function(request, sender, sendResponse) {
     sendResponse({counter: request.counter+1});
   });
+
+
+
+
+
+// http://pastie.org/10199526
