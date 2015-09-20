@@ -47,7 +47,6 @@ window.onkeyup = function(e) {
       }
     }
 
-    console.log(document.getElementById("No skins"));
 
 
 
@@ -58,7 +57,29 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
+
+chrome.storage.sync.get(['skins',
+'names',
+'colors',
+'mass',
+'theme',
+'stats'], function(response) {
+    if (response.skins) {
+      y[0].click();
+    }  if (response.names) {
+y[1].click();
+      }  if (response.colors) {
+y[2].click();
+      }  if (response.mass) {
 y[3].click();
+      }  if (response.theme) {
+y[4].click();
+      }  if (response.stats) {
+y[5].click();
+      }
+});
+
+
 
 // y[3].dispatchEvent(new Event('change', { 'bubbles': true }))
 // console.log("fail");
