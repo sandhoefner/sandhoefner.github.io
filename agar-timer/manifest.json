@@ -7,9 +7,9 @@
 
   "version": "1.0.0",
 
-  "permissions": ["http://agar.io/*"],
-
   "author": "Evan Sandhoefner",
+
+  "permissions": ["http://agar.io/*"],
 
   // "background": {
   //   "scripts": ["script.js"]
