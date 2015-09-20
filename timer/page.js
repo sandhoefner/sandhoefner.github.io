@@ -39,6 +39,8 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
+y[3].click();
+
 // y[3].dispatchEvent(new Event('change', { 'bubbles': true }))
 // console.log("fail");
 
