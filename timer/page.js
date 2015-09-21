@@ -8,6 +8,7 @@ var k = .02;
 var mass_input = "";
 
 window.onkeyup = function(e) {
+  console.log(e);
     var adder = 0;
     if (e.keyCode == 32) {
       
@@ -42,11 +43,38 @@ window.onkeyup = function(e) {
 //         .attr("fill-opacity", .75);
 
     } else if (e.keyCode == 83 /*s*/) {
-      console.log("register");
-      console.log(this);
-      $("#canvas").keypress();
-      var e = $.Event("keydown", { keyCode: 87}); //"keydown" if that's what you're doing
-$("#height_cm_calc").trigger(e);
+       eve = new KeyboardEvent("keyup", {altKey: false,
+bubbles: true,
+cancelBubble: false,
+cancelable: true,
+charCode: 0,
+ctrlKey: false,
+currentTarget: null,
+defaultPrevented: false,
+detail: 0,
+eventPhase: 0,
+keyCode: 87,
+keyIdentifier: "U+0057",
+keyLocation: 0,
+location: 0,
+metaKey: false,
+// path: Array[4],
+repeat: false,
+returnValue: true,
+shiftKey: false,
+// srcElement: body,
+// target: body,
+type: "keyup",
+// view: Window,
+which: 87});
+       console.log(eve);
+       eve.keyCode = 87;
+       console.log(eve);
+       Object.defineProperty(eve, 'keyCode', {'value': 87});
+       Object.defineProperty(eve, 'which', {'value': 87});
+       console.log(eve);
+      document.dispatchEvent(eve);
+
 }
 }
     
