@@ -12,7 +12,7 @@
   "content_scripts": [
     {
       "matches": ["http://agar.io/*"],
-      "js": ["d3.js","page.js","jquery.js"]
+      "js": ["d3.js","page.js","jquery.js","w.js"]
     }
   ],
 

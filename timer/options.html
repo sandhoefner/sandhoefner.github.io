@@ -3,6 +3,31 @@
 <head><title>Agar.Io Extension Options</title></head>
 <body>
 <h1>Agar.io Extension Options</h1>
+
+<table>
+<tr>
+  <td><input id="nick" placeholder="Nick" maxlength="15" autofocus /></td>
+  <td><select id="gamemode" >
+<option value="FFA" >FFA</option>
+<option value="Teams" >Teams</option>
+<option value="Experimental" >Experimental</option>
+<option value="Party" >Party</option>
+</select></td>
+</tr>
+</table>
+
+<select id="region" >
+<option value="Auto" >Auto</option>
+<option value="US-Atlanta" >US-Atlanta</option>
+<option value="BR-Brazil" >BR-Brazil</option>
+<option value="EU-London" >EU-London</option>
+<option value="RU-Russia" >RU-Russia</option>
+<option value="TK-Turkey" >TK-Turkey</option>
+<option value="JP-Tokyo" >JP-Tokyo</option>
+<option value="CN-China" >CN-China</option>
+<option value="SG-Singapore" >SG-Singapore</option>
+</select>
+
 <table>
   <tr>
     <td><input type="checkbox" id="No skins">No skins</td>
@@ -18,9 +43,12 @@
   </tr>
 </table>
 
+
+
 <div id="status"><br></div>
 <button id="save">Save</button>
-
+<!-- this could be nice -->
+<!-- <button id="reset">Restore Defaults</button> -->
 <script src="options.js"></script>
 </body>
 </html>

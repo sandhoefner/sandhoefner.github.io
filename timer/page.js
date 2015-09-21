@@ -43,9 +43,13 @@ window.onkeyup = function(e) {
 
     } else if (e.keyCode == 83 /*s*/) {
       console.log("register");
+      console.log(this);
+      $("#canvas").keypress();
+      var e = $.Event("keydown", { keyCode: 87}); //"keydown" if that's what you're doing
+$("#height_cm_calc").trigger(e);
+}
+}
     
-      }
-    }
 
 
 
@@ -57,13 +61,14 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
+var modes = {"FFA":"","Teams":":teams","Experimental":":experimental","Party":":party"}
 
 chrome.storage.sync.get(['skins',
 'names',
 'colors',
 'mass',
 'theme',
-'stats'], function(response) {
+'stats','nick','region','mode'], function(response) {
     if (response.skins) {
       y[0].click();
     }  if (response.names) {
@@ -76,7 +81,14 @@ y[3].click();
 y[4].click();
       }  if (response.stats) {
 y[5].click();
-      }
+      } 
+
+      // textbox and dropdowns
+  
+      document.getElementById('nick').value = response.nick;
+    document.getElementById('region').value = response.region;
+
+    document.getElementById('gamemode').value = modes[response.mode];
 });
 
 
@@ -144,3 +156,4 @@ chrome.extension.onRequest.addListener(
 
 
 // http://pastie.org/10199526
+
