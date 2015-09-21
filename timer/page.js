@@ -84,7 +84,7 @@ y[5].click();
       } 
 
       // textbox and dropdowns
-  
+      // I don't think mode or region are working
       document.getElementById('nick').value = response.nick;
     document.getElementById('region').value = response.region;
 
