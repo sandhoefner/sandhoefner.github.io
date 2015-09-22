@@ -1,9 +1,10 @@
 {
-  "name": "Agar.io Merge Timer",
+  "name": "Agar.io Mod",
 
-  "short_name": "AgarTimer",
+  "short_name": "Agar.io Mod",
 
-  "description": "A dynamic timer to inform your tactics in the crucial moments between split and merge.",
+  // A dynamic timer to inform your tactics in the crucial moments between split and merge.
+  "description": "7w hotkey, persistent settings, and merge timer.",
 
   "version": "1.0.0",
 
@@ -20,11 +21,11 @@
 
   "permissions": ["storage"],
   
-  "browser_action": {
-    "default_title": "Time to current page",
-    "default_icon": "doge-16-.png",
-    "default_popup": "popup.html"
-  },
+  // "browser_action": {
+  //   "default_title": "Agar.io Mod",
+  //   "default_icon": "doge-16-.png",
+  //   "default_popup": "popup.html"
+  // },
   
   "icons": {
     "16": "doge-16-.png",
