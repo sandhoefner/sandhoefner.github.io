@@ -25,6 +25,7 @@ function loadCanvas(id) {
     }
 
 
+
                             
 
 // document.body.innerHTML +='<svg width="100" height="100"></svg>';
@@ -37,7 +38,12 @@ window.onkeyup = function(e) {
     var adder = 0;
     if (e.keyCode == 32) {
       // $("#overlays").after("<div id='fuckle'></div>");
-      // document.body.innerHTML +='<span id="layer2"></span>';
+      // document.body.innerHTML +='<div id="fuckle" style="display:inline-block;"></div>';
+      var divs = d3.selectAll("div");
+      console.log(divs[0][72]);
+      myDiv = divs[0][72];
+      myDiv.id =  "fuckled";
+      myDiv.innerText = "fuckled!";
 // var myWindow = window.open("", "", "top=0, status='no', titlebar='no', left=0, width=200, height=100");
 
 
@@ -45,14 +51,14 @@ window.onkeyup = function(e) {
 
 
 
-//     loadCanvas("injectedCanvas");
+    loadCanvas("fuckled");
 
     
 
-//     var canvas = document.getElementById("canvas");
-// var ctx = canvas.getContext("2d");
-// ctx.font = "30px Arial";
-// ctx.fillText("Hello World",10,50);
+    var canvas = document.getElementById("CursorLayer");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("Hello World",10,50);
 
 // var canvas = document.getElementById("canvas");
 // var ctx = canvas.getContext("2d");
@@ -63,18 +69,18 @@ window.onkeyup = function(e) {
 // var ctx = canvas.getContext("2d");
 // ctx.font = "30px Arial";
 // ctx.fillText("Hello World",10,50);
-var svg = d3.select("body").append("svg")
-  .attr("width", 100)
-  .attr("height", 100)
-  .attr("id","fuckle");
-  // .attr("z-index",5000000000000000);
+// var svg = d3.select("body").append("svg")
+//   .attr("width", 100)
+//   .attr("height", 100)
+//   .attr("id","fuckle");
+//   // .attr("z-index",5000000000000000);
 
 
-  svg.append("rect")
-  .attr("x", 10)
-                             .attr("y", 10)
-                            .attr("width", 500)
-                            .attr("height", 500);
+//   svg.append("rect")
+//   .attr("x", 10)
+//                              .attr("y", 10)
+//                             .attr("width", 500)
+//                             .attr("height", 500);
 
       secs += 30;
       countDown();
