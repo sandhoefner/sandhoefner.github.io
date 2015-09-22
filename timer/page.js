@@ -16,8 +16,8 @@ function loadCanvas(id) {
         var canvas = document.createElement('canvas');
         div = document.getElementById(id); 
         canvas.id     = "CursorLayer";
-        canvas.width  = 1224;
-        canvas.height = 768;
+        canvas.width  = .2*window.innerWidth;
+        canvas.height = .25*window.innerHeight;
         canvas.style.zIndex   = 8;
         canvas.style.position = "absolute";
         canvas.style.border   = "1px solid";
@@ -31,10 +31,10 @@ window.onkeyup = function(e) {
     var adder = 0;
     if (e.keyCode == 32) {
 
-var c = document.getElementById("CursorLayer");
-var ctx = c.getContext("2d");
-ctx.fillStyle = "#FF0000";
-ctx.fillRect(0,0,150,75);
+var canvas = document.getElementById("CursorLayer");
+var ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+ctx.fillText("Hello World",10,50);
       secs += 30;
       countDown();
       
