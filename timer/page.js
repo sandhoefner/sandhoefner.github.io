@@ -20,13 +20,36 @@ function loadCanvas(id) {
         canvas.height = .25*window.innerHeight;
         canvas.style.zIndex   = 8;
         canvas.style.position = "absolute";
-        canvas.style.border   = "1px solid";
+        // change border here for debugging
+        canvas.style.border   = "0px solid";
         div.appendChild(canvas)
     }
 
+    var canvas;
+    var ctx;
 
 
-                            
+window.onload=function(){
+var divs = d3.selectAll("div")[0];
+// DANGER: some temperamental behavior with getting the correct div. be very cautious with anything that relies on his page architecture being a particular way.
+var myDiv;
+divs.forEach(function(d) {
+  // just make this as descriptive as possible, then pray
+  if (d.style.length == 1 && d.style[0] == "font-family") {
+    myDiv = d;
+  }
+  });
+// myDiv = divs[divs.length];
+      myDiv.id =  "fuckled";
+      myDiv.innerText = "fuckled!";
+loadCanvas("fuckled");
+
+    
+
+     canvas = document.getElementById("CursorLayer");
+ ctx = canvas.getContext("2d");
+ctx.font = "30px Arial";
+                      }      
 
 // document.body.innerHTML +='<svg width="100" height="100"></svg>';
 // document.getElementById("canvas").style.position = "absolute";
@@ -34,16 +57,14 @@ function loadCanvas(id) {
 // document.getElementById("canvas").style.zIndex = "0";
 
 window.onkeyup = function(e) {
-  console.log(e);
+  // console.log(e);
     var adder = 0;
     if (e.keyCode == 32) {
       // $("#overlays").after("<div id='fuckle'></div>");
       // document.body.innerHTML +='<div id="fuckle" style="display:inline-block;"></div>';
-      var divs = d3.selectAll("div");
-      console.log(divs[0][72]);
-      myDiv = divs[0][72];
-      myDiv.id =  "fuckled";
-      myDiv.innerText = "fuckled!";
+      
+      // console.log(divs[0][72]);
+      
 // var myWindow = window.open("", "", "top=0, status='no', titlebar='no', left=0, width=200, height=100");
 
 
@@ -51,14 +72,8 @@ window.onkeyup = function(e) {
 
 
 
-    loadCanvas("fuckled");
-
     
-
-    var canvas = document.getElementById("CursorLayer");
-var ctx = canvas.getContext("2d");
-ctx.font = "30px Arial";
-ctx.fillText("Hello World",10,50);
+// ctx.fillText("Hello World",10,50);
 
 // var canvas = document.getElementById("canvas");
 // var ctx = canvas.getContext("2d");
@@ -81,9 +96,12 @@ ctx.fillText("Hello World",10,50);
 //                              .attr("y", 10)
 //                             .attr("width", 500)
 //                             .attr("height", 500);
-
+console.log(document.getElementById("overlays").style);
+      if (secs == 0) {
       secs += 30;
+
       countDown();
+    }
       
     } else if (e.keyCode >= 48 && e.keyCode <= 57) {
       
@@ -137,12 +155,12 @@ shiftKey: false,
 type: "keyup",
 // view: Window,
 which: 87});
-       console.log(eve);
+       // console.log(eve);
        eve.keyCode = 87;
-       console.log(eve);
+       // console.log(eve);
        Object.defineProperty(eve, 'keyCode', {'value': 87});
        Object.defineProperty(eve, 'which', {'value': 87});
-       console.log(eve);
+       // console.log(eve);
       document.dispatchEvent(eve);
 
 }
@@ -183,10 +201,15 @@ y[5].click();
 
       // textbox and dropdowns
       // I don't think mode or region are working
+      if (response.nick /*!= "undefined"*/) {
       document.getElementById('nick').value = response.nick;
+    }
+    if (response.region /*!= "undefined"*/&& response.region != "Auto") {
     document.getElementById('region').value = response.region;
-
+  }
+if (response.mode /*!= "undefined"*/) {
     document.getElementById('gamemode').value = modes[response.mode];
+  }
 });
 
 
@@ -205,23 +228,68 @@ y[5].click();
 
 // y[3].onchange();
 
-var iframe = document.createElement('iframe');
-iframe.frameBorder = 1;
-iframe.width = "500px";
-iframe.height = "250px";
-iframe.id = "iframe";
+// var iframe = document.createElement('iframe');
+// // change border here for debugging
+// iframe.frameBorder = 0;
+// iframe.width = "500px";
+// iframe.height = "250px";
+// iframe.id = "iframe";
+
+function rounded(s) {
+  return Math.round(s*100)/100
+}
 
 
+// console.log(rounded(0));
+// console.log(rounded(1));
+// console.log(rounded(11));
+// console.log(rounded(111));
+// console.log(rounded(1.2345888));
+// console.log(rounded(12.345888));
+// console.log(rounded(123.456888));
+// console.log(rounded(1234.5678888));
 
+var observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutationRecord) {
+        // console.log(mutationRecord);
+        secs = 0;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    });    
+});
+
+var target = document.getElementById('overlays');
+observer.observe(target, { attributes : true, attributeFilter : ['style'] });
 
 function countDown() {
 
-    console.log(secs);
+    // var canvas = document.getElementById("CursorLayer");
+// var ctx = canvas.getContext("2d");
+// ctx.font = "30px Arial";
+
+// unexpected behavior if you start the game before the page has finished loading
+
+// erase canvas
+ctx.clearRect(0, 0, canvas.width, canvas.height);
+if (secs > 0) {
+
+ctx.fillText(rounded(secs),10,50);
+} else {
+ctx.fillText("MERGE",10,50);
+setTimeout(function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    }, 3000)
+  }
     if (secs >= 1) {
     setTimeout(function() {
       secs--;
       countDown(secs);
     }, 1000)
+  } else if (secs > 0) {
+    setTimeout(function() {
+      secs = 0;
+      countDown(secs);
+    }, secs*1000)
   }
     
   }
@@ -237,17 +305,17 @@ function countDown() {
 
 //         }
 
-chrome.runtime.onConnect.addListener(function(port) {
-  port.onMessage.addListener(function(msg) {
-    console.log(msg);
-    port.postMessage({counter: msg.counter+1});
-  });
-});
+// chrome.runtime.onConnect.addListener(function(port) {
+//   port.onMessage.addListener(function(msg) {
+//     console.log(msg);
+//     port.postMessage({counter: msg.counter+1});
+//   });
+// });
 
-chrome.extension.onRequest.addListener(
-  function(request, sender, sendResponse) {
-    sendResponse({counter: request.counter+1});
-  });
+// chrome.extension.onRequest.addListener(
+//   function(request, sender, sendResponse) {
+//     sendResponse({counter: request.counter+1});
+//   });
 
 
 
