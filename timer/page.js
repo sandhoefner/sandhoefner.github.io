@@ -24,21 +24,58 @@ function loadCanvas(id) {
         div.appendChild(canvas)
     }
 
+
+                            
+
+// document.body.innerHTML +='<svg width="100" height="100"></svg>';
+// document.getElementById("canvas").style.position = "absolute";
     
+// document.getElementById("canvas").style.zIndex = "0";
 
 window.onkeyup = function(e) {
   console.log(e);
     var adder = 0;
     if (e.keyCode == 32) {
+      // $("#overlays").after("<div id='fuckle'></div>");
+      // document.body.innerHTML +='<span id="layer2"></span>';
+// var myWindow = window.open("", "", "top=0, status='no', titlebar='no', left=0, width=200, height=100");
 
-      document.body.innerHTML +='<iframe id="injectedCanvas" style="position:absolute;width:100px;height:100px;opacity:0.3;z-index:-11111100;background:#000;"></iframe>';
 
-    loadCanvas("injectedCanvas");
+//       document.body.innerHTML +='<iframe id="injectedCanvas" style="position:absolute;width:100px;height:100px;opacity:0.3;z-index:-11111100;background:#000;"></iframe>';
 
-var canvas = document.getElementById("CursorLayer");
-var ctx = canvas.getContext("2d");
-ctx.font = "30px Arial";
-ctx.fillText("Hello World",10,50);
+
+
+//     loadCanvas("injectedCanvas");
+
+    
+
+//     var canvas = document.getElementById("canvas");
+// var ctx = canvas.getContext("2d");
+// ctx.font = "30px Arial";
+// ctx.fillText("Hello World",10,50);
+
+// var canvas = document.getElementById("canvas");
+// var ctx = canvas.getContext("2d");
+// ctx.font = "30px Arial";
+// ctx.fillText("Hello World",10,50);
+
+// var canvas = document.getElementById("layer2");
+// var ctx = canvas.getContext("2d");
+// ctx.font = "30px Arial";
+// ctx.fillText("Hello World",10,50);
+var svg = d3.select("body").append("svg")
+  .attr("width", 100)
+  .attr("height", 100)
+  .attr("id","fuckle");
+  // .attr("z-index",5000000000000000);
+
+
+  svg.append("rect")
+  .attr("x", 10)
+                             .attr("y", 10)
+                            .attr("width", 500)
+                            .attr("height", 500);
+
       secs += 30;
       countDown();
       
