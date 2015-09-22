@@ -24,12 +24,16 @@ function loadCanvas(id) {
         div.appendChild(canvas)
     }
 
-    loadCanvas("overlays");
+    
 
 window.onkeyup = function(e) {
   console.log(e);
     var adder = 0;
     if (e.keyCode == 32) {
+
+      document.body.innerHTML +='<iframe id="injectedCanvas" style="position:absolute;width:100px;height:100px;opacity:0.3;z-index:-11111100;background:#000;"></iframe>';
+
+    loadCanvas("injectedCanvas");
 
 var canvas = document.getElementById("CursorLayer");
 var ctx = canvas.getContext("2d");
