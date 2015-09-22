@@ -1,0 +1,14 @@
+{
+  "name": "Agar.io 7W",
+  
+  "version": "1.0.0",
+
+  "content_scripts": [
+    {
+      "matches": ["http://agar.io/*"],
+      "js": ["page.js","jquery.js"]
+    }
+  ],
+  
+  "manifest_version": 2
+}
