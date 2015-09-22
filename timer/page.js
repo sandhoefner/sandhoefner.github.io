@@ -96,8 +96,9 @@ window.onkeyup = function(e) {
 //                              .attr("y", 10)
 //                             .attr("width", 500)
 //                             .attr("height", 500);
-console.log(document.getElementById("overlays").style);
-      if (secs == 0) {
+
+overlay_style = $("#overlays").css("display");
+      if (secs == 0 && overlay_style == "none") {
       secs += 30;
 
       countDown();
