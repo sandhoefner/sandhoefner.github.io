@@ -3,7 +3,6 @@
 
   "short_name": "Agar.io Mod",
 
-  // A dynamic timer to inform your tactics in the crucial moments between split and merge.
   "description": "7w hotkey, persistent settings, and merge timer.",
 
   "version": "1.0.0",
@@ -20,12 +19,6 @@
   "options_page": "options.html",
 
   "permissions": ["storage"],
-  
-  // "browser_action": {
-  //   "default_title": "Agar.io Mod",
-  //   "default_icon": "doge-16-.png",
-  //   "default_popup": "popup.html"
-  // },
   
   "icons": {
     "16": "doge-16-.png",

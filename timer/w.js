@@ -22,7 +22,7 @@ function pressW() {
     oEvent.keyCodeVal = k;
 
     if (oEvent.keyCode !== k) {
-        console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
+        // console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
     }
     document.dispatchEvent(oEvent);
 
@@ -48,10 +48,10 @@ function pressW() {
     oEvent.keyCodeVal = k;
 
     if (oEvent.keyCode !== k) {
-        console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
+        // console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
     }
 
-    console.log(oEvent);
+    // console.log(oEvent);
 
     document.dispatchEvent(oEvent);
 }

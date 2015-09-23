@@ -2,8 +2,18 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+// from manifest:
+  
+  // "browser_action": {
+  //   "default_title": "Agar.io Mod",
+  //   "default_icon": "doge-16-.png",
+  //   "default_popup": "popup.html"
+  // },
+
+    // A dynamic timer to inform your tactics in the crucial moments between split and merge.
+
 var secs = 0;
-var k = .02;
+var k = 7/300;
   
 var mass_input = "";
 
@@ -200,6 +210,9 @@ y[4].click();
 y[5].click();
       } 
 
+      // "kill" hotkey could be useful
+      // toggle extension is probably good practice
+
       // textbox and dropdowns
       // I don't think mode or region are working
       if (response.nick /*!= "undefined"*/) {
@@ -210,6 +223,11 @@ y[5].click();
   }
 if (response.mode /*!= "undefined"*/) {
     document.getElementById('gamemode').value = modes[response.mode];
+    // console.log(document.getElementById('gamemode'));
+    // console.log(document.getElementById("helloContainer"));
+$("#helloContainer").attr("data-gamemode",modes[response.mode]);
+        // console.log(document.getElementById("helloContainer"));
+
   }
 });
 
