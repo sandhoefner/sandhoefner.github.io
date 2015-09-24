@@ -1,7 +1,11 @@
-// Agar.io Mod (Version 1.0.0)
+// Agar.io Mod (Version 1.1.0)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // page.js
+
+// CHANGELOG
+// 1.1.0:
+// black/white countdown text, reset timer, buffer timer
 
 // from manifest:
 // "browser_action": {
@@ -15,6 +19,9 @@ var secs = 0;
 var k = 7 / 300;
 
 var mass_input = "";
+var buffer = "";
+var buffered = false;
+var reset = false;
 
 // var x = document.getElementById("overlays").createElement("CANVAS");
 // x.id = "fuckled";
@@ -148,20 +155,24 @@ window.onkeyup = function(e) {
         //                             .attr("height", 500);
 
         overlay_style = $("#overlays").css("display");
-        if (secs == 0 && overlay_style == "none") {
-            secs += 30;
 
+        if (secs <= 0 && overlay_style == "none") {
+            secs = 30;
             countDown();
         }
 
     } else if (e.keyCode >= 48 && e.keyCode <= 57) {
-
-        mass_input += (parseInt(e.keyCode) - 48);
-
+            mass_input += (parseInt(e.keyCode) - 48);
     } else if (e.keyCode == 13) {
 
-
-        secs += k * parseInt(mass_input);
+        if (buffered) {
+            secs -= k * parseInt(buffer);
+            secs += k * parseInt(mass_input);   
+        } else {
+            secs += k * parseInt(mass_input);   
+        }
+        buffer = mass_input;
+        buffered = true;
         mass_input = "";
 
         //       var margin = {top: 50, bottom: 10, left: 300, right: 40};
@@ -182,7 +193,7 @@ window.onkeyup = function(e) {
         //         .attr("fill-opacity", .75);
 
     } else if (e.keyCode == 83 /*s*/ ) {
-        eve = new KeyboardEvent("keyup", {
+        /*eve = new KeyboardEvent("keyup", {
             altKey: false,
             bubbles: true,
             cancelBubble: false,
@@ -219,7 +230,11 @@ window.onkeyup = function(e) {
         });
         // console.log(eve);
         document.dispatchEvent(eve);
-
+        */
+    } else if (e.keyCode == 82 /*r*/) {
+        secs = 0;
+        reset = true;
+        buffered = false;
     }
 }
 
@@ -328,6 +343,7 @@ var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
         // console.log(mutationRecord);
         secs = 0;
+        buffered = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 });
@@ -349,14 +365,18 @@ function countDown() {
     // erase canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (secs > 0) {
-
         ctx.fillText(rounded(secs), 10, 50);
     } else {
-        ctx.fillText("MERGE", 10, 50);
-        setTimeout(function() {
+        if (!reset) {
+            ctx.fillText("MERGE", 10, 50);
+            setTimeout(function() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+            }, 3000)
+        } else {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        }, 3000)
+        }
+        buffered = false;
+        reset = false;
     }
     if (secs >= 1) {
         setTimeout(function() {

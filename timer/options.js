@@ -1,4 +1,4 @@
-// Agar.io Mod (Version 1.0.0)
+// Agar.io Mod (Version 1.1.0)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // options.js
