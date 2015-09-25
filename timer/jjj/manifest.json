@@ -1,0 +1,30 @@
+{
+  "name": "Agar.io Mod",
+
+  "short_name": "Agar.io Mod",
+
+  "description": "Merge timer and persistent settings for Agar.io.",
+
+  "version": "1.1.1",
+
+  "author": "Evan Sandhoefner",
+  
+  "content_scripts": [
+    {
+      "matches": ["http://agar.io/*"],
+      "js": ["d3.js", "page.js", "jquery.js"]
+    }
+  ],
+
+  "options_page": "options.html",
+
+  "permissions": ["storage"],
+  
+  "icons": {
+    "16": "doge-16-.png",
+    "48": "doge-48-.png",
+    "128": "doge-128-.png"
+  },
+  
+  "manifest_version": 2
+}
