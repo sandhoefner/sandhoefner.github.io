@@ -4,10 +4,12 @@
 // page.js
 
 // CHANGELOG
-// 1.1.0:
-// black/white countdown text, reset timer, buffer timer
+// n.n.n:
+// who gives a shit
 // 1.1.1:
 // 'show mass' works for new users
+// 1.1.0:
+// black/white countdown text, reset timer, buffer timer
 
 // from manifest:
 // "browser_action": {
@@ -24,10 +26,18 @@ var mass_input = "";
 var buffer = "";
 var buffered = false;
 var reset = false;
+var in_game = false;
+var timing;
 
 // var x = document.getElementById("overlays").createElement("CANVAS");
 // x.id = "fuckled";
 // console.log(x);
+
+
+
+
+
+
 
 // http://stackoverflow.com/questions/11816431/how-to-add-a-html5-canvas-within-a-div
 function loadCanvas(id) {
@@ -35,9 +45,23 @@ function loadCanvas(id) {
     div = document.getElementById(id);
     canvas.id = "CursorLayer";
     canvas.width = .2 * window.innerWidth;
-    canvas.height = .25 * window.innerHeight;
+    canvas.height = .1 * window.innerHeight;
     canvas.style.zIndex = 8;
     canvas.style.position = "absolute";
+    // change border here for debugging
+    canvas.style.border = "0px solid";
+    div.appendChild(canvas)
+}
+
+function loadCanvas_2(id) {
+    var canvas = document.createElement('canvas');
+    div = document.getElementById(id);
+    canvas.id = "CursorLayer_2";
+    canvas.width = .2 * window.innerWidth;
+    canvas.height = .25 * window.innerHeight;
+    canvas.style.zIndex = 8;
+    canvas.style.top = "50px";
+    canvas.style.position = "relative";
     // change border here for debugging
     canvas.style.border = "0px solid";
     div.appendChild(canvas)
@@ -46,8 +70,43 @@ function loadCanvas(id) {
 var canvas;
 var ctx;
 
+var canvas_2;
+var ctx_2;
 
 window.onload = function() {
+    // http://stackoverflow.com/questions/1495219/how-can-i-prevent-the-backspace-key-from-navigating-back
+// Prevent the backspace key from navigating back.
+$(document).unbind('keydown').bind('keydown', function (event) {
+    var doPrevent = false;
+    if (event.keyCode === 8) {
+        var d = event.srcElement || event.target;
+        if ((d.tagName.toUpperCase() === 'INPUT' && 
+             (
+                 d.type.toUpperCase() === 'TEXT' ||
+                 d.type.toUpperCase() === 'PASSWORD' || 
+                 d.type.toUpperCase() === 'FILE' || 
+                 d.type.toUpperCase() === 'SEARCH' || 
+                 d.type.toUpperCase() === 'EMAIL' || 
+                 d.type.toUpperCase() === 'NUMBER' || 
+                 d.type.toUpperCase() === 'DATE' )
+             ) || 
+             d.tagName.toUpperCase() === 'TEXTAREA') {
+            doPrevent = d.readOnly || d.disabled;
+        }
+        else {
+            doPrevent = true;
+        }
+    }
+
+    if (doPrevent) {
+        event.preventDefault();
+    }
+});
+
+
+
+
+
     var divs = d3.selectAll("div")[0];
     // DANGER: some temperamental behavior with getting the correct div. be very cautious with anything that relies on his page architecture being a particular way.
     var myDiv;
@@ -62,10 +121,15 @@ window.onload = function() {
     // myDiv.innerText = "fuckled!";
     loadCanvas("myDiv");
 
+    loadCanvas_2("myDiv");
 
 
     canvas = document.getElementById("CursorLayer");
     ctx = canvas.getContext("2d");
+
+ canvas_2 = document.getElementById("CursorLayer_2");
+    ctx_2 = canvas_2.getContext("2d");
+
     var x = document.getElementsByTagName("INPUT");
     var y = [];
     var cnt2 = 0;
@@ -74,8 +138,10 @@ window.onload = function() {
     }
     if (y[4].checked) {
         ctx.fillStyle = "white";
+        ctx_2.fillStyle = "white";
     }
     ctx.font = "30px Arial";
+    ctx_2.font = "30px Arial";
 }
 
 // probably shouldn't just do this 3 times
@@ -90,8 +156,10 @@ y[4].id = "dark_mode_evan";
 y[4].onclick = function() {
     if (y[4].checked) {
         ctx.fillStyle = "white";
+        ctx_2.fillStyle = "white";
     } else {
         ctx.fillStyle = "black";
+        ctx_2.fillStyle = "black";
     }
 }
 
@@ -118,7 +186,7 @@ y[4].onclick = function() {
 window.onkeyup = function(e) {
     // console.log(e);
     var adder = 0;
-    if (e.keyCode == 32) {
+    if (e.keyCode == 32 /*spacebar*/) {
         // $("#overlays").after("<div id='fuckle'></div>");
         // document.body.innerHTML +='<div id="fuckle" style="display:inline-block;"></div>';
 
@@ -158,15 +226,18 @@ window.onkeyup = function(e) {
 
         overlay_style = $("#overlays").css("display");
 
-        if (secs <= 0 && overlay_style == "none") {
+        if (!timing && /*overlay_style == "none"*/in_game) {
             secs = 30;
+            timing = true;
             countDown();
         }
 
-    } else if (e.keyCode >= 48 && e.keyCode <= 57) {
+    } else if (e.keyCode >= 48 && e.keyCode <= 57/*any number*/) {
+        if (in_game && timing) {
             mass_input += (parseInt(e.keyCode) - 48);
-    } else if (e.keyCode == 13) {
-
+        }
+    } else if (e.keyCode == 13 /*enter*/) {
+        if (in_game && timing) {
         if (buffered) {
             secs -= k * parseInt(buffer);
             secs += k * parseInt(mass_input);   
@@ -175,6 +246,14 @@ window.onkeyup = function(e) {
         }
         buffer = mass_input;
         buffered = true;
+        // write buffer to canvas
+        
+        ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
+    
+        // if (/*secs > 0*/timing) {
+ctx_2.fillText(parseInt(mass_input), 10, 50);
+// }
+// ctx_2.translate(0,100);
         mass_input = "";
 
         //       var margin = {top: 50, bottom: 10, left: 300, right: 40};
@@ -193,50 +272,73 @@ window.onkeyup = function(e) {
         //         .attr("height", 200)
         //         .attr("fill", "black")
         //         .attr("fill-opacity", .75);
-
+}
     } else if (e.keyCode == 83 /*s*/ ) {
-        /*eve = new KeyboardEvent("keyup", {
-            altKey: false,
-            bubbles: true,
-            cancelBubble: false,
-            cancelable: true,
-            charCode: 0,
-            ctrlKey: false,
-            currentTarget: null,
-            defaultPrevented: false,
-            detail: 0,
-            eventPhase: 0,
-            keyCode: 87,
-            keyIdentifier: "U+0057",
-            keyLocation: 0,
-            location: 0,
-            metaKey: false,
-            // path: Array[4],
-            repeat: false,
-            returnValue: true,
-            shiftKey: false,
-            // srcElement: body,
-            // target: body,
-            type: "keyup",
-            // view: Window,
-            which: 87
-        });
-        // console.log(eve);
-        eve.keyCode = 87;
-        // console.log(eve);
-        Object.defineProperty(eve, 'keyCode', {
-            'value': 87
-        });
-        Object.defineProperty(eve, 'which', {
-            'value': 87
-        });
-        // console.log(eve);
-        document.dispatchEvent(eve);
-        */
+        /*
+        console.log('s');
+        var oEvent = document.createEvent('KeyboardEvent');
+    var k = 87;
+    // Chromium Hack
+    Object.defineProperty(oEvent, 'keyCode', {
+        get: function() {
+            return this.keyCodeVal;
+        }
+    });
+    Object.defineProperty(oEvent, 'which', {
+        get: function() {
+            return this.keyCodeVal;
+        }
+    });
+
+    if (oEvent.initKeyboardEvent) {
+        oEvent.initKeyboardEvent("keydown", true, true, document.defaultView, false, false, false, false, k, k);
+    } else {
+        oEvent.initKeyEvent("keydown", true, true, document.defaultView, false, false, false, false, k, 0);
+    }
+
+    oEvent.keyCodeVal = k;
+
+    if (oEvent.keyCode !== k) {
+        console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
+    }
+    console.log(oEvent);
+    document.dispatchEvent(oEvent);
+
+    var oEvent = document.createEvent('KeyboardEvent');
+    // Chromium Hack
+    Object.defineProperty(oEvent, 'keyCode', {
+        get: function() {
+            return this.keyCodeVal;
+        }
+    });
+    Object.defineProperty(oEvent, 'which', {
+        get: function() {
+            return this.keyCodeVal;
+        }
+    });
+
+    if (oEvent.initKeyboardEvent) {
+        oEvent.initKeyboardEvent("keyup", true, true, document.defaultView, false, false, false, false, k, k);
+    } else {
+        oEvent.initKeyEvent("keyup", true, true, document.defaultView, false, false, false, false, k, 0);
+    }
+
+    oEvent.keyCodeVal = k;
+
+    if (oEvent.keyCode !== k) {
+        console.log("keyCode mismatch " + oEvent.keyCode + "(" + oEvent.which + ")");
+    }
+    console.log(oEvent);
+    document.dispatchEvent(oEvent);
+    */
     } else if (e.keyCode == 82 /*r*/) {
+
+        if (in_game) {
         secs = 0;
         reset = true;
+        timing = false;
         buffered = false;
+    }
     }
 }
 
@@ -345,9 +447,14 @@ function rounded(s) {
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
         // console.log(mutationRecord);
+        // check status of overlay div or something because t/f changes a million times when game ends so idk if that's robust
         secs = 0;
         buffered = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
+
+                in_game = !in_game;
+console.log(in_game);
     });
 });
 
@@ -367,6 +474,9 @@ function countDown() {
 
     // erase canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    // ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
+
+
     if (secs > 0) {
         ctx.fillText(rounded(secs), 10, 50);
     } else {
@@ -374,11 +484,17 @@ function countDown() {
             ctx.fillText("MERGE", 10, 50);
             setTimeout(function() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
+                        ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
+
             }, 3000)
         } else {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
+
+
         }
         buffered = false;
+        timing = false;
         reset = false;
     }
     if (secs >= 1) {

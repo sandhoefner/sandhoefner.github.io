@@ -6,7 +6,7 @@
   "content_scripts": [
     {
       "matches": ["http://agar.io/*"],
-      "js": ["page.js","jquery.js"]
+      "js": ["content.js"]
     }
   ],
   
