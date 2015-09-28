@@ -1,4 +1,4 @@
-// Agar.io Mod (Version 1.1.1)
+// AgroMod (Version 1.1.2)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // options.js

@@ -1,12 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head><title>Agar.io Mod: Settings</title></head>
-<body>
-<h1>Agar.io Mod: Settings</h1>
+<head><title>AgroMod: Settings</title>
 
+<style>
+#wrapper {
+
+  text-align: left;
+  width: 33%;     
+  margin: 0 auto;
+  height: 90%;
+
+
+}
+
+/*body {
+    background-color: #F0FAFF;
+}*/
+
+.bottom {
+/*  text-align: left;
+  width: 33%;     
+  margin: 0 auto;*/
+
+  /*height: %;*/
+  height: 100%;
+    display: table-cell;
+    vertical-align: bottom;
+    border: 1px solid #f00;
+    /*height: 100px;*/
+    /*width: 100px;*/
+}
+
+p {
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+#save {
+  width: 13em;
+  }
+
+/*.center {
+  margin-left: auto;
+  margin-right: auto;
+}*/
+</style>
+</head>
+<body>
+  <div id="wrapper">
+<h1>AgroMod: Settings</h1>
+<p>These options will load automatically every time you play, and you can change them as often as you like. Changing the settings in the game won't affect these permanent auto settings.</p>
 <!-- <table>
 <tr>
-  <td> --><input id="nick" placeholder="Nick" maxlength="15" autofocus /><!--</td>-->
+  <td> --><!--</td>-->
   <!-- <td><select id="gamemode" >
 <option value="FFA" >FFA</option>
 <option value="Teams" >Teams</option>
@@ -28,7 +77,12 @@
 <option value="SG-Singapore" >SG-Singapore</option>
 </select> -->
 
-<table>
+<table class="center">
+  <tr>
+  
+<input id="nick" placeholder="Nick" maxlength="15" autofocus />
+
+  </tr>
   <tr>
     <td><input type="checkbox" id="No skins">No skins</td>
     <td><input type="checkbox" id="No names">No names</td>
@@ -48,5 +102,10 @@
 <!-- this could be nice -->
 <!-- <button id="reset">Restore Defaults</button> -->
 <script src="options.js"></script>
+<!-- <div class="bottom"> -->
+<br><br><br>
+<p>Got feature requests? Bugs to report? Just want to say hi? Send me a <a href="https://chrome.google.com/webstore/detail/agario-mod/kekfokjeliilaipagomdhmlfhbmpllkk/support" target="blank">message</a> through the Chrome web store and I'll happily see what I can do for you!</p></div>
+<!-- </div> -->
+
 </body>
 </html>

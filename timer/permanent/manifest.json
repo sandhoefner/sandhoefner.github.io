@@ -1,11 +1,11 @@
 {
-  "name": "Agar.io Mod",
+  "name": "AgroMod: The Only Agar.io Merge Timer",
 
-  "short_name": "Agar.io Mod",
+  "short_name": "AgroMod",
 
-  "description": "Merge timer and persistent settings for Agar.io.",
+  "description": "Take your Agar game to the next level with a tactical merge timer and persistent settings.",
 
-  "version": "1.1.1",
+  "version": "1.1.2",
 
   "author": "Evan Sandhoefner",
   

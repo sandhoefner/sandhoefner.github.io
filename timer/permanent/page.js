@@ -1,13 +1,19 @@
-// Agar.io Mod (Version 1.1.1)
+// AgroMod (Version 1.1.2)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // page.js
 
 // CHANGELOG
-// n.n.n:
-// who gives a shit
+// 1.1.2:
+// backspace doesn't leave page
+// various logistics: check for in-game, check for timer-running; can't enter mass before spacebar, etc.
+// print mass below timer for reference
+// changed name and description
+// layout options page
+
 // 1.1.1:
 // 'show mass' works for new users
+
 // 1.1.0:
 // black/white countdown text, reset timer, buffer timer
 
@@ -376,7 +382,9 @@ chrome.storage.sync.get(['skins',
         y[2].click();
     }
     // != false in case it doesn't exist, for new user
+    // don't be a dummy m8. you had the extension running twice
     if (response.mass != false) {
+
         y[3].click();
     }
     if (response.theme) {
@@ -454,7 +462,7 @@ var observer = new MutationObserver(function(mutations) {
                         ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
 
                 in_game = !in_game;
-console.log(in_game);
+// console.log(in_game);
     });
 });
 
