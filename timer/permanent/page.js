@@ -1,9 +1,13 @@
-// AgroMod (Version 1.2.0)
+// AgroMod (Version 1.2.1)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // page.js
 
 // CHANGELOG
+
+// 1.2.1:
+// selective page action instead of browser action
+
 // 1.2.0:
 // popup with quick instructions and link to options
 // 7-w baby!
@@ -78,6 +82,8 @@ var ctx;
 
 var canvas_2;
 var ctx_2;
+
+
 
 window.onload = function() {
     // http://stackoverflow.com/questions/1495219/how-can-i-prevent-the-backspace-key-from-navigating-back

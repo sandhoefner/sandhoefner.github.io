@@ -5,17 +5,22 @@
 
   "description": "Take your Agar game to the next level with a tactical merge timer, 7-w hotkey for virus attacks, and persistent settings.",
 
-  "version": "1.2.0",
+  "version": "1.2.1",
 
-  "browser_action": {
-    "default_title": "AgroMod",
-    "default_icon": "doge-16-.png",
-    "default_popup": "popup.html"
+  "page_action": {
+    "default_icon": {                    
+      "19": "doge-19.png",           
+      "38": "doge-38.png"            
+    },
+    "default_title": "AgroMod",      
+    "default_popup": "popup.html"        
   },
 
   "web_accessible_resources": ["options.html"],
 
   "author": "Evan Sandhoefner",
+
+  "background": { "scripts": ["background.js"], "persistent": false },
   
   "content_scripts": [
     {
@@ -26,7 +31,7 @@
 
   "options_page": "options.html",
 
-  "permissions": ["storage"],
+  "permissions": ["storage", "declarativeContent"],
   
   "icons": {
     "16": "doge-16-.png",
