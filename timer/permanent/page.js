@@ -1,9 +1,13 @@
-// AgroMod (Version 1.1.2)
+// AgroMod (Version 1.2.0)
 // a Chrome extension for the MMO game Agar.io
 // by Evan Sandhoefner
 // page.js
 
 // CHANGELOG
+// 1.2.0:
+// popup with quick instructions and link to options
+// 7-w baby!
+
 // 1.1.2:
 // backspace doesn't leave page
 // various logistics: check for in-game, check for timer-running; can't enter mass before spacebar, etc.
@@ -18,11 +22,7 @@
 // black/white countdown text, reset timer, buffer timer
 
 // from manifest:
-// "browser_action": {
-//   "default_title": "Agar.io Mod",
-//   "default_icon": "doge-16-.png",
-//   "default_popup": "popup.html"
-// },
+
 // A dynamic timer to inform your tactics in the crucial moments between split and merge.
 var secs = 0;
 // is it mass before split or after split?
@@ -280,6 +280,42 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
         //         .attr("fill-opacity", .75);
 }
     } else if (e.keyCode == 83 /*s*/ ) {
+        for (i = 0; i < 8; i++) {
+            
+            setTimeout(function(){triggerKeyEvent(87);
+        triggerKeyEvent(87, "keyup");
+        }, i*100);
+        
+    }
+        function triggerKeyEvent(charCode, eventName) {
+        eventName = eventName || "keydown";
+        var s = document.createElement("script");
+        s.textContent = "window.agarioTriggerKey(" + charCode + ", \"" + eventName + "\");";
+        (document.head || document.documentElement).appendChild(s);
+        s.parentNode.removeChild(s);
+    }
+    function addTriggerKeyFunction() {
+        var s = document.createElement("script");
+        s.textContent = "window.agarioTriggerKey = " + function(charCode, eventName) {
+            var event = document.createEvent("KeyboardEvents");
+            event.initKeyboardEvent(
+                eventName
+            );
+            var getterCode = {
+                get: function() {
+                    return charCode;
+                }
+            };
+            Object.defineProperties(event, {
+                keyCode: getterCode
+            });
+
+            window.dispatchEvent(event);
+        };
+        (document.head || document.documentElement).appendChild(s);
+        s.parentNode.removeChild(s);
+    }
+    addTriggerKeyFunction();
         /*
         console.log('s');
         var oEvent = document.createEvent('KeyboardEvent');
