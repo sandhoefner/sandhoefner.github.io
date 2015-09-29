@@ -1,8 +1,3 @@
-// AgroMod (Version 1.2.1)
-// a Chrome extension for the MMO game Agar.io
-// by Evan Sandhoefner
-// options.js
-
 // Saves options to chrome.storage
 function save_options() {
     var skins = document.getElementById('No skins').checked;

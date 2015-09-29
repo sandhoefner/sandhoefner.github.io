@@ -5,7 +5,7 @@
 
   "description": "Take your Agar game to the next level with a tactical merge timer, 7-w hotkey for virus attacks, and persistent settings.",
 
-  "version": "1.2.1",
+  "version": "1.2.2",
 
   "page_action": {
     "default_icon": {                    

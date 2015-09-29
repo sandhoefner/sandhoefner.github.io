@@ -1,9 +1,8 @@
-// AgroMod (Version 1.2.1)
-// a Chrome extension for the MMO game Agar.io
-// by Evan Sandhoefner
-// page.js
-
 // CHANGELOG
+
+// 1.2.2:
+// changed if (timing) to if (secs > 0), and sophisticated in_game update in mutationObserver. hopefully this fixes the problem of sometimes timer being inaccessible
+// brief test: still weird behavior if you press spacebar right after starting the game maybe because mutationobserver is still firing but no worries
 
 // 1.2.1:
 // selective page action instead of browser action
@@ -238,18 +237,18 @@ window.onkeyup = function(e) {
 
         overlay_style = $("#overlays").css("display");
         // put in console logs for every bool everywhere so users can help you debug (and so you can debug). something's off; sometimes the timer doesn't play at all.
-        if (!timing && /*overlay_style == "none"*/in_game) {
+        if (secs <= 0 && /*overlay_style == "none"*/in_game) {
             secs = 30;
             timing = true;
             countDown();
         }
 
     } else if (e.keyCode >= 48 && e.keyCode <= 57/*any number*/) {
-        if (in_game && timing) {
+        if (in_game && secs > 0) {
             mass_input += (parseInt(e.keyCode) - 48);
         }
     } else if (e.keyCode == 13 /*enter*/) {
-        if (in_game && timing) {
+        if (in_game && secs > 0) {
         if (buffered) {
             secs -= k * parseInt(buffer);
             secs += k * parseInt(mass_input);   
@@ -500,11 +499,15 @@ var observer = new MutationObserver(function(mutations) {
         // check status of overlay div or something because t/f changes a million times when game ends so idk if that's robust
         secs = 0;
         buffered = false;
-        timing = false;
+        // timing = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
-
-                in_game = !in_game;
+                        overlay_style = $("#overlays").css("display");
+if (overlay_style != "none") {
+                in_game = false;
+            } else {
+                in_game = true;
+            }
 // console.log(in_game);
     });
 });
@@ -531,7 +534,7 @@ function countDown() {
     if (secs > 0) {
         ctx.fillText(rounded(secs), 10, 50);
     } else {
-        if (!reset) {
+        if (!reset && in_game) {
             ctx.fillText("MERGE", 10, 50);
             setTimeout(function() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
