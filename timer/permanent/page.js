@@ -237,7 +237,7 @@ window.onkeyup = function(e) {
         //                             .attr("height", 500);
 
         overlay_style = $("#overlays").css("display");
-
+        // put in console logs for every bool everywhere so users can help you debug (and so you can debug). something's off; sometimes the timer doesn't play at all.
         if (!timing && /*overlay_style == "none"*/in_game) {
             secs = 30;
             timing = true;
@@ -500,6 +500,7 @@ var observer = new MutationObserver(function(mutations) {
         // check status of overlay div or something because t/f changes a million times when game ends so idk if that's robust
         secs = 0;
         buffered = false;
+        timing = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
 
