@@ -3,6 +3,7 @@
 // 1.2.2:
 // changed if (timing) to if (secs > 0), and sophisticated in_game update in mutationObserver. hopefully this fixes the problem of sometimes timer being inaccessible
 // brief test: still weird behavior if you press spacebar right after starting the game maybe because mutationobserver is still firing but no worries
+// more testing: one time it didn't work in the middle of the game; worked before and after
 
 // 1.2.1:
 // selective page action instead of browser action
