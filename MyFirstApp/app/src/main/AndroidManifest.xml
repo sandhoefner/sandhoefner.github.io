@@ -34,7 +34,11 @@
         </activity>
         <activity
             android:name=".Campusboards"
-            android:label="@string/title_activity_campusboards" >
+            android:label="@string/title_activity_campusboards"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
     </application>
 
