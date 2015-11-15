@@ -40,6 +40,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
+        <activity
+            android:name=".Hangboards"
+            android:label="@string/title_activity_hangboards"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.MyActivity" />
+        </activity>
     </application>
 
 </manifest>

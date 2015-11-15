@@ -45,7 +45,7 @@ public class MyActivity extends ActionBarActivity {
     /** Called when the user clicks the Send button */
     public void sendMessage(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, Hangboards.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        String message_final = "Nice to meet you, " + message + "!";
