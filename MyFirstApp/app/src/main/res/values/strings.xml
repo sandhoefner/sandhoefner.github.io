@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My First App</string>
+    <string name="app_name">Climbing Trainer</string>
     <string name="edit_message">Hi! What\'s your name?</string>
     <string name="button_send">Send</string>
     <string name="action_settings">Settings</string>
