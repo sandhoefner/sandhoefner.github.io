@@ -53,7 +53,7 @@ public class MyActivity extends ActionBarActivity {
     }
     public void sendMessageCampus(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, Campusboards.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        String message_final = "Nice to meet you, " + message + "!";
@@ -64,7 +64,7 @@ public class MyActivity extends ActionBarActivity {
 
     public void sendMessageSet(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, Settings.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        String message_final = "Nice to meet you, " + message + "!";
