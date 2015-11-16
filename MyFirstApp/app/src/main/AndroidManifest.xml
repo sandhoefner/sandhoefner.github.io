@@ -48,6 +48,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
+        <activity
+            android:name=".beastmaker2000"
+            android:label="@string/title_activity_beastmaker2000"
+            android:parentActivityName=".Hangboards" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.Hangboards" />
+        </activity>
+        <activity
+            android:name=".beastmaker1000"
+            android:label="@string/title_activity_beastmaker1000"
+            android:parentActivityName=".Hangboards" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.Hangboards" />
+        </activity>
     </application>
 
 </manifest>

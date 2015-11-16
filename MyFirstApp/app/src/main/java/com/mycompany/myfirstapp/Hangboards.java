@@ -1,9 +1,11 @@
 package com.mycompany.myfirstapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class Hangboards extends AppCompatActivity {
 
@@ -33,5 +35,25 @@ public class Hangboards extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void beastmaker1000(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, beastmaker1000.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        String message_final = "Nice to meet you, " + message + "!";
+//        intent.putExtra(EXTRA_MESSAGE, message_final);
+        startActivity(intent);
+    }
+
+    public void beastmaker2000(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, beastmaker2000.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        String message_final = "Nice to meet you, " + message + "!";
+//        intent.putExtra(EXTRA_MESSAGE, message_final);
+        startActivity(intent);
     }
 }
