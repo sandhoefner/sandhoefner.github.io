@@ -109,6 +109,7 @@ public class beastmaker2000 extends AppCompatActivity
         final SharedPreferences sp = getSharedPreferences(precise_name, 0);
         final EditText input = new EditText(mama_bear);
         input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        input.setHint("New PR");
         builder.setMessage("PR: " + sp.getString(precise_name, "0"))
                 .setTitle(formal_name)
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {

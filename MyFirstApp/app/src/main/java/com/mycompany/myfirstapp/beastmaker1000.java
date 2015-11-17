@@ -1,8 +1,11 @@
 package com.mycompany.myfirstapp;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -16,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import java.util.*;
@@ -96,6 +100,32 @@ public class beastmaker1000 extends AppCompatActivity
     public int brown = Color.rgb(128,64,2);
     public int darkblue = Color.rgb(63,72,204);
 
+    public void popup(final Activity mama_bear, final String formal_name, final String precise_name) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(mama_bear);
+        // 2. Chain together various setter methods to set the dialog characteristics
+        final SharedPreferences sp = getSharedPreferences(precise_name, 0);
+        final EditText input = new EditText(mama_bear);
+        input.setHint("New PR");
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setMessage("PR: " + sp.getString(precise_name, "0"))
+                .setTitle(formal_name)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        String pr = input.getText().toString();
+                        if (!pr.equals("")) {
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString(precise_name, pr);
+                            editor.apply();
+                        }
+                    }
+                }).setView(input);
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     /**
      * Respond to the user touching the screen.
      * Change images to make things appear and disappear from the screen.
@@ -152,18 +182,18 @@ public class beastmaker1000 extends AppCompatActivity
                 ColorTool ct = new ColorTool ();
                 int tolerance = 25;
 //                nextImage = R.drawable.p2_ship_default;
-                if (ct.closeMatch (red, touchColor, tolerance)) toast("Jug");
-                else if (ct.closeMatch (orange, touchColor, tolerance)) toast("Bad Sloper");
-                else if (ct.closeMatch (yellow, touchColor, tolerance)) toast("Good Sloper");
-                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) toast("Middle Pocket");
-                else if (ct.closeMatch (black, touchColor, tolerance)) toast("Top Pocket");
-                else if (ct.closeMatch (gray, touchColor, tolerance)) toast("Top Edge");
-                else if (ct.closeMatch (lightblue, touchColor, tolerance)) toast("Good 2-Finger Pocket");
-                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) toast("Bottom Pocket");
-                else if (ct.closeMatch (purple, touchColor, tolerance)) toast("Middle Edge");
-                else if (ct.closeMatch (tan, touchColor, tolerance)) toast("Good Edge");
-                else if (ct.closeMatch (brown, touchColor, tolerance)) toast("Bad 2-Finger Pocket");
-                else if (ct.closeMatch (darkblue, touchColor, tolerance)) toast("Bad Edge");
+                if (ct.closeMatch (red, touchColor, tolerance)) popup(this,"Jug","bm1 jug");
+                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"Bad Sloper","bm1 bad sloper");
+                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"Good Sloper","bm1 good sloper");
+                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) popup(this,"Middle Pocket","bm1 middle pocket");
+                else if (ct.closeMatch (black, touchColor, tolerance)) popup(this,"Top Pocket","bm1 top pocket");
+                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Top Edge","bm1 top edge");
+                else if (ct.closeMatch (lightblue, touchColor, tolerance)) popup(this,"Good 2-Finger Pocket","bm1 good 2-finger pocket");
+                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Bottom Pocket","bm1 bottom pocket");
+                else if (ct.closeMatch (purple, touchColor, tolerance)) popup(this,"Middle Edge","bm1 middle edge");
+                else if (ct.closeMatch (tan, touchColor, tolerance)) popup(this,"Good Edge","bm1 good edge");
+                else if (ct.closeMatch (brown, touchColor, tolerance)) popup(this,"Bad 2-Finger Pocket","bm1 bad 2-finger pocket");
+                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Bad Edge","bm1 bad edge");
 
                 // If the next image is the same as the last image, go back to the default.
                 // toast ("Current image: " + currentResource + " next: " + nextImage);
