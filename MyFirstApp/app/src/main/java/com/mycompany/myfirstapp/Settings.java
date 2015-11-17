@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RadioButton;
+import android.widget.TextView;
 
 public class Settings extends AppCompatActivity {
 
@@ -18,6 +19,27 @@ public class Settings extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("bg", 0);
         String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
         getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
+        if (hexaColor != "#272822") {
+        TextView tv = (TextView) findViewById(R.id.noodles);
+        tv.setTextColor(getResources().getColor(R.color.black));
+            RadioButton light = (RadioButton)findViewById(R.id.radio_light);
+            RadioButton dark = (RadioButton)findViewById(R.id.radio_dark);
+            RadioButton blue = (RadioButton)findViewById(R.id.radio_blue);
+            light.setTextColor(getResources().getColor(R.color.black));
+            dark.setTextColor(getResources().getColor(R.color.black));
+            blue.setTextColor(getResources().getColor(R.color.black));
+    } else
+
+    {
+        TextView tv = (TextView) findViewById(R.id.noodles);
+        tv.setTextColor(getResources().getColor(R.color.white));
+        RadioButton light = (RadioButton)findViewById(R.id.radio_light);
+        RadioButton dark = (RadioButton)findViewById(R.id.radio_dark);
+        RadioButton blue = (RadioButton)findViewById(R.id.radio_blue);
+        light.setTextColor(getResources().getColor(R.color.white));
+        dark.setTextColor(getResources().getColor(R.color.white));
+        blue.setTextColor(getResources().getColor(R.color.white));
+    }
     }
 /*
     @Override
@@ -55,6 +77,14 @@ public class Settings extends AppCompatActivity {
                     editor.putString("hexa", "#272822");
                     editor.apply();
                     getWindow().getDecorView().setBackgroundColor(Color.parseColor("#272822"));
+                    TextView tv = (TextView) findViewById(R.id.noodles);
+                    tv.setTextColor(getResources().getColor(R.color.white));
+                    RadioButton light = (RadioButton)findViewById(R.id.radio_light);
+                    RadioButton dark = (RadioButton)findViewById(R.id.radio_dark);
+                    RadioButton blue = (RadioButton)findViewById(R.id.radio_blue);
+                    light.setTextColor(getResources().getColor(R.color.white));
+                    dark.setTextColor(getResources().getColor(R.color.white));
+                    blue.setTextColor(getResources().getColor(R.color.white));
                     break; }
             case R.id.radio_light:
                 if (checked) {
@@ -63,6 +93,14 @@ public class Settings extends AppCompatActivity {
                     editor.putString("hexa", "#FFFFFF");
                     editor.apply();
                     getWindow().getDecorView().setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    TextView tv = (TextView) findViewById(R.id.noodles);
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                    RadioButton light = (RadioButton)findViewById(R.id.radio_light);
+                    RadioButton dark = (RadioButton)findViewById(R.id.radio_dark);
+                    RadioButton blue = (RadioButton)findViewById(R.id.radio_blue);
+                    light.setTextColor(getResources().getColor(R.color.black));
+                    dark.setTextColor(getResources().getColor(R.color.black));
+                    blue.setTextColor(getResources().getColor(R.color.black));
                     break; }
             case R.id.radio_blue:
                 if (checked) {
@@ -71,6 +109,14 @@ public class Settings extends AppCompatActivity {
                     editor.putString("hexa", "#3E8EA8");
                     editor.apply();
                     getWindow().getDecorView().setBackgroundColor(Color.parseColor("#3E8EA8"));
+                    TextView tv = (TextView) findViewById(R.id.noodles);
+                    tv.setTextColor(getResources().getColor(R.color.black));
+                    RadioButton light = (RadioButton)findViewById(R.id.radio_light);
+                    RadioButton dark = (RadioButton)findViewById(R.id.radio_dark);
+                    RadioButton blue = (RadioButton)findViewById(R.id.radio_blue);
+                    light.setTextColor(getResources().getColor(R.color.black));
+                    dark.setTextColor(getResources().getColor(R.color.black));
+                    blue.setTextColor(getResources().getColor(R.color.black));
                     break; }
         }
     }
