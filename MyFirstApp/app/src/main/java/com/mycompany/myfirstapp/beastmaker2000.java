@@ -1,6 +1,7 @@
 package com.mycompany.myfirstapp;
 
 import android.content.SharedPreferences;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -152,7 +153,16 @@ public class beastmaker2000 extends AppCompatActivity
                 ColorTool ct = new ColorTool ();
                 int tolerance = 25;
 //                nextImage = R.drawable.p2_ship_default;
-                if (ct.closeMatch (pink, touchColor, tolerance)) toast("Bad Sloper");
+                if (ct.closeMatch (pink, touchColor, tolerance)) {
+                    // 1. Instantiate an AlertDialog.Builder with its constructor
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    // 2. Chain together various setter methods to set the dialog characteristics
+                    builder.setMessage("View or update PR")
+                            .setTitle("Bad Sloper");
+                    // 3. Get the AlertDialog from create()
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }
                 else if (ct.closeMatch (red, touchColor, tolerance)) toast("Medium Sloper");
                 else if (ct.closeMatch (orange, touchColor, tolerance)) toast("Good Sloper");
 //                else if (ct.closeMatch (white, touchColor, tolerance)) int pass = 0;
