@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -99,6 +100,49 @@ public class beastmaker2000 extends AppCompatActivity
     public int brown = Color.rgb(128,64,2);
     public int darkblue = Color.rgb(63,72,204);
 
+
+    public void popup(final Activity mama_bear, final String formal_name, final String precise_name) {
+        // 1. Instantiate an AlertDialog.Builder with its constructor
+        AlertDialog.Builder builder = new AlertDialog.Builder(mama_bear);
+
+        // 2. Chain together various setter methods to set the dialog characteristics
+        final SharedPreferences sp = getSharedPreferences(precise_name, 0);
+        final EditText input = new EditText(mama_bear);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        builder.setMessage("PR: " + sp.getString(precise_name, "0"))
+                .setTitle(formal_name)
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        // User clicked OK button
+                        String pr = input.getText().toString();
+                        if (!pr.equals("")) {
+//                                        try {
+//                                            Double p_r = Double.parseDouble(pr);
+//                                            if (p_r >= 0) {
+                            SharedPreferences.Editor editor = sp.edit();
+                            editor.putString(precise_name, pr);
+                            editor.apply();
+//                                            } else {
+//                                                AlertDialog.Builder err = new AlertDialog.Builder(mama_bear);
+//                                                err.setMessage("Invalid input!");
+//                                                AlertDialog err_dialog = err.create();
+//                                                err_dialog.show();
+//                                              }
+//                                        } catch (NumberFormatException dick) {
+//                                            AlertDialog.Builder err = new AlertDialog.Builder(mama_bear);
+//                                            err.setMessage("Invalid input!");
+//                                            AlertDialog err_dialog = err.create();
+//                                            err_dialog.show();
+//                                        }
+//                                    }
+                        }
+                    }
+                }).setView(input);
+        // 3. Get the AlertDialog from create()
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
     /**
      * Respond to the user touching the screen.
      * Change images to make things appear and disappear from the screen.
@@ -156,42 +200,23 @@ public class beastmaker2000 extends AppCompatActivity
                 int tolerance = 25;
 //                nextImage = R.drawable.p2_ship_default;
                 if (ct.closeMatch (pink, touchColor, tolerance)) {
-                    // 1. Instantiate an AlertDialog.Builder with its constructor
-                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                    // 2. Chain together various setter methods to set the dialog characteristics
-                    final SharedPreferences sp = getSharedPreferences("bm2_bad_sloper", 0);
-                    final EditText input = new EditText(this);
-                    builder.setMessage("PR: " + sp.getString("bm2_bad_sloper", "0"))
-                            .setTitle("Bad Sloper")
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
-                                    // User clicked OK button
-                                    String pr = input.getText().toString();
-//                                    if (pr == "") pr = "0";
-                                    SharedPreferences.Editor editor = sp.edit();
-                                    editor.putString("bm2_bad_sloper", pr);
-                                    editor.apply();
-                                }
-                            })
-                            .setView(input);
-                    // 3. Get the AlertDialog from create()
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+//                    final Activity mama_bear = this;
+                    popup(this,"Bad Sloper","bm2_badSloper");
                 }
-                else if (ct.closeMatch (red, touchColor, tolerance)) toast("Medium Sloper");
-                else if (ct.closeMatch (orange, touchColor, tolerance)) toast("Good Sloper");
+                else if (ct.closeMatch (red, touchColor, tolerance)) popup(this,"Medium Sloper","bm2_mediumSloper");
+                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"Good Sloper","bm2_goodSloper");
 //                else if (ct.closeMatch (white, touchColor, tolerance)) int pass = 0;
-                else if (ct.closeMatch (yellow, touchColor, tolerance)) toast("Top Pocket");
-                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) toast("Good Edge");
-                else if (ct.closeMatch (black, touchColor, tolerance)) toast("Good Mono");
-                else if (ct.closeMatch (gray, touchColor, tolerance)) toast("Top Outer Pocket");
-                else if (ct.closeMatch (lightblue, touchColor, tolerance)) toast("Top Inner Pocket");
-                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) toast("Top Middle Edge");
-                else if (ct.closeMatch (purple, touchColor, tolerance)) toast("Bad Edge");
-                else if (ct.closeMatch (hotpink, touchColor, tolerance)) toast("Bad Mono");
-                else if (ct.closeMatch (tan, touchColor, tolerance)) toast("Bottom Outer Pocket");
-                else if (ct.closeMatch (brown, touchColor, tolerance)) toast("Bottom Inner Pocket");
-                else if (ct.closeMatch (darkblue, touchColor, tolerance)) toast("Bottom Middle Edge");
+                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"Top Pocket","bm2_topPocket");
+                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) popup(this,"Good Edge","bm2_goodEdge");
+                else if (ct.closeMatch (black, touchColor, tolerance)) popup(this,"Good Mono","bm2_goodMono");
+                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Top Outer Pocket","bm2_topOuterPocket");
+                else if (ct.closeMatch (lightblue, touchColor, tolerance)) popup(this,"Top Inner Pocket","bm2_topInnerPocket");
+                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Top Middle Edge","bm2_topMiddleEdge");
+                else if (ct.closeMatch (purple, touchColor, tolerance)) popup(this,"Bad Edge","bm2_badEdge");
+                else if (ct.closeMatch (hotpink, touchColor, tolerance)) popup(this,"Bad Mono","bm2_badMono");
+                else if (ct.closeMatch (tan, touchColor, tolerance)) popup(this,"Bottom Outer Pocket","bm2_bottomOuterPocket");
+                else if (ct.closeMatch (brown, touchColor, tolerance)) popup(this,"Bottom Inner Pocket","bm2_bottomInnerPocket");
+                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Bottom Middle Edge","bm2_bottomMiddleEdge");
 
                 // If the next image is the same as the last image, go back to the default.
                 // toast ("Current image: " + currentResource + " next: " + nextImage);
