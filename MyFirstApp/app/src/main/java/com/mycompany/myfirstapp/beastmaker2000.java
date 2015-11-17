@@ -1,5 +1,6 @@
 package com.mycompany.myfirstapp;
 
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 import java.util.*;
@@ -157,8 +159,21 @@ public class beastmaker2000 extends AppCompatActivity
                     // 1. Instantiate an AlertDialog.Builder with its constructor
                     AlertDialog.Builder builder = new AlertDialog.Builder(this);
                     // 2. Chain together various setter methods to set the dialog characteristics
-                    builder.setMessage("View or update PR")
-                            .setTitle("Bad Sloper");
+                    final SharedPreferences sp = getSharedPreferences("bm2_bad_sloper", 0);
+                    final EditText input = new EditText(this);
+                    builder.setMessage("PR: " + sp.getString("bm2_bad_sloper", "0"))
+                            .setTitle("Bad Sloper")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    // User clicked OK button
+                                    String pr = input.getText().toString();
+//                                    if (pr == "") pr = "0";
+                                    SharedPreferences.Editor editor = sp.edit();
+                                    editor.putString("bm2_bad_sloper", pr);
+                                    editor.apply();
+                                }
+                            })
+                            .setView(input);
                     // 3. Get the AlertDialog from create()
                     AlertDialog dialog = builder.create();
                     dialog.show();
