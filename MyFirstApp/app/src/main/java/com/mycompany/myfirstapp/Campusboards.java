@@ -1,5 +1,7 @@
 package com.mycompany.myfirstapp;
 
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -11,6 +13,9 @@ public class Campusboards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_campusboards);
+        SharedPreferences sp = getSharedPreferences("bg", 0);
+        String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
     }
 /*
     @Override

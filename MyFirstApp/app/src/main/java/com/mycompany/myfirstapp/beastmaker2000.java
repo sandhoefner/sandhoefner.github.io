@@ -1,5 +1,6 @@
 package com.mycompany.myfirstapp;
 
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -41,6 +42,9 @@ public class beastmaker2000 extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_beastmaker2000);
         setTitle("Beastmaker 2000");
+        SharedPreferences sp = getSharedPreferences("bg", 0);
+        String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
 
         ImageView iv = (ImageView) findViewById (R.id.image);
         if (iv != null) {

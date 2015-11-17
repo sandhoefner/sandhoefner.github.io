@@ -1,6 +1,8 @@
 package com.mycompany.myfirstapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,6 +17,9 @@ public class MyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my);
+        SharedPreferences sp = getSharedPreferences("bg", 0);
+        String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
     }
 /*
     @Override
