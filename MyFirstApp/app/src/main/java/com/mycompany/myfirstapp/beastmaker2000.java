@@ -2,10 +2,13 @@ package com.mycompany.myfirstapp;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.app.Activity;
@@ -97,8 +100,20 @@ public class beastmaker2000 extends AppCompatActivity
     public int purple = Color.rgb(165,71,165);
     public int hotpink = Color.rgb(255,66,255);
     public int tan = Color.rgb(251,179,88);
-    public int brown = Color.rgb(128,64,2);
+    public int brown = Color.rgb(128, 64, 2);
     public int darkblue = Color.rgb(63,72,204);
+
+//    DisplayMetrics displaymetrics = new DisplayMetrics();
+//    int height = displaymetrics.heightPixels;
+//    int width = displaymetrics.widthPixels;
+//    Bitmap bm2_bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+////    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+////    Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
+//    Canvas canvas = new Canvas(bm2_bitmap);
+//    Paint paint = new Paint();
+//    paint.setColor(Color.BLACK);
+//    paint.setTextSize(20);
+//    canvas.drawText("Some Text", 10, 25, paint);
 
 
     public void popup(final Activity mama_bear, final String formal_name, final String precise_name) {
