@@ -3,6 +3,8 @@ package com.mycompany.myfirstapp;
 /**
  * Created by Evan on 11/16/2015.
  * thanks to https://blahti.wordpress.com/2012/06/26/images-with-clickable-areas/
+ * alternative:
+ * http://catchthecows.com/2011/08/09/ImageMap_for_Android/index.html
  */
 import android.graphics.Color;
 
