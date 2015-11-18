@@ -2,6 +2,7 @@ package com.mycompany.myfirstapp;
 
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.v7.app.AlertDialog;
@@ -63,10 +64,14 @@ public class beastmaker2000 extends AppCompatActivity
         // this shit has to be in here. you're a stranger to java and android so don't be an asshole
         // just try dumbshit. google doesn't have the answer to every dumbass question
         // rubber duck debugging
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        int height = displaymetrics.heightPixels;
-        int width = displaymetrics.widthPixels;
-        Bitmap bm2_bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+//        DisplayMetrics displaymetrics = new DisplayMetrics();
+//        int height = displaymetrics.heightPixels;
+//        int width = displaymetrics.widthPixels;
+//        Bitmap bm2_bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+        BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inMutable = true;
+//        Bitmap bp = BitmapFactory.decodeResource(getResources(), R.raw.white, opt);
+        Bitmap bm2_bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.beastmaker_2000, opt);
         //  getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
         //  Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
 
@@ -75,7 +80,7 @@ public class beastmaker2000 extends AppCompatActivity
         myPaint.setColor(black);
         myPaint.setTextSize(20);
 
-        canvas.drawText("Some Text", 10, 25, myPaint);
+        canvas.drawText("Some Text", 50, 50, myPaint);
     }
 
 /*
