@@ -60,19 +60,19 @@ public class beastmaker2000 extends AppCompatActivity
 
         toast ("Touch a hold!");
 
-//this shit has to be in here. you're a stranger to java and android so don't be an asshole
-// just try dumbshit. google doesn't have the answer to every dumbass question
+        // this shit has to be in here. you're a stranger to java and android so don't be an asshole
+        // just try dumbshit. google doesn't have the answer to every dumbass question
         // rubber duck debugging
         DisplayMetrics displaymetrics = new DisplayMetrics();
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
         Bitmap bm2_bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
-//    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-//    Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
+        //  getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        //  Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
 
         Canvas canvas = new Canvas(bm2_bitmap);
-        final Paint myPaint = (Paint)new Paint();
-    myPaint.setColor(black);
+        final Paint myPaint = new Paint();
+        myPaint.setColor(black);
         myPaint.setTextSize(20);
 
         canvas.drawText("Some Text", 10, 25, myPaint);
