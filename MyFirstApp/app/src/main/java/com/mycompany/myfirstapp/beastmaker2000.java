@@ -59,7 +59,7 @@ public class beastmaker2000 extends AppCompatActivity
             iv.setOnTouchListener (this);
         }
 
-        toast ("Touch a hold!");
+        toast ("Touch a hold to view/edit your PR!");
 
         // this shit has to be in here. you're a stranger to java and android so don't be an asshole
         // just try dumbshit. google doesn't have the answer to every dumbass question
@@ -124,6 +124,7 @@ public class beastmaker2000 extends AppCompatActivity
     public int tan = Color.rgb(251,179,88);
     public int brown = Color.rgb(128, 64, 2);
     public int darkblue = Color.rgb(63,72,204);
+    public int lavender = Color.rgb(187,191,254);
 
 
 
@@ -229,22 +230,23 @@ public class beastmaker2000 extends AppCompatActivity
 //                nextImage = R.drawable.p2_ship_default;
                 if (ct.closeMatch (pink, touchColor, tolerance)) {
 //                    final Activity mama_bear = this;
-                    popup(this,"Bad Sloper","bm2_badSloper");
+                    popup(this,"45\u00b0 Sloper","bm2_badSloper");
                 }
-                else if (ct.closeMatch (red, touchColor, tolerance)) popup(this,"Medium Sloper","bm2_mediumSloper");
-                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"Good Sloper","bm2_goodSloper");
+                else if (ct.closeMatch (red, touchColor, tolerance)) popup(this,"35\u00b0 Sloper","bm2_mediumSloper");
+                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"20\u00b0 Sloper","bm2_goodSloper");
 //                else if (ct.closeMatch (white, touchColor, tolerance)) int pass = 0;
-                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"Top Pocket","bm2_topPocket");
+                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"Medium 3-Finger Pocket","bm2_topPocket");
                 else if (ct.closeMatch (lightgreen, touchColor, tolerance)) popup(this,"Good Edge","bm2_goodEdge");
                 else if (ct.closeMatch (black, touchColor, tolerance)) popup(this,"Good Mono","bm2_goodMono");
-                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Top Outer Pocket","bm2_topOuterPocket");
-                else if (ct.closeMatch (lightblue, touchColor, tolerance)) popup(this,"Top Inner Pocket","bm2_topInnerPocket");
-                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Top Middle Edge","bm2_topMiddleEdge");
+                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Back 2 Pocket","bm2_topOuterPocket");
+                else if (ct.closeMatch (lightblue, touchColor, tolerance)) popup(this,"Good 2-Finger Pocket","bm2_topInnerPocket");
+                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Mouth Jug","bm2_topMiddleEdge");
                 else if (ct.closeMatch (purple, touchColor, tolerance)) popup(this,"Bad Edge","bm2_badEdge");
                 else if (ct.closeMatch (hotpink, touchColor, tolerance)) popup(this,"Bad Mono","bm2_badMono");
-                else if (ct.closeMatch (tan, touchColor, tolerance)) popup(this,"Bottom Outer Pocket","bm2_bottomOuterPocket");
-                else if (ct.closeMatch (brown, touchColor, tolerance)) popup(this,"Bottom Inner Pocket","bm2_bottomInnerPocket");
-                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Bottom Middle Edge","bm2_bottomMiddleEdge");
+                else if (ct.closeMatch (tan, touchColor, tolerance)) popup(this,"Bad 2-Finger Pocket","bm2_bottomOuterPocket");
+                else if (ct.closeMatch (brown, touchColor, tolerance)) popup(this,"Sloping 2-Finger Pocket","bm2_bottomInnerPocket");
+                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Incut Edge","bm2_bottomMiddleEdge");
+                else if (ct.closeMatch (lavender, touchColor, tolerance)) popup(this,"Small 3-Finger Pocket","bm2_badbadbad");
 
                 // If the next image is the same as the last image, go back to the default.
                 // toast ("Current image: " + currentResource + " next: " + nextImage);

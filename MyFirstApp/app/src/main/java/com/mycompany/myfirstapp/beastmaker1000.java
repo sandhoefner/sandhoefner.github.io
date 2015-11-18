@@ -55,7 +55,7 @@ public class beastmaker1000 extends AppCompatActivity
             iv.setOnTouchListener (this);
         }
 
-        toast ("Touch a hold!");
+        toast ("Touch a hold to view/edit your PR!");
     }
 
 /*
@@ -183,17 +183,17 @@ public class beastmaker1000 extends AppCompatActivity
                 int tolerance = 25;
 //                nextImage = R.drawable.p2_ship_default;
                 if (ct.closeMatch (red, touchColor, tolerance)) popup(this,"Jug","bm1 jug");
-                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"Bad Sloper","bm1 bad sloper");
-                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"Good Sloper","bm1 good sloper");
-                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) popup(this,"Middle Pocket","bm1 middle pocket");
-                else if (ct.closeMatch (black, touchColor, tolerance)) popup(this,"Top Pocket","bm1 top pocket");
-                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Top Edge","bm1 top edge");
+                else if (ct.closeMatch (orange, touchColor, tolerance)) popup(this,"35\u00b0 Sloper","bm1 bad sloper");
+                else if (ct.closeMatch (yellow, touchColor, tolerance)) popup(this,"20\u00b0 Sloper","bm1 good sloper");
+                else if (ct.closeMatch (lightgreen, touchColor, tolerance)) popup(this,"Good 3-Finger Pocket","bm1 middle pocket");
+                else if (ct.closeMatch (black, touchColor, tolerance)) popup(this,"Medium 3-Finger Pocket","bm1 top pocket");
+                else if (ct.closeMatch (gray, touchColor, tolerance)) popup(this,"Bad Edge","bm1 top edge");
                 else if (ct.closeMatch (lightblue, touchColor, tolerance)) popup(this,"Good 2-Finger Pocket","bm1 good 2-finger pocket");
-                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Bottom Pocket","bm1 bottom pocket");
-                else if (ct.closeMatch (purple, touchColor, tolerance)) popup(this,"Middle Edge","bm1 middle edge");
+                else if (ct.closeMatch (darkgreen, touchColor, tolerance)) popup(this,"Bad 3-Finger Pocket","bm1 bottom pocket");
+                else if (ct.closeMatch (purple, touchColor, tolerance)) popup(this,"Very Good Edge","bm1 middle edge");
                 else if (ct.closeMatch (tan, touchColor, tolerance)) popup(this,"Good Edge","bm1 good edge");
                 else if (ct.closeMatch (brown, touchColor, tolerance)) popup(this,"Bad 2-Finger Pocket","bm1 bad 2-finger pocket");
-                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Bad Edge","bm1 bad edge");
+                else if (ct.closeMatch (darkblue, touchColor, tolerance)) popup(this,"Medium Edge","bm1 bad edge");
 
                 // If the next image is the same as the last image, go back to the default.
                 // toast ("Current image: " + currentResource + " next: " + nextImage);
