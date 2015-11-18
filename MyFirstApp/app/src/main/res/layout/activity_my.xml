@@ -9,9 +9,9 @@
         android:layout_width="200dip"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Settings"
+        android:text="Campusboards"
 
-        android:onClick="sendMessageSet" />
+        android:onClick="sendMessageCampus" />
 
     <Button
         android:layout_width="200dip"
@@ -24,11 +24,11 @@
 
 
 
-    <!--<Button-->
-        <!--android:layout_width="200dip"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_below="@id/Button02"-->
-        <!--android:text="Campusboards"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:onClick="sendMessageCampus" />-->
+    <Button
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Button02"
+        android:text="Settings"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendMessageSet" />
 </RelativeLayout>
