@@ -5,19 +5,29 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/Button02"
         android:layout_width="200dip"
+        android:id="@+id/Button03"
         android:layout_height="wrap_content"
+        android:text="Grade Conversions"
         android:layout_centerInParent="true"
-        android:text="Campusboards"
-
-        android:onClick="sendMessageCampus" />
+        android:onClick="sendMessageGrade" />
 
     <Button
         android:layout_width="200dip"
         android:layout_height="wrap_content"
+
+        android:id="@+id/hangboard_button"
+        android:layout_above="@id/Button03"
+        android:text="Campusboards"
         android:layout_centerHorizontal="true"
-        android:layout_above="@id/Button02"
+        android:onClick="sendMessageCampus" />
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_above="@id/hangboard_button"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
         android:text="Hangboards"
         android:onClick="sendMessage" />
 
@@ -27,7 +37,7 @@
     <Button
         android:layout_width="200dip"
         android:layout_height="wrap_content"
-        android:layout_below="@id/Button02"
+        android:layout_below="@id/Button03"
         android:text="Settings"
         android:layout_centerHorizontal="true"
         android:onClick="sendMessageSet" />

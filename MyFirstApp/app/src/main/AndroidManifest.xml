@@ -50,21 +50,29 @@
         </activity>
         <activity
             android:name=".beastmaker2000"
-            android:screenOrientation="landscape"
             android:label="@string/title_activity_beastmaker2000"
-            android:parentActivityName=".Hangboards" >
+            android:parentActivityName=".Hangboards"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.Hangboards" />
         </activity>
         <activity
             android:name=".beastmaker1000"
-            android:screenOrientation="landscape"
             android:label="@string/title_activity_beastmaker1000"
-            android:parentActivityName=".Hangboards" >
+            android:parentActivityName=".Hangboards"
+            android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.Hangboards" />
+        </activity>
+        <activity
+            android:name=".Grades"
+            android:label="@string/title_activity_grades"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
     </application>
 

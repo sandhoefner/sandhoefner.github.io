@@ -77,6 +77,16 @@ public class MyActivity extends ActionBarActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message_final);
         startActivity(intent);
     }
+
+    public void sendMessageGrade(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, Grades.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        String message_final = "Nice to meet you, " + message + "!";
+//        intent.putExtra(EXTRA_MESSAGE, message_final);
+        startActivity(intent);
+    }
 }
 
 
