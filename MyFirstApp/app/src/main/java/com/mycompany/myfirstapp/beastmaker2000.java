@@ -59,6 +59,22 @@ public class beastmaker2000 extends AppCompatActivity
         }
 
         toast ("Touch a hold!");
+
+//this shit has to be in here. you're a stranger to java and android so don't be an asshole
+// just try dumbshit. google doesn't have the answer to every dumbass question
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        int height = displaymetrics.heightPixels;
+        int width = displaymetrics.widthPixels;
+        Bitmap bm2_bitmap = Bitmap.createBitmap(200, 200, Bitmap.Config.ARGB_8888);
+//    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+//    Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
+
+        Canvas canvas = new Canvas(bm2_bitmap);
+        final Paint myPaint = (Paint)new Paint();
+    myPaint.setColor(black);
+        myPaint.setTextSize(20);
+
+        canvas.drawText("Some Text", 10, 25, myPaint);
     }
 
 /*
@@ -103,17 +119,7 @@ public class beastmaker2000 extends AppCompatActivity
     public int brown = Color.rgb(128, 64, 2);
     public int darkblue = Color.rgb(63,72,204);
 
-//    DisplayMetrics displaymetrics = new DisplayMetrics();
-//    int height = displaymetrics.heightPixels;
-//    int width = displaymetrics.widthPixels;
-//    Bitmap bm2_bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
-////    getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-////    Bitmap bm2_bitmap = Bitmap.createScaledBitmap(b, ScreenWidth, ScreenHeight, false);
-//    Canvas canvas = new Canvas(bm2_bitmap);
-//    Paint paint = new Paint();
-//    paint.setColor(Color.BLACK);
-//    paint.setTextSize(20);
-//    canvas.drawText("Some Text", 10, 25, paint);
+
 
 
     public void popup(final Activity mama_bear, final String formal_name, final String precise_name) {
