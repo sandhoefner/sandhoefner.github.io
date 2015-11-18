@@ -62,6 +62,7 @@ public class beastmaker2000 extends AppCompatActivity
 
 //this shit has to be in here. you're a stranger to java and android so don't be an asshole
 // just try dumbshit. google doesn't have the answer to every dumbass question
+        // rubber duck debugging
         DisplayMetrics displaymetrics = new DisplayMetrics();
         int height = displaymetrics.heightPixels;
         int width = displaymetrics.widthPixels;
