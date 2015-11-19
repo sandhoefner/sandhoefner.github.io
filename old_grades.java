@@ -31,6 +31,7 @@ public class Grades extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        // viewpager replacement comes from http://androidtrainningcenter.blogspot.com/2012/10/viewpager-example-in-android.html
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
