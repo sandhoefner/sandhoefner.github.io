@@ -24,7 +24,7 @@
     <div class=boxStyle>
       <h1><u>Generate</u></h1>
       <form action="index.html" method="post">
-                <input type="submit" value="Generate Random Board" name="random" class="button">
+                <input type="submit" value="Generate Random Board" name="random" onclick="generation();" class="button">
             </form>
 
       <br><b>OR</b><br><br>
@@ -66,37 +66,40 @@
   
   <div class=Layout2_2 id="rightPanel">
     <div>
-        <?php
+        <script>
             // check conditions of form submission and re-draw canvas appropriately
-            if (isset($_POST['random']))
+            function generation() {
+            if (isset($_POST['random'])) {
             echo '<canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
               <script src="/public/js/genScript.js" type="text/javascript"></script>';
 
-            else if (isset($_POST['custom']) && !isset($_POST['adjResDub']) && !isset($_POST['adj68']))
+            } else if (isset($_POST['custom']) && !isset($_POST['adjResDub']) && !isset($_POST['adj68'])) {
             echo '<canvas id="blank" class="canvas"></canvas>
             <script>alert("Fill out your preferences!");</script>';
     
-            else if (isset($_POST['adj68']) && isset($_POST['adjResDub']))
+            } else if (isset($_POST['adj68']) && isset($_POST['adjResDub'])) {
             echo '<canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
               <script src="/public/js/genNoDub68.js" type="text/javascript"></script>';
 
-            else if (isset($_POST['adj68']) && !isset($_POST['adjResDub']))
+            } else if (isset($_POST['adj68']) && !isset($_POST['adjResDub'])) {
             echo '<canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
               <script src="/public/js/genNoSixEight.js" type="text/javascript"></script>';
 
-            else if (isset($_POST['adjResDub']) && !isset($_POST['adj68']))
+            } else if (isset($_POST['adjResDub']) && !isset($_POST['adj68'])) {
             echo '<canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
               <script src="/public/js/genNoDubs.js" type="text/javascript"></script>';
 
-            else if (isset($_POST['big']))
+            } else if (isset($_POST['big'])) {
             echo '<canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
               <script src="/public/js/genScriptBig.js" type="text/javascript"></script>';
-            ?>
+          }
+        }
+          </script>
     </div>
   </div>
 </body>
