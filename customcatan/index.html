@@ -15,6 +15,8 @@
   <script src="public/js/confirm.js"></script>
   <script src="public/js/genNoDub68.js"></script>
   <script src="public/js/genNoDubs.js"></script>
+  <script src="public/js/genNoTrip68.js"></script>
+  <script src="public/js/genNoTrips.js"></script>
   <script src="public/js/genNoSixEight.js"></script>
   <script src="public/js/genScript.js"></script>
   <script src="public/js/genScriptBig.js"></script>
@@ -28,7 +30,7 @@
       <a href="index.html" class=mainbutton>Home</a>
       <a href="howto.html" class=mainbutton>How to Play</a>
       <a href="about.html" class=mainbutton>About</a>
-      <a class="mainbutton" onclick="check();" href="http://settlersstrategy.com">Strategy</a>    
+      <!-- <a class="mainbutton" onclick="check();" href="http://settlersstrategy.com">Strategy</a>     -->
     </div><br>
           
     <div class=boxStyle>
@@ -58,12 +60,17 @@
                 // echo "<br>";
               ?> -->
 
-
-               <input type="checkbox" id="dubs" name="adjResDub"/> No adjacent resource doubles
+<input type="radio" id="none" name="adjRes" checked/> No resource constraints
                    <br>
+               <input type="radio" id="dubs" name="adjRes"/> No adjacent resource doubles
+                   <br>
+                   <input type="radio" id="trips" name="adjRes" 
+                   /> No adjacent resource triples (clustered)
+                 <br>
                    <input type="checkbox" id="68" name="adj68" 
                    /> No adjacent 6s or 8s
                  <br>
+                 
 
 
                   <input type="submit" value="Generate Standard Board" name="custom" onclick="custom();" class="button">
@@ -80,25 +87,61 @@
       <canvas id="myCanvas" class="canvas"></canvas>
             <canvas id="myCanvas2" class="canvas"></canvas>
         <script>
-        genNoDub68();
-            // check conditions of form submission and re-draw canvas appropriately
-            function random() {
         genScript();
-        }
+            
+
+            // var dubCheck = false;
+            // var tripCheck = false;
+//             function radioDub() {
+//               if (!dubCheck) {
+//               tripCheck = !tripCheck;
+//             } 
+//             dubCheck = !dubCheck;
+
+//               if (dubCheck) {
+//                 document.getElementById("dubs").checked = true;
+//               } else {
+// document.getElementById("dubs").checked = false;
+//               }
+//             }
+
+//  function radioTrip() {
+// if (!tripCheck) {
+//               dubCheck = !dubCheck;
+//             } 
+//             tripCheck = !tripCheck;
+
+//               if (tripCheck) {
+//                 document.getElementById("trips").checked = true;
+//               } else {
+// document.getElementById("trips").checked = false;
+//               }
+//             }
 
         function expanded() {
 genScriptBig();
         }
 
          function custom() {
-          if (document.getElementById("dubs").checked && document.getElementById("68").checked) {
-            genNoDub68();
-          } else if (document.getElementById("dubs").checked) {
-            genNoDubs();
-          } else if (document.getElementById("68").checked) {
-            genNoSixEight();
+ 
+
+
+          if (document.getElementById("68").checked) {
+ if (document.getElementById("dubs").checked) {
+genNoDub68();
+            } else if (document.getElementById("trips").checked) {
+genNoTrip68();
+            }  else {
+genNoSixEight();
+            }
           } else {
-            genScript();
+            if (document.getElementById("dubs").checked) {
+genNoDubs();
+            } else if (document.getElementById("trips").checked) {
+genNoTrips();
+            }  else {
+genScript();
+            }
           }
         }
           </script>

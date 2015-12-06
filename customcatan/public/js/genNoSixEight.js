@@ -298,7 +298,7 @@ while (hex1.number == null) {
     noDubNumber(hex17, 0);
     noDubNumber(hex18, 0);
     noDubNumber(hex19, 0);
-    console.log(numArray);
+    // console.log(numArray);
 }
 
 
