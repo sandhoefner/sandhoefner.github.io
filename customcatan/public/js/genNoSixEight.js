@@ -10,7 +10,7 @@
  *
  */ 
 
-
+function genNoSixEight() {
 
 
 // function to create hex object
@@ -528,5 +528,5 @@ numDraw(hex19, col2, row8);
   
   
   
-  
+  }
   

@@ -11,7 +11,7 @@
  */ 
  
 
-
+function genScript() {
 
 // function to create hex object
 function hexTile() {
@@ -457,6 +457,6 @@ numDraw(hex19, col2, row8);
   
   
   
-  
+  }
   
   

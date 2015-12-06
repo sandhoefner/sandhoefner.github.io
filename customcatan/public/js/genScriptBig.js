@@ -10,7 +10,7 @@
  *
  */
 
-
+function genScriptBig() {
 
 
 // function to create hex object
@@ -534,6 +534,6 @@ numDraw(hex30, col3, row10);
   
   
   
-  
+  }
   
   

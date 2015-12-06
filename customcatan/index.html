@@ -9,6 +9,12 @@
   <script src="/public/js/jquery-1.11.1.js"></script>
   <script src="/public/js/printable.js"></script>
   <script src="/public/js/confirm.js"></script>
+  <script src="/public/js/genNoDub68.js"></script>
+  <script src="/public/js/genNoDubs.js"></script>
+  <script src="/public/js/genNoSixEight.js"></script>
+  <script src="/public/js/genScript.js"></script>
+  <script src="/public/js/genScriptBig.js"></script>
+
 </head>
 
 <body>
@@ -23,19 +29,18 @@
           
     <div class=boxStyle>
       <h1><u>Generate</u></h1>
-      <form action="index.html" method="post">
-                <input type="submit" value="Generate Random Board" name="random" onclick="generation();" class="button">
-            </form>
+     
+                <!-- <input type="submit" value="Generate Random Board" name="random" onclick="random();" class="button"> -->
+      
 
-      <br><b>OR</b><br><br>
+      <!-- <br><b>OR</b><br><br> -->
 
-      <form action="index.html" method="post">
-              <input type="submit" value="Generate Random Expanded Board" name="big" class="button">
-      </form>
+    
+              
+  
             
-      <br><b>OR</b><br><br>
-           
-      <form action="index.html" method="post">
+
+      
             <!--   <?php
                 // implement checkboxes that stay checked after form submission
                 // credit to user 'obsidian' at http://tinyurl.com/k2hqpzq
@@ -50,53 +55,46 @@
               ?> -->
 
 
-               <input type="checkbox" name="adjResDub"/> No adjacent resource doubles
+               <input type="checkbox" id="dubs" name="adjResDub"/> No adjacent resource doubles
                    <br>
-                   <input type="checkbox" name="adj68" 
+                   <input type="checkbox" id="68" name="adj68" 
                    /> No adjacent 6s or 8s
                  <br>
 
 
-                  <input type="submit" value="Generate Balanced Board" name="custom" class="button">
-      </form><br>
+                  <input type="submit" value="Generate Standard Board" name="custom" onclick="custom();" class="button">
+      <br><br><b>OR</b><br><br>
+      <input type="submit" value="Generate Expanded Board" onclick="expanded();" name="big" class="button">
+      <br>
         </div>
     
-    <br><a href="" onclick="printable();" class="button">Printable Version</a><br>&nbsp;
+    <br><button onclick="printable();" class="button">Printable Version</button>
   </div>
   
   <div class=Layout2_2 id="rightPanel">
     <div>
+      <canvas id="myCanvas" class="canvas"></canvas>
+            <canvas id="myCanvas2" class="canvas"></canvas>
         <script>
+        genNoDub68();
             // check conditions of form submission and re-draw canvas appropriately
-            function generation() {
-            if (isset($_POST['random'])) {
-            echo '<canvas id="myCanvas" class="canvas"></canvas>
-            <canvas id="myCanvas2" class="canvas"></canvas>
-              <script src="/public/js/genScript.js" type="text/javascript"></script>';
+            function random() {
+        genScript();
+        }
 
-            } else if (isset($_POST['custom']) && !isset($_POST['adjResDub']) && !isset($_POST['adj68'])) {
-            echo '<canvas id="blank" class="canvas"></canvas>
-            <script>alert("Fill out your preferences!");</script>';
-    
-            } else if (isset($_POST['adj68']) && isset($_POST['adjResDub'])) {
-            echo '<canvas id="myCanvas" class="canvas"></canvas>
-            <canvas id="myCanvas2" class="canvas"></canvas>
-              <script src="/public/js/genNoDub68.js" type="text/javascript"></script>';
+        function expanded() {
+genScriptBig();
+        }
 
-            } else if (isset($_POST['adj68']) && !isset($_POST['adjResDub'])) {
-            echo '<canvas id="myCanvas" class="canvas"></canvas>
-            <canvas id="myCanvas2" class="canvas"></canvas>
-              <script src="/public/js/genNoSixEight.js" type="text/javascript"></script>';
-
-            } else if (isset($_POST['adjResDub']) && !isset($_POST['adj68'])) {
-            echo '<canvas id="myCanvas" class="canvas"></canvas>
-            <canvas id="myCanvas2" class="canvas"></canvas>
-              <script src="/public/js/genNoDubs.js" type="text/javascript"></script>';
-
-            } else if (isset($_POST['big'])) {
-            echo '<canvas id="myCanvas" class="canvas"></canvas>
-            <canvas id="myCanvas2" class="canvas"></canvas>
-              <script src="/public/js/genScriptBig.js" type="text/javascript"></script>';
+         function custom() {
+          if (document.getElementById("dubs").checked && document.getElementById("68").checked) {
+            genNoDub68();
+          } else if (document.getElementById("dubs").checked) {
+            genNoDubs();
+          } else if (document.getElementById("68").checked) {
+            genNoSixEight();
+          } else {
+            genScript();
           }
         }
           </script>
