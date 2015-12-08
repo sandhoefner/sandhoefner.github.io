@@ -1,0 +1,28 @@
+{
+  "name": "Nostalgia",
+
+  "short_name": "Nostalgia",
+
+  "description": "Easily scroll to the beginning of a Facebook chat.",
+
+  "version": "0.0.0",
+
+  "author": "Evan Sandhoefner",
+  
+  "content_scripts": [
+    {
+      "matches": ["https://m.facebook.com/messages/read/?tid=*"],
+      "js": ["page.js", "jquery.js"]
+    }
+  ],
+
+  "options_page": "options.html",
+  
+  "icons": {
+    "16": "doge-16-.png",
+    "48": "doge-48-.png",
+    "128": "doge-128-.png"
+  },
+  
+  "manifest_version": 2
+}
