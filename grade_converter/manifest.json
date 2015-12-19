@@ -1,0 +1,15 @@
+{
+"manifest_version": 2,
+    "name": "Grade Converter",
+    "description": "Converts boulder grades from Font to Hueco.",
+    "version": "0.0.0",
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": [
+                "content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ]
+}
