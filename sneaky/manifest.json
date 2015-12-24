@@ -1,0 +1,36 @@
+{
+  "name": "Sneaky",
+
+  "short_name": "Sneaky",
+
+  "description": "See full Facebook message without anyone knowing.",
+
+  "version": "0.0.0",
+
+  "author": "Evan Sandhoefner",
+  
+  "content_scripts": [
+    {
+      "matches": ["https://www.facebook.com/*"],
+      "js": ["page.js", "jquery.js"]
+    }
+  ],
+
+  "options_page": "options.html",
+
+  "commands": {
+    "view": {
+      "suggested_key": {"default": "Ctrl+M"},
+      "description": "View",
+      "global": false
+    }
+  },
+  
+  "icons": {
+    "16": "doge-16-.png",
+    "48": "doge-48-.png",
+    "128": "doge-128-.png"
+  },
+  
+  "manifest_version": 2
+}
