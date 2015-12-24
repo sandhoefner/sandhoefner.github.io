@@ -1,6 +1,7 @@
 /*  problems:
     emoji
     mobile authors
+    you still don't get the WHOLE message if it's long, and obviously you don't get multiple messages
 */
 
 function KeyPress(e) {
