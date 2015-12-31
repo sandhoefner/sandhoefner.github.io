@@ -19,7 +19,7 @@ public class Settings extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences("bg", 0);
         String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
         getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
-        if (hexaColor != "#272822") {
+        if (!hexaColor.equals("#272822")) {
         TextView tv = (TextView) findViewById(R.id.noodles);
         tv.setTextColor(getResources().getColor(R.color.black));
             RadioButton light = (RadioButton)findViewById(R.id.radio_light);

@@ -74,6 +74,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
+        <activity
+            android:name=".SportGrades"
+            android:label="@string/title_activity_sport_grades"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.MyActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -68,6 +68,17 @@ public class MyActivity extends ActionBarActivity {
     }
 
 
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SharedPreferences sp = getSharedPreferences("bg", 0);
+        String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
+        getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
+    }
+
+
     public void sendMessageSet(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, Settings.class);
@@ -78,9 +89,9 @@ public class MyActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-    public void sendMessageGrade(View view) {
+    public void sendMessageSport(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, Grades.class);
+        Intent intent = new Intent(this, SportGrades.class);
 //        EditText editText = (EditText) findViewById(R.id.edit_message);
 //        String message = editText.getText().toString();
 //        String message_final = "Nice to meet you, " + message + "!";

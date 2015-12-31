@@ -7,22 +7,23 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Campusboards extends AppCompatActivity {
+public class SportGrades extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_campusboards);
-        setTitle("Grade Chart: Boulders");
+        setTitle("Grade Chart: Sport");
+        setContentView(R.layout.activity_sport_grades);
         SharedPreferences sp = getSharedPreferences("bg", 0);
         String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
         getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
     }
+
 /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_campusboards, menu);
+        getMenuInflater().inflate(R.menu.menu_sport_grades, menu);
         return true;
     }
 */
