@@ -61,4 +61,14 @@ public class Hangboards extends AppCompatActivity {
 //        intent.putExtra(EXTRA_MESSAGE, message_final);
         startActivity(intent);
     }
+
+    public void ironPalm(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, IronPalm.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        String message_final = "Nice to meet you, " + message + "!";
+//        intent.putExtra(EXTRA_MESSAGE, message_final);
+        startActivity(intent);
+    }
 }

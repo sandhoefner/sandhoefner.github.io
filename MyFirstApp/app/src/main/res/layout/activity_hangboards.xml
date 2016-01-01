@@ -4,6 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+    <!--this page should be a gallery of hangboard images, not text buttons-->
+
     <Button
         android:id="@+id/Button02"
         android:layout_width="200dip"
@@ -20,6 +23,14 @@
         android:layout_above="@id/Button02"
         android:text="Beastmaker 1000"
         android:onClick="beastmaker1000" />
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/Button02"
+        android:text="Iron Palm"
+        android:onClick="ironPalm" />
 
 
 

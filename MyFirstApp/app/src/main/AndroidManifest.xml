@@ -82,6 +82,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.MyActivity" />
         </activity>
+        <activity
+            android:name=".IronPalm"
+            android:label="@string/title_activity_iron_palm"
+            android:parentActivityName=".Hangboards"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.Hangboards" />
+        </activity>
     </application>
 
 </manifest>
