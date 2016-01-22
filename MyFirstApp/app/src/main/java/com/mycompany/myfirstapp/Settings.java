@@ -28,6 +28,7 @@ public class Settings extends AppCompatActivity {
             light.setTextColor(getResources().getColor(R.color.black));
             dark.setTextColor(getResources().getColor(R.color.black));
             blue.setTextColor(getResources().getColor(R.color.black));
+
     } else
 
     {

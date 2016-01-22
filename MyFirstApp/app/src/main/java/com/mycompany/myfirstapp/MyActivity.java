@@ -68,6 +68,17 @@ public class MyActivity extends ActionBarActivity {
     }
 
 
+    public void sendMessageTimer(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, Stopwatch.class);
+//        EditText editText = (EditText) findViewById(R.id.edit_message);
+//        String message = editText.getText().toString();
+//        String message_final = "Nice to meet you, " + message + "!";
+//        intent.putExtra(EXTRA_MESSAGE, message_final);
+        startActivity(intent);
+    }
+
+
 
 
     @Override

@@ -91,6 +91,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.mycompany.myfirstapp.Hangboards" />
         </activity>
+        <activity
+            android:name=".Stopwatch"
+            android:label="@string/title_activity_stopwatch"
+            android:parentActivityName=".MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.mycompany.myfirstapp.MyActivity" />
+        </activity>
     </application>
 
 </manifest>

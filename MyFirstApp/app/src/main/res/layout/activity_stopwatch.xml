@@ -1,0 +1,87 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/hang"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_alignParentTop="true"
+        android:text="Hang for" />
+
+    <Spinner
+        android:id="@+id/hangSpin"
+        android:layout_width="100dip"
+        android:layout_height="50dip"
+        android:layout_alignBaseline="@id/hang"
+
+        android:layout_toRightOf="@id/hang"
+        android:drawSelectorOnTop="true" />
+
+    <TextView
+        android:id="@+id/hangSec"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_toRightOf="@id/hangSpin"
+        android:layout_alignParentTop="true"
+        android:text="seconds" />
+
+    <TextView
+        android:id="@+id/rest"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+
+        android:layout_below="@id/hangSpin"
+        android:text="Rest for" />
+
+    <Spinner
+        android:id="@+id/restSpin"
+        android:layout_width="100dip"
+        android:layout_height="50dip"
+        android:layout_alignBaseline="@id/rest"
+        android:layout_toRightOf="@id/hang"
+        android:drawSelectorOnTop="true" />
+
+    <TextView
+        android:id="@+id/restSec"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_toRightOf="@id/hangSpin"
+        android:layout_below="@id/hangSpin"
+        android:text="seconds" />
+
+    <TextView
+        android:id="@+id/rep"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+
+        android:layout_below="@id/rest"
+        android:text="Repeat" />
+
+    <Spinner
+        android:id="@+id/repSpin"
+        android:layout_width="100dip"
+        android:layout_below="@id/restSpin"
+        android:layout_height="50dip"
+        android:layout_alignBaseline="@id/rep"
+        android:layout_toRightOf="@id/hang"
+        android:drawSelectorOnTop="true" />
+
+    <TextView
+        android:id="@+id/repTimes"
+        android:layout_width="wrap_content"
+        android:layout_height="50dip"
+        android:layout_toRightOf="@id/repSpin"
+        android:layout_below="@id/restSec"
+        android:text="times" />
+
+    <Button
+        android:layout_width="215dip"
+        android:id="@+id/crushButt"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rep"
+        android:text="Crush It"
+        android:onClick="crush" />
+</RelativeLayout>

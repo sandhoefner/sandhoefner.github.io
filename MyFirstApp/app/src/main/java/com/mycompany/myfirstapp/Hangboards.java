@@ -15,6 +15,7 @@ public class Hangboards extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hangboards);
+        setTitle("Hangboard Logs");
         SharedPreferences sp = getSharedPreferences("bg", 0);
         String hexaColor = sp.getString("hexa", "#FFFFFF"); //default color will be #FFFFFF
         getWindow().getDecorView().setBackgroundColor(Color.parseColor(hexaColor));
