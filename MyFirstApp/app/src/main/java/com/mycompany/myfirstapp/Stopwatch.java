@@ -87,7 +87,20 @@ public class Stopwatch extends AppCompatActivity {
 
 
     public void crush(View view) {
-        toast("Crush!");
+
+        Spinner rep = (Spinner) findViewById(R.id.repSpin);
+        String repText = rep.getSelectedItem().toString();
+        int repInt = Integer.parseInt(repText);
+
+        Spinner rest = (Spinner) findViewById(R.id.restSpin);
+        String restText = rest.getSelectedItem().toString();
+        int restInt = Integer.parseInt(restText);
+
+        Spinner hang = (Spinner) findViewById(R.id.hangSpin);
+        String hangText = hang.getSelectedItem().toString();
+        int hangInt = Integer.parseInt(hangText);
+
+        toast(hangText + " on, " + restText + " off for " + repText + " reps");
     }
 
     public void toast (String msg)
