@@ -2,6 +2,10 @@ package com.mycompany.myfirstapp;
 
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.media.AudioManager;
+import android.media.ToneGenerator;
+import android.os.CountDownTimer;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -101,6 +105,34 @@ public class Stopwatch extends AppCompatActivity {
         int hangInt = Integer.parseInt(hangText);
 
         toast(hangText + " on, " + restText + " off for " + repText + " reps");
+
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // 100% volume
+                ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                // 200 milliseconds
+                toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+            }
+        }, 3000);
+
+        final TextView clock = (TextView) findViewById(R.id.clock);
+
+        new CountDownTimer(5000+repInt*hangInt*1000+(repInt-1)*restInt*1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                clock.setText("seconds remaining: " + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+                clock.setText("done!");
+            }
+        }.start();
+
+
+
     }
 
     public void toast (String msg)

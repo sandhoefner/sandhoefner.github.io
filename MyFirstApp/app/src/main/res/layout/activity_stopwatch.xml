@@ -84,4 +84,11 @@
         android:layout_below="@id/rep"
         android:text="Crush It"
         android:onClick="crush" />
+
+    <TextView
+        android:id="@+id/clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/crushButt"
+        android:text="filler" />
 </RelativeLayout>
