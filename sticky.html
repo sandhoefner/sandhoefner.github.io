@@ -1,0 +1,35 @@
+<html>
+
+<link rel="stylesheet" type="text/css" href="sticky.css">
+
+<input id="note"></input>
+<button onclick="go()">New Note</button>
+<p>Click on a note to delete it!</p>
+
+<div onclick="this.remove()" class="all_notes" id="one">Buy chalk</div>
+<div onclick="this.remove()" class="all_notes" id="two">Go to the gym</div>
+<div onclick="this.remove()" class="all_notes" id="three">Dinner with Kevin</div>
+<div onclick="this.remove()" class="all_notes" id="four">Unpack</div>
+<div onclick="this.remove()" class="all_notes" id="five">Reading</div>
+
+<script>
+topp = 75;
+left = 800;
+function go() {
+  var new_note = document.createElement("div");
+  new_note.innerText = document.getElementById("note").value;
+  new_note.style.top = topp;
+  new_note.className = "all_notes";
+  new_note.style.left = left;
+  new_note.setAttribute("onclick", "this.remove();");
+  document.getElementsByTagName('body')[0].appendChild(new_note);
+  if (left == 950) {
+    left = 50;
+    topp += 150;
+  } else {
+    left += 150;
+  }
+}
+</script>
+
+</html>
