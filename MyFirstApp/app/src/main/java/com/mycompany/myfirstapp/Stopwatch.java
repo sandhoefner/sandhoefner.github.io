@@ -106,7 +106,7 @@ public class Stopwatch extends AppCompatActivity {
 
         toast(hangText + " on, " + restText + " off for " + repText + " reps");
 
-
+        /*
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
@@ -117,9 +117,71 @@ public class Stopwatch extends AppCompatActivity {
                 toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
             }
         }, 3000);
+        */
 
         final TextView clock = (TextView) findViewById(R.id.clock);
+        clock.setText(" ");
 
+        new CountDownTimer(5000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                clock.setText("First rep starts in: " + (millisUntilFinished+1000) / 1000);
+            }
+
+            public void onFinish() {
+                clock.setText("Go!");
+                // 100% volume
+                ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                // 200 milliseconds
+                toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+
+
+
+            }
+        }.start();
+
+        for (int i = 0; i < repInt; i++) {
+            // rests
+            new CountDownTimer(5000+1000*i*(hangInt+restInt)+restInt*1000+hangInt*1000, 1000) {
+                Spinner rest = (Spinner) findViewById(R.id.restSpin);
+                String restText = rest.getSelectedItem().toString();
+                int restInt = Integer.parseInt(restText);
+                public void onTick(long millisUntilFinished) {
+
+                    if (millisUntilFinished <= restInt*1000) {
+                        clock.setText("Rest for: " + (millisUntilFinished+1000)/1000);
+
+                    }
+                }
+                public void onFinish() {
+                    // 100% volume
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    // 200 milliseconds
+                    toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+                }
+            }.start();
+            // hangs
+            new CountDownTimer(5000+1000*i*(hangInt+restInt)+hangInt*1000, 1000) {
+                Spinner rep = (Spinner) findViewById(R.id.repSpin);
+                String repText = rep.getSelectedItem().toString();
+                int repInt = Integer.parseInt(repText)*1000;
+                public void onTick(long millisUntilFinished) {
+
+                    if (millisUntilFinished <= repInt) {
+                        clock.setText("Hang for: " + (millisUntilFinished+1000)/1000);
+
+                    }
+                }
+                public void onFinish() {
+                    // 100% volume
+                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                    // 200 milliseconds
+                    toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+                }
+            }.start();
+        }
+
+        /*
         new CountDownTimer(5000+repInt*hangInt*1000+(repInt-1)*restInt*1000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -130,6 +192,7 @@ public class Stopwatch extends AppCompatActivity {
                 clock.setText("done!");
             }
         }.start();
+        */
 
 
 
