@@ -125,7 +125,7 @@ public class Stopwatch extends AppCompatActivity {
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                clock.setText("First rep starts in: " + (millisUntilFinished+1000) / 1000);
+                clock.setText("Start in: " + (millisUntilFinished+1000) / 1000);
             }
 
             public void onFinish() {

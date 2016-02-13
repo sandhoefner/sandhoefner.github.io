@@ -90,5 +90,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/crushButt"
-        android:text="" />
+        android:text=""
+        android:textSize="100dp"/>
 </RelativeLayout>
