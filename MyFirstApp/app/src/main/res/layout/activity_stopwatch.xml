@@ -90,5 +90,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/crushButt"
-        android:text="filler" />
+        android:text="" />
 </RelativeLayout>

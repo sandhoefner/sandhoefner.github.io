@@ -104,7 +104,7 @@ public class Stopwatch extends AppCompatActivity {
         String hangText = hang.getSelectedItem().toString();
         int hangInt = Integer.parseInt(hangText);
 
-        toast(hangText + " on, " + restText + " off for " + repText + " reps");
+//        toast(hangText + " on, " + restText + " off for " + repText + " reps");
 
         /*
         Handler handler = new Handler();
@@ -120,8 +120,8 @@ public class Stopwatch extends AppCompatActivity {
         */
 
         final TextView clock = (TextView) findViewById(R.id.clock);
-        clock.setText(" ");
-
+//        clock.setText(" ");
+//
         new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -129,7 +129,7 @@ public class Stopwatch extends AppCompatActivity {
             }
 
             public void onFinish() {
-                clock.setText("Go!");
+//                clock.setText("Go!");
                 // 100% volume
                 ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                 // 200 milliseconds
@@ -140,19 +140,41 @@ public class Stopwatch extends AppCompatActivity {
             }
         }.start();
 
-        for (int i = 0; i < repInt; i++) {
+        // finish
+        new CountDownTimer(5000+1000*repInt*(restInt+hangInt)-restInt*1000, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+//                clock.setText("First rep starts in: " + (millisUntilFinished+1000) / 1000);
+            }
+
+            public void onFinish() {
+
+                clock.setText("Good job!");
+                // 100% volume
+//                ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
+                // 200 milliseconds
+//                toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
+//
+
+
+            }
+        }.start();
+
+        for (int i = 0; i < repInt-1; i++) {
             // rests
-            new CountDownTimer(5000+1000*i*(hangInt+restInt)+restInt*1000+hangInt*1000, 1000) {
+            new CountDownTimer(5000 + 1000 * i * (hangInt + restInt) + restInt * 1000 + hangInt * 1000, 1000) {
                 Spinner rest = (Spinner) findViewById(R.id.restSpin);
                 String restText = rest.getSelectedItem().toString();
                 int restInt = Integer.parseInt(restText);
+
                 public void onTick(long millisUntilFinished) {
 
-                    if (millisUntilFinished <= restInt*1000) {
-                        clock.setText("Rest for: " + (millisUntilFinished+1000)/1000);
+                    if (millisUntilFinished <= restInt * 1000) {
+                        clock.setText("Rest for: " + (millisUntilFinished + 1000) / 1000);
 
                     }
                 }
+
                 public void onFinish() {
                     // 100% volume
                     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
@@ -160,14 +182,16 @@ public class Stopwatch extends AppCompatActivity {
                     toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 200);
                 }
             }.start();
+        }
+        for (int j = 0; j < repInt; j++) {
             // hangs
-            new CountDownTimer(5000+1000*i*(hangInt+restInt)+hangInt*1000, 1000) {
-                Spinner rep = (Spinner) findViewById(R.id.repSpin);
-                String repText = rep.getSelectedItem().toString();
-                int repInt = Integer.parseInt(repText)*1000;
+            new CountDownTimer(5000+1000*j*(hangInt+restInt)+hangInt*1000, 1000) {
+                Spinner hang = (Spinner) findViewById(R.id.hangSpin);
+                String hangText = hang.getSelectedItem().toString();
+                int hangInt = Integer.parseInt(hangText);
                 public void onTick(long millisUntilFinished) {
 
-                    if (millisUntilFinished <= repInt) {
+                    if (millisUntilFinished <= hangInt*1000) {
                         clock.setText("Hang for: " + (millisUntilFinished+1000)/1000);
 
                     }
