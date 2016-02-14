@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.sandhoefner.gravitytrainer" >
+    package="io.github.sandhoefner.gravitytrainer">
 
     <application
         android:allowBackup="true"
@@ -20,6 +20,15 @@
         <activity
             android:name="io.github.sandhoefner.gravitytrainer.Settings"
             android:label="@string/title_activity_settings"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.Campusboards"
+            android:label="@string/title_activity_campusboards"
             android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
