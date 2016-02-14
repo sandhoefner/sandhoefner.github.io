@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="io.github.sandhoefner.gravitytrainer" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.MyActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.Settings"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.Hangboards"
+            android:label="@string/title_activity_hangboards"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.beastmaker2000"
+            android:label="@string/title_activity_beastmaker2000"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.Hangboards"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.Hangboards" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.beastmaker1000"
+            android:label="@string/title_activity_beastmaker1000"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.Hangboards"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.Hangboards" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.Grades"
+            android:label="@string/title_activity_grades"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.SportGrades"
+            android:label="@string/title_activity_sport_grades"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.IronPalm"
+            android:label="@string/title_activity_iron_palm"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.Hangboards"
+            android:screenOrientation="landscape" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.Hangboards" />
+        </activity>
+        <activity
+            android:name="io.github.sandhoefner.gravitytrainer.Stopwatch"
+            android:label="@string/title_activity_stopwatch"
+            android:parentActivityName="io.github.sandhoefner.gravitytrainer.MyActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="io.github.sandhoefner.gravitytrainer.MyActivity" />
+        </activity>
+    </application>
+
+</manifest>

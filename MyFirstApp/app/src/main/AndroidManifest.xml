@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mycompany.myfirstapp" >
+    package="com.mycompany.gravity_trainer" >
 
     <application
         android:allowBackup="true"
@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MyActivity"
+            android:name="com.mycompany.gravity_trainer.MyActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,85 +19,85 @@
         <activity
             android:name=".DisplayMessageActivity"
             android:label="@string/title_activity_display_message"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".Settings"
+            android:name="com.mycompany.gravity_trainer.Settings"
             android:label="@string/title_activity_settings"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".Campusboards"
+            android:name="com.mycompany.gravity_trainer.Campusboards"
             android:label="@string/title_activity_campusboards"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".Hangboards"
+            android:name="com.mycompany.gravity_trainer.Hangboards"
             android:label="@string/title_activity_hangboards"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".beastmaker2000"
+            android:name="com.mycompany.gravity_trainer.beastmaker2000"
             android:label="@string/title_activity_beastmaker2000"
-            android:parentActivityName=".Hangboards"
+            android:parentActivityName="com.mycompany.gravity_trainer.Hangboards"
             android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.Hangboards" />
+                android:value="com.mycompany.gravity_trainer.Hangboards" />
         </activity>
         <activity
-            android:name=".beastmaker1000"
+            android:name="com.mycompany.gravity_trainer.beastmaker1000"
             android:label="@string/title_activity_beastmaker1000"
-            android:parentActivityName=".Hangboards"
+            android:parentActivityName="com.mycompany.gravity_trainer.Hangboards"
             android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.Hangboards" />
+                android:value="com.mycompany.gravity_trainer.Hangboards" />
         </activity>
         <activity
-            android:name=".Grades"
+            android:name="com.mycompany.gravity_trainer.Grades"
             android:label="@string/title_activity_grades"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".SportGrades"
+            android:name="com.mycompany.gravity_trainer.SportGrades"
             android:label="@string/title_activity_sport_grades"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
         <activity
-            android:name=".IronPalm"
+            android:name="com.mycompany.gravity_trainer.IronPalm"
             android:label="@string/title_activity_iron_palm"
-            android:parentActivityName=".Hangboards"
+            android:parentActivityName="com.mycompany.gravity_trainer.Hangboards"
             android:screenOrientation="landscape" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.Hangboards" />
+                android:value="com.mycompany.gravity_trainer.Hangboards" />
         </activity>
         <activity
-            android:name=".Stopwatch"
+            android:name="com.mycompany.gravity_trainer.Stopwatch"
             android:label="@string/title_activity_stopwatch"
-            android:parentActivityName=".MyActivity" >
+            android:parentActivityName="com.mycompany.gravity_trainer.MyActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.mycompany.myfirstapp.MyActivity" />
+                android:value="com.mycompany.gravity_trainer.MyActivity" />
         </activity>
     </application>
 

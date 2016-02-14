@@ -1,0 +1,54 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:layout_width="200dip"
+        android:id="@+id/Button03"
+        android:layout_height="wrap_content"
+        android:text="Grade Chart: Sport"
+        android:layout_centerInParent="true"
+        android:onClick="sendMessageSport" />
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/hangboard_button"
+        android:layout_above="@id/Button03"
+        android:text="Grade Chart: Boulders"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendMessageCampus" />
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_above="@id/hangboard_button"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+
+        android:text="Hangboard Logs"
+        android:onClick="sendMessage" />
+
+
+
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Button03"
+        android:id="@+id/Button04"
+        android:text="Deadhang Timer"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendMessageTimer" />
+
+
+    <Button
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Button04"
+        android:text="Settings"
+        android:layout_centerHorizontal="true"
+        android:onClick="sendMessageSet" />
+</RelativeLayout>

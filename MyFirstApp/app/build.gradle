@@ -11,6 +11,14 @@ android {
         versionCode 1
         versionName "1.0"
     }
+    signingConfigs {
+        release {
+            storeFile file("C:/Users/Evan/Desktop/something.keystore")
+            storePassword "snickersbar"
+            keyAlias "candy"
+            keyPassword "snickersbar"
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
