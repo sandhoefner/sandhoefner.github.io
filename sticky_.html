@@ -1,0 +1,63 @@
+<html>
+<link rel="stylesheet" type="text/css" href="sticky_.css">
+<script src="jquery.js"></script>
+<input id="note"></input>
+<button id="submit" onclick="goo(document.getElementById('note').value,0)">New Note</button>
+<p>Click on a note to delete it!</p>
+<p>NEW: We'll remember your notes for next time!</p>
+
+<script>
+    if (!localStorage["notes"]) {
+        notes = ["Buy chalk", "Go to the gym", "Dinner with Kevin", "Unpack", "Reading"];
+    } else {
+        notes = JSON.parse(localStorage["notes"]);
+    }
+
+    $(document).ready(function() {
+        $('#note').keypress(function(e) {
+            if (e.keyCode == 13) {
+                $('#submit').click();
+
+            }
+        });
+    });
+
+    topp = 125;
+    left = 50;
+
+    for (var i = 0; i < notes.length; i++) {
+        goo(notes[i], 1);
+    }
+
+    function goo(text, init) {
+        document.getElementById('note').value = "";
+        var new_note = document.createElement("div");
+        new_note.innerText = text;
+        new_note.style.top = topp;
+        new_note.className = "all_notes";
+        new_note.style.left = left;
+        new_note.setAttribute("onclick", "trash(this);this.remove();");
+        document.getElementsByTagName('body')[0].appendChild(new_note);
+        if (left == 950) {
+            left = 50;
+            topp += 150;
+        } else {
+            left += 150;
+        }
+        if (!init) {
+            notes.push(text);
+        }
+        localStorage["notes"] = JSON.stringify(notes);
+    }
+
+    function trash(it) {
+        for (var i = 0; i < notes.length; i++) {
+            if (notes[i] == it.innerText) {
+                notes.splice(i, 1);
+                localStorage["notes"] = JSON.stringify(notes);
+                break;
+            }
+        }
+    }
+</script>
+</html>
