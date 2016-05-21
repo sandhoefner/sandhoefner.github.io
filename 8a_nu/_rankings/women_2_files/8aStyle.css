@@ -1,0 +1,742 @@
+.Page 
+{ 
+	width: 836px 
+}
+
+#ulForum 
+{ 
+	  padding: 0px 0px 0px 2px; 
+	  margin: 0px  0px 0px 2px; 
+	  /*list-style-image: url("images/common/arrow_red_g2.gif");*/
+	  /*list-style-image: url("images/common/arrow_state_grey_right_8.png");*/
+} 
+#ulForum li 
+{ 
+	  list-style-type:none;
+	  margin-bottom:4px;
+	  margin-left:1px;
+	  padding-left:1px;
+	 } 
+
+#ulForum a
+{
+	font-weight:normal;
+	
+}
+
+.Admin
+{
+ background-image:url(images/common/prick_green.gif); 
+}
+
+.BODYAdmin
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ margin-left:5px;
+ margin-top:5px;
+ margin-right:5px;
+ width: 836px;
+}
+
+BODY
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ margin-left:5px;
+ margin-top:5px;
+}
+
+/* Forum TODO EGEN SECTION */
+.ForumWhiteSpace
+{
+	border-bottom: solid 2px #ffffff;
+}
+
+.ForumMainText
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+}
+
+.Bold
+{
+	font-weight:bold;
+}
+
+.Height20
+{
+	height:20px;
+}
+
+.Height16
+{
+	height:16px;
+}
+
+.BorderAll
+{
+	/*border: solid 1px Dimgray;*/
+	border: solid 1px  #dddddd;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+
+}
+
+#My_Updates
+{
+	width: 200px;
+	height:500px;
+	border: solid 1px  #dddddd;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
+}
+
+.Border
+{
+	/*border: solid 1px Dimgray;*/
+	border-top: solid 1px #dddddd;
+}
+
+.BorderTop
+{
+	border-top: solid 1px #dddddd;
+}
+
+.BorderBottom
+{
+	border-bottom: solid 1px #dddddd;
+}
+
+.BorderLeft
+{
+	border-left: solid 1px #dddddd;
+}
+
+.BorderRight
+{
+	border-right: solid 1px #dddddd;
+}
+
+.PaddingLeft
+{
+	padding-left: 3px;
+}
+.MarginLeft
+{
+	margin-left: 3px;
+}
+
+.BorderDark
+{
+	border: solid 1px #696969;
+}
+
+.BorderBlack
+{
+	border: solid 1px Black;
+}
+
+.BorderBottomDark
+{
+	border-bottom: solid 1px #696969;
+}
+
+HR
+{
+ height: 1px;
+ border: solid 1px Dimgray;
+}
+
+.Label
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ font-weight:bold;
+}
+
+.LabelBold10
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ font-weight:bold;
+}
+
+.LabelBold11
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+ font-weight:bold;
+}
+
+.TextBox10
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+}
+
+.TextBox11
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+}
+
+.Submit10
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+}
+
+.Submit11
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+}
+
+.Submit11Bold
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+ font-weight: bold;
+}
+
+.Submit10Bold
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ font-weight: bold;
+}
+
+.MainText
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+}
+
+.MiniText
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 3px;
+}
+
+.ErrorText10Bold
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ font-weight: bold;
+ color: Red;
+}
+
+.ErrorText11Bold
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+ font-weight: bold;
+ color: Red;
+}
+
+.ErrorText10Bold
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+ font-weight: bold;
+ color: Red;
+}
+
+.ErrorText
+{
+	color: Red;
+}
+
+.DimText
+{
+	color:#808080;
+}	
+
+/* Table */
+.TableListMargin 
+{ 
+	FONT-SIZE: 1px; 
+	FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.TableHead11
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 11px;
+ font-weight: bold;
+ background-color: #f5f5f5;
+ color: White;
+}
+
+.TableHead10
+{
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+ font-weight: bold;
+ background-color: #f5f5f5;
+ color: Black;
+}
+
+.TableAltItem
+{
+ background-color: #f5f5f5;
+ font-family: verdana,arial,helvetica;
+ font-size: 10px;
+}
+
+.TableBorderBlack
+{
+ border: solid 1px black;
+}
+
+.HR
+{
+ border: solid 1px black;
+ border-bottom: solid 1px black
+}
+
+A:link
+{
+	font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-size:10px;
+	color:#0000b3;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+A:visited
+{
+	font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	font-size:10px;
+	color:#0000b3;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+A:hover
+{
+	font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	font-size:10px;
+	color:#0000b3;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.ReadOnlyTextBox
+{
+	background-color:#dddddd;
+}
+
+
+/******************************* Article ****************************************/
+#Article TABLE
+{
+ 
+  border-color: DimGray;
+  border-collapse: collapse;
+  border-style: none;
+  padding: 2px 2px 2px 2px;
+  font-family: verdana,arial,helvetica;
+  font-size: 11px;
+  
+}
+
+#Article TD
+{
+	border-color: DimGray;
+	border-style: solid;
+	border-style: none;
+} 
+
+#Article A:link
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color:#0000b3;
+	 font-weight: bold;
+	 text-decoration: none;
+}
+
+#Article A:visited
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color:#0000b3;
+	 font-weight: bold;
+	 text-decoration: none;
+}
+
+#Article A:hover
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color:#0000b3;
+	 font-weight: bold;
+	 text-decoration: underline;
+}
+	
+/******************************* ProductNews ****************************************/
+#ProductNews A:link
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight: bold;
+	 text-decoration: none;
+}
+
+#ProductNews A:visited
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight: bold;
+	 text-decoration: none;
+}
+
+#ProductNews A:hover
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight: bold;
+	 text-decoration: underline;
+}
+
+/******************************* USER MENU ****************************************/
+#UserMenu A:link
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight:normal;
+	 text-decoration: none;
+}
+
+#UserMenu A:visited
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight:normal;
+	 text-decoration: none;
+}
+
+#UserMenu A:hover
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	 color: #ffffff;
+	 font-weight:normal;
+	 text-decoration: underline;
+}
+
+/******************************* CRAG DB ****************************************/
+#CragDB
+{
+	
+}
+
+#CragDB .headText
+{
+	font-size:10px;
+	font-weight:bold;
+}
+
+#CragDB .mainText
+{
+	font-size:10px;
+}
+
+#CragDB .tableBorder
+{
+	border: solid 1px Dimgray;
+}
+
+#CragDB .borderLeftRightBottom
+{
+	border-left: solid 1px Dimgray;
+	border-right: solid 1px Dimgray;
+	border-bottom: solid 1px Dimgray;
+}
+
+#CragDB INPUT
+{
+	font-size:10px;
+}
+
+/******************************* LEFT ****************************************/
+#dhtmltooltip { BORDER-RIGHT: black 1px solid; PADDING-RIGHT: 0px; BORDER-TOP: black 1px solid; PADDING-LEFT: 0px; VISIBILITY: hidden; PADDING-BOTTOM: 0px; BORDER-LEFT: black 1px solid; WIDTH: 100px; PADDING-TOP: 0px; BORDER-BOTTOM: black 1px solid; POSITION: absolute; BACKGROUND-COLOR: #c0c0c0 }
+#Left .LogoutLink { FONT-SIZE: 10px; COLOR: red; FONT-FAMILY: Verdana, Tahoma, Helvetica, Arial, sans-serif; BACKGROUND-COLOR: #182c58 }
+#Left .PasswordW { WIDTH: 75px }
+#Left .IdW { WIDTH: 135px }
+#Left A:link
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+     font-size:10px;
+	 color:#0000b3;
+	 text-decoration: none;
+}
+
+#Left A:visited
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+	font-size:10px;
+	color:#0000b3;
+	 text-decoration: none;
+}
+
+#Left A:hover
+{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+   font-size:10px;
+	 color:#0000b3;
+	 text-decoration: underline;
+}
+
+#Left .subLinkR:link
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ff0000;
+font-weight: bold;
+text-decoration: none;
+}
+	
+#Left .subLinkR:visited
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ff0000;
+font-weight: bold;
+text-decoration: none;
+}
+	
+#Left .subLinkR:hover
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ff0000;
+font-weight: bold;
+text-decoration: underline;
+}
+
+#Left .subLinkW:link
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ffffff;
+font-weight: bold;
+text-decoration: none;
+}
+	
+#Left .subLinkW:visited
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ffffff;
+font-weight: bold;
+text-decoration: none;
+}
+	
+#Left .subLinkW:hover
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#ffffff;
+font-weight: bold;
+text-decoration: underline;
+}
+	
+#Left .subLink2:link
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#000000;
+font-weight: normal;
+text-decoration: none;
+}
+	
+#Left	.subLink2:visited
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#000000;
+font-weight: normal;
+text-decoration: none;
+}
+	
+#Left	.subLink2:hover
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#0000ff;
+font-weight: normal;
+text-decoration: none;
+}
+	
+#Left .headText
+{
+font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+font-size:10px;
+color:#000000;
+font-weight: bold;
+}
+	
+#Left  .borderLeftRightTop  
+{
+border-left : 1px  solid Dimgray;
+border-right : 1px  solid Dimgray;
+border-top : 1px  solid Dimgray;
+}
+ 
+#Left  .tableBorder 
+{
+border: 1px solid Dimgray;
+} 
+
+#Left    .borderTopBottom  
+{
+border-top : 1px  solid Dimgray;
+border-bottom : 1px  solid Dimgray;
+}
+ 
+#Left .borderRight {
+border-right : 1px  solid Dimgray;
+}
+
+#Left  .borderLeft {
+border-left : 1px  solid Dimgray;
+}
+
+#Left  .borderLeftRight 
+{
+border-left : 1px  solid Dimgray;
+border-right : 1px  solid Dimgray;
+}
+
+/******************************* FirstPage ****************************************/
+#FirstPage .IndexPageWidth { WIDTH: 853px }
+#FirstPage .Border { BORDER-RIGHT: #ffffff 1px solid; BORDER-TOP: #ffffff 1px solid; BORDER-LEFT: #ffffff 1px solid; BORDER-BOTTOM: #ffffff 1px solid }
+#FirstPage .BorderBottom { BORDER-BOTTOM: #696969 1px dotted }
+#FirstPage .BorderRight { BORDER-RIGHT: #f5f5f5 1px solid }
+#FirstPage .BorderLeft { BORDER-LEFT: #f5f5f5 1px solid }
+#FirstPage .NewsHead { FONT-WEIGHT: bold; FONT-SIZE: 10px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif; HEIGHT: 16px }
+#FirstPage .NewsMargin { FONT-SIZE: 1px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif }
+#FirstPage .NewsBorderBottom { BORDER-BOTTOM: #696969 1px solid }
+#FirstPage .NewsImage { BORDER-RIGHT: #696969 1px solid; BORDER-TOP: #696969 1px solid; MARGIN: 2px 5px 0px 2px; BORDER-LEFT: #696969 1px solid; BORDER-BOTTOM: #696969 1px solid }
+#FirstPage .Smoke { BACKGROUND-COLOR: #f5f5f5 }
+#FirstPage .Width160 { WIDTH: 160px }
+#FirstPageImages TD { FONT-WEIGHT: bold; FONT-SIZE: 10px; LINE-HEIGHT: 16px; FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif }
+#FirstPageImages IMG { BORDER-RIGHT: #696969 1px solid; BORDER-TOP: #696969 1px solid; BORDER-LEFT: #696969 1px solid; BORDER-BOTTOM: #696969 1px solid }
+/******************************* Top ****************************************/	
+
+.MenyBar
+{
+	background-repeat:no-repeat;
+	background-color: #dddddd;
+}
+
+.MenyBarINTL
+{
+	background-color: #dddddd;
+}
+
+.TopBar
+{
+	background-image: url(/images/common/flags/a_top_menu_200_back_USA.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 0px;
+}
+
+.MenuLinkBlack:link
+	{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+   font-size:11px;
+	 color:#000000;
+	 font-weight: bold;
+	 text-decoration: none;
+	}
+
+	.MenuLinkBlack:visited
+	{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+   font-size:11px;
+	 color:#000000;
+	 font-weight: bold;
+	 text-decoration: none;
+	}
+
+	.MenuLinkBlack:hover
+	{
+	 font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+   font-size:11px;
+	 color:#000000;
+	 font-weight: bold;
+	 text-decoration: underline;
+	}
+
+  .menyBoxOver
+  {
+    border: solid 1px black;
+    background-color: #e6e6e6;
+    font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-size:10px;
+    color:#000000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1px 2px 2px 2px;
+    cursor:pointer;
+  }
+  .menyBoxOut
+  {
+    background-color: #dddddd;
+    font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-size:10px;
+    color:#000000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px 3px 3px 3px;
+  }
+
+  .menyBoxOverSmall
+  {
+    border: solid 1px black;
+    background-color: #e6e6e6;
+    font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-size:10px;
+    color:#000000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 1px 2px 2px 2px;
+    cursor:pointer;
+  }
+  .menyBoxOutSmall
+  {
+    background-color: #dddddd;
+    font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+    font-size:10px;
+    color:#000000;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 2px 3px 3px 3px;
+  }
+
+
+
+  .MenySepar
+  {
+   font-family:Verdana, Tahoma, Helvetica, Arial, sans-serif;
+   font-size:11px;
+   color:#000000;
+   text-decoration: none;
+  }
+
+  #ColCBanner IMG
+  {
+     border: solid 1px black;
+  }			
+  
+  .NewErrorText{
+	display: inline-block;
+	font-size: 2em;
+	background-color: #cc0000;
+	color: white;
+	padding: 7px 12px 13px;
+	margin: 10px 0;
+	width: 823px;
+  }
