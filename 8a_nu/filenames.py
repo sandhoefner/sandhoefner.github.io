@@ -109,6 +109,9 @@ then you're good dude, just spot check!
 
 eventually fold in hand-picked data, shouldn't be too hard?
 
+looks like sasha's broken bc her blurb has line breaks that the csv writer interprets wrong
+so either purify line breaks, fix interpretation, or (hack) put blurb as the last variable
+
 leaving grades non-numeric for now, it'll be easier to hash them later once I know their full extent
 """
     	try:
