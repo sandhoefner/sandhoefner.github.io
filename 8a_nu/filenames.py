@@ -115,6 +115,15 @@ so either purify line breaks, fix interpretation, or (hack) put blurb as the las
 leaving grades non-numeric for now, it'll be easier to hash them later once I know their full extent
 
 should prob go ahead and clean up binary files 
+
+
+wait I seriuosly didn't get GENDER???
+
+these data are filthy you gotta deal with the sasha line break problem & do mad spot checks
+first fix the errors & get gender
+
+gotta stop using stata
+gotta optimize terminal
 """
     	try:
     		blurb = bio_soup.find('span', id='UserPresentation').text
