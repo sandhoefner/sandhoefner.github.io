@@ -16,7 +16,7 @@ ids = list(set(ids))
 
 # play with csv writing
 with open('_data.csv', 'w') as csvfile:
-    fieldnames = ['name', 'id', 'country', 'city', 'blurb', 'birth', 'height', 'weight', 'start', 'job', 'interests', 'best_comp', 'best_crag', 'guide', 'hard_sport', 'hard_bloc']
+    fieldnames = ['name', 'id', 'country', 'city', 'blurb', 'birth_m', 'birth_d', 'birth_y', 'height', 'weight', 'start', 'job', 'interests', 'best_comp', 'best_crag', 'guide', 'hard_sport', 'hard_bloc']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
@@ -24,25 +24,62 @@ with open('_data.csv', 'w') as csvfile:
     	# TODO: safeguard against files not existing
     	# IMPORTANT to determine at runtime whether a field returns nonexistent
     	# ...(erratic DOM) or empty (no data)
-    	bloc_soup = BeautifulSoup(ID + "_blocs.html")
-    	sport_soup = BeautifulSoup(ID + "_sport.html")
-    	bio_soup = BeautifulSoup(ID + "_bio.html")
+    	# should have all error codes reference variable and ID
+
+
+
+
+
+
+    	try:
+    		bloc_soup = BeautifulSoup(open(ID + "_blocs.html"))
+    		div = bloc_soup.find('div', id='AscentStats')
+	    	rows = div.find_all('tr')
+	    	hard_bloc = rows[3].find_all('td')[0].text
+    	except IOError:
+    		# print "no bloc file for " + ID
+    		hard_bloc = ""
+    	except (TypeError, AttributeError, NameError):
+    		print "bloc exists but can't get data for " + ID
+    		hard_bloc = ""
+
+    	try:
+    		sport_soup = BeautifulSoup(open(ID + "_sport.html"))
+    		div = sport_soup.find('div', id='AscentStats')
+	    	rows = div.find_all('tr')
+	    	hard_sport = rows[3].find_all('td')[0].text
+    	except IOError:
+    		# print "no sport file for " + ID
+    		hard_sport = ""
+    	except (TypeError, AttributeError, NameError):
+    		print "sport exists but can't get data for " + ID
+    		hard_sport = ""
+
+
+
+
+    	try:
+    		bio_soup = BeautifulSoup(open(ID + "_bio.html"))
+    	except IOError:
+    		for i in range(5):
+    			print "NO BIO FILE FOR " + ID
 
     	# from bio
     	try:
     		name = bio_soup.find('span', id='LabelUserName').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		name = "error11896"
     	try:
-    		country = bio_soup.find('span', id='LabelUserCountry').text
+    		raw = bio_soup.find('span', id='LabelUserCountry').text
+    		country = raw[0:(len(raw)-2)]
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		country = "error11896"
     	try:
     		city = bio_soup.find('span', id='LabelUserCity').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		city = "error11896"
     	# all_world_sport_score = 0
     	# all_world_sport_rank = 0
@@ -60,55 +97,75 @@ with open('_data.csv', 'w') as csvfile:
     	# yr_country_sport_rank = 0
     	# yr_country_bloc_score = 0
     	# yr_country_bloc_rank = 0
+
+
+"""
+
+sasha is getting shifted over a column strangely among others
+sport/bloc errors
+rare total failure
+clean vars
+then you're good dude, just spot check!
+"""
+
+
+
     	try:
     		blurb = bio_soup.find('span', id='UserPresentation').text
     	except (TypeError, AttributeError):
-    		print "error"
-    		blurb = "error11896"
+    		# print "no blurb"
+    		blurb = ""
     	try:
-    		birth = bio_soup.find('span', id='LabelUserDataBirth').text
+    		raw = bio_soup.find('span', id='LabelUserDataBirth').text
+    		birth_m = raw.split("-")[1]
+    		birth_y = raw.split("-")[0]
+    		birth_d = raw.split("-")[2]
     	except (TypeError, AttributeError):
-    		print "error"
-    		birth = "error11896"
+    		print "error" + ID
+    		birth_m = "error11896"
+    		birth_d = "error11896"
+    		birth_y = "error11896"
     	try:
-    		height = bio_soup.find('span', id='LabelUserDataHeight').text
+    		raw = bio_soup.find('span', id='LabelUserDataHeight').text
+    		height = raw[0:(len(raw)-3)]
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		height = "error11896"
     	try:
-    		weight = bio_soup.find('span', id='LabelUserDataWeight').text
+    		raw = bio_soup.find('span', id='LabelUserDataWeight').text
+    		weight = raw[6:(len(raw)-3)]
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		weight = "error11896"
     	try:
     		start = bio_soup.find('span', id='LabelUserDataStartedClimbing').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		start = "error11896"
     	try:
     		job = bio_soup.find('span', id='LabelUserDataOccupation').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		job = "error11896"
     	try:
     		interests = bio_soup.find('span', id='LabelUserDataInterrests').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		interests = "error11896"
     	try:
     		best_comp = bio_soup.find('span', id='LabelUserDataBestResult').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		best_comp = "error11896"
     	try:
     		best_crag = bio_soup.find('span', id='LabelUserDataBestClimbingArea').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		best_crag = "error11896"
     	try:
     		guide = bio_soup.find('span', id='LabelUserDataGuide').text
     	except (TypeError, AttributeError):
-    		print "error"
+    		print "error" + ID
     		guide = "error11896"
     	# sponsor = 0
     	# bio_hits = 0
@@ -117,24 +174,11 @@ with open('_data.csv', 'w') as csvfile:
     	# blog_hits = 0
     	# total_hits = 0
 
-    	# from sport
-    	try:
-	    	div = sport_soup.find('div', id='AscentStats')
-	    	rows = div.find_all('tr')
-	    	hard_sport = rows[3].find_all('td')[0].text
-    	except (TypeError, AttributeError):
-	    	print "error"
-	    	hard_sport = ""
-
-    	# from blocs
-    	try:
-	    	div = bloc_soup.find('div', id='AscentStats')
-	    	rows = div.find_all('tr')
-	    	hard_bloc = rows[3].find_all('td')[0].text
-    	except (TypeError, AttributeError):
-	    	print "error"
-	    	hard_bloc = ""
+    	
 
     	# write it all
     	# figure out javascript ||""
-    	writer.writerow({'name': name, 'id': ID, 'country': country, 'city': city, 'blurb': blurb, 'birth': birth, 'height': height, 'weight': weight, 'start': start, 'job': job, 'interests': interests, 'best_comp': best_comp, 'best_crag': best_crag, 'guide': guide, 'hard_sport': hard_sport, 'hard_bloc': hard_bloc})
+    	try:
+    		writer.writerow({'name': name.encode('utf-8'), 'id': ID.encode('utf-8'), 'country': country.encode('utf-8'), 'city': city.encode('utf-8'), 'blurb': blurb.encode('utf-8'), 'birth_m': birth_m.encode('utf-8'), 'birth_d': birth_d.encode('utf-8'), 'birth_y': birth_y.encode('utf-8'), 'height': height.encode('utf-8'), 'weight': weight.encode('utf-8'), 'start': start.encode('utf-8'), 'job': job.encode('utf-8'), 'interests': interests.encode('utf-8'), 'best_comp': best_comp.encode('utf-8'), 'best_crag': best_crag.encode('utf-8'), 'guide': guide.encode('utf-8'), 'hard_sport': hard_sport.encode('utf-8'), 'hard_bloc': hard_bloc.encode('utf-8')})
+    	except UnicodeEncodeError:
+    		print "unicode problem for " + ID
