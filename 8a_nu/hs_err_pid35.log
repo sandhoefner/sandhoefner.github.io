@@ -1,0 +1,159 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000070614956, pid=35, tid=36
+#
+# JRE version:  (8.0_31-b13) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.31-b07 mixed mode windows-amd64 compressed oops)
+# Problematic frame:
+# V  [jvm.dll+0x284956]
+#
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   http://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000000008e6a800):  JavaThread "Unknown thread" [_thread_in_vm, id=36, stack(0x0000000000140000,0x0000000000540000)]
+
+siginfo: ExceptionCode=0xc0000005, reading address 0x0000000000000000
+
+Registers:
+RAX=0x0000000000000006, RBX=0x0000000003100800, RCX=0x00000000cafebabe, RDX=0x0000000000000000
+RSP=0x0000000000528730, RBP=0x0000000070b6acb0, RSI=0x0000000000000000, RDI=0x0000000000000000
+R8 =0x0000000008f7047b, R9 =0x00000000005288c0, R10=0x0000000000000002, R11=0x0000000000528a30
+R12=0x00000000000003d8, R13=0x0000000000000000, R14=0x0000000000000000, R15=0x0000000000530ce0
+RIP=0x0000000070614956, EFLAGS=0x0000000000210246
+
+Top of Stack: (sp=0x0000000000528730)
+0x0000000000528730:   0000000000528a80 0000000070624ba5
+0x0000000000528740:   0000000008e6b360 0000000000528910
+0x0000000000528750:   0000000008f70260 00000000706a4beb
+0x0000000000528760:   00000080ffffffff 000000000000000c
+0x0000000000528770:   00000000005287d8 0000000000000000
+0x0000000000528780:   0000000000000006 ffffffffffffffff
+0x0000000000528790:   0000000cffffffff 0000000070947ec8
+0x00000000005287a0:   0000000000000000 0000000070589ddb
+0x00000000005287b0:   0000000008f70170 0000000000000001
+0x00000000005287c0:   0000000000000006 ffffffffffffffff
+0x00000000005287d0:   00000000005288b0 00000000705b00fe
+0x00000000005287e0:   0000000008f70260 0000000000000063
+0x00000000005287f0:   0000000000000063 0000000000528910
+0x0000000000528800:   0000000000000063 00000000706a499d
+0x0000000000528810:   0000000000000063 0000000008f70260
+0x0000000000528820:   000000004d430003 0000003000000030 
+
+Instructions: (pc=0x0000000070614956)
+0x0000000070614936:   24 48 48 8b 6c 24 50 48 8b 74 24 58 48 83 c4 30
+0x0000000070614946:   5f c3 cc cc cc cc cc cc cc cc 48 83 ec 28 ff d1
+0x0000000070614956:   eb 00 48 83 c4 28 c3 cc cc cc 44 89 4c 24 20 53
+0x0000000070614966:   57 41 54 41 55 41 57 48 83 ec 60 80 3d 37 fa 54 
+
+
+Stack: [0x0000000000140000,0x0000000000540000],  sp=0x0000000000528730,  free space=4001k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x284956]
+V  [jvm.dll+0x314beb]
+V  [jvm.dll+0x315f23]
+V  [jvm.dll+0x1fa008]
+V  [jvm.dll+0x22b694]
+V  [jvm.dll+0x14d8c1]
+C  [StataMP-64.exe+0xa98c59]
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x0000000008e6a800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=36, stack(0x0000000000140000,0x0000000000540000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x0000000140000000 - 0x0000000142eb9000 	Z:\usr\share\Stata14\StataMP-64.exe
+0x00007f94cce10000 - 0x00007f94cd0ed000 	C:\windows\system32\ntdll.dll
+0x000000007b820000 - 0x000000007bc6f000 	C:\windows\system32\KERNEL32.dll
+0x00007f94cb6d0000 - 0x00007f94cb9c1000 	C:\windows\system32\comctl32.dll
+0x00007f94cb340000 - 0x00007f94cb6c1000 	C:\windows\system32\user32.dll
+0x00007f94cafe0000 - 0x00007f94cb323000 	C:\windows\system32\gdi32.dll
+0x00007f94cad50000 - 0x00007f94cafc4000 	C:\windows\system32\advapi32.dll
+0x00007f94cab30000 - 0x00007f94cad41000 	C:\windows\system32\version.dll
+0x00007f94ca910000 - 0x00007f94cab28000 	C:\windows\system32\wsock32.dll
+0x00007f94ca6e0000 - 0x00007f94ca90b000 	C:\windows\system32\ws2_32.dll
+0x00007f94ca4b0000 - 0x00007f94ca6cf000 	C:\windows\system32\iphlpapi.dll
+0x00007f94ca290000 - 0x00007f94ca4a7000 	C:\windows\system32\imm32.dll
+0x00007f94ca070000 - 0x00007f94ca280000 	C:\windows\system32\psapi.dll
+0x0000000072880000 - 0x0000000072891000 	Z:\usr\share\Stata14\Microsoft.VC90.OpenMP\VCOMP90.DLL
+0x00007f94c9e60000 - 0x00007f94ca06d000 	C:\windows\system32\msimg32.dll
+0x00007f94c9b70000 - 0x00007f94c9e59000 	C:\windows\system32\comdlg32.dll
+0x00007f94c9730000 - 0x00007f94c9b6c000 	C:\windows\system32\shell32.dll
+0x00007f94c94a0000 - 0x00007f94c9710000 	C:\windows\system32\shlwapi.dll
+0x00007f94c9250000 - 0x00007f94c9483000 	C:\windows\system32\winspool.drv
+0x00007f94c9010000 - 0x00007f94c923f000 	C:\windows\system32\oledlg.dll
+0x00007f94c8cb0000 - 0x00007f94c9004000 	C:\windows\system32\ole32.dll
+0x00007f94c8a10000 - 0x00007f94c8c8b000 	C:\windows\system32\rpcrt4.dll
+0x00007f94c86b0000 - 0x00007f94c89fa000 	C:\windows\system32\oleaut32.dll
+0x00007f94c83d0000 - 0x00007f94c8684000 	C:\windows\system32\winmm.dll
+0x00007f94c81a0000 - 0x00007f94c83c3000 	C:\windows\system32\msacm32.dll
+0x00007f94c7f00000 - 0x00007f94c8197000 	C:\windows\system32\gdiplus.dll
+0x00007f94c70b0000 - 0x00007f94c733a000 	C:\windows\system32\winex11.drv
+0x00007f94c52a0000 - 0x00007f94c54d5000 	C:\windows\system32\uxtheme.dll
+0x00007f94c22d0000 - 0x00007f94c2601000 	C:\windows\system32\actxprxy.dll
+0x000000007ac10000 - 0x000000007ae68000 	C:\windows\system32\riched20.dll
+0x00007f94c2070000 - 0x00007f94c2283000 	C:\windows\system32\riched32.dll
+0x00007f94c1e10000 - 0x00007f94c204d000 	C:\windows\system32\usp10.dll
+0x00007f94c1be0000 - 0x00007f94c1e07000 	C:\windows\system32\msvfw32.dll
+0x00007f94c19d0000 - 0x00007f94c1bdb000 	C:\windows\system32\msrle32.dll
+0x0000000070390000 - 0x0000000070bea000 	Z:\usr\share\Stata14\utilities\java\windows-x64\jre1.8.0_31\bin\server\jvm.dll
+0x0000000079730000 - 0x0000000079802000 	Z:\usr\share\Stata14\utilities\java\windows-x64\jre1.8.0_31\bin\MSVCR100.dll
+0x0000000070d70000 - 0x0000000070d7f000 	Z:\usr\share\Stata14\utilities\java\windows-x64\jre1.8.0_31\bin\verify.dll
+0x000000006d780000 - 0x000000006d7a8000 	Z:\usr\share\Stata14\utilities\java\windows-x64\jre1.8.0_31\bin\java.dll
+0x0000000070df0000 - 0x0000000070e06000 	Z:\usr\share\Stata14\utilities\java\windows-x64\jre1.8.0_31\bin\zip.dll
+0x00007f94c0fc0000 - 0x00007f94c1224000 	C:\windows\system32\dbghelp.dll
+0x00007f94c0d20000 - 0x00007f94c0fb8000 	C:\windows\system32\msvcrt.dll
+
+VM Arguments:
+jvm_args: -Xms16M -Xmx384M -Xss2M -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:MinHeapFreeRatio=40 -XX:MaxHeapFreeRatio=70 -XX:ErrorFile=NUL 
+java_command: <unknown>
+java_class_path (initial): Z:\usr\share\Stata14\ado\base\;Z:\usr\share\Stata14\ado\base\jar\;Z:\usr\share\Stata14\ado\base\jar\stata-sfi.jar;Z:\usr\share\Stata14\ado\base\jar\libdeps-core.jar;Z:\usr\share\Stata14\ado\base\jar\libstata-core.jar;.\;c:\ado\plus\;c:\ado\;
+Launcher Type: generic
+
+Environment Variables:
+PATH=C:\windows\system32;C:\windows;C:\windows\system32\wbem
+USERNAME=evan
+SHELL=/bin/bash
+DISPLAY=:0
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 6 Model 69 Stepping 1, GenuineIntel
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows XP Build 2600 Service Pack 3
+
+CPU:total 4 
+
+Memory: 4k page, physical 3957816k(1366592k free), swap 8062004k(4658132k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.31-b07) for windows-amd64 JRE (1.8.0_31-b13), built on Dec 17 2014 21:00:28 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Sun May 22 03:36:07 2016
+elapsed time: 0 seconds (0d 0h 0m 0s)
+
