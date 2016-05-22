@@ -16,7 +16,7 @@ ids = list(set(ids))
 
 # play with csv writing
 with open('_data.csv', 'w') as csvfile:
-    fieldnames = ['name', 'id', 'country', 'city', 'blurb', 'birth_m', 'birth_d', 'birth_y', 'height', 'weight', 'start', 'job', 'interests', 'best_comp', 'best_crag', 'guide', 'hard_sport', 'hard_bloc']
+    fieldnames = ['name', 'id', 'country', 'city', 'blurb', 'birth', 'birth_m', 'birth_d', 'birth_y', 'height', 'weight', 'start', 'job', 'interests', 'best_comp', 'best_crag', 'guide', 'hard_sport', 'hard_bloc']
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
     writer.writeheader()
 
@@ -81,6 +81,7 @@ with open('_data.csv', 'w') as csvfile:
     	except (TypeError, AttributeError):
     		print "error" + ID
     		city = "error11896"
+    		"""
     	# all_world_sport_score = 0
     	# all_world_sport_rank = 0
     	# all_world_bloc_score = 0
@@ -99,29 +100,36 @@ with open('_data.csv', 'w') as csvfile:
     	# yr_country_bloc_rank = 0
 
 
-"""
+
 
 sasha is getting shifted over a column strangely among others
 sport/bloc errors
 rare total failure
-clean vars
 then you're good dude, just spot check!
+
+eventually fold in hand-picked data, shouldn't be too hard?
+
+leaving grades non-numeric for now, it'll be easier to hash them later once I know their full extent
 """
-
-
-
     	try:
     		blurb = bio_soup.find('span', id='UserPresentation').text
     	except (TypeError, AttributeError):
     		# print "no blurb"
     		blurb = ""
     	try:
-    		raw = bio_soup.find('span', id='LabelUserDataBirth').text
+    		birth = bio_soup.find('span', id='LabelUserDataBirth').text
+    		raw = birth
     		birth_m = raw.split("-")[1]
     		birth_y = raw.split("-")[0]
     		birth_d = raw.split("-")[2]
     	except (TypeError, AttributeError):
     		print "error" + ID
+    		birth = "error11896"
+    		birth_m = "error11896"
+    		birth_d = "error11896"
+    		birth_y = "error11896"
+    	except IndexError:
+    		birth = "error11896"
     		birth_m = "error11896"
     		birth_d = "error11896"
     		birth_y = "error11896"
@@ -179,6 +187,193 @@ then you're good dude, just spot check!
     	# write it all
     	# figure out javascript ||""
     	try:
-    		writer.writerow({'name': name.encode('utf-8'), 'id': ID.encode('utf-8'), 'country': country.encode('utf-8'), 'city': city.encode('utf-8'), 'blurb': blurb.encode('utf-8'), 'birth_m': birth_m.encode('utf-8'), 'birth_d': birth_d.encode('utf-8'), 'birth_y': birth_y.encode('utf-8'), 'height': height.encode('utf-8'), 'weight': weight.encode('utf-8'), 'start': start.encode('utf-8'), 'job': job.encode('utf-8'), 'interests': interests.encode('utf-8'), 'best_comp': best_comp.encode('utf-8'), 'best_crag': best_crag.encode('utf-8'), 'guide': guide.encode('utf-8'), 'hard_sport': hard_sport.encode('utf-8'), 'hard_bloc': hard_bloc.encode('utf-8')})
+    		writer.writerow({'name': name.encode('utf-8'), 'id': ID.encode('utf-8'), 'country': country.encode('utf-8'), 'city': city.encode('utf-8'), 'blurb': blurb.encode('utf-8'), 'birth': birth.encode('utf-8'), 'birth_m': birth_m.encode('utf-8'), 'birth_d': birth_d.encode('utf-8'), 'birth_y': birth_y.encode('utf-8'), 'height': height.encode('utf-8'), 'weight': weight.encode('utf-8'), 'start': start.encode('utf-8'), 'job': job.encode('utf-8'), 'interests': interests.encode('utf-8'), 'best_comp': best_comp.encode('utf-8'), 'best_crag': best_crag.encode('utf-8'), 'guide': guide.encode('utf-8'), 'hard_sport': hard_sport.encode('utf-8'), 'hard_bloc': hard_bloc.encode('utf-8')})
     	except UnicodeEncodeError:
     		print "unicode problem for " + ID
+
+
+
+
+
+
+
+
+"""
+output from full run:
+bloc exists but can't get data for 13608
+bloc exists but can't get data for 20418
+sport exists but can't get data for 13188
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+error28747
+bloc exists but can't get data for 19363
+bloc exists but can't get data for 4722
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error45899
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+error54403
+bloc exists but can't get data for 20274
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+error38238
+sport exists but can't get data for 19488
+bloc exists but can't get data for 11491
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+error56942
+bloc exists but can't get data for 20317
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error24062
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+error61521
+bloc exists but can't get data for 7194
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error50801
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+error36875
+bloc exists but can't get data for 452
+sport exists but can't get data for 452
+bloc exists but can't get data for 36049
+bloc exists but can't get data for 20239
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+error38797
+sport exists but can't get data for 18463
+
+
+
+
+
+
+
+
+
+
+
+
+remove dupes from above:
+
+bloc exists but can't get data for 13608
+bloc exists but can't get data for 20418
+sport exists but can't get data for 13188
+error28747
+bloc exists but can't get data for 19363
+bloc exists but can't get data for 4722
+error45899
+error54403
+bloc exists but can't get data for 20274
+error38238
+sport exists but can't get data for 19488
+bloc exists but can't get data for 11491
+error56942
+bloc exists but can't get data for 20317
+error24062
+error61521
+bloc exists but can't get data for 7194
+error50801
+error36875
+bloc exists but can't get data for 452
+sport exists but can't get data for 452
+bloc exists but can't get data for 36049
+bloc exists but can't get data for 20239
+error38797
+sport exists but can't get data for 18463
+
+wow!
+"""
