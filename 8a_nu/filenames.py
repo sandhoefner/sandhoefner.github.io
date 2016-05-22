@@ -113,6 +113,8 @@ looks like sasha's broken bc her blurb has line breaks that the csv writer inter
 so either purify line breaks, fix interpretation, or (hack) put blurb as the last variable
 
 leaving grades non-numeric for now, it'll be easier to hash them later once I know their full extent
+
+should prob go ahead and clean up binary files 
 """
     	try:
     		blurb = bio_soup.find('span', id='UserPresentation').text
