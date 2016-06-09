@@ -1,0 +1,15 @@
+<html>
+<!-- <script src="script.js"/> -->
+<script src="jquery-2.1.1.min.js"/>
+<body>
+<script>
+         var id = chrome.contextMenus.create({
+  "title": "Scroll", "contexts": ["page"], "onclick": scrollit
+});
+
+    var id_ = chrome.contextMenus.create({
+  "title": "Peek", "contexts": ["page"], "onclick": peek
+});
+    </script>
+</body>
+</html>

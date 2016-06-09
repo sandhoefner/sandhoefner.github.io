@@ -8,6 +8,8 @@
   "version": "0.0.0",
 
   "author": "Evan Sandhoefner",
+
+  "permissions": ["contextMenus"],
   
   "content_scripts": [
     {
@@ -15,6 +17,12 @@
       "js": ["page.js", "jquery.js"]
     }
   ],
+
+  "background": {
+    "scripts": [
+      "sample.js"
+    ]
+  },
 
   "options_page": "options.html",
   
