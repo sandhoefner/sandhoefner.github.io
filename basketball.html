@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style> /* set the CSS */
+
+body { font: 12px Arial;}
+
+path { 
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+
+</style>
+<body>
+
+<!-- load the d3.js library -->    
+<script src="http://d3js.org/d3.v3.min.js"></script>
+
+<script>
+
+// Set the dimensions of the canvas / graph
+var margin = {top: 30, right: 20, bottom: 30, left: 50},
+    width = 600 - margin.left - margin.right,
+    height = 270 - margin.top - margin.bottom;
+
+
+function avg(lst) {
+var sum = 0;
+var n = 0;
+lst.forEach(function(e) {
+  if (typeof(e) != "string") {
+    n += 1;
+    sum += e;
+  }
+  });
+return 2*(sum/n);
+  
+}
+
+// Parse the date / time
+var parseDate = d3.time.format("%d-%b-%y").parse;
+
+// Set the ranges
+// var x = d3.time.scale().range([0, width]);
+var x = d3.scale.linear().range([0, width]);
+
+var y = d3.scale.linear().range([height, 0]);
+var x_2 = d3.scale.linear().range([0, width]);
+
+var y_2 = d3.scale.linear().range([height, 0]);
+
+// Define the axes
+var xAxis = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(4);
+
+
+    var xAxis_2 = d3.svg.axis().scale(x)
+    .orient("bottom").ticks(9);
+
+var yAxis = d3.svg.axis().scale(y)
+    .orient("left").ticks(5);
+
+// Define the line
+var valueline = d3.svg.line()
+    .x(function(d,i) { return x(i); })
+    .y(function(d) { return y(avg(d)); });
+
+
+   
+    
+// Adds the svg canvas
+var svg = d3.select("body")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + margin.top + ")");
+
+
+        var svg_2 = d3.select("body")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", 
+              "translate(" + margin.left + "," + (margin.top) + ")");
+
+// Get the data
+d3.json("basketball.json", function(error, data) {
+    // data.forEach(function(d) {
+    //     d.date = parseDate(d.date);
+    //     d.close = +d.close;
+    // });
+
+
+    // Scale the range of the data
+    x.domain(d3.extent(data, function(d,i) { return i; }));
+    y.domain([0, d3.max(data, function(d) { return avg(d); })]);
+
+
+
+
+    // Add the valueline path.
+    svg.append("path")
+        .attr("class", "line")
+        .attr("d", valueline(data));
+
+    // Add the X Axis
+    svg.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis);
+
+    // Add the Y Axis
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+
+
+        var data_2 = [];
+        data.forEach(function(d) {
+          d.forEach(function(e,i) {
+            if (i!=0) {
+              data_2.push(e);
+            }
+          });
+        });
+        console.log(data_2);
+
+            x_2.domain(d3.extent(data_2, function(d,i) { return i; }));
+    y_2.domain([0, d3.max(data_2, function(d) { return d; })]);
+
+     var valueline_2 = d3.svg.line()
+      .x(function(d,i) { return x_2(i); })
+      .y(function(d) { return y_2(d); });
+
+        // Add the valueline path.
+    svg_2.append("path")
+        .attr("class", "line")
+        .attr("d", valueline_2(data_2));
+
+    // Add the X Axis
+    svg_2.append("g")
+        .attr("class", "x axis")
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis_2);
+
+    // Add the Y Axis
+    svg_2.append("g")
+        .attr("class", "y axis")
+        .call(yAxis);
+
+});
+
+</script>
+</body>
