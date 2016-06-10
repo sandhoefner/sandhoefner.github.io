@@ -53,6 +53,8 @@ var parseDate = d3.time.format("%d-%b-%y").parse;
 var x = d3.scale.linear().range([0, width]);
 
 var y = d3.scale.linear().range([height, 0]);
+
+
 var x_2 = d3.scale.linear().range([0, width]);
 
 var y_2 = d3.scale.linear().range([height, 0]);
@@ -62,11 +64,16 @@ var xAxis = d3.svg.axis().scale(x)
     .orient("bottom").ticks(4);
 
 
-    var xAxis_2 = d3.svg.axis().scale(x)
+    var xAxis_2 = d3.svg.axis().scale(x_2)
     .orient("bottom").ticks(9);
 
 var yAxis = d3.svg.axis().scale(y)
     .orient("left").ticks(5);
+
+
+    var yAxis_2 = d3.svg.axis().scale(y_2)
+    .orient("left").ticks(5);
+
 
 // Define the line
 var valueline = d3.svg.line()
@@ -128,21 +135,40 @@ d3.json("basketball.json", function(error, data) {
 
 
         var data_2 = [];
+        var fractions = [];
+
+        // push each fraction
+        function pusher(num, seed) {
+          var toPush = seed/num;
+          var toAdd = (fractions[fractions.length-1]);
+          if (typeof(toAdd) == "undefined") {toAdd = 0;}
+          console.log(toAdd);
+          fractions.push(toAdd + toPush);
+          if (toPush != 1) {
+            pusher(num,seed+1);
+          }
+        }
+       
         data.forEach(function(d) {
+          var len = d.length-1;
+          pusher(len,1);
           d.forEach(function(e,i) {
             if (i!=0) {
               data_2.push(e);
             }
           });
         });
+        console.log(fractions);
         console.log(data_2);
 
             x_2.domain(d3.extent(data_2, function(d,i) { return i; }));
-    y_2.domain([0, d3.max(data_2, function(d) { return d; })]);
+    y_2.domain([0, d3.max(data_2, function(d) { return d*2; })]);
 
      var valueline_2 = d3.svg.line()
       .x(function(d,i) { return x_2(i); })
-      .y(function(d) { return y_2(d); });
+      .y(function(d) { return y_2(d*2); });
+
+     
 
         // Add the valueline path.
     svg_2.append("path")
@@ -158,7 +184,25 @@ d3.json("basketball.json", function(error, data) {
     // Add the Y Axis
     svg_2.append("g")
         .attr("class", "y axis")
-        .call(yAxis);
+        .call(yAxis_2);
+
+
+
+         svg.selectAll("dot")
+        .data(data)
+    .enter().append("circle")
+        .attr("r", 3.5)
+        .attr("cx", function(d,i) { return x(i); })
+        .attr("cy", function(d) { return y(avg(d)); });
+
+
+
+         svg_2.selectAll("dot")
+        .data(data_2)
+    .enter().append("circle")
+        .attr("r", 3.5)
+        .attr("cx", function(d,i) { return x_2(i); })
+        .attr("cy", function(d) { return y_2(d*2); });
 
 });
 
