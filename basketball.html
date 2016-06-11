@@ -20,6 +20,10 @@ path {
 
 </style>
 <body>
+<p>Free Throw Percentage by Day</p>
+<div id="one"></div>
+<p>Free Throw Percentage by Set of 50</p>
+<div id="two"></div
 
 <!-- load the d3.js library -->    
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -27,7 +31,7 @@ path {
 <script>
 
 // Set the dimensions of the canvas / graph
-var margin = {top: 30, right: 20, bottom: 30, left: 50},
+var margin = {top: 30, right: 50, bottom: 30, left: 50},
     width = 600 - margin.left - margin.right,
     height = 270 - margin.top - margin.bottom;
 
@@ -84,7 +88,7 @@ var valueline = d3.svg.line()
    
     
 // Adds the svg canvas
-var svg = d3.select("body")
+var svg = d3.select("#one")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -93,7 +97,7 @@ var svg = d3.select("body")
               "translate(" + margin.left + "," + margin.top + ")");
 
 
-        var svg_2 = d3.select("body")
+        var svg_2 = d3.select("#two")
     .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -194,6 +198,24 @@ d3.json("basketball.json", function(error, data) {
         .attr("r", 3.5)
         .attr("cx", function(d,i) { return x(i); })
         .attr("cy", function(d) { return y(avg(d)); });
+
+
+// var format = d3.round(
+
+        svg.selectAll("lab")
+        .data(data)
+    .enter().append("text")
+    .text(function(d) { return d3.round(avg(d), 2); })
+        .attr("x", function(d,i) { return x(i)+5; })
+        .attr("y", function(d) { return y(avg(d))-5; });
+
+
+            svg_2.selectAll("lab")
+        .data(data_2)
+    .enter().append("text")
+    .text(function(d) { return d*2; })
+        .attr("x", function(d,i) { return x_2(i)+5; })
+        .attr("y", function(d) { return y_2(d*2)-5; });
 
 
 
