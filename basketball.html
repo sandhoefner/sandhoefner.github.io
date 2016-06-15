@@ -21,6 +21,7 @@ path {
 </style>
 <body>
 <p>n = <span id="days"></span> days, <span id="sets"></span> sets, <span id="shots"></span> shots</p>
+<p>career percentage: <span id="career"></span></p><br>
 
 
 <p>Free Throw Percentage by Day</p>
@@ -155,7 +156,6 @@ d3.json("basketball.json", function(error, data) {
           var toPush = seed/num;
           var toAdd = (fractions[fractions.length-1]);
           if (typeof(toAdd) == "undefined") {toAdd = 0;}
-          console.log(toAdd);
           fractions.push(toAdd + toPush);
           if (toPush != 1) {
             pusher(num,seed+1);
@@ -171,20 +171,18 @@ d3.json("basketball.json", function(error, data) {
             }
           });
         });
-        console.log(fractions);
-        console.log(data_2);
+        
 
             x_2.domain(d3.extent(data_2, function(d,i) { return i; }));
     y_2.domain([0, d3.max(data_2, function(d) { return d*2; })]);
 
 
     var sets;
-
+    var made = 0;
 
      var valueline_2 = d3.svg.line()
       .x(function(d,i) { return x_2(i); })
-      .y(function(d,i) { sets = i+1;return y_2(d*2); });
-
+      .y(function(d,i) { sets = i+1; made+=d*2;return y_2(d*2); });
      
 
         // Add the valueline path.
@@ -245,6 +243,8 @@ d3.json("basketball.json", function(error, data) {
         document.getElementById("days").innerText=days;
 
         document.getElementById("shots").innerText=(50*sets);
+        var career_avg = made/sets;
+     document.getElementById("career").innerText=d3.round(career_avg,2);
 
 });
 
