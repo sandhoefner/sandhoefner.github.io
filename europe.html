@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Countdown</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <!-- could be worth trying to match the font in the widget -->
+  <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <style>
+
+  #draggable { width: 353px; height: 266px; padding-top:0px; padding-left:3px; 
+    border-radius: 15px 15px 5px 5px;background: #b0c4de;
+    position: absolute;
+    left: 2.5%;
+    top: 13%;
+    /*margin-left: -178px;
+      margin-top: -133px*/;
+      }
+
+  #handle {cursor: pointer; padding-top:3px; height:20px; font-family: 'Ubuntu', sans-serif;}
+  /*  http://sixrevisions.com/css/responsive-background-image/  */
+  body {
+  /* Location of the image */
+  background-image: url(barcelona.jpg);
+  
+  /* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+}
+  </style>
+  <script>
+  $(function() {
+    $( "#draggable" ).draggable({ iframeFix: true,containment: "window" });
+  });
+// http://stackoverflow.com/questions/242608/disable-browsers-vertical-and-horizontal-scrollbars
+
+function reloadScrollBars() {
+    document.documentElement.style.overflow = 'auto';  // firefox, chrome
+    document.body.scroll = "yes"; // ie only
+}
+
+  function unloadScrollBars() {
+    document.documentElement.style.overflow = 'hidden';  // firefox, chrome
+    document.body.scroll = "no"; // ie only
+}
+
+
+// might be better to make text appear when just widget finishes loading, in case widget finishes before bg img
+$(window).load(function() {
+  document.getElementById("handle").innerText = "";
+  unloadScrollBars();
+  });
+  </script>
+</head>
+<body>
+ <!-- could add another handle at the bottom to snap back to a given position -->
+ <!-- font may be too big -->
+<div id="draggable" class="ui-widget-content"><div id="handle" align="center">Loading...</div>
+  <!-- based on 6:20 am departure time -->
+  <iframe width="350" height="240" src="https://w2.countingdownto.com/1425661" frameborder="0"></iframe>
+</div>
+
+
+ 
+ 
+</body>
+</html>
