@@ -1,0 +1,63 @@
+id,Question,Answer,Tarea,Category,Action,Área,Raimon,Oslo,Xavi,Álvaro,Alberto,Andrés,Joaquín,Oscar,Carlos
+1,How can I create a new project?,"Go to your editor's top menu and click ""Project/Create new project""",Crear nuevo proyecto,,,Manejar proyectos,,,,,2,,,1,
+2,How can I open a project?,"Go to your editor's top menu and click ""Open project"". Search your project's name.",Abrir proyecto,,,Manejar proyectos,,,,,2,,,2,
+3,How can I rename a project?,"Open the project and click in ""Project/Rename"". type its new name. ",Cambiar nombre del proyecto,,,Manejar proyectos,,,,,2,,,2,
+4,How can I share a project with other Quadrigram users?,"Go to the ""Project"" menu and click on ""Share"". Write the email/s (comma separated in case there is multiple receivers) and lick on ""OK"".",Compartir un proyecto con otro usuario,,,Manejar proyectos,,,,,3,,,,0.5
+5,How can I preview my project?,"Click to top right menu called ""Preview""",Utilizar el preview,,,Manejar proyectos,,,,,2,,,2,
+6,How can I feed a given visualizer component?,You need to drag a valid data block into the corresponding slot located in the firast tab of the charts options panel. Specific data structures or layouts depending on each chart.,Asignar datos a un visualizador,data_manager,bind_data,Manejar datos,,,,,10,1,,10,1
+7,How can I change the mode to assign colors?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings.",Cambiar el modo de asignar colores,,,Colores,,,,,7,,,,
+8,How can I assign a list of colors?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings. Select the ""Colors"" option.",Asignar una lista de colores,,,Colores,,,,,6,,,,
+9,How can I apply colors by categories?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings. Select the ""Colors by category"" option.",Asignar colores por categorías,,,Colores,3,,,,6,,,8,1
+10,How can I assign colors by value?,ANS10,Asignar colores por valor,,,Colores,,,,,,,,,
+11,How can I edit the fill color of a given chart?,ANS11,Modificar el fillColor de un grafico,colors,changed,,,,,,,,,,
+12,How can I modify a given graphic attribute in a component?,ANS12,Modificar atributo gráfico normal (distinto de color),,,Visualizador,,,,,5,,,,
+13,How can I change a given selection attribute?,ANS13,Modificar atributo gráfico selección,,,Visualizador,,,,,4,,,,
+14,How can I sync the selection of two charts?,ANS14,Sincronizar selección de dos visualizadores,,,Sincronización,2,,,,8,,,8,
+15,How can I change tooltip formats by component?,ANS15,Modificar formato de los tooltip por visualizador,,,Visualizador,,,,,6,,,,
+16,How to connect a chart's output with another chart,ANS16,Conectar el output de un viz a otro,syncronize,use_output,Sincronización,2,,,,7,,,9,1
+17,How can I change the graphic properties of a text?,ANS17,Modificar propiedades gráficas de un texto,,,Textos,,,,,6,,,5,
+18,How can I insert a link into a text component?,ANS18,Crear un link en un texto,,,Textos,,,,,4,,,3,1
+19,How can I select a given chart?,ANS19,Añadir un visualizador,,,Visualizador,,,,,8,,,9,
+20,How can I assign images using URL's?,ANS20,Asignar imagenes por url,,,Imágenes,,,,,4,,,,
+21,How can I upload an image into Google Drive?,ANS21,Cargar una imagen a Google Drive,,,Imágenes,,,,,4,,,,
+22,How can I change the background color of a given chart?,ANS22,Cambiar el color de fondo de un visualizador,,,Visualizador,,,,,5,,,3,
+23,How can I load a youtube video?,ANS23,Cargar un video de youtube,,,Componentes,,,,,4,,,3,
+24,How can I load an external visualization?,ANS24,Cargar una visualización externa,,,Componentes,,,,,5,,,4,
+25,How can I use a list?,ANS25,Usar una lista,,,Controles,,,,,7,,,6,0.5
+26,How can I manage a dropdown component?,ANS26,Usar un dropdown,,,Controles,2,,,,7,,,6,
+27,How can I manage a dynamic external link?,ANS27,Usar un link dinámico externo,,,Controles,,,,,7,,,,
+28,How can I manage a slider?,ANS28,Usar un slider,,,Controles,,,,,7,,,7,
+29,How can I manage a range selector?,ANS29,Usar un range selector,,,Controles,,,,,7,,,7,
+30,How can I manage an animator?,ANS30,Usar un animator,,,Controles,,,,,6,,,7,
+31,How can I use a dynamic text?,ANS31,Usar un dynamic Text,,,Controles,,,,,6,,,6,
+32,How to link a legend with a chart?,ANS32,Poner una leyenda a un gráfico,,,Controles,,,,,8,,,8,
+33,Add social network sharing buttons,ANS33,Añadir botones de compartir en redes sociales a tu espacio,,,Controles,,,,,3,,,3,
+34,Use a given button?,ANS34,Usar un botón,,,Controles,,,,,5,,,,
+35,How can I manage my publications?,ANS35,Darle a alguno de los tres botones de publish,publish,any,Publicación,,,,,,,,,
+36,How to publish as a website?,ANS36,Publicar como website,,,Publicación,,,,,8,,,8,0.5
+37,How to publish as embed?,ANS37,Publicar como embed,,,Publicación,,,,,8,,,8,0.5
+38,How to download HTML5 code?,ANS38,Descargar el código,,,Publicación,,,,,7,,,7,0.5
+39,How to load a file from Google Drive?,ANS39,Cargar fichero de Google Drive,data_manager,load_file,Manejar datos,1,,,,8,1,,8,1
+40,How to upload a file into Google Drive?,ANS40,Subir un fichero a Google Drive,,,Manejar datos,1,,,,8,1,,,
+41,How to change the id of a given file?,ANS41,Validar/Cambiar el id de un fichero de Google Drive,,,Manejar datos,1,,,,5,,,,
+42,,ANS42,Usar el resultado de un filter en un viz,operations,filter,Operaciones,4,,,,8,,,8,1
+43,"How to manage ""set value""?",ANS43,Usar Set Value,,,Operaciones,,,,,5,,,6,
+44,"How to manage ""transpose""?",ANS44,Usar Transpose,,,Operaciones,,,,,5,,,6,
+45,"How to manage ""join""?",ANS45,Usar Join,,,Operaciones,,,,,5,,,6,
+46,"How to manage ""get names""?",ANS46,Usar Get Names,,,Operaciones,,,,,5,,,6,
+47,"How to manage ""sort""?",ANS47,Usar Sort,,,Operaciones,,,,,8,,,8,
+48,"How to manage ""group""?",ANS48,Usar Group,,,Operaciones,,,,,6,,,6,
+49,"How to manage ""summarize""?",ANS49,Usar Summarize,,,Operaciones,,,,,6,,,6,
+50,"How to manage ""aggregate""?",ANS50,Usar Aggregate,,,Operaciones,,,,,8,,,8,
+51,"How to manage ""go to page""?",ANS51,Usar Go to Page,,,Operaciones,,,,,8,,,7,
+52,"How to manage ""go to viz""?",ANS52,Usar Go to viz,,,Operaciones,,,,,8,,,7,
+53,How can I change the width & height of my project?,ANS53,Modificar dimensiones del proyecto,,,Configurar un proyecto,,,,,6,,,6,
+54,How can I change the configuration of the layout of a given project?,ANS54,Modificar configuración del layout del proyecto,,,Configurar un proyecto,5,,,,7,,,6,0.5
+55,How can I modify background and canvas colors?,ANS55,Modificar colores de fondo y de canvas del proyecto,,,Configurar un proyecto,,,,,6,,,5,
+56,"How do I manage ""Pages""?",ANS56,Usar Páginas,,,Pages,,,,,8,,,9,1
+57,How does the Page Navigator work?,ANS57,Utilizar el Page Navigator,,,Pages,,,,,7,,,8,
+58,How can I insert components in the static header?,ANS58,Meter visualizaciones en el header,,,Pages,,,,,7,,,7,
+59,How can I manage general settings in tooltips?,ANS59,Modificar los settings generales de los tooltip,,,Configurar un proyecto,,,,,6,,,,
+60,How can I create a network?,ANS60,Crear una red,,,Redes,,,,,7,,,8,
+61,How can I insert data into a network chart,ANS61,Asignar datos a una red,,,Redes,,,,,7,,,9,
+62,How can I download a SVG file of a given chart?,ANS62,Descargar un svg del visualizador,,,Visualizador,,,,,,,,,
