@@ -1,73 +1,54 @@
-<!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta http-equiv="cache-control" content="no-cache">
-        <meta http-equiv="expires" content="0">
-        <meta http-equiv="pragma" content="no-cache">
-        <title>Quadrigram</title>
-        <meta name="description" content="">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        <link rel="shortcut icon" type="image/png" href="images/favicon/icons_favicon_16px.png">
-        <link href="images/favicon/icons_favicon_32px.png" rel="apple-touch-icon" sizes="32x32">
-        <link href="images/favicon/icons_favicon_48px.png" rel="apple-touch-icon" sizes="48x48">
-        <link href="http://fonts.googleapis.com/css?family=Roboto:400,700,100" rel="stylesheet" type="text/css">
-
-        <link rel="stylesheet" href="styles/1f469d2a.main.css">
-        <link rel="stylesheet" href="styles/343b3f07.mainStylus.css">
-
-    </head>
-    <body>
-
-
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-
-        <div id="header-container" class="hidden"></div>
-        <div id="content">
-            <!-- <div id="ui-container"></div> -->
-            <div class="back-container">
-              <div class="top-container">
-                <div class="top-menu-container"></div>
-
-              </div>
-            </div>
-            <div class="mid-container">
-              <div class="left-menu-container"></div>
-              <div class="project-super-container">
-                <div class="project-container"></div>
-              </div>
-            </div>
-
-
-            <div class="front-container">
-              <div class="viz-inspector-container"></div>
-              <div class="help-popup-container"></div>
-            </div>
-            <div id="loader-container">
-            </div>
-            <div id="pre-loader-container">
-                <div class="loader">
-                  <img class="loader-animation" src="images/loader.gif">
-                  <div class="loader-message under-gif">Loading Quadrigram...</div>
-                </div>
-            </div>
-            <!-- HABrIA QUE QUITAR LOS ids, excepto para el pre-loader-conatiner (tambien en la template de loader-container)-->
-
-        </div>
-
-        <script src="scripts/218d6f61.vendor.js"></script>
-
-        <script src="scripts/a4bbb98f.main.js"></script>
-        <div id="device-detector">
-        </div>
-</body>
+<!DOCTYPE html>
+	<head>
+		<meta name="robots" content="NOINDEX, NOFOLLOW">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Redirecting... - Quadrigram</title>
+		<style type="text/css">
+			html {
+				background: #f1f1f1;
+			}
+			body {
+				background: #fff;
+				color: #444;
+				font-family: "Open Sans", sans-serif;
+				margin: 2em auto;
+				padding: 1em 2em;
+				max-width: 700px;
+				-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+				box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+			}
+			#loading-screen {
+				margin-top: 50px;
+			}
+			#loading-screen div{
+				line-height: 20px;
+				padding: 8px;
+				background-color: #f2f2f2;
+				border: 1px solid #ccc;
+				padding: 10px;
+				text-align:center;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.13);
+				margin-top:25px;
+			}
+		</style>
+		<script>
+			function init()
+			{
+				window.location.replace( window.location.href + "&redirect_to_provider=true" );
+			}
+		</script>
+	</head>
+	<body id="loading-screen" onload="init();">
+		<table width="100%" border="0">
+			<tr>
+				<td align="center"><img src="http://www.quadrigram.com/blog/wp-content/plugins/wordpress-social-login/assets/img/loading.gif" /></td>
+			</tr>
+			<tr>
+				<td align="center">
+					<div>
+						Contacting <b>Google</b>, please wait...					</div>
+				</td>
+			</tr>
+		</table>
+	</body>
 </html>

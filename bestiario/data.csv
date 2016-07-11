@@ -38,20 +38,20 @@ id,Question,Answer,Tarea,Category,Action,Área,Raimon,Oslo,Xavi,Álvaro,Alberto,
 37,How to publish as embed?,"Click on the ""Publish"" menu and select the option ""Publish for embedding""",Publicar como embed,,,Publicación,,,,,8,,,8,0.5
 38,How to download HTML5 code?,"Click on the ""Publish"" menu and select the option ""Download source code""",Descargar el código,,,Publicación,,,,,7,,,7,0.5
 39,How to load a file from Google Drive?,"Go to ""Manage  data"" and click on Files/Import new file. Click on the ""Google Drive"" option and select the file you want to load in the current project. ",Cargar fichero de Google Drive,data_manager,load_file,Manejar datos,1,,,,8,1,,8,1
-40,How to upload a file into Google Drive?,ANS40,Subir un fichero a Google Drive,,,Manejar datos,1,,,,8,1,,,
-41,How to change the id of a given file?,ANS41,Validar/Cambiar el id de un fichero de Google Drive,,,Manejar datos,1,,,,5,,,,
-42,,ANS42,Usar el resultado de un filter en un viz,operations,filter,Operaciones,4,,,,8,,,8,1
-43,"How to manage ""set value""?",ANS43,Usar Set Value,,,Operaciones,,,,,5,,,6,
-44,"How to manage ""transpose""?",ANS44,Usar Transpose,,,Operaciones,,,,,5,,,6,
-45,"How to manage ""join""?",ANS45,Usar Join,,,Operaciones,,,,,5,,,6,
-46,"How to manage ""get names""?",ANS46,Usar Get Names,,,Operaciones,,,,,5,,,6,
-47,"How to manage ""sort""?",ANS47,Usar Sort,,,Operaciones,,,,,8,,,8,
-48,"How to manage ""group""?",ANS48,Usar Group,,,Operaciones,,,,,6,,,6,
-49,"How to manage ""summarize""?",ANS49,Usar Summarize,,,Operaciones,,,,,6,,,6,
-50,"How to manage ""aggregate""?",ANS50,Usar Aggregate,,,Operaciones,,,,,8,,,8,
-51,"How to manage ""go to page""?",ANS51,Usar Go to Page,,,Operaciones,,,,,8,,,7,
-52,"How to manage ""go to viz""?",ANS52,Usar Go to viz,,,Operaciones,,,,,8,,,7,
-53,How can I change the width & height of my project?,ANS53,Modificar dimensiones del proyecto,,,Configurar un proyecto,,,,,6,,,6,
+40,How to upload a file into Google Drive?,"Go to your Google Drive page and click on ""New"" and then ""upload a file"". Select your file and upload it.",Subir un fichero a Google Drive,,,Manejar datos,1,,,,8,1,,,
+41,How to change the id of a given file?,"Go to the preview table of the file, accessible by clicking on the pencil icon beside it. Go to the top menu of ths preview table and select the wished id column from a dropdown.",Validar/Cambiar el id de un fichero de Google Drive,,,Manejar datos,1,,,,5,,,,
+42,"How to manage ""filter""?","Click on ""Manage data / Formulas/Create new Formula"" and select the ""filter"" function from the formula list.",Usar el resultado de un filter en un viz,operations,filter,Operaciones,4,,,,8,,,8,1
+43,"How to manage ""set value""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Set Value"" function from the formula list.",Usar Set Value,,,Operaciones,,,,,5,,,6,
+44,"How to manage ""transpose""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Transpose"" function from the formula list.",Usar Transpose,,,Operaciones,,,,,5,,,6,
+45,"How to manage ""join""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Join"" function from the formula list.",Usar Join,,,Operaciones,,,,,5,,,6,
+46,"How to manage ""get names""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Get Names"" function from the formula list.",Usar Get Names,,,Operaciones,,,,,5,,,6,
+47,"How to manage ""sort""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Sort"" function from the formula list.",Usar Sort,,,Operaciones,,,,,8,,,8,
+48,"How to manage ""group""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Group"" function from the formula list.",Usar Group,,,Operaciones,,,,,6,,,6,
+49,"How to manage ""summarize""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Summarize"" function from the formula list.",Usar Summarize,,,Operaciones,,,,,6,,,6,
+50,"How to manage ""aggregate""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Aggregate"" function from the formula list.",Usar Aggregate,,,Operaciones,,,,,8,,,8,
+51,"How to manage ""go to page""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Go to Page"" function from the formula list.",Usar Go to Page,,,Operaciones,,,,,8,,,7,
+52,"How to manage ""go to viz""?","Click on ""Manage data"" / Formulas/Create new Formula"" and select the ""Go to Viz"" function from the formula list.",Usar Go to viz,,,Operaciones,,,,,8,,,7,
+53,How can I change the width & height of my project?,"Click on the ""Layout Settings"" menu and edit width and height properties.",Modificar dimensiones del proyecto,,,Configurar un proyecto,,,,,6,,,6,
 54,How can I change the configuration of the layout of a given project?,ANS54,Modificar configuración del layout del proyecto,,,Configurar un proyecto,5,,,,7,,,6,0.5
 55,How can I modify background and canvas colors?,ANS55,Modificar colores de fondo y de canvas del proyecto,,,Configurar un proyecto,,,,,6,,,5,
 56,"How do I manage ""Pages""?",ANS56,Usar Páginas,,,Pages,,,,,8,,,9,1

@@ -1,4 +1,5 @@
 # automate q & a posting
+# remaining obstacles are google login AND captcha.... I think chrome extension semi-automation may be best bet at this point, realistically it's very little work so it's a valuable improvement
 
 import urllib
 import csv
@@ -34,7 +35,7 @@ with open('data.csv', 'rb') as csvfile:
 # function for saving HTML locally
 def save(text, file):
 	view = open(file + '.html', 'w')
-	view.write(text)
+	view.write(text.encode('utf-8'))
 	view.close()
 
 # google login helper from http://stackoverflow.com/questions/6754709/logging-in-to-google-using-python
@@ -58,7 +59,7 @@ class SessionGoogle:
 url_login = "https://accounts.google.com/ServiceLogin"
 url_auth = "https://accounts.google.com/ServiceLoginAuth"
 session = SessionGoogle(url_login, url_auth, "quadrigramteam", "quadrigramdataviz?")
-gold = session.get("http://www.quadrigram.com/rs/user/access")
+gold = session.get("http://www.quadrigram.com/blog/wp-login.php?action=wordpress_social_authenticate&mode=login&provider=Google&redirect_to=http%3A%2F%2Fwww.quadrigram.com%2Fblog%2Fcommunity%2Fask%2F")
 save(gold, 'gold')
 
 # fill form
