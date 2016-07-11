@@ -8,36 +8,36 @@ id,Question,Answer,Tarea,Category,Action,Área,Raimon,Oslo,Xavi,Álvaro,Alberto,
 7,How can I change the mode to assign colors?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings.",Cambiar el modo de asignar colores,,,Colores,,,,,7,,,,
 8,How can I assign a list of colors?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings. Select the ""Colors"" option.",Asignar una lista de colores,,,Colores,,,,,6,,,,
 9,How can I apply colors by categories?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings. Select the ""Colors by category"" option.",Asignar colores por categorías,,,Colores,3,,,,6,,,8,1
-10,How can I assign colors by value?,ANS10,Asignar colores por valor,,,Colores,,,,,,,,,
-11,How can I edit the fill color of a given chart?,ANS11,Modificar el fillColor de un grafico,colors,changed,,,,,,,,,,
-12,How can I modify a given graphic attribute in a component?,ANS12,Modificar atributo gráfico normal (distinto de color),,,Visualizador,,,,,5,,,,
-13,How can I change a given selection attribute?,ANS13,Modificar atributo gráfico selección,,,Visualizador,,,,,4,,,,
-14,How can I sync the selection of two charts?,ANS14,Sincronizar selección de dos visualizadores,,,Sincronización,2,,,,8,,,8,
-15,How can I change tooltip formats by component?,ANS15,Modificar formato de los tooltip por visualizador,,,Visualizador,,,,,6,,,,
-16,How to connect a chart's output with another chart,ANS16,Conectar el output de un viz a otro,syncronize,use_output,Sincronización,2,,,,7,,,9,1
-17,How can I change the graphic properties of a text?,ANS17,Modificar propiedades gráficas de un texto,,,Textos,,,,,6,,,5,
-18,How can I insert a link into a text component?,ANS18,Crear un link en un texto,,,Textos,,,,,4,,,3,1
-19,How can I select a given chart?,ANS19,Añadir un visualizador,,,Visualizador,,,,,8,,,9,
-20,How can I assign images using URL's?,ANS20,Asignar imagenes por url,,,Imágenes,,,,,4,,,,
-21,How can I upload an image into Google Drive?,ANS21,Cargar una imagen a Google Drive,,,Imágenes,,,,,4,,,,
-22,How can I change the background color of a given chart?,ANS22,Cambiar el color de fondo de un visualizador,,,Visualizador,,,,,5,,,3,
-23,How can I load a youtube video?,ANS23,Cargar un video de youtube,,,Componentes,,,,,4,,,3,
-24,How can I load an external visualization?,ANS24,Cargar una visualización externa,,,Componentes,,,,,5,,,4,
-25,How can I use a list?,ANS25,Usar una lista,,,Controles,,,,,7,,,6,0.5
-26,How can I manage a dropdown component?,ANS26,Usar un dropdown,,,Controles,2,,,,7,,,6,
-27,How can I manage a dynamic external link?,ANS27,Usar un link dinámico externo,,,Controles,,,,,7,,,,
-28,How can I manage a slider?,ANS28,Usar un slider,,,Controles,,,,,7,,,7,
-29,How can I manage a range selector?,ANS29,Usar un range selector,,,Controles,,,,,7,,,7,
-30,How can I manage an animator?,ANS30,Usar un animator,,,Controles,,,,,6,,,7,
-31,How can I use a dynamic text?,ANS31,Usar un dynamic Text,,,Controles,,,,,6,,,6,
-32,How to link a legend with a chart?,ANS32,Poner una leyenda a un gráfico,,,Controles,,,,,8,,,8,
-33,Add social network sharing buttons,ANS33,Añadir botones de compartir en redes sociales a tu espacio,,,Controles,,,,,3,,,3,
-34,Use a given button?,ANS34,Usar un botón,,,Controles,,,,,5,,,,
-35,How can I manage my publications?,ANS35,Darle a alguno de los tres botones de publish,publish,any,Publicación,,,,,,,,,
-36,How to publish as a website?,ANS36,Publicar como website,,,Publicación,,,,,8,,,8,0.5
-37,How to publish as embed?,ANS37,Publicar como embed,,,Publicación,,,,,8,,,8,0.5
-38,How to download HTML5 code?,ANS38,Descargar el código,,,Publicación,,,,,7,,,7,0.5
-39,How to load a file from Google Drive?,ANS39,Cargar fichero de Google Drive,data_manager,load_file,Manejar datos,1,,,,8,1,,8,1
+10,How can I assign colors by value?,"Go to ""Style"" section of a given component and click on the arrow beside ""colors"" to open the colors general settings. Select the ""Colors by value"" option.",Asignar colores por valor,,,Colores,,,,,,,,,
+11,How can I edit the fill color of a given chart?,"Go to ""Style"" section of its options panel and select the color mapping in ""Fill color..""",Modificar el fillColor de un grafico,colors,changed,,,,,,,,,,
+12,How can I modify a given graphic attribute in a component?,"Go to its place in the options panel, select the approach and edit it.",Modificar atributo gráfico normal (distinto de color),,,Visualizador,,,,,5,,,,
+13,How can I change a given selection attribute?,"Go to ""Select"" tab of the options panel and edit.",Modificar atributo gráfico selección,,,Visualizador,,,,,4,,,,
+14,How can I sync the selection of two charts?,Use the select output of the first chart and drag it to the select slot of the second chart.,Sincronizar selección de dos visualizadores,,,Sincronización,2,,,,8,,,8,
+15,How can I change tooltip formats by component?,Open its options panel. Go to Tooltip tab and edit tooltips on demand.,Modificar formato de los tooltip por visualizador,,,Visualizador,,,,,6,,,,
+16,How to connect a chart's output with another chart,Go to the first chart's ouputs menu and drag the output block into the second chart's options panel slot.,Conectar el output de un viz a otro,syncronize,use_output,Sincronización,2,,,,7,,,9,1
+17,How can I change the graphic properties of a text?,"Most of the graphic properties of a given component are in its options panel. More precisely, grphic properties use to be included in the ""Style"" tab.",Modificar propiedades gráficas de un texto,,,Textos,,,,,6,,,5,
+18,How can I insert a link into a text component?,"Open its options panel. Go to ""Text"" tab and click on the chain alike icon to insert a link.",Crear un link en un texto,,,Textos,,,,,4,,,3,1
+19,How can I select a given chart?,"Go to ""Charts"" menu and click on the desired chart. It will appear in the working area as you selected it.",Añadir un visualizador,,,Visualizador,,,,,8,,,9,
+20,How can I assign images using URL's?,"Go to ""Media"" menu and select the ""Image"" component to load image URL's",Asignar imagenes por url,,,Imágenes,,,,,4,,,,
+21,How can I upload an image into Google Drive?,"Go to your Google Drive and click on ""New""/Upload new file. Select the image to be uploaded.",Cargar una imagen a Google Drive,,,Imágenes,,,,,4,,,,
+22,How can I change the background color of a given chart?,"Open its options panel. Go to ""Style"" tab and click on ""Background color"" to edit it.",Cambiar el color de fondo de un visualizador,,,Visualizador,,,,,5,,,3,
+23,How can I load a youtube video?,"Select the ""Media/Video"" component. Paste your Youtube video in the corresponding slot.",Cargar un video de youtube,,,Componentes,,,,,4,,,3,
+24,How can I load an external visualization?,"Select the ""Media/IFrame"" component. Paste your external visualization URL's in the corresponding slot.",Cargar una visualización externa,,,Componentes,,,,,5,,,4,
+25,How can I use a list?,"Go to the ""Controls"" menu and select the component called ""List"". Drag to its slot the input data to work with.",Usar una lista,,,Controles,,,,,7,,,6,0.5
+26,How can I manage a dropdown component?,"Go to the ""Controls"" menu and select the component called ""Dropdown"". Drag to its slot the input data to work with.",Usar un dropdown,,,Controles,2,,,,7,,,6,
+27,How can I manage a dynamic external link?,"Using the ""Dynamic Text"" control located in the ""Controls"" top menu.",Usar un link dinámico externo,,,Controles,,,,,7,,,,
+28,How can I manage a slider?,"Select the ""Slider"" control from the ""Controls"" menu",Usar un slider,,,Controles,,,,,7,,,7,
+29,How can I manage a range selector?,"Select the ""Range selector"" control from the ""Controls"" menu",Usar un range selector,,,Controles,,,,,7,,,7,
+30,How can I manage an animator?,"Select the ""Animator"" control from the ""Controls"" menu. This component works better with ""wide"" tables (see tables tutorials)",Usar un animator,,,Controles,,,,,6,,,7,
+31,How can I use a dynamic text?,"Select the ""Dynamic text"" component in the Controls menu",Usar un dynamic Text,,,Controles,,,,,6,,,6,
+32,How to link a legend with a chart?,"Use the ""colors"" output form the chart as input of the legend control.",Poner una leyenda a un gráfico,,,Controles,,,,,8,,,8,
+33,Add social network sharing buttons,"Go to the ""Controls"" menu and select ""Share buttons"" component",Añadir botones de compartir en redes sociales a tu espacio,,,Controles,,,,,3,,,3,
+34,Use a given button?,"Go to the ""Controls"" menu and select ""Button"" component",Usar un botón,,,Controles,,,,,5,,,,
+35,How can I publish my projects?,"Click on the top right menu called ""Publish"" and select the preferred publication method.",Darle a alguno de los tres botones de publish,publish,any,Publicación,,,,,,,,,
+36,How to publish as a website?,"Click on the ""Publish"" menu and select the option ""Publish as web""",Publicar como website,,,Publicación,,,,,8,,,8,0.5
+37,How to publish as embed?,"Click on the ""Publish"" menu and select the option ""Publish for embedding""",Publicar como embed,,,Publicación,,,,,8,,,8,0.5
+38,How to download HTML5 code?,"Click on the ""Publish"" menu and select the option ""Download source code""",Descargar el código,,,Publicación,,,,,7,,,7,0.5
+39,How to load a file from Google Drive?,"Go to ""Manage  data"" and click on Files/Import new file. Click on the ""Google Drive"" option and select the file you want to load in the current project. ",Cargar fichero de Google Drive,data_manager,load_file,Manejar datos,1,,,,8,1,,8,1
 40,How to upload a file into Google Drive?,ANS40,Subir un fichero a Google Drive,,,Manejar datos,1,,,,8,1,,,
 41,How to change the id of a given file?,ANS41,Validar/Cambiar el id de un fichero de Google Drive,,,Manejar datos,1,,,,5,,,,
 42,,ANS42,Usar el resultado de un filter en un viz,operations,filter,Operaciones,4,,,,8,,,8,1
