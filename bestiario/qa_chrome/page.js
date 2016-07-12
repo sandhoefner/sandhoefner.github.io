@@ -15,7 +15,6 @@ window.onload = function() {
                 // get meta parameters from storage
                 row = 1;
 
-
                 // extract content
 
                 options = {
@@ -40,7 +39,6 @@ window.onload = function() {
                     category_val = 33;
                 }
 
-
                 // get form elements
                 title = $("#title");
                 category = $("#category");
@@ -60,7 +58,6 @@ window.onload = function() {
                 if (title_val.length < 10) {
                     alert("Q&A Helper: question must be at least 10 characters.");
                 }
-
 
                 // save some metadata for next time
             }
