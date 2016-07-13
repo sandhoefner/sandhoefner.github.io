@@ -5,6 +5,7 @@
 // only show browser action on proper URLs
 // ability for user to directly manipulate metadata
 // comments
+// very not error-proof for unusual use cases like filling but not posting
 
 // priorities: manual row change, store ID posted on date, tags
 $(document).ready(function() {
@@ -15,7 +16,6 @@ $(document).ready(function() {
             download: true,
             complete: function(data) {
                 chrome.storage.sync.get('meta', function(result) {
-                    console.log(result);
                     if (!(result.meta)) {
                         alert("no metadata found; starting at row 1");
                         row = 1;
@@ -86,9 +86,7 @@ $(document).ready(function() {
         Papa.parse("http://docs.google.com/spreadsheets/u/0/d/1lTFyYrBbcDGqZeKCq3rrPUA7-HiztH0vj0Fnsd8MyJ0/export?format=csv&id=1lTFyYrBbcDGqZeKCq3rrPUA7-HiztH0vj0Fnsd8MyJ0&gid=1313316691", {
             download: true,
             complete: function(data) {
-                console.log(data);
                 chrome.storage.sync.get('meta', function(result) {
-                    console.log(result);
                     if (!(result.meta)) {
                         alert("error: no metadata found!");
                         row = NaN;
@@ -108,7 +106,6 @@ $(document).ready(function() {
                     date = Date.now();
 
                     chrome.storage.sync.get('posted', function(result) {
-                        console.log(result);
                         if (!(result.posted)) {
                             toLoad = {};
                             toLoad[post_id] = date;
@@ -118,9 +115,12 @@ $(document).ready(function() {
                                 // alert("saved metadata row " + input);
                             });
                         } else {
+                            console.log(result);
                             result.posted[post_id] = date;
+                            console.log(result);
+                            // StorageArea.remove('posted');
                             chrome.storage.sync.set({
-                                'posted': result
+                                'posted': result.posted
                             }, function() {
                                 // alert("saved metadata row " + input);
                             });
