@@ -1,0 +1,25 @@
+<html>
+<button onclick="sendCode()">Fill form</button><br>
+<input id="row"></input>Manually set row and <button onclick="save()">save</button> (optional!)
+
+<script>
+function sendCode() {
+chrome.tabs.executeScript(null, {file: "page.js"});
+}
+
+function save() {
+	// check integer between 1 and whatever inclusive
+	input = document.getElementById("row").value;
+	console.log(input);
+	if (Number.isInteger(input) && input >= 1) {
+chrome.storage.sync.set({
+                            'meta': input
+                        }, function() {
+                            console.log("saved metadata row " + input);
+                        });
+} else {
+	alert("invalid row");
+}
+}
+</script>
+</html>
