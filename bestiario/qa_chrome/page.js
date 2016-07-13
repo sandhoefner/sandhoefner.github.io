@@ -6,11 +6,8 @@
 // ability for user to directly manipulate metadata
 // comments
 
-//priorities: manual row change, store ID posted on date, 
-//tags
-
-
-$( document ).ready(function() {
+// priorities: manual row change, store ID posted on date, tags
+$(document).ready(function() {
     pageTitle = document.getElementsByClassName("page-title")[0].innerText;
     if (pageTitle == "Ask a question") {
         // get data
