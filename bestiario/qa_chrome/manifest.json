@@ -22,5 +22,7 @@
     "128": "bestiario-128.png"
   },
   
+  "permissions": ["storage"],
+
   "manifest_version": 2
 }
