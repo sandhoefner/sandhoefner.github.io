@@ -5,7 +5,6 @@ document.getElementById("fill").onclick = function sendCode() {
 }
 
 document.getElementById("save").onclick = function save() {
-    alert("Save");
     // check integer between 1 and whatever inclusive
     input = document.getElementById("row").value;
     input = Number(input);
@@ -22,7 +21,10 @@ document.getElementById("save").onclick = function save() {
 
 document.getElementById("show").onclick = function show() {
     chrome.storage.sync.get('meta', function(result) {
-
-        alert("metadata dummy");
+    	chrome.storage.sync.get('posted', function(hist) {
+    		console.log(result);
+    		console.log(hist);
+        	alert("metadata dummy");
+        });
     });
 }

@@ -103,6 +103,31 @@ $(document).ready(function() {
                         });
                     }
 
+
+                    post_id = data.data[row][0];
+                    date = Date.now();
+
+                    chrome.storage.sync.get('posted', function(result) {
+                        console.log(result);
+                        if (!(result.posted)) {
+                            toLoad = {};
+                            toLoad[post_id] = date;
+                            chrome.storage.sync.set({
+                                'posted': toLoad
+                            }, function() {
+                                // alert("saved metadata row " + input);
+                            });
+                        } else {
+                            result.posted[post_id] = date;
+                            chrome.storage.sync.set({
+                                'posted': result
+                            }, function() {
+                                // alert("saved metadata row " + input);
+                            });
+                        }
+                    });
+
+
                     // read meta parameters from storage
 
 
