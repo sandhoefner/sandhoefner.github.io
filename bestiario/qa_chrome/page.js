@@ -1,9 +1,12 @@
-// TODO (optional):
-// maybe should require key command to trigger so you don't have to turn off extension for normal use
+// TODO:
 // tags
 // description distinct from title
 // var
-window.onload = function() {
+// only show browser action on proper URLs
+// ability for user to directly manipulate metadata
+// comments
+console.log("page.js");
+$( document ).ready(function() {
     pageTitle = document.getElementsByClassName("page-title")[0].innerText;
     if (pageTitle == "Ask a question") {
         // get data
@@ -121,4 +124,4 @@ window.onload = function() {
 
         // maybe save some metadata for next time
     }
-}
+});
