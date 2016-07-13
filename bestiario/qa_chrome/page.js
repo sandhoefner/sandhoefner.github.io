@@ -115,9 +115,7 @@ $(document).ready(function() {
                                 // alert("saved metadata row " + input);
                             });
                         } else {
-                            console.log(result);
                             result.posted[post_id] = date;
-                            console.log(result);
                             // StorageArea.remove('posted');
                             chrome.storage.sync.set({
                                 'posted': result.posted
