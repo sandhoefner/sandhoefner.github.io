@@ -16,12 +16,10 @@
     }
   ],
 
-
-
-    "browser_action": {
-      "default_title": "Q&A Form Helper",
-      "default_popup": "popup.html"
-    },
+  "browser_action": {
+    "default_title": "Q&A Form Helper",
+    "default_popup": "popup.html"
+  },
   
   "icons": {
     "16": "bestiario-16.png",

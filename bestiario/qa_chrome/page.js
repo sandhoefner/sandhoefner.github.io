@@ -1,13 +1,10 @@
 // TODO:
-// tags
-// description distinct from title
 // var
 // only show browser action on proper URLs
 // ability for user to directly manipulate metadata
 // comments
 // very not error-proof for unusual use cases like filling but not posting
-
-// priorities: manual row change, store ID posted on date, tags
+// show time in addition to date in reporting metadata
 $(document).ready(function() {
     pageTitle = document.getElementsByClassName("page-title")[0].innerText;
     if (pageTitle == "Ask a question") {
@@ -28,11 +25,7 @@ $(document).ready(function() {
                         console.log("metadata found; row " + result.meta + ". Metadata will update after you post.");
                         row = result.meta;
                     }
-                    // get meta parameters from storage
-
-
-                    // extract content
-
+                   
                     options = {
                         "Data Management": 33,
                         "Charts": 34,
@@ -76,12 +69,6 @@ $(document).ready(function() {
                     });
                     tagHolder[0].innerHTML += toAdd;
 
-
-
-
-
-
-
                     // fill form
                     ifrm = document.getElementById('description_ifr');
                     ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
@@ -93,16 +80,6 @@ $(document).ready(function() {
 
                     category.val(category_val);
 
-                    // apAddTag("fish", null);
-
-                    // send ENTER to tags
-
-                    // e = jQuery.Event("keydown");
-                    // e.which = 13; // Enter
-
-
-                    // tags.trigger(e);
-
                     // error checks
                     if (title_val.length < 10) {
                         alert("Q&A Helper: title must be at least 10 characters.");
@@ -110,12 +87,9 @@ $(document).ready(function() {
                     if (desc_val.length < 10) {
                         alert("Q&A Helper: description must be at least 10 characters.");
                     }
-                    // save some metadata for next time
                 });
             }
-
         });
-
     } else {
         // get data
         Papa.parse("http://docs.google.com/spreadsheets/u/0/d/1lTFyYrBbcDGqZeKCq3rrPUA7-HiztH0vj0Fnsd8MyJ0/export?format=csv&id=1lTFyYrBbcDGqZeKCq3rrPUA7-HiztH0vj0Fnsd8MyJ0&gid=1313316691", {
@@ -136,7 +110,6 @@ $(document).ready(function() {
                         });
                     }
 
-
                     post_id = data.data[row][id_col];
                     date = Date.now();
 
@@ -147,22 +120,17 @@ $(document).ready(function() {
                             chrome.storage.sync.set({
                                 'posted': toLoad
                             }, function() {
-                                // alert("saved metadata row " + input);
+                                console.log("saved metadata", toLoad);
                             });
                         } else {
                             result.posted[post_id] = date;
-                            // StorageArea.remove('posted');
                             chrome.storage.sync.set({
                                 'posted': result.posted
                             }, function() {
-                                // alert("saved metadata row " + input);
+                                console.log("saved metadata", result.posted);
                             });
                         }
                     });
-
-
-                    // read meta parameters from storage
-
 
                     // extract content
                     answer_val = data.data[row][ans_col];
@@ -176,11 +144,8 @@ $(document).ready(function() {
                     ifrm.document.open();
                     ifrm.document.write(answer_val);
                     ifrm.document.close();
-
                 });
             }
         });
-
-        // maybe save some metadata for next time
     }
 });

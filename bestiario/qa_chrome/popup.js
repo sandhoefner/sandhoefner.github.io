@@ -21,24 +21,23 @@ document.getElementById("save").onclick = function save() {
 
 // may update later to include time
 function readable(date) {
-	date = new Date(date);
-	return date.toDateString();
+    date = new Date(date);
+    return date.toDateString();
 }
 
 document.getElementById("show").onclick = function show() {
     chrome.storage.sync.get('meta', function(result) {
-    	chrome.storage.sync.get('posted', function(hist) {
-    		
+        chrome.storage.sync.get('posted', function(hist) {
 
-    		var myWindow = window.open("", "Metadata", "width=400,height=400");
-    		report = "next row: " + result.meta + "<br><br>post history:<br>";
-    		inside = hist.posted;
-    		for (var property in inside) {
-    if (inside.hasOwnProperty(property)) {
-        report = report + "posted id " + property + " on " + readable(inside[property]) + "<br>";
-    }
-}
-myWindow.document.write(report);
+            var myWindow = window.open("", "Metadata", "width=400,height=400");
+            report = "next row: " + result.meta + "<br><br>post history:<br>";
+            inside = hist.posted;
+            for (var property in inside) {
+                if (inside.hasOwnProperty(property)) {
+                    report = report + "posted id " + property + " on " + readable(inside[property]) + "<br>";
+                }
+            }
+            myWindow.document.write(report);
         });
     });
 }
