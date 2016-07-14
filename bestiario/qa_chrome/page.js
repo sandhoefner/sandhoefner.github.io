@@ -110,6 +110,9 @@ $(document).ready(function() {
                         });
                     }
 
+                    id_col = 0;
+                    ans_col = 5;
+
                     post_id = data.data[row][id_col];
                     date = Date.now();
 
