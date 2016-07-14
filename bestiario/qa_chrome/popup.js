@@ -28,15 +28,13 @@ function readable(date) {
 document.getElementById("show").onclick = function show() {
     chrome.storage.sync.get('meta', function(result) {
     	chrome.storage.sync.get('posted', function(hist) {
-    		console.log(result);
-    		console.log(hist);
+    		
 
     		var myWindow = window.open("", "Metadata", "width=400,height=400");
     		report = "next row: " + result.meta + "<br><br>post history:<br>";
     		inside = hist.posted;
     		for (var property in inside) {
     if (inside.hasOwnProperty(property)) {
-    	console.log(typeof(inside[property]));
         report = report + "posted id " + property + " on " + readable(inside[property]) + "<br>";
     }
 }
