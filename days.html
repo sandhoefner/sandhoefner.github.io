@@ -1,0 +1,24 @@
+<font size="48">
+	You started on
+	<span id="month"></span>
+	<span id="day"></span>
+	<span id="year"></span>.
+	<br>Today is day
+	<span id="result">(loading)</span>.
+</font>
+
+<script>
+	var oneDay = 24 * 60 * 60 * 1000;
+	var year = 2016;
+	var month = 7;
+	var day = 20;
+	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+	document.getElementById("month").innerText = months[month-1];
+	document.getElementById("day").innerText = " " + day + ", ";
+	document.getElementById("year").innerText = year;
+	var start = new Date(year,month,day);
+	var helper = new Date();
+	var now = new Date(helper.getFullYear(), helper.getMonth()+1, helper.getDate());
+	var result = Math.round(Math.abs((start.getTime() - now.getTime())/(oneDay))) + 1;
+	document.getElementById("result").innerText = result;
+</script>
