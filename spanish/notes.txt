@@ -6,3 +6,34 @@ problems:
 no swearwords, presumably no slang
 includes proper nouns
 includes plurals, conjugations
+actually TOO long to work with comfortably maybe so cap it at 50,000 words or something
+currently has about 740,000 entries - the end is garbage basically
+ahahha the last three entries are:
+zzzzzzzzzzzzz  
+zzzzzzzzzzzzzzzzz   
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz     
+where is this from??
+so yeah also contains straight up errors (zzzzzz, musica without accent mark)
+probably want to filter it before you trim it because you might need the first 80,000 to end up with 50,000
+psyched
+
+
+at the end of the day what do I want?
+-infinitive verbs (probably should distinguish between SE and not)
+-adjectives (masculine, singular)
+-nouns (masculine, singular, not proper)
+-misc particles
+
+
+ANOTHER APPROACH is to take an english word list and translate it
+pros: better starting data
+cons: potentially sketchy translations (although maybe not any worse?), missing things(?) honestly hard to say
+well from comprehension POV you might grab uncommon translation option unless you cross reference this list then it's like why'd you bother? idk
+
+
+aspects of fluency:
+-grammar
+-idioms
+-speed listening
+-tongue strength/accent
+-vocab
