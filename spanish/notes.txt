@@ -1,0 +1,8 @@
+CREA is probably best existing dataset
+lots of words
+good source
+
+problems:
+no swearwords, presumably no slang
+includes proper nouns
+includes plurals, conjugations
