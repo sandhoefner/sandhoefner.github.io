@@ -4,7 +4,7 @@ https://www.amazon.com/Frequency-Dictionary-Spanish-Vocabulary-Dictionaries-eboo
 https://www.scribd.com/doc/35527699/Spanish-Word-Frequency-Study
 http://howlearnspanish.com/2010/08/how-many-words-do-you-need-to-know/
 
-
+extension for learning vocab pre tackling a book (CADS)
 
 
 CREA is probably best existing dataset
@@ -18,9 +18,9 @@ includes plurals, conjugations
 actually TOO long to work with comfortably maybe so cap it at 50,000 words or something
 currently has about 740,000 entries - the end is garbage basically
 ahahha the last three entries are:
-zzzzzzzzzzzzz  
-zzzzzzzzzzzzzzzzz   
-zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz     
+zzzzzzzzzzzzz
+zzzzzzzzzzzzzzzzz
+zzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
 where is this from??
 so yeah also contains straight up errors (zzzzzz, musica without accent mark)
 probably want to filter it before you trim it because you might need the first 80,000 to end up with 50,000
@@ -53,3 +53,23 @@ is it substantially better than just finding a place to start in the list and go
 
 
 backwards approach download dictionary then use this to get frequency
+
+
+
+
+in order to start going through spanishdict pages we need to establish how many kinds of pages there are
+this is gonna be a shitshow
+
+
+what to do about homonyms
+
+
+
+
+
+
+
+
+
+
+quadrigram: wait until server response changes to rleoad
