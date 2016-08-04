@@ -1,10 +1,62 @@
+
+
+
+
+spanishdict is missing some unconventional word conjugations e.g. verbs created from nouns
+
+
+
 do it in Ruby or something just for XP
 https://www.amazon.com/Frequency-Dictionary-Spanish-Vocabulary-Dictionaries/dp/0415334292?ie=UTF8&camp=1789&creative=390957&creativeASIN=0415334292&linkCode=as2&redirect=true&tag=goarticcom-20
 https://www.amazon.com/Frequency-Dictionary-Spanish-Vocabulary-Dictionaries-ebook/dp/B000OT82AM?ie=UTF8&camp=1789&creative=390957&creativeASIN=B000OT82AM&linkCode=as2&redirect=true&tag=goarticcom-20
 https://www.scribd.com/doc/35527699/Spanish-Word-Frequency-Study
 http://howlearnspanish.com/2010/08/how-many-words-do-you-need-to-know/
 
+
+could proxy difficulty of text by average google hits per unique word but it's unscientific and ultimately unhelpful
+need to extract proper nouns without definitions
+will have probems with like diminutives and stuff
+this IS possible but it's damn hard. assess the value and be damn sure it hasn't already been done/started, and ask for help from those who may be able to give it.
+
 extension for learning vocab pre tackling a book (CADS)
+
+characters to remove from book text: *¡!¿?.,:;-…()«»'"
+wait honestly better to go bottom-up, only keep a-z and accented
+hyphenated words?
+
+
+https://www.wolframalpha.com/input/?i=log+fit+%7B0.01,0.01%7D,%7B1000,76%7D,%7B2000,84%7D,%7B3000,88.2%7D
+http://www.purplemath.com/modules/asymtote2.htm
+
+page archetypes:
+I feel like there's one for "you might also have meant..."
+couldn't find + suggestions (51734_boi)
+couldn't find (126369_aventurándose)
+conjugation (52057_criticaban)
+no-message redirect (51873_llenarlo, 51850_inserciones)
+fucking crazy guess (http://www.spanishdict.com/translate/zd)
+english/spanish tab (permute with others??) http://www.spanishdict.com/translate/coma
+
+
+
+
+spreadsheet 1:
+word     lexeme     lexemeDef     frequency
+
+spreadsheet 2:
+lexeme     definition     cumFreq     [derivatives]
+
+
+
+
+sometimes it'll be way wrong like it defaults to english->spanish
+
+should I start with 5000 and scrape spanishdict for variants instead?
+5000 words constitute the active vocabulary of native speakers without higher education.
+learning the top 3000 most frequently used words will get you to 88.2% for non-fiction, 89.6% for fiction, and 94.0% for oral speech.
+those both seem really untrue as I probably know 5000
+
+this is going to be crap due to homonyms and false not-words but in theory the EXACT order doesn't matter (bc empirical imperfection) as long as it's close
 
 
 CREA is probably best existing dataset
@@ -26,12 +78,20 @@ so yeah also contains straight up errors (zzzzzz, musica without accent mark)
 probably want to filter it before you trim it because you might need the first 80,000 to end up with 50,000
 psyched
 
+simply comparing vocab size/advancedness of diffrent authors/books pre-choosing which one to read
+
+
+spanish dialect quiz would be nice
+vos/vosotros/consonants then tell you where you're from
+neat for non-natives like I want to know what accent I have
+
 
 at the end of the day what do I want?
 -infinitive verbs (probably should distinguish between SE and not)
 -adjectives (masculine, singular)
 -nouns (masculine, singular, not proper)
 -misc particles
+
 
 
 ANOTHER APPROACH is to take an english word list and translate it
