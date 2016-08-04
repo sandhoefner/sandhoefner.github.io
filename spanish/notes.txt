@@ -46,7 +46,7 @@ word     lexeme     lexemeDef     frequency
 spreadsheet 2:
 lexeme     definition     cumFreq     [derivatives]
 
-
+spanishdict has nueva and nuevo as separate lexemes
 
 
 sometimes it'll be way wrong like it defaults to english->spanish
