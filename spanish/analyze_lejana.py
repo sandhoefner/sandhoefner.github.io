@@ -26,7 +26,12 @@ import re
 
 story = []
 
-with open('lejana.txt','r') as f:
+# RUNTIME VARIANTS
+quiet = False
+# file = 'CADS_full.txt'
+file = 'lejana.txt'
+
+with open(file,'r') as f:
 	for line in f:
 		for word in line.split():
 		   story.append(word)
@@ -84,9 +89,19 @@ story = list(set(buffer))
 print "Story contains " + str(len(story)) + " unique words\n"
 
 obj = {}
+unrec = 0
+sumForMean = 0
 
 # data = codecs.open('CREA_truncated.csv', "rb", "utf-8")
 # print data
+
+# takes an int number of seconds and returns string representation of secs or mins and secs
+def parseSecs(input):
+	if input > 60:
+		seg = input % 60
+		return str((input-seg)/60) + "m" + str(seg) + "s "
+	else:
+		return str(input) + "s "
 
 with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 	myReader = csv.reader(csvfile, delimiter = ',', quotechar = '"')
@@ -111,13 +126,12 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 				spacing = ""
 				if progress < 10:
 					spacing = " "
-				timeLeft = int(((50-progress)/progress)*(time.time()-start))
-				if timeLeft > 60:
-					seg = timeLeft % 60
-					timeLeft = str((timeLeft-seg)/60) + "m" + str(seg) + "s "
-				else:
-					timeLeft = str(timeLeft) + "s "
+				# float call(s) necessary here to prevent int division rounding down to 0 halfway through and fucking up the timer
+				timeLeft = int(((50-float(progress))/float(progress))*(time.time()-start))
+				timeLeft = parseSecs(timeLeft)
+				# print progress
 				# print calls will not overwrite each other if the terminal window is too narrow
+				# sys.stdout.write('\r' + str(progress))
 				sys.stdout.write('\r[' + '.'*progress + ' '*(50-progress) + '] ' + str(progress*2) + "%, " + spacing + timeLeft + "left       "),
 				sys.stdout.flush()
 				# print str(progress) + "% complete: " + str(((100-progress)/progress)*(time.time()-start)) + " seconds remaining"
@@ -128,18 +142,47 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 			# don't use IS here
 			if word == dict_word.strip():
 				# print "equality"
+				sumForMean += float(row[nfreqCol])
 				obj[word] = float(row[nfreqCol])
 				break
 		else:
+			unrec += 1
 			obj[word] = 0
 		counter += 1
 
-print '\n\nTask took about ' + str(time.time()-start) + ' seconds\n'
+print '\n\nTask took about ' + parseSecs(int(time.time()-start)) + '\n'
 
 # obj = collections.OrderedDict(sorted(obj.items()))
 # obj = sorted(obj.items(), key=lambda x: x[1])
 obj = sorted(obj.items(), key=operator.itemgetter(1), reverse=True)
+print 'Story contains ' + str(unrec) + ' unrecognized words'
+# these figures would be more useful if you included an example of a word at that frequency
+mean = sumForMean/(len(obj)-unrec)
+firstEx = ""
+secondEx = ""
+for word, freq in obj:
+	if freq > mean:
+		firstEx = word
+	else:
+		secondEx = word
+		break
+print 'Mean normalized frequency of recognized words is ' + str(mean) + ', as in "' + firstEx + '" or "' + secondEx + '"'
+firstMed = obj[int((len(obj)-unrec)/2)][0]
+secondMed = obj[int((len(obj)-unrec)/2)+1][0]
+# median is sloppy because it doesn't account for whether the list is even-length or not
+median = obj[int((len(obj)-unrec)/2)][1]
+print 'Median normalized frequency of recognized words is ' + str(median) + ', as in "' + firstMed + '" or "' + secondMed + '"'
+
+leastMsg = '"'
+for i in range(5):
+	leastMsg += obj[len(obj)-unrec-i-1][0]
+	if i == 3:
+		leastMsg += '", and "'
+	elif i != 4:
+		leastMsg += '", "'
+print 'Least common rec\'d words: ' + leastMsg + '"\n'
+
 for word, freq in obj:
 	#.replace(u"\uFFFD", "")
-	print freq, word.strip()
-	# pass
+	if not quiet:
+		print freq, word.strip()
