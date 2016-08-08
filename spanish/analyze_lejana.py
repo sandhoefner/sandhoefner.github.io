@@ -24,10 +24,8 @@ legal_chars = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','
 buffer = []
 print "\nStory contains " + str(len(story)) + " words"
 
-
 # remove duplicates
 story = list(set(story))
-
 
 print "Story contains " + str(len(story)) + " unique words before normalizing characters"
 
