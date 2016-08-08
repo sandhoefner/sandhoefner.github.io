@@ -11,7 +11,7 @@
 	var oneDay = 24 * 60 * 60 * 1000;
 	var year = 2016;
 	var month = 8;
-	var day = 4;
+	var day = 5;
 	var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 	document.getElementById("month").innerText = months[month-1];
 	document.getElementById("day").innerText = " " + day + ", ";
@@ -21,4 +21,4 @@
 	var now = new Date(helper.getFullYear(), helper.getMonth()+1, helper.getDate());
 	var result = Math.round(Math.abs((start.getTime() - now.getTime())/(oneDay))) + 1;
 	document.getElementById("result").innerText = result;
-</script>
+</script5

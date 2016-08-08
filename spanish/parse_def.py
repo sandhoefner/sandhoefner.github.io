@@ -11,7 +11,8 @@ with open('CREA_truncated.csv', 'rb') as csvfile:
 	counter = 1
 	for row in rows[1:500]:
 		word = row[wordCol].decode('latin1').strip()
-		soup = BeautifulSoup(open("../../../spanish_data/" + str(counter) + "_" + word + ".html"), "html.parser")
+		file = str(counter) + "_" + word
+		soup = BeautifulSoup(open("../../../spanish_data/" + file + ".html"), "html.parser")
 		try:
 			quickdef = soup.findAll("div", {"class": "quickdef"})[1]
 			source = quickdef.find("div", {"class": "source"})
@@ -31,7 +32,8 @@ with open('CREA_truncated.csv', 'rb') as csvfile:
 				defn = el.text
 			except (IndexError, AttributeError) as error2:
 				lexeme = defn = "11896"
-		print "input: " + word
-		print "lexeme: " + lexeme
-		print "definition: " + defn + "\n"
+				print file
+		# print "input: " + word
+		# print "lexeme: " + lexeme
+		# print "definition: " + defn + "\n"
 		counter += 1
