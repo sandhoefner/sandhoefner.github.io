@@ -105,7 +105,14 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 				spacing = ""
 				if progress < 10:
 					spacing = " "
-				sys.stdout.write('\r[' + '.'*progress + ' '*(50-progress) + '] ' + str(progress*2) + "% complete: " + spacing + str(int(((50-progress)/progress)*(time.time()-start))) + " seconds remaining     "),
+				timeLeft = int(((50-progress)/progress)*(time.time()-start))
+				if timeLeft > 60:
+					seg = timeLeft % 60
+					timeLeft = str((timeLeft-seg)/60) + "m" + str(seg) + "s "
+				else:
+					timeLeft = str(timeLeft) + "s "
+				# print calls will not overwrite each other if the terminal window is too narrow
+				sys.stdout.write('\r[' + '.'*progress + ' '*(50-progress) + '] ' + str(progress*2) + "%, " + spacing + timeLeft + "left       "),
 				sys.stdout.flush()
 				# print str(progress) + "% complete: " + str(((100-progress)/progress)*(time.time()-start)) + " seconds remaining"
 			progress += 1
@@ -128,5 +135,5 @@ print '\n\nTask took about ' + str(time.time()-start) + ' seconds\n'
 obj = sorted(obj.items(), key=operator.itemgetter(1), reverse=True)
 for word, freq in obj:
 	#.replace(u"\uFFFD", "")
-	# print freq, word.strip()
-	pass
+	print freq, word.strip()
+	# pass
