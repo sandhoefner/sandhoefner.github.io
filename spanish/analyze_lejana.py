@@ -103,6 +103,8 @@ def parseSecs(input):
 	else:
 		return str(input) + "s "
 
+# could be fun to write a helper to pad and justify strings given a target length
+
 with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 	myReader = csv.reader(csvfile, delimiter = ',', quotechar = '"')
 	rows = list(myReader)
