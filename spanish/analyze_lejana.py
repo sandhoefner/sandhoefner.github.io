@@ -28,8 +28,8 @@ story = []
 
 # RUNTIME VARIANTS
 quiet = False
-# file = 'CADS_full.txt'
-file = 'lejana.txt'
+file = 'CADS_full.txt'
+# file = 'lejana.txt'
 
 with open(file,'r') as f:
 	for line in f:
@@ -124,7 +124,7 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 				# print('\x1b[2K\r'),
 				# print(progress)
 				spacing = ""
-				if progress < 10:
+				if progress < 5:
 					spacing = " "
 				# float call(s) necessary here to prevent int division rounding down to 0 halfway through and fucking up the timer
 				timeLeft = int(((50-float(progress))/float(progress))*(time.time()-start))
@@ -132,7 +132,7 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 				# print progress
 				# print calls will not overwrite each other if the terminal window is too narrow
 				# sys.stdout.write('\r' + str(progress))
-				sys.stdout.write('\r[' + '.'*progress + ' '*(50-progress) + '] ' + str(progress*2) + "%, " + spacing + timeLeft + "left       "),
+				sys.stdout.write('\r[' + '.'*progress + ' '*(50-progress) + '] ' + spacing + str(progress*2) + "% done, " + timeLeft + "left  "),
 				sys.stdout.flush()
 				# print str(progress) + "% complete: " + str(((100-progress)/progress)*(time.time()-start)) + " seconds remaining"
 			progress += 1
