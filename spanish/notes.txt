@@ -14,6 +14,8 @@ https://www.amazon.com/Frequency-Dictionary-Spanish-Vocabulary-Dictionaries-eboo
 https://www.scribd.com/doc/35527699/Spanish-Word-Frequency-Study
 http://howlearnspanish.com/2010/08/how-many-words-do-you-need-to-know/
 
+if this goes really well then as a casual byproduct you will also have the best digital spanish-english dictionary in existence... is it illegal to profit from/even release that?
+at very least you can help consumers by doing an audit of existing dictionary completeness... shouldn't be so hard to have a quantiative measure of this but if one exists it's well hidden
 
 could proxy difficulty of text by average google hits per unique word but it's unscientific and ultimately unhelpful
 need to extract proper nouns without definitions
