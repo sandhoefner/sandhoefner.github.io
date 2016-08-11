@@ -39,7 +39,7 @@ var mass_input = "";
 var buffer = "";
 var buffered = false;
 var reset = false;
-var in_game = false;
+// var in_game = false;
 var timing;
 
 // var x = document.getElementById("overlays").createElement("CANVAS");
@@ -91,20 +91,21 @@ var ctx_2;
 window.onload = function() {
     // http://stackoverflow.com/questions/1495219/how-can-i-prevent-the-backspace-key-from-navigating-back
 // Prevent the backspace key from navigating back.
+// this is now chrome default lol
 $(document).unbind('keydown').bind('keydown', function (event) {
     var doPrevent = false;
     if (event.keyCode === 8) {
         var d = event.srcElement || event.target;
-        if ((d.tagName.toUpperCase() === 'INPUT' && 
+        if ((d.tagName.toUpperCase() === 'INPUT' &&
              (
                  d.type.toUpperCase() === 'TEXT' ||
-                 d.type.toUpperCase() === 'PASSWORD' || 
-                 d.type.toUpperCase() === 'FILE' || 
-                 d.type.toUpperCase() === 'SEARCH' || 
-                 d.type.toUpperCase() === 'EMAIL' || 
-                 d.type.toUpperCase() === 'NUMBER' || 
+                 d.type.toUpperCase() === 'PASSWORD' ||
+                 d.type.toUpperCase() === 'FILE' ||
+                 d.type.toUpperCase() === 'SEARCH' ||
+                 d.type.toUpperCase() === 'EMAIL' ||
+                 d.type.toUpperCase() === 'NUMBER' ||
                  d.type.toUpperCase() === 'DATE' )
-             ) || 
+             ) ||
              d.tagName.toUpperCase() === 'TEXTAREA') {
             doPrevent = d.readOnly || d.disabled;
         }
@@ -193,15 +194,23 @@ y[4].onclick = function() {
 // }
 
 
+gameOn = function() {
+    console.log("overlay display:",$("#overlays").css("display"));
+    return ($("#overlays").css("display") == "none");
+}
+
+
 // document.body.innerHTML +='<svg width="100" height="100"></svg>';
 // document.getElementById("canvas").style.position = "absolute";
 
 // document.getElementById("canvas").style.zIndex = "0";
 
 window.onkeyup = function(e) {
+    console.log(e);
     // console.log(e);
     var adder = 0;
     if (e.keyCode == 32 /*spacebar*/) {
+        console.log("you just pressed spacebar");
         // $("#overlays").after("<div id='fuckle'></div>");
         // document.body.innerHTML +='<div id="fuckle" style="display:inline-block;"></div>';
 
@@ -239,32 +248,46 @@ window.onkeyup = function(e) {
         //                             .attr("width", 500)
         //                             .attr("height", 500);
 
-        overlay_style = $("#overlays").css("display");
+        // overlay_style = $("#overlays").css("display");
         // put in console logs for every bool everywhere so users can help you debug (and so you can debug). something's off; sometimes the timer doesn't play at all.
-        if (secs <= 0 && /*overlay_style == "none"*/in_game) {
+
+        console.log("timer currently running: " + (secs > 0));
+        console.log("game in progress: " + gameOn());
+        if (secs <= 0 && gameOn()/*overlay_style == "none"*/     /*in_game*/) {
+            // console.log("you're in-game and you don't already have a timer running, so I'll start one for you now");
             secs = 30;
             timing = true;
             countDown();
         }
 
     } else if (e.keyCode >= 48 && e.keyCode <= 57/*any number*/) {
-        if (in_game && secs > 0) {
+        console.log("you just pressed "+ (parseInt(e.keyCode)-48));
+        console.log("game in progress: " + gameOn());
+        console.log("timer already running: " + (secs > 0));
+        if (gameOn() && secs > 0) {
+            console.log("mass_input: ", mass_input);
             mass_input += (parseInt(e.keyCode) - 48);
+                        console.log("mass_input: ", mass_input);
+
         }
     } else if (e.keyCode == 13 /*enter*/) {
-        if (in_game && secs > 0) {
+        console.log("you just pressed enter");
+        if (gameOn() && secs > 0) {
+            console.log("you're in game and there's a timer running");
         if (buffered) {
+            console.log("you already input a mass for this split so I'll replace it now");
             secs -= k * parseInt(buffer);
-            secs += k * parseInt(mass_input);   
+            secs += k * parseInt(mass_input);
         } else {
-            secs += k * parseInt(mass_input);   
+            console.log("this is your first mass input for this split");
+            secs += k * parseInt(mass_input);
         }
         buffer = mass_input;
         buffered = true;
         // write buffer to canvas
-        
+
         ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
-    
+
         // if (/*secs > 0*/timing) {
 ctx_2.fillText(parseInt(mass_input), 10, 50);
 // }
@@ -280,7 +303,7 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
         //   .attr("width", width)
         //   .attr("height", height);
 
-        //   timer_box.append("rect") 
+        //   timer_box.append("rect")
         //         .attr("x", 200)
         //         .attr("y", 200)
         //         .attr("width", 200)
@@ -290,11 +313,11 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
 }
     } else if (e.keyCode == 83 /*s*/ ) {
         for (i = 0; i < 8; i++) {
-            
+
             setTimeout(function(){triggerKeyEvent(87);
         triggerKeyEvent(87, "keyup");
         }, i*100);
-        
+
     }
         function triggerKeyEvent(charCode, eventName) {
         eventName = eventName || "keydown";
@@ -383,8 +406,8 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
     document.dispatchEvent(oEvent);
     */
     } else if (e.keyCode == 82 /*r*/) {
-
-        if (in_game) {
+console.log("you just pressed R so I'm resetting the timer");
+        if (gameOn()) {
         secs = 0;
         reset = true;
         timing = false;
@@ -410,6 +433,8 @@ var modes = {
     "Party": ":party"
 }
 
+console.log("this is happening");
+
 chrome.storage.sync.get(['skins',
     'names',
     'colors',
@@ -418,7 +443,9 @@ chrome.storage.sync.get(['skins',
     'stats', 'nick'//, 'region', 'mode'
 ], function(response) {
     if (response.skins) {
-        y[0].click();
+        // y[0].click();
+        console.log("noSkins",$("#noSkins"));
+        $("#noSkins").click();
     }
     if (response.names) {
         y[1].click();
@@ -514,6 +541,8 @@ function rounded(s) {
 // console.log(rounded(123.456888));
 // console.log(rounded(1234.5678888));
 
+
+
 var observer = new MutationObserver(function(mutations) {
     mutations.forEach(function(mutationRecord) {
         // console.log(mutationRecord);
@@ -523,12 +552,12 @@ var observer = new MutationObserver(function(mutations) {
         // timing = false;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
                         ctx_2.clearRect(0, 0, canvas_2.width, canvas_2.height);
-                        overlay_style = $("#overlays").css("display");
-if (overlay_style != "none") {
-                in_game = false;
-            } else {
-                in_game = true;
-            }
+                        // overlay_style = $("#overlays").css("display");
+// if (overlay_style != "none") {
+//                 in_game = false;
+//             } else {
+//                 in_game = true;
+//             }
 // console.log(in_game);
     });
 });
@@ -555,7 +584,7 @@ function countDown() {
     if (secs > 0) {
         ctx.fillText(rounded(secs), 10, 50);
     } else {
-        if (!reset && in_game) {
+        if (!reset && gameOn()) {
             ctx.fillText("MERGE", 10, 50);
             setTimeout(function() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);

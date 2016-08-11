@@ -1,26 +1,18 @@
 // Saves options to chrome.storage
 function save_options() {
-    var skins = document.getElementById('No skins').checked;
-    var names = document.getElementById('No names').checked;
-    var colors = document.getElementById('No colors').checked;
-    var mass = document.getElementById('Show mass').checked;
-    var theme = document.getElementById('Dark theme').checked;
-    var stats = document.getElementById('Skip stats').checked;
+    var formStuff = {'skins' : document.getElementById('No skins').checked,
+    'names' : document.getElementById('No names').checked,
+    'colors' : document.getElementById('No colors').checked,
+    'mass' : document.getElementById('Show mass').checked,
+    'theme' : document.getElementById('Dark theme').checked,
+    'stats' : document.getElementById('Skip stats').checked,
+    'nick' : document.getElementById('nick').value};
 
-    var nick = document.getElementById('nick').value;
+    console.log("seeing form info:", formStuff);
     // var region = document.getElementById('region').value;
     // var mode = document.getElementById('gamemode').value;
-    chrome.storage.sync.set({
-        skins: skins,
-        names: names,
-        colors: colors,
-        mass: mass,
-        theme: theme,
-        stats: stats,
-        nick: nick,
-        // region: region,
-        // mode: mode
-    }, function() {
+    chrome.storage.sync.set(formStuff, function() {
+
         // Update status to let user know options were saved.
         var status = document.getElementById('status');
         status.innerHTML = 'Options saved.';
