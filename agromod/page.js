@@ -29,6 +29,8 @@
 // A dynamic timer to inform your tactics in the crucial moments between split and merge.
 
 
+// potential fuckery: http://unixpapa.com/js/key.html
+
 // maybe this will help with form fill in case of long load time
 // document.onload=function(){
 var secs = 0;
