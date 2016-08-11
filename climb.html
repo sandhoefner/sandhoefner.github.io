@@ -2,24 +2,7 @@
 <html>
 <meta charset="UTF-8">
 <title>Crusher Crew</title>
-<style>
-    #wrapper {
-        margin: 5%;
-        padding: 40px;
-        border: 2px solid #73AD21;
-    }
 
-    .row {
-        margin-top: 3.5%;
-        padding-top: 3.5%;
-        border-top: 2px solid #73AD21;
-        /*margin-bottom: 7%;*/
-    }
-
-    .hugMe {
-        border: 2px solid #73AD21;
-    }
-</style>
 <div id="wrapper" style="text-align:center">
 
     <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -68,6 +51,31 @@
 
     font-weight: 700;
 }*/
+
+
+body {
+    background-color: rgb(217, 230, 242);
+    padding: 5%;
+}
+
+    #wrapper {
+        /*margin: 5%;*/
+        background-color: rgb(250,250,250);
+        padding: 40px;
+        border-radius: 5px;
+        border: 2px solid #73AD21;
+    }
+
+    .row {
+        margin-top: 3.5%;
+        padding-top: 3.5%;
+        border-top: 2px solid #73AD21;
+        /*margin-bottom: 7%;*/
+    }
+
+    .hugMe {
+        border: 2px solid #73AD21;
+    }
 
     .strongbold {
         font-weight: 700;
@@ -346,24 +354,25 @@
                 // .on("mouseout",function(){var noodle = this; unbold(this);})
                 .attr("fill", colors[i]);
 
-            group.append("rect")
-                .attr("x", function() {
-                    if (i < 8) {
-                        return 270
-                    } else {
-                        return 470
-                    }
-                })
-                .attr("y", function() {
-                    if (i > 7) {
-                        return 40 * i_mod - 20
-                    } else {
-                        return 40 * i_mod
-                    }
-                })
-                .attr("width", 20)
-                .attr("height", 20)
-                .attr("fill", "white");
+            // not sure what this was ever for
+            // group.append("rect")
+            //     .attr("x", function() {
+            //         if (i < 8) {
+            //             return 270
+            //         } else {
+            //             return 470
+            //         }
+            //     })
+            //     .attr("y", function() {
+            //         if (i > 7) {
+            //             return 40 * i_mod - 20
+            //         } else {
+            //             return 40 * i_mod
+            //         }
+            //     })
+            //     .attr("width", 20)
+            //     .attr("height", 20)
+            //     .attr("fill", "white");
 
             group.append("text")
                 .attr("id", "text" + i)
