@@ -3,7 +3,7 @@ to implement:
     time remaining
     go to certain date
     export all
-    fold unseen peek into same 
+    fold unseen peek into same
     should I leverage searching somehow?
     will stop if wifi takes too long, also don't want to go slower than wifi is capable of, also don't want to overwhelm the stack
     this approach is inherently slow
@@ -20,7 +20,7 @@ function scroll(){
     }
 }
 
-want=0;
+want=1;
 
 function peek(){
     console.log("peeking");
@@ -44,18 +44,18 @@ window.onload = function() {
 
     // select the target node
     var target = $("._7hx").children()[0];
-     
+
     // create an observer instance
     var observer = new MutationObserver(function(mutations) {
       mutations.forEach(function(mutation) {
         console.log(mutation.type);
         scroll();
-      });    
+      });
     });
-     
+
     // configuration of the observer:
     var config = { attributes: true, childList: true, characterData: true };
-     
+
     // pass in the target node, as well as the observer options
     observer.observe(target, config);
 }
