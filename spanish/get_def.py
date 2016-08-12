@@ -20,7 +20,7 @@ with open('CREA_truncated_utf8.csv', 'rb') as csvfile:
 	wordCol = 1
 	afreqCol = 2
 	nfreqCol = 3
-	for row in rows:
+	for row in rows[76131:len(rows)]:
 		word = row[wordCol].decode('utf-8').strip()
 		# print word
 		rank = row[rankCol]
