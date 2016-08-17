@@ -4,8 +4,17 @@ inconvenient for me that there's no one best
 https://en.wiktionary.org/wiki/s%C3%A1dicamente
 
 
+
+$100 for 20,000 frequency-sorted lemmas ):
+http://www.wordfrequency.info/spanish.asp
+
+
 spanishdict is missing some unconventional word conjugations e.g. verbs created from nouns
 
+
+fractional homonym handling:
+example:
+wait it doesn'tt make sense does it
 
 
 do it in Ruby or something just for XP
