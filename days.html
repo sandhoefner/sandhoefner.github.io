@@ -1,11 +1,38 @@
-<font size="48">
+<style>
+	body {
+		padding: 50px;
+
+		/* font */
+		color: white;
+		font-family: "Ubuntu";
+		-webkit-text-stroke: 2px black;
+
+		/* Location of the image */
+		background-image: url(library.jpg);
+		/* Background image is centered vertically and horizontally at all times */
+		background-position: center center;
+		/* Background image doesn't tile */
+		background-repeat: no-repeat;
+		/* Background image is fixed in the viewport so that it doesn't move when
+		the content's height is greater than the image's height */
+		background-attachment: fixed;
+		/* This is what makes the background image rescale based
+		on the container's size */
+		background-size: cover;
+		/* Set a background color that will be displayed
+		while the background image is loading */
+		background-color: #464646;
+	}
+</style>
+
+<font size="64"><strong>
 	You started on
 	<span id="month"></span>
 	<span id="day"></span>
 	<span id="year"></span>.
 	<br>Today is day
 	<span id="result">(loading)</span>.
-</font>
+</strong></font>
 
 <script>
 	var oneDay = 24 * 60 * 60 * 1000;
