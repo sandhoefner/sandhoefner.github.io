@@ -1,5 +1,14 @@
 // CHANGELOG
 
+// 1.3.1:
+// fixed checkbox to override native memory
+// unclear on how native memory works; if it's consistent then mine is just annoying
+// but I dont  feeel liiek dealing with that right now
+// sim checkbox layout differ options vs game
+
+// 1.3.0:
+// huge bug fix - haven't tested it super thoroughly but it's definitely not a total piece of crap anymore
+
 // 1.2.2:
 // changed if (timing) to if (secs > 0), and sophisticated in_game update in mutationObserver. hopefully this fixes the problem of sometimes timer being inaccessible
 // brief test: still weird behavior if you press spacebar right after starting the game maybe because mutationobserver is still firing but no worries
@@ -170,7 +179,7 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
-y[4].id = "dark_mode_evan";
+// y[4].id = "dark_mode_evan";
 y[4].onclick = function() {
     if (y[4].checked) {
         ctx.fillStyle = "white";
@@ -428,6 +437,8 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
+console.log("ywhy",y);
+
 var modes = {
     "FFA": "",
     "Teams": ":teams",
@@ -437,6 +448,8 @@ var modes = {
 
 console.log("this is happening");
 
+responseHolder = {};
+
 chrome.storage.sync.get(['skins',
     'names',
     'colors',
@@ -444,33 +457,47 @@ chrome.storage.sync.get(['skins',
     'theme',
     'stats', 'nick'//, 'region', 'mode'
 ], function(response) {
-    if (response.skins) {
-        // y[0].click();
-        console.log("noSkins",$("#noSkins"));
-        $("#noSkins").click();
-    }
-    if (response.names) {
-        y[1].click();
-    }
-    if (response.colors) {
-        y[2].click();
-    }
-    // != false in case it doesn't exist, for new user
-    // don't be a dummy m8. you had the extension running twice
-    if (response.mass != false) {
+    responseHolder = response;
+    // console.log("function response");
+    // if (response.skins) {
+    //     // y[0].click();
+    //     console.log("noSkins",$("#noSkins"));
+    //     // console.log("about to check noskins");
+    //     // $("#noSkins")[0].checked = true;
+    //     // $("#noSkins").prop('checked', true);
+    //     $('#noSkins').each(function(){ this.checked = true; });
+    //     console.log("noSkins after action", $("#noSkins"));
+    // }
+    // if (response.names) {
+    //     y[1].click();
+    // }
+    // if (response.colors) {
+    //     y[2].click();
+    // }
+    // // != false in case it doesn't exist, for new user
+    // // don't be a dummy m8. you had the extension running twice
+    // if (response.mass != false) {
 
-        y[3].click();
-    }
-    if (response.theme) {
-        y[4].click();
-    }
-    if (response.stats) {
-        y[5].click();
-    }
+    //     y[3].click();
+    // }
+    // if (response.theme) {
+    //     y[4].click();
+    // }
+    // if (response.stats) {
+    //     y[5].click();
+    // }
 
     // "kill" hotkey could be useful
     // toggle extension is probably good practice
-
+    function bruteClick(elt, bool) {
+        console.log(bool);
+        // if (bool==true) {
+            while (elt[0].checked != bool) {
+                elt.click();
+            }
+            console.log('done');
+        // }
+    }
 
 
     // works, need to parrot it for other saved options
@@ -480,6 +507,20 @@ chrome.storage.sync.get(['skins',
                 if ($("#openfl-overlay").css("display") == "none") {
                     console.log("nick exists and I'm gonna fill it with " + response.nick);
             document.getElementById('nick').value = response.nick;
+            console.log(response);
+            bruteClick($("#noSkins"), response.skins);
+            bruteClick($("#noNames"), response.names);
+            bruteClick($("#noColors"), response.colors);
+            bruteClick($("#showMass"), response.mass);
+            bruteClick($("#skipStats"), response.stats);
+            bruteClick($("#darkTheme"), response.theme);
+            // $("#noNames").click();
+            // $("#noColors").click();
+            // $("#showMass").click();
+            // $("#skipStats").click();
+            // console.log(y);
+            // y[4].click();
+            // document.getElementById('noSkins').checked = true;
     } else {
         recurse_nick();
         console.log("nick doesn't exist yet, trying again soon");
@@ -493,17 +534,17 @@ chrome.storage.sync.get(['skins',
         console.log("nick!");
         recurse_nick();
     }
-    if (response.region /*!= "undefined"*/ && response.region != "Auto") {
-        document.getElementById('region').value = response.region;
-    }
-    if (response.mode /*!= "undefined"*/ ) {
-        document.getElementById('gamemode').value = modes[response.mode];
-        // console.log(document.getElementById('gamemode'));
-        // console.log(document.getElementById("helloContainer"));
-        $("#helloContainer").attr("data-gamemode", modes[response.mode]);
-        // console.log(document.getElementById("helloContainer"));
+    // if (response.region /*!= "undefined"*/ && response.region != "Auto") {
+    //     document.getElementById('region').value = response.region;
+    // }
+    // if (response.mode /*!= "undefined"*/ ) {
+    //     document.getElementById('gamemode').value = modes[response.mode];
+    //     // console.log(document.getElementById('gamemode'));
+    //     // console.log(document.getElementById("helloContainer"));
+    //     $("#helloContainer").attr("data-gamemode", modes[response.mode]);
+    //     // console.log(document.getElementById("helloContainer"));
 
-    }
+    // }
 });
 
 

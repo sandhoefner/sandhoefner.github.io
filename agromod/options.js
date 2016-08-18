@@ -42,7 +42,7 @@ function restore_options() {
         document.getElementById('No names').checked = items.names;
         document.getElementById('No colors').checked = items.colors;
         document.getElementById('Show mass').checked = items.mass;
-        document.getElementById('Dark theme').checked = items.dark;
+        document.getElementById('Dark theme').checked = items.theme;
         document.getElementById('Skip stats').checked = items.stats;
 
         document.getElementById('nick').value = items.nick;
