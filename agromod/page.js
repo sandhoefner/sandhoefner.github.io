@@ -1,5 +1,11 @@
 // CHANGELOG
 
+// 2.0.0:
+// 4-split, console-log prune, more gameOn checks for keystrokes
+
+// 1.3.2:
+// checkbox format
+
 // 1.3.1:
 // fixed checkbox to override native memory
 // unclear on how native memory works; if it's consistent then mine is just annoying
@@ -216,11 +222,19 @@ gameOn = function() {
 
 // document.getElementById("canvas").style.zIndex = "0";
 
+
 window.onkeyup = function(e) {
-    console.log(e);
     // console.log(e);
+    // console.log(e);
+
+    //
+    //
+    // just wrap the whole thing in if gameOn() dummy
+    //
+    //
+    //
     var adder = 0;
-    if (e.keyCode == 32 /*spacebar*/) {
+    if (e.keyCode == 32 && gameOn()/*spacebar*/) {
         console.log("you just pressed spacebar");
         // $("#overlays").after("<div id='fuckle'></div>");
         // document.body.innerHTML +='<div id="fuckle" style="display:inline-block;"></div>';
@@ -271,7 +285,7 @@ window.onkeyup = function(e) {
             countDown();
         }
 
-    } else if (e.keyCode >= 48 && e.keyCode <= 57/*any number*/) {
+    } else if (e.keyCode >= 48 && e.keyCode <= 57 && gameOn()/*any number*/) {
         console.log("you just pressed "+ (parseInt(e.keyCode)-48));
         console.log("game in progress: " + gameOn());
         console.log("timer already running: " + (secs > 0));
@@ -281,7 +295,7 @@ window.onkeyup = function(e) {
                         console.log("mass_input: ", mass_input);
 
         }
-    } else if (e.keyCode == 13 /*enter*/) {
+    } else if (e.keyCode == 13 && gameOn()/*enter*/) {
         console.log("you just pressed enter");
         if (gameOn() && secs > 0) {
             console.log("you're in game and there's a timer running");
@@ -322,11 +336,26 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
         //         .attr("fill", "black")
         //         .attr("fill-opacity", .75);
 }
-    } else if (e.keyCode == 83 /*s*/ ) {
-        for (i = 0; i < 8; i++) {
+    } else if ((e.keyCode == 83 /*s*/|| e.keyCode == 68 /*d*/  ) && gameOn()){
+        numTimes = 0;
+        realKey = 0;
+        keyName = "";
+        if (e.keyCode == 83) {
+            numTimes = 7;
+            realKey = 87;
+            keyName = "s";
+        } else {
+            numTimes = 4;
+            realKey = 32;
+            keyName = "d";
+        }
+        for (i = 0; i <= numTimes; i++) {
 
-            setTimeout(function(){triggerKeyEvent(87);
-        triggerKeyEvent(87, "keyup");
+            setTimeout(function(){
+                triggerKeyEvent(realKey);
+
+        triggerKeyEvent(realKey, "keyup");
+
         }, i*100);
 
     }
@@ -416,7 +445,7 @@ ctx_2.fillText(parseInt(mass_input), 10, 50);
     console.log(oEvent);
     document.dispatchEvent(oEvent);
     */
-    } else if (e.keyCode == 82 /*r*/) {
+    } else if (e.keyCode == 82 /*r*/&& gameOn()) {
 console.log("you just pressed R so I'm resetting the timer");
         if (gameOn()) {
         secs = 0;
@@ -437,7 +466,7 @@ for (var cnt = 0; cnt < x.length; cnt++) {
     if (x[cnt].type == "checkbox") y.push(x[cnt]);
 }
 
-console.log("ywhy",y);
+// console.log("ywhy",y);
 
 var modes = {
     "FFA": "",
@@ -446,7 +475,7 @@ var modes = {
     "Party": ":party"
 }
 
-console.log("this is happening");
+// console.log("this is happening");
 
 responseHolder = {};
 
@@ -490,12 +519,12 @@ chrome.storage.sync.get(['skins',
     // "kill" hotkey could be useful
     // toggle extension is probably good practice
     function bruteClick(elt, bool) {
-        console.log(bool);
+        // console.log(bool);
         // if (bool==true) {
             while (elt[0].checked != bool) {
                 elt.click();
             }
-            console.log('done');
+            // console.log('done');
         // }
     }
 
@@ -507,7 +536,7 @@ chrome.storage.sync.get(['skins',
                 if ($("#openfl-overlay").css("display") == "none") {
                     console.log("nick exists and I'm gonna fill it with " + response.nick);
             document.getElementById('nick').value = response.nick;
-            console.log(response);
+            console.log("just read these checkboxes from storage:",response);
             bruteClick($("#noSkins"), response.skins);
             bruteClick($("#noNames"), response.names);
             bruteClick($("#noColors"), response.colors);
@@ -531,7 +560,7 @@ chrome.storage.sync.get(['skins',
     // textbox and dropdowns
     // I don't think mode or region are working
     if (response.nick /*!= "undefined"*/ ) {
-        console.log("nick!");
+        // console.log("nick!");
         recurse_nick();
     }
     // if (response.region /*!= "undefined"*/ && response.region != "Auto") {
