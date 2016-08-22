@@ -363,24 +363,25 @@
                 .attr("fill", colors[i]);
 
             // not sure what this was ever for
-            // group.append("rect")
-            //     .attr("x", function() {
-            //         if (i < 8) {
-            //             return 270
-            //         } else {
-            //             return 470
-            //         }
-            //     })
-            //     .attr("y", function() {
-            //         if (i > 7) {
-            //             return 40 * i_mod - 20
-            //         } else {
-            //             return 40 * i_mod
-            //         }
-            //     })
-            //     .attr("width", 20)
-            //     .attr("height", 20)
-            //     .attr("fill", "white");
+            // nvm it's for mouseover continuity
+            group.append("rect")
+                .attr("x", function() {
+                    if (i < 8) {
+                        return 270
+                    } else {
+                        return 470
+                    }
+                })
+                .attr("y", function() {
+                    if (i > 7) {
+                        return 40 * i_mod - 20
+                    } else {
+                        return 40 * i_mod
+                    }
+                })
+                .attr("width", 20)
+                .attr("height", 20)
+                .attr("fill", rgb(217, 230, 242));
 
             group.append("text")
                 .attr("id", "text" + i)
