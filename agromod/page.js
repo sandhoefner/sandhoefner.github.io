@@ -1,3 +1,10 @@
+// note to self when you come back to this later
+// you started implementing 4-space and revising 7-w then lost the ganas
+// there are lots of good feature ideas in the comments
+// but realistically for your sake you should get this to a point where everything works, then leave it and work on something bigger/more stable
+// given the nature of extension programming don't even worry too much about getting everything working
+
+
 // CHANGELOG
 
 // 2.0.0:
