@@ -18,3 +18,7 @@ input {
 	border: 2px solid #73AD21;
 	display:inline-block;
 }
+
+#csv {
+	display: none;
+}

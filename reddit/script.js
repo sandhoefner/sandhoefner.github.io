@@ -14,17 +14,27 @@ function auth() {
 				'state='+state+'&redirect_uri='+redir+'&duration='+dur+'&scope='+scope);
 }
 
+// $("#csv").hide();
+
 var pages = [];
 
+var alreadyGot = false;
+
+//  pressing this button multiple tiems needs to be handled differently
 function submit() {
-	var subreddit = $("#subreddit").val();
-	var url = "https://www.reddit.com/r/" + subreddit + "/top/.json";
-	$.get(url, { limit: '100', t: 'all' }, function(data) {
-		data.data.children.forEach(function(post) {
-			pages.push(post.data);
+	// pages = [];
+
+
+		// $("#getData").hide();
+		subreddit = $("#subreddit").val();
+		var url = "https://www.reddit.com/r/" + subreddit + "/top/.json";
+		$.get(url, { limit: '100', t: 'all' }, function(data) {
+			data.data.children.forEach(function(post) {
+				pages.push(post.data);
+			});
+			next(data.data.after, url);
 		});
-		next(data.data.after, url);
-	});
+
 }
 
 function next(after, url) {
@@ -42,5 +52,61 @@ function next(after, url) {
 
 function ajaxDone() {
 	console.log("no more posts");
+	$("#csv").css({"display": "block"});
+
 	console.log(pages);
 }
+
+
+
+function convertArrayOfObjectsToCSV(args) {
+		var result, ctr, keys, columnDelimiter, lineDelimiter, data;
+
+		data = args.data || null;
+		if (data == null || !data.length) {
+			return null;
+		}
+
+		columnDelimiter = args.columnDelimiter || ',';
+		lineDelimiter = args.lineDelimiter || '\n';
+
+		keys = Object.keys(data[0]);
+
+		result = '';
+		result += keys.join(columnDelimiter);
+		result += lineDelimiter;
+
+		data.forEach(function(item) {
+			ctr = 0;
+			keys.forEach(function(key) {
+				if (ctr > 0) result += columnDelimiter;
+
+				result += item[key];
+				ctr++;
+			});
+			result += lineDelimiter;
+		});
+
+		return result;
+	}
+
+
+	function downloadCSV() {
+		var data, filename, link;
+		var csv = convertArrayOfObjectsToCSV({
+			data: pages
+		});
+		if (csv == null) return;
+
+		filename = (subreddit + ".csv") || 'export.csv';
+
+		if (!csv.match(/^data:text\/csv/i)) {
+			csv = 'data:text/csv;charset=utf-8,' + csv;
+		}
+		data = encodeURI(csv);
+
+		link = document.createElement('a');
+		link.setAttribute('href', data);
+		link.setAttribute('download', filename);
+		link.click();
+	}
