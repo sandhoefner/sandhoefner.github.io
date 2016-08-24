@@ -29,19 +29,19 @@ input {
 }*/
 
 svg {
-	display: block;
-	text-align:center;
-	float: center;
 	position: relative;
-
-
-position: relative;
-left: 50%;
--webkit-transform: translateX(-50%);
--ms-transform: translateX(-50%);
-transform: translateX(-50%);
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	-ms-transform: translateX(-50%);
+	transform: translateX(-50%);
+	top: 0%;
+/*
+		-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);*/
 }
 
 #vis {
-	margin: 10%;
+	/*position: absolute;*/
+	/*margin: 10%;*/
 }
