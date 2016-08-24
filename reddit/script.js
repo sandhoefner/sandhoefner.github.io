@@ -133,7 +133,8 @@ function downloadCSV() {
 
 
 function processText(raw) {
-	return raw.replace( /\n/g, " " ).replace( /\//g, " " ).toLowerCase().replace(/[^0-9a-z ]/gi, '').split(" ");
+	// inconsistency: this here below removes all numerals but worldnews hard copy has a few numerals
+	return raw.replace( /\n/g, " " ).replace( /\//g, " " ).toLowerCase()/*.replace(/[^0-9a-z ]/gi, '')*/.replace(/[^a-z ]/gi, '').split(" ");
 }
 
 // should probably be median

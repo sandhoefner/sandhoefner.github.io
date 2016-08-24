@@ -2,8 +2,14 @@ function runCloud(tags) {
 
     var fill = d3.scale.category20b();
 
-    var w = window.innerWidth,
-            h = window.innerHeight;
+    // var w = window.innerWidth,
+            // h = window.innerHeight;
+
+
+var captainWidth = 0.9*window.innerWidth, captainHeight = 0.7*window.innerHeight;
+
+        var w = captainWidth,
+            h = captainHeight;
 
     var max,
             fontSize;
@@ -32,8 +38,8 @@ function runCloud(tags) {
     };
 
     function draw(data, bounds) {
-        var w = window.innerWidth,
-            h = window.innerHeight;
+        var w = captainWidth,
+            h = captainHeight;
 
         svg.attr("width", w).attr("height", h);
 

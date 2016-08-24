@@ -41,7 +41,17 @@ svg {
 	transform: translateY(-50%);*/
 }
 
+body {
+	margin: 5%;
+	background-color: #CDE8F2;
+}
+
 #vis {
 	/*position: absolute;*/
 	/*margin: 10%;*/
+}
+
+#wrapper {
+
+	border: 1px solid;
 }
