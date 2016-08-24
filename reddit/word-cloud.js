@@ -1,4 +1,4 @@
-// function runCloud(wordList) {
+function runCloud() {
 
 var fill = d3.scale.category20b();
 
@@ -89,4 +89,6 @@ function update() {
     layout.stop().words(tags).start();
 }
 
-// }
+
+
+}

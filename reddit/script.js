@@ -126,9 +126,6 @@ function downloadCSV() {
 	link.click();
 }
 
-window.onload = function() {
-	// console.log(words);
-}
 
 function processText(raw) {
 	return raw.replace( /\n/g, " " ).replace( /\//g, " " ).toLowerCase().replace(/[^0-9a-z ]/gi, '').split(" ");
@@ -189,3 +186,9 @@ function complexity(list, ref) {
 // maybe filter buzzphrases like OC
 // what is the vision for this product
 // reading level analysis would probably be more viable for commetns
+
+
+window.onload = function() {
+	// console.log(words);
+	runCloud();
+}
