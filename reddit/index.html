@@ -1,9 +1,17 @@
+<!DOCTYPE html>
+<html>
+
 <head>
 	<title>Subreddit Analysis</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<script src="script.js"></script>
 	<script src="jquery.js"></script>
 	<script src="papaparse.min.js"></script>
+	<script src="importWords.js"></script>
+	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="bower_components/d3/d3.js"></script>
+	<script type="text/javascript" src="bower_components/d3-cloud/d3.layout.cloud.js"></script>
+	<script type="text/javascript" src="tags.js"></script>
 </head>
 
 <body>
@@ -12,6 +20,14 @@
 		<input id="subreddit" placeholder="Subreddit"></input>
 		<button id="getData" onclick="submit()">Submit</button>
 		<div id="textHolder"></div>
+		<div id="vis"></div>
+		<script type="text/javascript" src="word-cloud.js"></script>
 		<br><button id="csv" onclick='downloadCSV();'>Download CSV</button>
+		<!-- textarea not allbrowser compatible? -->
+		<!-- <br><input id="textTitle" placeholder="Title of work"></input> -->
+		<!-- <br><textarea id="sandbox"></textarea> -->
+		<!-- <br><button onclick="complexity(null,null);">Analyze complexity</button> -->
 	</div>
 </body>
+
+</html>
