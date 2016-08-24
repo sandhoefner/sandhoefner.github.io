@@ -6,7 +6,7 @@ function runCloud(tags) {
             // h = window.innerHeight;
 
 
-var captainWidth = 0.9*window.innerWidth, captainHeight = 0.7*window.innerHeight;
+var captainWidth = 0.8*window.innerWidth, captainHeight = 0.7*window.innerHeight;
 
         var w = captainWidth,
             h = captainHeight;

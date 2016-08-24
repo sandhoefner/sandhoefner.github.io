@@ -19,11 +19,13 @@ input {
 	border: 2px solid #73AD21;
 	display:inline-block;
 }
+*/
 
-#csv {
+/*#csv {
 	display: none;
-}
+}*/
 
+/*
 #sandbox {
 	resize: both;
 }*/
@@ -52,6 +54,17 @@ body {
 }
 
 #wrapper {
-
+	background-color: #F2F2F2;
+	text-align: center;
+	padding: 5%;
 	border: 1px solid;
+}
+
+hr {
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid black;
+	margin: 1em 0;
+	padding: 0;
 }
