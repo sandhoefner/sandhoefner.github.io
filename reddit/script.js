@@ -110,3 +110,12 @@ function convertArrayOfObjectsToCSV(args) {
 		link.setAttribute('download', filename);
 		link.click();
 	}
+
+window.onload = function() {
+	console.log("starting to parse");
+	Papa.parse("words.csv", {
+		complete: function(results) {
+			console.log("Finished:", results.data);
+		}
+	});
+}
