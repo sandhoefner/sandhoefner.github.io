@@ -6,7 +6,7 @@ function runCloud(tags) {
             // h = window.innerHeight;
 
 
-var captainWidth = 0.8*window.innerWidth, captainHeight = 0.7*window.innerHeight;
+var captainWidth = 0.89*window.innerWidth, captainHeight = 0.5*window.innerHeight;
 
         var w = captainWidth,
             h = captainHeight;
@@ -34,7 +34,7 @@ var captainWidth = 0.8*window.innerWidth, captainHeight = 0.7*window.innerHeight
     update();
 
     window.onresize = function(event) {
-        update();
+        // update();
     };
 
     function draw(data, bounds) {

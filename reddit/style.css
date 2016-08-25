@@ -1,7 +1,7 @@
 /*body {
 	background-color: rgb(217, 230, 242);
 	padding: 5%;
-}
+}*/
 
 input {
 	margin: 5px;
@@ -9,8 +9,15 @@ input {
 	border: single black;
 	overflow: visible;
 	padding: 5px;
+	margin-bottom: 20px;
 }
 
+h2 {
+	margin-top: 0;
+	margin-bottom: 2%
+	}
+
+/*
 #wrapper {
 	background-color: rgb(250,250,250);
 	padding: 40px;
@@ -44,8 +51,11 @@ svg {
 }
 
 body {
-	margin: 5%;
-	background-color: #CDE8F2;
+	font-family: Helvetica;
+	font-size: 90%;
+	margin: 3%;
+	/*background-color: #CDE8F2;*/
+	background-color: rgb(217, 230, 242);
 }
 
 #vis {
@@ -53,18 +63,34 @@ body {
 	/*margin: 10%;*/
 }
 
+.linkSpan {
+	color: blue;
+	text-decoration: underline;
+	cursor: pointer;
+	}
+
 #wrapper {
-	background-color: #F2F2F2;
+	/*background-color: #FFFFF3;*/
+			background-color: rgb(250,250,250);
+
 	text-align: center;
-	padding: 5%;
-	border: 1px solid;
+	padding: 2%;
+	border-radius: 5px;
+		border: 2px solid  black;
+
 }
+/*#73AD21; nice green border color */
 
 hr {
 	display: block;
 	height: 1px;
 	border: 0;
-	border-top: 1px solid black;
+	border-top: 2px solid black;
 	margin: 1em 0;
 	padding: 0;
+}
+
+button {
+	align: center;
+	height: 28px;
 }
