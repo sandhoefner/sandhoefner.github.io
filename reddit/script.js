@@ -37,10 +37,14 @@ var pages = [];
 var subreddit = 'worldnews';
 
 var alreadyGot = false;
+var underway = false;
 
 //  pressing this button multiple tiems needs to be handled differently
 function submit() {
-
+if (underway) {
+	return;
+}
+underway = true;
 progress = 0;
 
 	// pages = [];
@@ -50,10 +54,13 @@ progress = 0;
 
 	// };
 
-$("#vis").html('<img src="spinner.gif" alt="Loading" style="width:50px;height:50px;">');
-$("#pct").html(progress + "%");
+
 		// $("#getData").hide();
+		subreddit = "";
 		subreddit = $("#subreddit").val();
+		$("#vis").html('<img src="spinner.gif" alt="Loading" style="width:50px;height:50px;">');
+$("#pct").html("Fetching data from "+subreddit+": "+progress + "%");
+		// console.log(subreddit);
 if (subreddit.substring(0, 3) == "/r/") {
 	subreddit = subreddit.substring(3,subreddit.length);
 }
@@ -69,14 +76,23 @@ if (subreddit.substring(0, 3) == "/r/") {
 			if (e.status == 404) {
 				alert("Oops, there's nothing there! Please check that you've requested a valid subreddit.");
 	} else {alert("Sorry, something went wrong! Please try again a little later, or try a different subreddit.");} // or whatever
+	$("#vis").html("Pick a subreddit to see its 250 favorite words!");
+	$("#pct").html("");
+	underway = false;
 });;
 
 }
 
+
+window.onkeyup = function(e) {
+if (e.keyCode == 13 /*enter*/) {
+	submit();
+}}
+
 function next(after, url) {
 	progress += 10;
 	// $("#vis").html("Loading: " + progress + "%");
-$("#pct").html(progress + "%");
+$("#pct").html("Fetching data from "+subreddit+": "+progress + "%");
 
 	if (!after) {
 		ajaxDone();
@@ -91,6 +107,7 @@ $("#pct").html(progress + "%");
 }
 
 function ajaxDone() {
+	underway = false;
 	$("#pct").html("");
 	// console.log("no more posts");
 	// $("#csv").css({"display": "block"});
