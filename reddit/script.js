@@ -34,7 +34,7 @@ function auth() {
 
 var pages = [];
 
-
+var subreddit = 'worldnews';
 
 var alreadyGot = false;
 
@@ -57,10 +57,10 @@ $("#pct").html(progress + "%");
 if (subreddit.substring(0, 3) == "/r/") {
 	subreddit = subreddit.substring(3,subreddit.length);
 }
-		console.log(subreddit);
+		// console.log(subreddit);
 		var url = "https://www.reddit.com/r/" + subreddit + "/top/.json";
 		$.get(url, { limit: '100', t: 'all' }, function(data) {
-			console.log(data);
+			// console.log(data);
 			data.data.children.forEach(function(post) {
 				pages.push(post.data);
 			});
@@ -92,7 +92,7 @@ $("#pct").html(progress + "%");
 
 function ajaxDone() {
 	$("#pct").html("");
-	console.log("no more posts");
+	// console.log("no more posts");
 	// $("#csv").css({"display": "block"});
 
 	// console.log(pages);
@@ -141,14 +141,15 @@ function convertArrayOfObjectsToCSV(args) {
 
 function downloadCSV() {
 	var data, filename, link;
+	// console.log(worldPages.data);
 	var csv = convertArrayOfObjectsToCSV({
 		data: pages
 	});
 	if (csv == null) {
-
-		console.log("gotta get dat worldnews");
-
-	};
+	csv = convertArrayOfObjectsToCSV({
+		data: worldPages.data
+	});
+	}
 
 	filename = (subreddit + ".csv") || 'export.csv';
 
@@ -232,7 +233,7 @@ formatted.sort(compare);
 
 
 var sliced = formatted.slice(0, 250);
-console.log(sliced);
+// console.log(sliced);
 // console.log(sliced);
 
 	runCloud(sliced);
@@ -332,8 +333,18 @@ function reloadScrollBars() {
 	document.body.scroll = "no"; // ie only
 }
 
+var worldPages;
+
 window.onload = function() {
 	unloadScrollBars();
+
+
+	Papa.parse("https://raw.githubusercontent.com/sandhoefner/sandhoefner.github.io/master/reddit/worldnews.csv", {
+			download: true,
+			complete: function(data) {
+				// console.log(data.data);
+				worldPages = data;
+			}});
 // 	var scale = 'scale(1)';
 // document.body.style.webkitTransform =  scale;    // Chrome, Opera, Safari
 //  document.body.style.msTransform =   scale;       // IE 9
