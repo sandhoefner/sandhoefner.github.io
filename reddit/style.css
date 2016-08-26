@@ -1,8 +1,3 @@
-/*body {
-	background-color: rgb(217, 230, 242);
-	padding: 5%;
-}*/
-
 input {
 	margin: 5px;
 	border-style: solid;
@@ -17,26 +12,6 @@ h2 {
 	margin-bottom: 2%
 	}
 
-/*
-#wrapper {
-	background-color: rgb(250,250,250);
-	padding: 40px;
-	border-radius: 5px;
-	height: 10%;
-	border: 2px solid #73AD21;
-	display:inline-block;
-}
-*/
-
-/*#csv {
-	display: none;
-}*/
-
-/*
-#sandbox {
-	resize: both;
-}*/
-
 svg {
 	position: relative;
 	left: 50%;
@@ -44,23 +19,13 @@ svg {
 	-ms-transform: translateX(-50%);
 	transform: translateX(-50%);
 	top: 0%;
-/*
-		-webkit-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	transform: translateY(-50%);*/
 }
 
 body {
 	font-family: Helvetica;
 	font-size: 90%;
 	margin: 3%;
-	/*background-color: #CDE8F2;*/
 	background-color: rgb(217, 230, 242);
-}
-
-#vis {
-	/*position: absolute;*/
-	/*margin: 10%;*/
 }
 
 .linkSpan {
@@ -70,16 +35,12 @@ body {
 	}
 
 #wrapper {
-	/*background-color: #FFFFF3;*/
-			background-color: rgb(250,250,250);
-
+	background-color: rgb(250,250,250);
 	text-align: center;
 	padding: 2%;
 	border-radius: 5px;
-		border: 2px solid  black;
-
+	border: 2px solid  black;
 }
-/*#73AD21; nice green border color */
 
 hr {
 	display: block;

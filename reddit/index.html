@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
 
 <head>
 	<meta charset="UTF-8">
 	<title>Subreddit Analysis</title>
 	<link rel="stylesheet" type="text/css" href="style.css">
+
 	<script src="script.js"></script>
 	<script src="jquery.js"></script>
 	<script src="common.js"></script>
@@ -17,63 +13,25 @@ and open the template in the editor.
 	<script src="importWords.js"></script>
 	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
 	<script type="text/javascript" src="bower_components/d3/d3.js"></script>
+	<script type="text/javascript" src="word-cloud.js"></script>
 	<script type="text/javascript" src="bower_components/d3-cloud/d3.layout.cloud.js"></script>
-
 </head>
 
 <body>
 	<div id="wrapper">
-		<h2>Top All-Time Posts: /r/<span id="subName">worldnews</span></h2>
-		<hr>
+
+		<h2>Top All-Time Posts: /r/<span id="subName">worldnews</span></h2><hr>
+
 		<div id="vis"></div>
 		<div id="pct"></div>
 
 		<hr><input id="subreddit" placeholder="Subreddit"></input>
 		<button id="getData" onclick="submit()">New Cloud</button>
+
 		<div id="textHolder"></div>
-		<script type="text/javascript" src="word-cloud.js"></script>
+
 		<div id="csv">Click <span class="linkSpan" onclick='downloadCSV();'>here</span> to download a spreadsheet with more data about these posts - full titles, authors, dates, links, votes, etc.<br>And if you're interested in doing some analysis of your own, check out our free Quadrigram data visualization suite <a href="http://quadrigram.com" target="blank">here!</a></div>
-		<!-- <img src="bestiario-128.png" alt="Created at Bestiario" style="width:40px;height:40px;"> -->
-
 
 	</div>
-	<script type="text/javascript" src="word-cloud.js"></script>
 </body>
-
 </html>
-
-<!--
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>Subreddit Analysis</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<script src="script.js"></script>
-	<script src="jquery.js"></script>
-	<script src="common.js"></script>
-	<script src="papaparse.min.js"></script>
-	<script src="importWords.js"></script>
-	<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-	<script type="text/javascript" src="bower_components/d3/d3.js"></script>
-	<script type="text/javascript" src="bower_components/d3-cloud/d3.layout.cloud.js"></script>
-	<script type="text/javascript" src="tags.js"></script>
-</head>
-
-<body>
-	<div id="wrapper">
-		<button onclick="auth()">Authorize</button>
-		<input id="subreddit" placeholder="Subreddit"></input>
-		<button id="getData" onclick="submit()">Submit</button>
-		<div id="textHolder"></div>
-		<div id="vis"></div>
-		<script type="text/javascript" src="word-cloud.js"></script>
-		<br><button id="csv" onclick='downloadCSV();'>Download CSV</button>
-		textarea not allbrowser compatible?
-		<br><input id="textTitle" placeholder="Title of work"></input>
-		<br><textarea id="sandbox"></textarea>
-		<br><button onclick="complexity(null,null);">Analyze complexity</button>
-	</div>
-</body>
-
-</html> -->
