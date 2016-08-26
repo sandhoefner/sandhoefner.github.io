@@ -3,7 +3,6 @@
 // pre-download top 10 subreddits to circumvent load time
 // improve CSV quality
 // improve viewport responsiveness
-// maybe filter buzzphrases like OC
 
 // THANKS TO:
 // jason davies for word cloud
@@ -19,11 +18,14 @@ function submit() {
 	if (underway) {
 		return;
 	}
+
+	$("#subName").text("...");
+
 	underway = true;
 	progress = 0;
-
 	subreddit = "";
 	subreddit = $("#subreddit").val();
+
 	$("#vis").html('<img src="spinner.gif" alt="Loading" style="width:50px;height:50px;">');
 	$("#pct").html("Fetching data from " + subreddit + ": " + progress + "%");
 
@@ -82,16 +84,19 @@ function next(after, url) {
 
 function ajaxDone() {
 	underway = false;
+
 	$("#pct").html("");
 
 	var hugeText = "";
+
 	pages.forEach(function(post) {
 		hugeText += (post.title + " ");
 	});
-	// console.log(hugeText);
+
 	processed = processText(hugeText);
-	// console.log(processed);
-	complexity(processed, subreddit);
+
+	genCloud(processed, subreddit);
+
 	$("#subName").text(subreddit);
 }
 
@@ -103,10 +108,20 @@ function convertArrayOfObjectsToCSV(args) {
 		return null;
 	}
 
-	columnDelimiter = args.columnDelimiter || ',';
+	columnDelimiter = args.columnDelimiter || '\t';
 	lineDelimiter = args.lineDelimiter || '\n';
 
 	keys = Object.keys(data[0]);
+
+	// console.log(keys);
+
+	// keepKeys = ["domain","subreddit","link_flair_text","id","gilded","archived","author","score","over_18","num_comments","thumbnail","subreddit_id","edited","downs","post_hint","stickied","is_self","permalink","created","name","url","author_flair_text","title","ups"];
+
+	// for (var i=keys.length-1; i>=0; i--) {
+	// 	if (keepKeys.indexOf(keys[i]) < 0) {
+	// 		keys.splice(i, 1);
+	// 	}
+	// }
 
 	result = '';
 	result += keys.join(columnDelimiter);
@@ -157,7 +172,7 @@ function processText(raw) {
 	return raw.replace(/\n/g, " ").replace(/\//g, " ").toLowerCase() /*.replace(/[^0-9a-z ]/gi, '')*/ .replace(/[^a-z ]/gi, '').split(" ");
 }
 
-function complexity(list, ref) {
+function genCloud(list, ref) {
 	// empty container div
 	$("#vis").html("");
 
