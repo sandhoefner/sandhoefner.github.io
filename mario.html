@@ -1,0 +1,15 @@
+<div id="pyramid"></div>
+
+<script>
+height = 12;
+
+for (count = 0; count < height; count++){
+		for (space = height - count - 1; space > 0; space--) {
+			document.getElementById("pyramid").innerHTML += "_";
+		}
+			for (hash = count; hash >= 0; hash--) {
+			document.getElementById("pyramid").innerHTML += "#";
+		}
+		document.getElementById("pyramid").innerHTML += "#<br>";
+	}
+</script>
