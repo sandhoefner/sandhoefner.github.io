@@ -3,6 +3,7 @@ from random import randint
 myPos = 3
 billPos = 3
 results = []
+turns = []
 
 def movef(start, direc):
 	ret = start + direc
@@ -12,16 +13,19 @@ def movef(start, direc):
 		ret = 5
 	return ret
 
-for i in range(100000):
+for i in range(100):
 	move = randint(-1,1)
 	if move == 0:
 		winPos = billPos
 	else:
+		turnCount = 1
 		while move != 0:
+			turnCount += 1
 			billPos = movef(billPos, move)
 			move = randint(-1,1)
 		winPos = billPos
 	results.append(winPos)
+	turns.append(turnCount)
 
 counts = [0,0,0,0,0]
 for result in results:
@@ -29,3 +33,5 @@ for result in results:
 
 for count in counts:
 	print float(count)/len(results)
+
+print turns
