@@ -1,0 +1,18 @@
+1
+take projection pictures of 2 rubik's cubes
+
+2
+prove equation 1.2: x = X
+prove equation 1.3: y = cos(theta)Y - sin(theta)Z
+
+3
+write the constraints for Z(x,y)
+
+4
+Fill the missing kernels (lines 166 and 180) in the script: simpleworldY.m
+
+5
+run the code
+
+6
+explain a failure

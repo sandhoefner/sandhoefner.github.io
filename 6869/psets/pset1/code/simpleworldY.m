@@ -10,7 +10,7 @@ alpha = 35*pi/180;
 
 
 %% Load image
-img = imread('img1.jpg');
+img = imread('img4.jpg');
 
 img = double(imresize(img, [256 NaN], 'bilinear'));
 [nrows ncols colors] = size(img);
@@ -163,7 +163,7 @@ for i = 2:nrows-1
             if horizontalsum>0 && groundsum==0 && vericalsum==0
                 % dY/dt = 0
                 c = c+1; % increment constraint counter
-                Aij(:,:,c) = !!!! FILL MISSING KERNEL HERE;
+                Aij(:,:,c) = ( dx*[-1 -2 -1; 0 0 0 ; 1 2 1 ] - dy*[-1 -2 -1; 0 0 0 ; 1 2 1 ]' ) / 8 ;
                 ii(c) = i; 
                 jj(c) = j;
                 b(c)  = 0;
@@ -177,7 +177,7 @@ for i = 2:nrows-1
                 b(c) = 0;
                 
                 c = c+1; % increment constraint counter
-                Aij(:,:,c) = !!!! FILL MISSING KERNEL HERE;
+                Aij ( : , : , c ) = 0.1 * [ 0 -1 0 ; 0 2 0 ; 0 -1 0 ] ;
                 ii(c) = i; 
                 jj(c) = j;
                 b(c) = 0;
