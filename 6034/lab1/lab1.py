@@ -43,6 +43,7 @@ transitive_rule = IF( AND( '(?x) beats (?y)',
 # syntax (I hope):
 # rule = IF ( ('') , THEN ('') )
 # do I need to check personhood / how much?
+# todo: check for gaps between online/offfline testers
 self_rule = IF ( ('person (?x)') , THEN ('isself (?x) (?x)') )
 # not_isself has to be first or I get isself maggie lisa etc... why?
 # NOT is incapable of establishing variables so can't go very first
@@ -104,6 +105,11 @@ black_family_cousins = [
 # Import additional methods for backchaining
 from production import PASS, FAIL, match, populate, simplify, variables
 
+returnTree = []
+
+def recursive(rules,ret):
+    return ret
+
 def backchain_to_goal_tree(rules, hypothesis):
     """
     Takes a hypothesis (string) and a list of rules (list
@@ -117,19 +123,38 @@ def backchain_to_goal_tree(rules, hypothesis):
     (possibly with unbound variables), *not* AND or OR objects.
     Make sure to use simplify(...) to flatten trees where appropriate.
     """
-    raise NotImplementedError
+    or_content = [hypothesis]
+    newHyps = []
+
+    for rule in rules:
+        # print rule
+        for consequent in rule.consequent():
+            # print consequent
+            _match = match(consequent, hypothesis)
+            # print _match
+            if _match is not None:
+                or_content.append(rule.antecedent())
+                # print or_content
+                # backchainn_to_goal_tree(rules, populate(rule.antecedent(), _match))
+
+    ret = simplify(OR(or_content))
+
+    # if matches is []:
+        # backchain_to_goal_tree(rules,hypothesis)
+
+    return recursive(rules,ret)
 
 # Uncomment this to run your backward chainer:
-#print backchain_to_goal_tree(zookeeper_rules, 'opus is a penguin')
+print backchain_to_goal_tree(zookeeper_rules, 'opus is a penguin')
 
 
 #### Survey #########################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+NAME = 'Evan Sandhoefner'
+COLLABORATORS = 'Ryan Kerr'
+HOW_MANY_HOURS_THIS_LAB_TOOK = '4'
+WHAT_I_FOUND_INTERESTING = 'Seeing the output of the expert system.'
+WHAT_I_FOUND_BORING = "Adjusting to syntax, I guess, but it wasn't so bad."
 SUGGESTIONS = None
 
 
