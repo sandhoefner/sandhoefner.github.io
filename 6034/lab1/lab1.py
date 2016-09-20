@@ -108,6 +108,8 @@ from production import PASS, FAIL, match, populate, simplify, variables
 returnTree = []
 
 def recursive(rules,ret):
+    for item in ret:
+        print item
     return ret
 
 def backchain_to_goal_tree(rules, hypothesis):
