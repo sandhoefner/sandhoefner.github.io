@@ -108,8 +108,8 @@ from production import PASS, FAIL, match, populate, simplify, variables
 returnTree = []
 
 def recursive(rules,ret):
-    for item in ret:
-        print item
+    # for item in ret:
+    #     print item
     return ret
 
 def backchain_to_goal_tree(rules, hypothesis):
@@ -129,14 +129,10 @@ def backchain_to_goal_tree(rules, hypothesis):
     newHyps = []
 
     for rule in rules:
-        # print rule
         for consequent in rule.consequent():
-            # print consequent
             _match = match(consequent, hypothesis)
-            # print _match
             if _match is not None:
-                or_content.append(rule.antecedent())
-                # print or_content
+                or_content.append(populate(rule.antecedent(),_match))
                 # backchainn_to_goal_tree(rules, populate(rule.antecedent(), _match))
 
     ret = simplify(OR(or_content))
