@@ -108,9 +108,14 @@ from production import PASS, FAIL, match, populate, simplify, variables
 returnTree = []
 
 def recursive(rules,ret):
-    # for item in ret:
-    #     print item
-    return ret
+    if isinstance(ret, basestring):
+        return backchain_to_goal_tree(rules, ret)
+    elif isinstance(ret, OR):
+        return OR([recursive(rules,subret) for subret in ret])
+    elif isinstance(ret, AND):
+        return AND([recursive(rules,subret) for subret in ret])
+    else:
+        return "you're in trouble"
 
 def backchain_to_goal_tree(rules, hypothesis):
     """
@@ -132,7 +137,7 @@ def backchain_to_goal_tree(rules, hypothesis):
         for consequent in rule.consequent():
             _match = match(consequent, hypothesis)
             if _match is not None:
-                or_content.append(populate(rule.antecedent(),_match))
+                or_content.append(recursive(rules,populate(rule.antecedent(),_match)))
                 # backchainn_to_goal_tree(rules, populate(rule.antecedent(), _match))
 
     ret = simplify(OR(or_content))
@@ -140,10 +145,10 @@ def backchain_to_goal_tree(rules, hypothesis):
     # if matches is []:
         # backchain_to_goal_tree(rules,hypothesis)
 
-    return recursive(rules,ret)
+    return ret
 
 # Uncomment this to run your backward chainer:
-print backchain_to_goal_tree(zookeeper_rules, 'opus is a penguin')
+# print backchain_to_goal_tree(zookeeper_rules, 'opus is a penguin')
 
 
 #### Survey #########################################
