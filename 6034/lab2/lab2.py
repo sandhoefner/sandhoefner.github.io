@@ -81,21 +81,21 @@ generic_search = make_generic_search(extensions, has_loops)  # DO NOT CHANGE
 
 
 
-generic_dfs = [None, None, None, None]
+generic_dfs =                                [None, None, None, False]
 
-generic_bfs = [None, None, None, None]
+generic_bfs =                                [None, None, None, False]
 
-generic_hill_climbing = [None, None, None, None]
+generic_hill_climbing =                      [None, None, None, False]
 
-generic_best_first = [None, None, None, None]
+generic_best_first =                         [None, None, None, False]
 
-generic_branch_and_bound = [None, None, None, None]
+generic_branch_and_bound =                   [None, None, None, False]
 
-generic_branch_and_bound_with_heuristic = [None, None, None, None]
+generic_branch_and_bound_with_heuristic =    [None, None, None, False]
 
-generic_branch_and_bound_with_extended_set = [None, None, None, None]
+generic_branch_and_bound_with_extended_set = [None, None, None, True]
 
-generic_a_star = [None, None, None, None]
+generic_a_star =                             [None, None, None, True]
 
 # Here is an example of how to call generic_search (uncomment to run):
 #my_dfs_fn = generic_search(*generic_dfs)
@@ -171,8 +171,11 @@ def is_admissible(graph, goalNode):
     """Returns True if this graph's heuristic is admissible; else False.
     A heuristic is admissible if it is either always exactly correct or overly
     optimistic; it never over-estimates the cost to the goal."""
-    raise NotImplementedError
-
+    for node in graph:
+        if graph.get_heuristic_value(node, goalNode) > len(a_star(graph, node, goalNode)):
+            return False
+    else:
+        return True
 
 def is_consistent(graph, goalNode):
     """Returns True if this graph's heuristic is consistent; else False.
@@ -183,7 +186,14 @@ def is_consistent(graph, goalNode):
     In other words, moving from one node to a neighboring node never unfairly
     decreases the heuristic.
     This is equivalent to the heuristic satisfying the triangle inequality."""
-    raise NotImplementedError
+    # note: what is the triangle inequality?
+    create pairs
+    for pair in pairs:
+        if (graph.get_heuristic_value(pair[0], goalNode) >
+            graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[1], pair[2]).length):
+            return False
+    else:
+        return True
 
 
 ### OPTIONAL: Picking Heuristics
@@ -240,18 +250,19 @@ heuristic_4['G']['G'] = h4_G
 
 ##### PART 5: Multiple Choice ##################################################
 
-ANSWER_1 = ''
+ANSWER_1 = '2'
 
-ANSWER_2 = ''
+ANSWER_2 = '4'
 
-ANSWER_3 = ''
+# note: read carefully - can't remember where she's been
+ANSWER_3 = '1'
 
-ANSWER_4 = ''
+ANSWER_4 = '3'
 
 
 #### SURVEY ####################################################################
 
-NAME = None
+NAME = "Evan Sandhoefner"
 COLLABORATORS = None
 HOW_MANY_HOURS_THIS_LAB_TOOK = None
 WHAT_I_FOUND_INTERESTING = None
