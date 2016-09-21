@@ -36,51 +36,47 @@ transitive_rule = IF( AND( '(?x) beats (?y)',
 #### Part 3: Family Relations #########################################
 
 # Define your rules here:
-
-
-
-# Add your rules to this list:
-# syntax (I hope):
+# syntax:
 # rule = IF ( ('') , THEN ('') )
-# do I need to check personhood / how much?
+# how often should I check for personhood
 # todo: check for gaps between online/offfline testers
-self_rule = IF ( ('person (?x)') , THEN ('isself (?x) (?x)') )
-# not_isself has to be first or I get isself maggie lisa etc... why?
-# NOT is incapable of establishing variables so can't go very first
-sibling_rule = IF(
-                    AND(
-                        'person (?x)',
-                        'person (?y)',
-                        NOT('isself (?x) (?y)'),
-                        'person (?z)',
-                        'parent (?z) (?x)',
-                        'parent (?z) (?y)'),
+self_rule = IF(('person (?x)'),
+                THEN('isself (?x) (?x)'))
+# note: not_isself has to be first or I get isself maggie lisa etc - why?
+# note: NOT is incapable of establishing variables so can't go very first
+sibling_rule = IF(AND('person (?x)',
+                  'person (?y)',
+                  NOT('isself (?x) (?y)'),
+                  'person (?z)',
+                  'parent (?z) (?x)',
+                  'parent (?z) (?y)'),
+                  THEN('sibling (?x) (?y)'))
 
-                    THEN( 'sibling (?x) (?y)' ))
-
-siblings_rule = IF(('sibling (?x) (?y)'), THEN ('sibling (?y) (?x)'))
+siblings_rule = IF(('sibling (?x) (?y)'),
+                    THEN ('sibling (?y) (?x)'))
 
 child_rule = IF(AND('person (?x)','person (?y)',
-                    'parent (?x) (?y)'),
-                     THEN ('child (?y) (?x)'))
+                'parent (?x) (?y)'),
+                THEN ('child (?y) (?x)'))
 
 grandparent_rule = IF(AND('parent (?x) (?y)', 'parent (?y) (?z)'),
-                    THEN('grandparent (?x) (?z)'))
+                      THEN('grandparent (?x) (?z)'))
 
 grandchild_rule = IF(('grandparent (?x) (?y)'),
-                    THEN ('grandchild (?y) (?x)'))
+                      THEN('grandchild (?y) (?x)'))
 
-cousin_rule = IF( (AND('parent (?w) (?x)',
-                        'parent (?z) (?y)',
-                        'sibling (?w) (?z)',
-                        NOT('sibling (?x) (?y)') # spec seems to rule out incest
-             )), THEN ('cousin (?x) (?y)'))
+cousin_rule = IF((AND('parent (?w) (?x)',
+                  'parent (?z) (?y)',
+                  'sibling (?w) (?z)',
+                  NOT('sibling (?x) (?y)'))), # spec seems to rule out incest
+                  THEN('cousin (?x) (?y)'))
 
-cousins_rule = IF(('cousin (?x) (?y)'), THEN ('cousin (?y) (?x)'))
+cousins_rule = IF(('cousin (?x) (?y)'),
+                   THEN ('cousin (?y) (?x)'))
 
-# put self rule in first if you can get it to work
-family_rules = [ self_rule,sibling_rule, siblings_rule, child_rule,
-         grandparent_rule,grandchild_rule,cousin_rule,cousins_rule]
+# Add your rules to this list:
+family_rules = [self_rule, sibling_rule, siblings_rule, child_rule,
+                grandparent_rule, grandchild_rule, cousin_rule, cousins_rule]
 
 # Uncomment this to test your data on the Simpsons family:
 # print forward_chain(family_rules, simpsons_data, verbose=False)
@@ -97,7 +93,7 @@ black_family_cousins = [
     if "cousin" in relation ]
 
 # To see if you found them all, uncomment this line:
-#print black_family_cousins
+# print black_family_cousins
 
 
 #### Part 4: Backward Chaining #########################################
@@ -105,17 +101,15 @@ black_family_cousins = [
 # Import additional methods for backchaining
 from production import PASS, FAIL, match, populate, simplify, variables
 
-returnTree = []
-
-def recursive(rules,ret):
+def recursive(rules, ret):
     if isinstance(ret, basestring):
         return backchain_to_goal_tree(rules, ret)
     elif isinstance(ret, OR):
-        return OR([recursive(rules,subret) for subret in ret])
+        return OR([recursive(rules, subret) for subret in ret])
     elif isinstance(ret, AND):
-        return AND([recursive(rules,subret) for subret in ret])
+        return AND([recursive(rules, subret) for subret in ret])
     else:
-        return "you're in trouble"
+        return "unexpected type"
 
 def backchain_to_goal_tree(rules, hypothesis):
     """
@@ -131,21 +125,14 @@ def backchain_to_goal_tree(rules, hypothesis):
     Make sure to use simplify(...) to flatten trees where appropriate.
     """
     or_content = [hypothesis]
-    newHyps = []
 
     for rule in rules:
         for consequent in rule.consequent():
             _match = match(consequent, hypothesis)
             if _match is not None:
-                or_content.append(recursive(rules,populate(rule.antecedent(),_match)))
-                # backchainn_to_goal_tree(rules, populate(rule.antecedent(), _match))
+                or_content.append(recursive(rules, populate(rule.antecedent(),_match)))
 
-    ret = simplify(OR(or_content))
-
-    # if matches is []:
-        # backchain_to_goal_tree(rules,hypothesis)
-
-    return ret
+    return simplify(OR(or_content))
 
 # Uncomment this to run your backward chainer:
 # print backchain_to_goal_tree(zookeeper_rules, 'opus is a penguin')
