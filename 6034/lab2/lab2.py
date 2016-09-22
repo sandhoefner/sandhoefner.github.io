@@ -130,14 +130,14 @@ generic_a_star =                             [do_nothing_fn, True, traveled_heur
 
 ### OPTIONAL: Generic Beam Search
 # If you want to run local tests for generic_beam, change TEST_GENERIC_BEAM to True:
-TEST_GENERIC_BEAM = False
+TEST_GENERIC_BEAM = True
 
 # The sort_agenda_fn for beam search takes fourth argument, beam_width:
-# def my_beam_sorting_fn(graph, goalNode, paths, beam_width):
-#     # YOUR CODE HERE
-#     return sorted_beam_agenda
+def my_beam_sorting_fn(graph, goalNode, paths, beam_width):
+    # YOUR CODE HERE
+    return sorted_beam_agenda
 
-generic_beam = [None, None, None, None]
+generic_beam = [do_nothing_fn, False, my_beam_sorting_fn, True]
 
 # Uncomment this to test your generic_beam search:
 #print generic_search(*generic_beam)(GRAPH_2, 'S', 'G', beam_width=2)
@@ -171,7 +171,8 @@ def best_first(graph, startNode, goalNode):
 
 
 def beam(graph, startNode, goalNode, beam_width):
-    return "fucked"
+    helper = generic_search(*generic_beam)
+    return helper(graph, startNode, goalNode)
 
 
 def branch_and_bound(graph, startNode, goalNode):
@@ -201,11 +202,11 @@ def is_admissible(graph, goalNode):
     A heuristic is admissible if it is either always exactly correct or overly
     optimistic; it never over-estimates the cost to the goal."""
     for node in graph.nodes:
-        # isn't it problematic that this function is built on a problematic implementation of a*?
-        if graph.get_heuristic_value(node, goalNode) > len(a_star(graph, node, goalNode)):
+        # use branch and bound with extended set instead of full A* because it's guaranteed to
+        # get optimal solution, just a bit slower
+        if graph.get_heuristic_value(node, goalNode) > path_length(graph, branch_and_bound_with_extended_set(graph, node, goalNode)):
             return False
-    else:
-        return True
+    return True
 
 def is_consistent(graph, goalNode):
     """Returns True if this graph's heuristic is consistent; else False.
@@ -221,7 +222,6 @@ def is_consistent(graph, goalNode):
     pairs = itertools.combinations(nodes, 2)
     proper_pairs = [pair for pair in pairs if graph.get_edge(pair[0], pair[1]) is not None]
     for pair in proper_pairs:
-        print pair
         if (graph.get_heuristic_value(pair[0], goalNode) >
             graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[0], pair[1]).length):
             return False
