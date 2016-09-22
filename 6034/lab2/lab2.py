@@ -5,6 +5,7 @@ from search import Edge, UndirectedGraph, do_nothing_fn, make_generic_search
 import read_graphs
 # is this okay?
 from copy import deepcopy
+import itertools
 
 all_graphs = read_graphs.get_graphs()
 GRAPH_0 = all_graphs['GRAPH_0']
@@ -200,6 +201,7 @@ def is_admissible(graph, goalNode):
     A heuristic is admissible if it is either always exactly correct or overly
     optimistic; it never over-estimates the cost to the goal."""
     for node in graph.nodes:
+        # isn't it problematic that this function is built on a problematic implementation of a*?
         if graph.get_heuristic_value(node, goalNode) > len(a_star(graph, node, goalNode)):
             return False
     else:
@@ -215,14 +217,16 @@ def is_consistent(graph, goalNode):
     decreases the heuristic.
     This is equivalent to the heuristic satisfying the triangle inequality."""
     # note: what is the triangle inequality?
-    pass
-    # # create pairs
-    # for pair in pairs:
-    #     if (graph.get_heuristic_value(pair[0], goalNode) >
-    #         graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[1], pair[2]).length):
-    #         return False
-    # else:
-    #     return True
+    nodes = graph.nodes
+    pairs = itertools.combinations(nodes, 2)
+    proper_pairs = [pair for pair in pairs if graph.get_edge(pair[0], pair[1]) is not None]
+    for pair in proper_pairs:
+        print pair
+        if (graph.get_heuristic_value(pair[0], goalNode) >
+            graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[0], pair[1]).length):
+            return False
+    else:
+        return True
 
 
 ### OPTIONAL: Picking Heuristics
