@@ -83,6 +83,10 @@ def heuristic_path_sort(graph, goalNode, paths):
     heuristic = sorted(lexical, key = lambda path: graph.get_heuristic_value(path[len(path)-1], goalNode))
     return heuristic
 
+def traveled_path_sort(graph, goalNode, paths):
+    lexical = sorted(paths)
+    heuristic = sorted(lexical, key = lambda path: path_length(graph, path))
+    return heuristic
 
 # Note that if you do sort the agenda, then the previous two arguments become irrelevant
 # (it no longer matters whether you added new paths to the front,
@@ -100,7 +104,7 @@ generic_hill_climbing =                      [heuristic_path_sort, True, do_noth
 
 generic_best_first =                         [do_nothing_fn, True, heuristic_path_sort, False]
 
-generic_branch_and_bound =                   [None, True, None, False]
+generic_branch_and_bound =                   [do_nothing_fn, True, traveled_path_sort, False]
 
 generic_branch_and_bound_with_heuristic =    [None, True, None, False]
 
