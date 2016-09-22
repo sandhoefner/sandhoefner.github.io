@@ -81,7 +81,8 @@ generic_search = make_generic_search(extensions, has_loops)  # DO NOT CHANGE
 
 def heuristic_path_sort(graph, goalNode, paths):
     lexical = sorted(paths)
-    heuristic = sorted(lexical, key = lambda path: graph.get_heuristic_value(path[len(path)-1], goalNode))
+    heuristic = sorted(lexical, key = lambda path:
+                       graph.get_heuristic_value(path[len(path)-1], goalNode))
     return heuristic
 
 def traveled_path_sort(graph, goalNode, paths):
@@ -91,7 +92,8 @@ def traveled_path_sort(graph, goalNode, paths):
 
 def traveled_heuristic_path_sort(graph, goalNode, paths):
     lexical = sorted(paths)
-    heuristic = sorted(lexical, key = lambda path: path_length(graph, path) + graph.get_heuristic_value(path[len(path)-1], goalNode))
+    heuristic = sorted(lexical, key = lambda path: path_length(graph, path) +
+                       graph.get_heuristic_value(path[len(path)-1], goalNode))
     return heuristic
 
 # Note that if you do sort the agenda, then the previous two arguments become irrelevant
@@ -112,11 +114,11 @@ generic_best_first =                         [do_nothing_fn, True, heuristic_pat
 
 generic_branch_and_bound =                   [do_nothing_fn, True, traveled_path_sort, False]
 
-generic_branch_and_bound_with_heuristic =    [do_nothing_fn, True, traveled_heuristic_path_sort, False]
+generic_branch_and_bound_with_heuristic =    [do_nothing_fn,True,traveled_heuristic_path_sort,False]
 
 generic_branch_and_bound_with_extended_set = [do_nothing_fn, True, traveled_path_sort, True]
 
-generic_a_star =                             [do_nothing_fn, True, traveled_heuristic_path_sort, True]
+generic_a_star =                             [do_nothing_fn,True,traveled_heuristic_path_sort,True]
 
 # Here is an example of how to call generic_search (uncomment to run):
 #my_dfs_fn = generic_search(*generic_dfs)
@@ -202,9 +204,10 @@ def is_admissible(graph, goalNode):
     A heuristic is admissible if it is either always exactly correct or overly
     optimistic; it never over-estimates the cost to the goal."""
     for node in graph.nodes:
-        # use branch and bound with extended set instead of full A* because it's guaranteed to
-        # get optimal solution, just a bit slower
-        if graph.get_heuristic_value(node, goalNode) > path_length(graph, branch_and_bound_with_extended_set(graph, node, goalNode)):
+        # note: use branch and bound with extended set instead of full A* because it's guaranteed to
+        # get optimal solution, just a bit slower. also path_length, not len() obviously
+        if (graph.get_heuristic_value(node, goalNode) >
+            path_length(graph, branch_and_bound_with_extended_set(graph, node, goalNode))):
             return False
     return True
 
