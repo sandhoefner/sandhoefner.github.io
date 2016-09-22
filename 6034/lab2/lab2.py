@@ -108,7 +108,7 @@ generic_branch_and_bound =                   [do_nothing_fn, True, traveled_path
 
 generic_branch_and_bound_with_heuristic =    [None, True, None, False]
 
-generic_branch_and_bound_with_extended_set = [None, True, None, True]
+generic_branch_and_bound_with_extended_set = [do_nothing_fn, True, traveled_path_sort, True]
 
 generic_a_star =                             [None, True, None, True]
 
