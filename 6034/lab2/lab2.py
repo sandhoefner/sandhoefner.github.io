@@ -199,7 +199,7 @@ def is_admissible(graph, goalNode):
     """Returns True if this graph's heuristic is admissible; else False.
     A heuristic is admissible if it is either always exactly correct or overly
     optimistic; it never over-estimates the cost to the goal."""
-    for node in graph:
+    for node in graph.nodes:
         if graph.get_heuristic_value(node, goalNode) > len(a_star(graph, node, goalNode)):
             return False
     else:
