@@ -78,24 +78,36 @@ generic_search = make_generic_search(extensions, has_loops)  # DO NOT CHANGE
 #     # YOUR CODE HERE
 #     return sorted_paths
 
+def hill_sort_new_paths(graph, goalNode, paths):
+    lexical = sorted(paths)
+    heuristic = sorted(lexical, key = lambda path: graph.get_heuristic_value(path[len(path)-1], goalNode))
+    return heuristic
 
+def best_sort_new_paths(graph, goalNode, paths):
+    pass
 
+# Note that if you do sort the agenda, then the previous two arguments become irrelevant
+# (it no longer matters whether you added new paths to the front,
+# or whether you sorted them before adding them to the agenda).
+# A* = branch and bound with heuristic and extended set
+# A* is a kind of best-first
+                                           # pathf,front,agendaf,extend
+generic_dfs =                                [do_nothing_fn, True, do_nothing_fn, False]
 
-generic_dfs =                                [None, None, None, False]
+generic_bfs =                                [do_nothing_fn, False, do_nothing_fn, False]
 
-generic_bfs =                                [None, None, None, False]
+# sort paths by HD but don't sort agenda
+generic_hill_climbing =                      [hill_sort_new_paths, True, do_nothing_fn, False]
 
-generic_hill_climbing =                      [None, None, None, False]
+generic_best_first =                         [None, True, None, False]
 
-generic_best_first =                         [None, None, None, False]
+generic_branch_and_bound =                   [None, True, None, False]
 
-generic_branch_and_bound =                   [None, None, None, False]
+generic_branch_and_bound_with_heuristic =    [None, True, None, False]
 
-generic_branch_and_bound_with_heuristic =    [None, None, None, False]
+generic_branch_and_bound_with_extended_set = [None, True, None, True]
 
-generic_branch_and_bound_with_extended_set = [None, None, None, True]
-
-generic_a_star =                             [None, None, None, True]
+generic_a_star =                             [None, True, None, True]
 
 # Here is an example of how to call generic_search (uncomment to run):
 #my_dfs_fn = generic_search(*generic_dfs)
@@ -130,39 +142,47 @@ generic_beam = [None, None, None, None]
 # implement the algorithms by yourself.
 
 def dfs(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_dfs)
+    return helper(graph, startNode, goalNode)
 
 
 def bfs(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_bfs)
+    return helper(graph, startNode, goalNode)
 
 
 def hill_climbing(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_hill_climbing)
+    return helper(graph, startNode, goalNode)
 
 
 def best_first(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_best_first)
+    return helper(graph, startNode, goalNode)
 
 
 def beam(graph, startNode, goalNode, beam_width):
-    raise NotImplementedError
+    return "fucked"
 
 
 def branch_and_bound(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_branch_and_bound)
+    return helper(graph, startNode, goalNode)
 
 
 def branch_and_bound_with_heuristic(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_branch_and_bound_with_heuristic)
+    return helper(graph, startNode, goalNode)
 
 
 def branch_and_bound_with_extended_set(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_branch_and_bound_with_extended_set)
+    return helper(graph, startNode, goalNode)
 
 
 def a_star(graph, startNode, goalNode):
-    raise NotImplementedError
+    helper = generic_search(*generic_a_star)
+    return helper(graph, startNode, goalNode)
 
 
 #### PART 4: Heuristics ########################################################
@@ -187,13 +207,14 @@ def is_consistent(graph, goalNode):
     decreases the heuristic.
     This is equivalent to the heuristic satisfying the triangle inequality."""
     # note: what is the triangle inequality?
-    create pairs
-    for pair in pairs:
-        if (graph.get_heuristic_value(pair[0], goalNode) >
-            graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[1], pair[2]).length):
-            return False
-    else:
-        return True
+    pass
+    # # create pairs
+    # for pair in pairs:
+    #     if (graph.get_heuristic_value(pair[0], goalNode) >
+    #         graph.get_heuristic_value(pair[1], goalNode) + graph.get_edge(pair[1], pair[2]).length):
+    #         return False
+    # else:
+    #     return True
 
 
 ### OPTIONAL: Picking Heuristics
