@@ -78,13 +78,11 @@ generic_search = make_generic_search(extensions, has_loops)  # DO NOT CHANGE
 #     # YOUR CODE HERE
 #     return sorted_paths
 
-def hill_sort_new_paths(graph, goalNode, paths):
+def heuristic_path_sort(graph, goalNode, paths):
     lexical = sorted(paths)
     heuristic = sorted(lexical, key = lambda path: graph.get_heuristic_value(path[len(path)-1], goalNode))
     return heuristic
 
-def best_sort_new_paths(graph, goalNode, paths):
-    pass
 
 # Note that if you do sort the agenda, then the previous two arguments become irrelevant
 # (it no longer matters whether you added new paths to the front,
@@ -97,9 +95,10 @@ generic_dfs =                                [do_nothing_fn, True, do_nothing_fn
 generic_bfs =                                [do_nothing_fn, False, do_nothing_fn, False]
 
 # sort paths by HD but don't sort agenda
-generic_hill_climbing =                      [hill_sort_new_paths, True, do_nothing_fn, False]
+# hill is local; best-first jumps around
+generic_hill_climbing =                      [heuristic_path_sort, True, do_nothing_fn, False]
 
-generic_best_first =                         [None, True, None, False]
+generic_best_first =                         [do_nothing_fn, True, heuristic_path_sort, False]
 
 generic_branch_and_bound =                   [None, True, None, False]
 
