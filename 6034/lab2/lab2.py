@@ -136,8 +136,21 @@ TEST_GENERIC_BEAM = True
 
 # The sort_agenda_fn for beam search takes fourth argument, beam_width:
 def my_beam_sorting_fn(graph, goalNode, paths, beam_width):
-    # YOUR CODE HERE
-    return sorted_beam_agenda
+    same_depth = False
+    if paths is not []:
+        depth = len(paths[0])
+        for path in paths:
+            if len(path) is not depth:
+                same_depth = True
+                break
+    if not same_depth:
+        return paths
+    else:
+        lexical = sorted(paths)
+        heuristic = sorted(lexical, key = lambda path:
+                           graph.get_heuristic_value(path[len(path)-1], goalNode))
+        ret = heuristic[:beam_width-1]
+        return ret
 
 generic_beam = [do_nothing_fn, False, my_beam_sorting_fn, True]
 
@@ -174,7 +187,7 @@ def best_first(graph, startNode, goalNode):
 
 def beam(graph, startNode, goalNode, beam_width):
     helper = generic_search(*generic_beam)
-    return helper(graph, startNode, goalNode)
+    return helper(graph, startNode, goalNode, beam_width)
 
 
 def branch_and_bound(graph, startNode, goalNode):
