@@ -136,23 +136,25 @@ TEST_GENERIC_BEAM = True
 
 # The sort_agenda_fn for beam search takes fourth argument, beam_width:
 def my_beam_sorting_fn(graph, goalNode, paths, beam_width):
-    same_depth = False
-    if paths is not []:
+    same_depth = True
+    if paths:
         depth = len(paths[0])
         for path in paths:
             if len(path) is not depth:
-                same_depth = True
-                break
-    if not same_depth:
+                same_depth = False
+    if not paths or not same_depth:
         return paths
     else:
         lexical = sorted(paths)
         heuristic = sorted(lexical, key = lambda path:
-                           graph.get_heuristic_value(path[len(path)-1], goalNode))
-        ret = heuristic[:beam_width-1]
+                           graph.get_heuristic_value(path[-1], goalNode))
+        if beam_width > len(heuristic):
+            return heuristic
+        else:
+            ret = heuristic[:beam_width]
         return ret
 
-generic_beam = [do_nothing_fn, False, my_beam_sorting_fn, True]
+generic_beam = [do_nothing_fn, False, my_beam_sorting_fn, False]
 
 # Uncomment this to test your generic_beam search:
 #print generic_search(*generic_beam)(GRAPH_2, 'S', 'G', beam_width=2)
@@ -312,10 +314,10 @@ ANSWER_4 = '3'
 #### SURVEY ####################################################################
 
 NAME = "Evan Sandhoefner"
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+COLLABORATORS = "Ryan Kerr"
+HOW_MANY_HOURS_THIS_LAB_TOOK = "6"
+WHAT_I_FOUND_INTERESTING = "Wrapping my head around the algorithms"
+WHAT_I_FOUND_BORING = "Debugging"
 SUGGESTIONS = None
 
 
