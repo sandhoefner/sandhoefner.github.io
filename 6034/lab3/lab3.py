@@ -85,14 +85,41 @@ state_UHOH = AbstractGameState(snapshot = BOARD_UHOH,
 #### PART 2 ###########################################
 # Note: Functions in Part 2 use the AbstractGameState API, not ConnectFourBoard.
 
+# a static evaluation can happen by calculating an endgame score or a heuristic score,
+# but not by recursing on a node's children
+
+def find_all_paths(start, path=[]):
+    path = path + [start]
+    if start.is_game_over():
+        return [path]
+    paths = []
+    for node in start.generate_next_states():
+        if node not in path:
+            newpaths = find_all_paths(node, path)
+            for newpath in newpaths:
+                paths.insert(0,newpath)
+    return paths
+
+
+def best_path(pathlist):
+    # chron_sort = sorted(pathlist, key=lambda path: len(path))
+    score_sort = sorted(pathlist, key=lambda path: path[-1].get_endgame_score())
+    # note
+    return (score_sort[0], score_sort[-1][-1].get_endgame_score(), len(score_sort))
+
+
 def dfs_maximizing(state) :
     """Performs depth-first search to find path with highest endgame score.
     Returns a tuple containing:
      0. the best path (a list of AbstractGameState objects),
      1. the score of the leaf node (a number), and
      2. the number of static evaluations performed (a number)"""
-    raise NotImplementedError
 
+    # if state.is_game_over():
+    #     return ([], state.get_endgame_score(is_current_player_maximizer=True), 1)
+    # else:
+    print move_sequence(GAME1, [2,3])
+    return best_path(find_all_paths(state, []))
 
 def minimax_endgame_search(state, maximize=True) :
     """Performs minimax search, searching all leaf nodes and statically
@@ -144,13 +171,14 @@ def progressive_deepening(state, heuristic_fn=always_zero, depth_limit=INF,
 
 ##### PART 3: Multiple Choice ##################################################
 
-ANSWER_1 = ''
+# note all
+ANSWER_1 = '4'
 
-ANSWER_2 = ''
+ANSWER_2 = '1'
 
-ANSWER_3 = ''
+ANSWER_3 = '4'
 
-ANSWER_4 = ''
+ANSWER_4 = '5'
 
 
 #### SURVEY ###################################################
