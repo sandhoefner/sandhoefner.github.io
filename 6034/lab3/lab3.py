@@ -88,6 +88,7 @@ state_UHOH = AbstractGameState(snapshot = BOARD_UHOH,
 # a static evaluation can happen by calculating an endgame score or a heuristic score,
 # but not by recursing on a node's children
 
+# with help from https://www.python.org/doc/essays/graphs/
 def find_all_paths(start, path=[]):
     path = path + [start]
     if start.is_game_over():
@@ -97,15 +98,20 @@ def find_all_paths(start, path=[]):
         if node not in path:
             newpaths = find_all_paths(node, path)
             for newpath in newpaths:
-                paths.insert(0,newpath)
+                paths.append(newpath)
     return paths
 
 
 def best_path(pathlist):
-    # chron_sort = sorted(pathlist, key=lambda path: len(path))
-    score_sort = sorted(pathlist, key=lambda path: path[-1].get_endgame_score())
-    # note
-    return (score_sort[0], score_sort[-1][-1].get_endgame_score(), len(score_sort))
+    best_score = -INF
+    best_path = []
+    for path in pathlist:
+        endnode = path[-1]
+        score = endnode.get_endgame_score()
+        if score > best_score:
+            best_score = score
+            best_path = path
+    return (best_path, best_score, len(pathlist))
 
 
 def dfs_maximizing(state) :
@@ -114,12 +120,8 @@ def dfs_maximizing(state) :
      0. the best path (a list of AbstractGameState objects),
      1. the score of the leaf node (a number), and
      2. the number of static evaluations performed (a number)"""
-
-    # if state.is_game_over():
-    #     return ([], state.get_endgame_score(is_current_player_maximizer=True), 1)
-    # else:
-    print move_sequence(GAME1, [2,3])
     return best_path(find_all_paths(state, []))
+
 
 def minimax_endgame_search(state, maximize=True) :
     """Performs minimax search, searching all leaf nodes and statically
