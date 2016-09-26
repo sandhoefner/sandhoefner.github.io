@@ -123,10 +123,32 @@ def dfs_maximizing(state) :
     return best_path(find_all_paths(state, []))
 
 
+def minimax_helper(state, maximize=True, evals=0, path=[]):
+    if state.is_game_over():
+        return (path, path.get_endgame_score(maximize), evals)
+    else:
+        candidates = [node.get_endgame_score(maximize) for node in state.generate_next_states()]
+        next_state = max(candidates)
+        maximize = not maximize
+        evals += len(candidates)
+        path.append(next_state)
+        return minimax_helper(next_state, maximize, evals, path)
+
 def minimax_endgame_search(state, maximize=True) :
     """Performs minimax search, searching all leaf nodes and statically
     evaluating all endgame scores.  Same return type as dfs_maximizing."""
-    raise NotImplementedError
+
+    # all_paths = find_all_paths(state, [])
+    # best_util = -INF
+    # best_path = []
+    # for path in all_paths:
+    #     util = util(path, maximize, len(path)-1, state)
+    #     if util > best_util:
+    #         best_path = []
+    #         best_util = util
+    # return (best_path, best_util, EVALS)
+    return minimax_helper(state)
+
 
 # Uncomment the line below to try your minimax_endgame_search on an
 # AbstractGameState representing the ConnectFourBoard "NEARLY_OVER" from boards.py:
