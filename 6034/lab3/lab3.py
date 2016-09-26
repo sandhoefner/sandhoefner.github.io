@@ -187,7 +187,7 @@ ANSWER_4 = '5'
 
 NAME = "Evan Sandhoefner"
 COLLABORATORS = "Ryan Kerr"
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+HOW_MANY_HOURS_THIS_LAB_TOOK = "8"
+WHAT_I_FOUND_INTERESTING = "The Abstract API for reusing minimax code for many games - powerful"
+WHAT_I_FOUND_BORING = "Cooperative search because it didn't seem useful"
 SUGGESTIONS = None
