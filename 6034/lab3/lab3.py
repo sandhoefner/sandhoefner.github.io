@@ -122,6 +122,8 @@ def dfs_maximizing(state) :
      2. the number of static evaluations performed (a number)"""
     return best_path(find_all_paths(state, []))
 
+global minimax_endgame_evals
+minimax_endgame_evals = 0
 
 # returns final minimax score of state's children
 def minimax_score(state, maximize):
@@ -145,7 +147,7 @@ def grow_path(path, maximize, evals):
         else:
             best_score = INF
         best_state = None
-        options = [(minimax_score(option, maximize), option) for option in state.generate_next_states()]
+        options = [(minimax_score(option, not maximize), option) for option in state.generate_next_states()]
         if maximize:
             for option in options:
                 if option[0] > best_score:
@@ -156,22 +158,27 @@ def grow_path(path, maximize, evals):
                 if option[0] < best_score:
                     best_score = option[0]
                     best_state = option[1]
-        newpath = path[:]
-        newpath.append(best_state)
-        evals += len(options)
-        return grow_path(newpath, not maximize, evals)
-
+        path.append(best_state)
+        evals += len(options) * 2
+        return grow_path(path, not maximize, evals)
 
 
 def minimax_endgame_search(state, maximize=True) :
     """Performs minimax search, searching all leaf nodes and statically
     evaluating all endgame scores.  Same return type as dfs_maximizing."""
-    print "answer to 24:"
-    print move_sequence(GAME1, [1,0])
-    print "4"
-    print "16"
+    # print "answer to 24:"
+    # print move_sequence(GAME1, [1,0])
+    # print "4"
+    # print "16"
     ret = grow_path([state], maximize, 0)
-    return (ret[0], ret[0][-1].get_endgame_score(maximize), ret[1])
+    path = ret[0]
+    evals = ret[1]
+    if len(path) % 2 is not 0:
+        maximize = not maximize
+    # for board in path:
+        # print board.get_snapshot()
+    # print (path[-1].get_endgame_score(maximize), path[-1].get_endgame_score(not maximize))
+    return (path, path[-1].get_endgame_score(not maximize), evals)
 
 
 
