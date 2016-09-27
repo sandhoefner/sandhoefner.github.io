@@ -123,31 +123,57 @@ def dfs_maximizing(state) :
     return best_path(find_all_paths(state, []))
 
 
-def minimax_helper(state, maximize=True, evals=0, path=[]):
+# returns final minimax score of state's children
+def minimax_score(state, maximize):
     if state.is_game_over():
-        return (path, path.get_endgame_score(maximize), evals)
+        return state.get_endgame_score(maximize)
     else:
-        candidates = [node.get_endgame_score(maximize) for node in state.generate_next_states()]
-        next_state = max(candidates)
-        maximize = not maximize
-        evals += len(candidates)
-        path.append(next_state)
-        return minimax_helper(next_state, maximize, evals, path)
+        options = state.generate_next_states()
+        if maximize:
+            return max([minimax_score(newstate, False) for newstate in options])
+        else:
+            return min([minimax_score(newstate, True) for newstate in options])
+
+
+def grow_path(path, maximize, evals):
+    state = path[-1]
+    if state.is_game_over():
+        return (path, evals)
+    else:
+        if maximize:
+            best_score = -INF
+        else:
+            best_score = INF
+        best_state = None
+        options = [(minimax_score(option, maximize), option) for option in state.generate_next_states()]
+        if maximize:
+            for option in options:
+                if option[0] > best_score:
+                    best_score = option[0]
+                    best_state = option[1]
+        else:
+            for option in options:
+                if option[0] < best_score:
+                    best_score = option[0]
+                    best_state = option[1]
+        newpath = path[:]
+        newpath.append(best_state)
+        evals += len(options)
+        return grow_path(newpath, not maximize, evals)
+
+
 
 def minimax_endgame_search(state, maximize=True) :
     """Performs minimax search, searching all leaf nodes and statically
     evaluating all endgame scores.  Same return type as dfs_maximizing."""
+    print "answer to 24:"
+    print move_sequence(GAME1, [1,0])
+    print "4"
+    print "16"
+    ret = grow_path([state], maximize, 0)
+    return (ret[0], ret[0][-1].get_endgame_score(maximize), ret[1])
 
-    # all_paths = find_all_paths(state, [])
-    # best_util = -INF
-    # best_path = []
-    # for path in all_paths:
-    #     util = util(path, maximize, len(path)-1, state)
-    #     if util > best_util:
-    #         best_path = []
-    #         best_util = util
-    # return (best_path, best_util, EVALS)
-    return minimax_helper(state)
+
 
 
 # Uncomment the line below to try your minimax_endgame_search on an
