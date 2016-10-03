@@ -125,6 +125,28 @@ def dfs_maximizing(state) :
 global minimax_endgame_evals
 minimax_endgame_evals = 0
 
+# ideas:
+# save where a node goes to, reverse_engineer that way
+
+# find terminal then check all_paths***
+
+tot_evals = 0
+glob_state = None
+
+def terminal(state, maximize):
+    global tot_evals
+    global glob_state
+    if state.is_game_over():
+        tot_evals += 1
+        glob_state = state
+        return state.get_endgame_score(maximize)
+    else:
+        options = state.generate_next_states()
+        if maximize:
+            return max([terminal(newstate, False) for newstate in options])
+        else:
+            return min([terminal(newstate, True) for newstate in options])
+
 # returns final minimax score of state's children
 def minimax_score(state, maximize):
     if state.is_game_over():
@@ -170,15 +192,21 @@ def minimax_endgame_search(state, maximize=True) :
     # print move_sequence(GAME1, [1,0])
     # print "4"
     # print "16"
-    ret = grow_path([state], maximize, 0)
-    path = ret[0]
-    evals = ret[1]
-    if len(path) % 2 is not 0:
-        maximize = not maximize
+    # ret = grow_path([state], maximize, 0)
+    # path = ret[0]
+    # evals = ret[1]
+    # if len(path) % 2 is not 0:
+    #     maximize = not maximize
     # for board in path:
         # print board.get_snapshot()
     # print (path[-1].get_endgame_score(maximize), path[-1].get_endgame_score(not maximize))
-    return (path, path[-1].get_endgame_score(not maximize), evals)
+    # return (path, path[-1].get_endgame_score(not maximize), evals)
+    print glob_state
+    print find_all_paths(state)
+    term = terminal(state, maximize)
+    for path in find_all_paths(state):
+        if path[-1] is glob_state:
+            return (path, term, tot_evals)
 
 
 
