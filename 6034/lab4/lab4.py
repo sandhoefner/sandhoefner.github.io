@@ -180,11 +180,11 @@ TEST_MOOSE_PROBLEM = False
 
 #### SURVEY ###################################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+NAME = "Evan Sandhoefner"
+COLLABORATORS = "Ryan Kerr"
+HOW_MANY_HOURS_THIS_LAB_TOOK = 8
+WHAT_I_FOUND_INTERESTING = "Pokemon"
+WHAT_I_FOUND_BORING = "Palin"
 SUGGESTIONS = None
 
 
