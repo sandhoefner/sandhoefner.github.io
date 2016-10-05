@@ -1,0 +1,20 @@
+<link rel="stylesheet" type="text/css" href="elo.css">
+
+<div id="wrapper">
+	<h3>Elo Win Rate Calculator</h3>
+	<input id="yours" placeholder="Your Elo"></input>
+	<br><input id="opp" placeholder="Opponent's Elo"></input>
+	<br><button id="go">Go</button>
+	<div id="pct"></div>
+</div>
+
+<script>
+	document.getElementById("go").onclick = function() {
+		var yours = document.getElementById("yours").value;
+		var opp = document.getElementById("opp").value;
+		var pct = 1 - 1 / (1 + Math.pow(10, (yours-opp)/400));
+		var format = Math.round(pct * 10000) / 100
+		var simple = Math.round(1 / pct * 100) / 100
+		document.getElementById("pct").innerHTML ="<br><br>Your win rate:<br>" + format + "% (1 in " + simple + ")";
+	}
+</script>
