@@ -9,12 +9,22 @@
 </div>
 
 <script>
-	document.getElementById("go").onclick = function() {
+	function work() {
 		var yours = document.getElementById("yours").value;
 		var opp = document.getElementById("opp").value;
 		var pct = 1 - 1 / (1 + Math.pow(10, (yours-opp)/400));
 		var format = Math.round(pct * 10000) / 100
 		var simple = Math.round(1 / pct * 100) / 100
 		document.getElementById("pct").innerHTML ="<br><br>Your win rate:<br>" + format + "% (1 in " + simple + ")";
+	}
+
+	document.getElementById("go").onclick = function() {
+		work();
+	}
+
+	window.onkeyup = function(e) {
+		if (e.keyCode == 13 /*enter*/) {
+			work();
+		}
 	}
 </script>
