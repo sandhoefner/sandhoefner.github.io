@@ -28,7 +28,8 @@ def check_all_constraints(csp) :
             if not con.check(val1, val2):
                 return False
         except:
-            break
+            # PASS NOT BREAK
+            pass
     return True
 
 def solve_constraint_dfs(problem) :
@@ -36,28 +37,34 @@ def solve_constraint_dfs(problem) :
     1. the solution (a dictionary mapping variables to assigned values), and
     2. the number of extensions made (the number of problems popped off the agenda).
     If no solution was found, return None as the first element of the tuple."""
+
+    # clear up problem representation, what am I actually working with
     agenda = [problem]
     extensions = 0
     while agenda:
-        first_prob = agenda.pop(0)
+        first_prob = agenda.pop()
         extensions += 1
         if has_empty_domains(first_prob) or (not check_all_constraints(first_prob)):
-            pass
+            print first_prob
+            continue
             # print first_prob
             # return (None, extensions)
         elif not first_prob.unassigned_vars:
             return (first_prob.assigned_values, extensions)
         else:
             first_unass = first_prob.pop_next_unassigned_var()
-            # why can't I append one at a time? oh bc dfs
             new_probs = []
-            for value in first_prob.domains[first_unass]:
+            # maybe try get_domain
+            for value in first_prob.get_domain(first_unass):
                 # create new problem with value assigned to variable
                 new_prob = first_prob.copy()
-                new_prob = new_prob.set_assigned_value(first_unass, value)
+                new_prob.set_assigned_value(first_unass, value)
                 new_probs.insert(0, new_prob)
-            for prob in new_probs:
-                agenda.insert(0, prob)
+                # new_probs.append(new_prob)
+            # for prob in new_probs:
+            #     # add to agenda old to new
+            #     agenda.insert(0, prob)
+            agenda.extend(new_probs)
     return (None, extensions)
 
 
