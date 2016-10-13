@@ -49,14 +49,15 @@ def solve_constraint_dfs(problem) :
             return (first_prob.assigned_values, extensions)
         else:
             first_unass = first_prob.pop_next_unassigned_var()
-            # why can't I append one at a time?
-            # new_probs = []
+            # why can't I append one at a time? oh bc dfs
+            new_probs = []
             for value in first_prob.domains[first_unass]:
                 # create new problem with value assigned to variable
                 new_prob = first_prob.copy()
                 new_prob = new_prob.set_assigned_value(first_unass, value)
-                agenda.insert(0, new_prob)
-            # agenda.extend(new_probs)
+                new_probs.insert(0, new_prob)
+            for prob in new_probs:
+                agenda.insert(0, prob)
     return (None, extensions)
 
 
