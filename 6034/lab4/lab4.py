@@ -228,12 +228,15 @@ ANSWER_5 = None
 def constraint_adjacent(m, n) :
     """Returns True if m and n are adjacent, otherwise False.
     Assume m and n are ints."""
-    raise NotImplementedError
+    difference = m - n
+    if difference is 1 or difference is -1:
+        return True
+    return False
 
 def constraint_not_adjacent(m, n) :
     """Returns True if m and n are NOT adjacent, otherwise False.
     Assume m and n are ints."""
-    raise NotImplementedError
+    return not constraint_adjacent(m, n)
 
 def all_different(variables) :
     """Returns a list of constraints, with one difference constraint between
