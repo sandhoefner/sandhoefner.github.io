@@ -98,6 +98,7 @@ def eliminate_from_neighbors(csp, var) :
 
     # in every case (so far) it's either removing 1 too few or removing the right amount
     neighbors = csp.get_neighbors(var)
+    neighbor_vals = []
     vars_reduced = []
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
@@ -115,13 +116,20 @@ def eliminate_from_neighbors(csp, var) :
             if every_conflict:
                 # remove value from neighbors domain
                 # print csp
+
+                # switch
                 csp.eliminate(neighbor, value)
+                # switch
+                # neighbor_vals.append((neighbor, value))
+
                 # print csp
                 # append to vars_reduced
                 vars_reduced.append(neighbor)
                 # if neighbors domain is now 0:
                 if not csp.get_domain(neighbor):
                     return None
+    # for tup in neighbor_vals:
+        # csp.eliminate(tup[0], tup[1])
     return sorted(list(set(vars_reduced)))
 
 
