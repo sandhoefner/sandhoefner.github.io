@@ -91,6 +91,12 @@ def eliminate_from_neighbors(csp, var) :
 
     Hint: csp.constraints_between may help."""
 
+    def has_conflict(cons,value,value2):
+        for con in cons:
+            if not con.check(value,value2):
+                return True
+        return False
+
     neighbors = csp.get_neighbors(var)
     # print csp
     # print neighbors
@@ -98,12 +104,12 @@ def eliminate_from_neighbors(csp, var) :
     vars_reduced = []
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
-        cons = csp.constraints_between(var1, neighbor)
+        cons = csp.constraints_between(var, neighbor)
         for value in csp.get_domain(neighbor):
             # if value violates a constraint with every value in my_domain, remove value
             every_conflict = True
             for value2 in my_domain:
-                conflict = conflict and not constraint.check(value1, value2)
+                every_conflict = every_conflict and has_conflict(cons,value,value2)
             if every_conflict:
                 # remove value from neighbors domain
                 csp.eliminate(neighbor, value)
