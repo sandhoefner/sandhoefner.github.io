@@ -233,7 +233,28 @@ def domain_reduction_singleton_domains(csp, queue=None) :
     """Uses constraints to reduce domains, modifying the original csp.
     Only propagates through singleton domains.
     Same return type as domain_reduction."""
-    raise NotImplementedError
+    dqd = []
+    # python quirk, different from if not queue (note:)
+    if queue is None:
+        queue = csp.get_all_variables()
+        # print queue
+    while queue:
+        var = queue.pop(0)
+        dqd.append(var)
+        result = eliminate_from_neighbors(csp, var)
+        # again, not if not result (note:)
+        # this one was HUGE
+        if result is None:
+            print result
+            # print "returning none on purpose"
+            # print csp
+            return None
+        else:
+            for v in result:
+                if v not in queue and len(csp.get_domain(v)) is 1:
+                    queue.append(v)
+    # print csp
+    return dqd
 
 def solve_constraint_propagate_singleton_domains(problem) :
     """Solves the problem using depth-first search with forward checking and
