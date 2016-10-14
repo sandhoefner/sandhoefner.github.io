@@ -101,7 +101,8 @@ def eliminate_from_neighbors(csp, var) :
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
         cons = csp.constraints_between(var, neighbor)
-        for value in csp.get_domain(neighbor):
+        neighbor_domain = csp.get_domain(neighbor)
+        for value in neighbor_domain:
             # if value violates a constraint with every value in my_domain, remove value
             every_conflict = True
             for value2 in my_domain:
@@ -144,7 +145,7 @@ ANSWER_1 = 20
 # QUESTION 2: How many extensions does it take to solve the Pokemon problem
 #    with dfs if you DO use domain reduction before solving it?
 
-ANSWER_2 = None
+ANSWER_2 = 6
 
 
 #### PART 3: PROPAGATION THROUGH REDUCED DOMAINS
