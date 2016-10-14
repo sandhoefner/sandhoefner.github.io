@@ -148,7 +148,7 @@ def domain_reduction(csp, queue=None) :
     if queue is None:
         queue = csp.get_all_variables()
         # print queue
-    while queue is not []:
+    while queue:
         var = queue.pop(0)
         dqd.append(var)
         result = eliminate_from_neighbors(csp, var)
