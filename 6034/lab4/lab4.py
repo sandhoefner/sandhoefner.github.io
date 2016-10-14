@@ -144,7 +144,7 @@ def domain_reduction(csp, queue=None) :
     list multiple times.
     If a domain is reduced to size 0, quits immediately and returns None."""
     dqd = []
-    if not queue:
+    if queue is None:
         queue = csp.get_all_variables()
         print queue
     while queue:
@@ -153,11 +153,13 @@ def domain_reduction(csp, queue=None) :
         result = eliminate_from_neighbors(csp, var)
         if not result:
             print "returning none on purpose"
+            print csp
             return None
         else:
             for v in result:
                 if v not in queue:
                     queue.append(v)
+    print csp
     return dqd
 
 
