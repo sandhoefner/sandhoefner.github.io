@@ -102,19 +102,21 @@ def eliminate_from_neighbors(csp, var) :
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
         cons = csp.constraints_between(var, neighbor)
-        neighbor_domain = csp.get_domain(neighbor)
+        # note: important python quirk
+        neighbor_domain = csp.copy().get_domain(neighbor)
         for value in neighbor_domain:
+            # print value
             # if value violates a constraint with every value in my_domain, remove value
             every_conflict = True
             for value2 in my_domain:
                 this_conflict = has_conflict(cons,value,value2)
-                print this_conflict
+                # print this_conflict
                 every_conflict = every_conflict and this_conflict
             if every_conflict:
                 # remove value from neighbors domain
-                print csp
+                # print csp
                 csp.eliminate(neighbor, value)
-                print csp
+                # print csp
                 # append to vars_reduced
                 vars_reduced.append(neighbor)
                 # if neighbors domain is now 0:
@@ -133,7 +135,22 @@ def domain_reduction(csp, queue=None) :
     in the order they were removed from the queue.  Variables may appear in the
     list multiple times.
     If a domain is reduced to size 0, quits immediately and returns None."""
-    raise NotImplementedError
+    dqd = []
+    if not queue:
+        queue = csp.get_all_variables()
+        print queue
+    while queue:
+        var = queue.pop(0)
+        dqd.append(var)
+        result = eliminate_from_neighbors(csp, var)
+        if not result:
+            return None
+        else:
+            for v in result:
+                if v not in queue:
+                    queue.append(v)
+    return dqd
+
 
 # QUESTION 1: How many extensions does it take to solve the Pokemon problem
 #    with dfs if you DON'T use domain reduction before solving it?
