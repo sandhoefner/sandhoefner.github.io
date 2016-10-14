@@ -2,6 +2,7 @@
 # Written by Dylan Holmes (dxh), Jessica Noss (jmn), and 6.034 staff
 
 from constraint_api import *
+import itertools
 from test_problems import get_pokemon_problem
 
 #### PART 1: WRITE A DEPTH-FIRST SEARCH CONSTRAINT SOLVER
@@ -241,7 +242,18 @@ def constraint_not_adjacent(m, n) :
 def all_different(variables) :
     """Returns a list of constraints, with one difference constraint between
     each pair of variables."""
-    raise NotImplementedError
+    if len(variables) < 2:
+        return []
+    pairs = []
+    for comb in itertools.combinations(variables, 2):
+        pairs.append(comb)
+    # pairs is a list of tuples
+    constraints = []
+    for pair in pairs:
+        constraint = Constraint(pair[0], pair[1], constraint_different)
+        constraints.append(constraint)
+    return constraints
+
 
 
 #### PART 8: MOOSE PROBLEM (OPTIONAL)
@@ -261,9 +273,9 @@ TEST_MOOSE_PROBLEM = False
 
 NAME = "Evan Sandhoefner"
 COLLABORATORS = "Ryan Kerr"
-HOW_MANY_HOURS_THIS_LAB_TOOK = 8
-WHAT_I_FOUND_INTERESTING = "Pokemon"
-WHAT_I_FOUND_BORING = "Palin"
+HOW_MANY_HOURS_THIS_LAB_TOOK = 12
+WHAT_I_FOUND_INTERESTING = "Comparing efficiency of methods"
+WHAT_I_FOUND_BORING = "Writing helper functions"
 SUGGESTIONS = None
 
 
