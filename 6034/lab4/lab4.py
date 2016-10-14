@@ -45,9 +45,7 @@ def solve_constraint_dfs(problem) :
         first_prob = agenda.pop()
         extensions += 1
         if has_empty_domains(first_prob) or (not check_all_constraints(first_prob)):
-            # print first_prob
             continue
-            # print first_prob
             # return (None, extensions)
         elif not first_prob.unassigned_vars:
             return (first_prob.assigned_values, extensions)
@@ -97,10 +95,8 @@ def eliminate_from_neighbors(csp, var) :
                 return True
         return False
 
+    # in every case (so far) it's either removing 1 too few or removing the right amount
     neighbors = csp.get_neighbors(var)
-    # print csp
-    # print neighbors
-    # print var
     vars_reduced = []
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
@@ -109,10 +105,14 @@ def eliminate_from_neighbors(csp, var) :
             # if value violates a constraint with every value in my_domain, remove value
             every_conflict = True
             for value2 in my_domain:
-                every_conflict = every_conflict and has_conflict(cons,value,value2)
+                this_conflict = has_conflict(cons,value,value2)
+                print this_conflict
+                every_conflict = every_conflict and this_conflict
             if every_conflict:
                 # remove value from neighbors domain
+                print csp
                 csp.eliminate(neighbor, value)
+                print csp
                 # append to vars_reduced
                 vars_reduced.append(neighbor)
                 # if neighbors domain is now 0:
@@ -139,7 +139,7 @@ def domain_reduction(csp, queue=None) :
 # Hint: Use get_pokemon_problem() to get a new copy of the Pokemon problem
 #    each time you want to solve it with a different search method.
 
-ANSWER_1 = None
+ANSWER_1 = 20
 
 # QUESTION 2: How many extensions does it take to solve the Pokemon problem
 #    with dfs if you DO use domain reduction before solving it?
