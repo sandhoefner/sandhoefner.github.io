@@ -144,6 +144,7 @@ def domain_reduction(csp, queue=None) :
         dqd.append(var)
         result = eliminate_from_neighbors(csp, var)
         if not result:
+            print "returning none on purpose"
             return None
         else:
             for v in result:
