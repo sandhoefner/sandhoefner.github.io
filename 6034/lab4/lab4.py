@@ -45,7 +45,7 @@ def solve_constraint_dfs(problem) :
         first_prob = agenda.pop()
         extensions += 1
         if has_empty_domains(first_prob) or (not check_all_constraints(first_prob)):
-            print first_prob
+            # print first_prob
             continue
             # print first_prob
             # return (None, extensions)
@@ -77,7 +77,46 @@ def eliminate_from_neighbors(csp, var) :
     variables whose domains were reduced, with each variable appearing at most
     once.  If no domains were reduced, returns empty list.
     If a domain is reduced to size 0, quits immediately and returns None."""
-    raise NotImplementedError
+
+    """First, we will write a helper function to eliminate inconsistent values from a
+    variable's neighbors' domains. In particular, for a given neighbor n of a variable v,
+    if n has a value nval that violates a constraint with every value in v's domain, we
+    want to remove nval from n's domain.
+
+    This function should return an alphabetically sorted list of the neighbors whose
+    domains were reduced, with each neighbor appearing at most once in the list
+    (the list should contain no duplicates). If no domains are reduced, return an empty list;
+    if a domain is reduced to size 0 (no values left in domain), quit and immediately return None.
+    This method should modify the input csp.
+
+    Hint: csp.constraints_between may help."""
+
+    neighbors = csp.get_neighbors(var)
+    # print csp
+    # print neighbors
+    # print var
+    vars_reduced = []
+    my_domain = csp.get_domain(var)
+    for neighbor in neighbors:
+        cons = csp.constraints_between(var1, neighbor)
+        for value in csp.get_domain(neighbor):
+            # if value violates a constraint with every value in my_domain, remove value
+            every_conflict = True
+            for value2 in my_domain:
+                conflict = conflict and not constraint.check(value1, value2)
+            if every_conflict:
+                # remove value from neighbors domain
+                csp.eliminate(neighbor, value)
+                # append to vars_reduced
+                vars_reduced.append(neighbor)
+                # if neighbors domain is now 0:
+                if not csp.get_domain(neighbor):
+                    return None
+    return sorted(list(set(vars_reduced)))
+
+
+
+
 
 def domain_reduction(csp, queue=None) :
     """Uses constraints to reduce domains, modifying the original csp.
