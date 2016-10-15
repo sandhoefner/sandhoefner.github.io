@@ -334,7 +334,37 @@ def solve_constraint_generic(problem, enqueue_condition=None) :
     Same return type as solve_constraint_dfs."""
     if enqueue_condition is not None:
         propagate(enqueue_condition, problem)
-    return solve_constraint_dfs(problem)
+    else:
+        return solve_constraint_dfs(problem)
+
+    agenda = [problem]
+    extensions = 0
+    while agenda:
+        first_prob = agenda.pop()
+        extensions += 1
+        if has_empty_domains(first_prob) or (not check_all_constraints(first_prob)):
+            continue
+            # return (None, extensions)
+        elif not first_prob.unassigned_vars:
+            return (first_prob.assigned_values, extensions)
+        else:
+            first_unass = first_prob.pop_next_unassigned_var()
+            new_probs = []
+            # maybe try get_domain
+            for value in first_prob.get_domain(first_unass):
+                # create new problem with value assigned to variable
+                new_prob = first_prob.copy()
+                new_prob.set_assigned_value(first_unass, value)
+                # call your domain_reduction function with a list containing
+                # just the assigned variable as an argument
+                propagate(enqueue_condition, new_prob, [first_unass])
+                new_probs.insert(0, new_prob)
+                # new_probs.append(new_prob)
+            # for prob in new_probs:
+            #     # add to agenda old to new
+            #     agenda.insert(0, prob)
+            agenda.extend(new_probs)
+    return (None, extensions)
 
 # QUESTION 5: How many extensions does it take to solve the Pokemon problem
 #    with DFS and forward checking, but no propagation? (Don't use domain
