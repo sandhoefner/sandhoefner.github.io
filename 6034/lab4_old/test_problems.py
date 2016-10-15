@@ -34,7 +34,7 @@ def get_pokemon_problem():
 
 # New constraint functions
 def constraint_or(var1, var2):
-    return bool(var1 or var2)
+    return var1 or var2
 
 # Constraint instances
 cons_AB_different = Constraint('A', 'B', constraint_different)

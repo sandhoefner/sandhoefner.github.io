@@ -13,7 +13,7 @@ class Constraint :
 
     def check(self, val1, val2) :
         "Returns True if values satisfy constraint_fn, otherwise False"
-        return bool(self.constraint_fn(val1, val2))
+        return self.constraint_fn(val1, val2)
 
     def __str__(self):
         return 'Constraint(%s, %s, %s)' % (str(self.var1), str(self.var2),
