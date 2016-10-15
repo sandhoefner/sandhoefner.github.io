@@ -224,7 +224,7 @@ def solve_constraint_propagate_reduced_domains(problem) :
 #    with propagation through reduced domains? (Don't use domain reduction
 #    before solving it.)
 
-ANSWER_3 = None
+ANSWER_3 = 7
 
 
 #### PART 4: PROPAGATION THROUGH SINGLETON DOMAINS
@@ -293,7 +293,7 @@ def solve_constraint_propagate_singleton_domains(problem) :
 #    with propagation through singleton domains? (Don't use domain reduction
 #    before solving it.)
 
-ANSWER_4 = None
+ANSWER_4 = 8
 
 
 #### PART 5: FORWARD CHECKING
