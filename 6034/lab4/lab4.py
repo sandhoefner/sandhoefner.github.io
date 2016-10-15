@@ -317,7 +317,7 @@ def condition_domain_reduction(csp, var) :
 def condition_singleton(csp, var) :
     """Returns True if var should be enqueued under the singleton-domains
     condition, otherwise False"""
-    return len(csp.get_domain(v)) is 1
+    return len(csp.get_domain(var)) is 1
 
 def condition_forward_checking(csp, var) :
     """Returns True if var should be enqueued under the forward-checking
