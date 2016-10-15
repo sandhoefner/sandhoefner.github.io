@@ -332,7 +332,9 @@ def solve_constraint_generic(problem, enqueue_condition=None) :
     """Solves the problem, calling propagate with the specified enqueue
     condition (a function).  If enqueue_condition is None, uses DFS only.
     Same return type as solve_constraint_dfs."""
-    raise NotImplementedError
+    if enqueue_condition is not None:
+        propagate(problem, enqueue_condition)
+    return solve_constraint_dfs(problem)
 
 # QUESTION 5: How many extensions does it take to solve the Pokemon problem
 #    with DFS and forward checking, but no propagation? (Don't use domain
