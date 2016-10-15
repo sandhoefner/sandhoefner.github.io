@@ -333,7 +333,8 @@ def solve_constraint_generic(problem, enqueue_condition=None) :
     condition (a function).  If enqueue_condition is None, uses DFS only.
     Same return type as solve_constraint_dfs."""
     if enqueue_condition is not None:
-        propagate(enqueue_condition, problem)
+        # propagate(enqueue_condition, problem)
+        pass
     else:
         return solve_constraint_dfs(problem)
 
