@@ -102,10 +102,7 @@ def eliminate_from_neighbors(csp, var) :
     vars_reduced = []
     my_domain = csp.get_domain(var)
     for neighbor in neighbors:
-        if var < neighbor:
-            cons = csp.constraints_between(var, neighbor)
-        else:
-            cons = csp.constraints_between(neighbor, var)
+        cons = csp.constraints_between(neighbor, var)
         # note: important python quirk
         neighbor_domain = csp.copy().get_domain(neighbor)
         for value in neighbor_domain:
