@@ -333,7 +333,7 @@ def solve_constraint_generic(problem, enqueue_condition=None) :
     condition (a function).  If enqueue_condition is None, uses DFS only.
     Same return type as solve_constraint_dfs."""
     if enqueue_condition is not None:
-        propagate(problem, enqueue_condition)
+        propagate(enqueue_condition, problem)
     return solve_constraint_dfs(problem)
 
 # QUESTION 5: How many extensions does it take to solve the Pokemon problem
