@@ -1,6 +1,6 @@
 #!/usr/bin/env python2
 
-# MIT 6.034 Lab 4: Constraint Satisfaction Problems
+# MIT 6.034 Lab 5: k-Nearest Neighbors and Identification Trees
 
 import xmlrpclib
 import traceback
@@ -8,8 +8,8 @@ import sys
 import os
 import tarfile
 
-from constraint_api import *
-from test_problems import constraint_or
+from api import *
+from lab5 import euclidean_distance, manhattan_distance, hamming_distance, cosine_distance
 
 try:
     from cStringIO import StringIO
@@ -95,48 +95,32 @@ def get_lab_module():
 
     return lab
 
-# encode/decode Constraint and ConstraintSatisfactionProblem objects
-def constraint_greater_than(a,b):
-    return a > b
-constraint_dict = {'constraint_equal': constraint_equal,
-                   'constraint_different': constraint_different,
-                   'constraint_or': constraint_or,
-                   'constraint_greater_than': constraint_greater_than}
-def encode_constraint(constraint):
-    fn_name = constraint.constraint_fn.__name__
-    if fn_name == '<lambda>':
-        print (' ** Note: Unfortunately, the online tester is unable to accept '
-               +'lambda functions. To pass the online tests, please use a '
-               +'pre-defined named function instead. **')
-    elif fn_name not in constraint_dict:
-        print ('Error: Constraint function ' + fn_name + ' cannot be transmitted '
-               +'to server.  Please use a pre-defined constraint function instead.')
-    return [constraint.var1, constraint.var2, fn_name]
-def decode_constraint(var1, var2, constraint_fn_name):
-    return Constraint(var1, var2, constraint_dict[constraint_fn_name])
+# encode/decode objects
+def encode_Point(point):
+    return [list(point.coords), point.classification, point.name]
+def decode_Point(coords, classification, name):
+    return Point(coords, classification, name)
 
-def encode_CSP(csp):
-    return [csp.variables, map(encode_constraint, csp.constraints),
-            csp.unassigned_vars, csp.domains, csp.assigned_values]
-def decode_CSP(variables, constraint_list, unassigned_vars, domains, assigned_values):
-    csp = ConstraintSatisfactionProblem(variables)
-    csp.constraints = [decode_constraint(*c_args) for c_args in constraint_list]
-    csp.unassigned_vars = unassigned_vars
-    csp.domains = domains
-    csp.assigned_values = assigned_values
-    return csp
+def decode_Classifier(name, classify_fn_name):
+    return Classifier(name, function_dict[classify_fn_name])
+function_dict = {"euclidean_distance": euclidean_distance,
+                 "manhattan_distance": manhattan_distance,
+                 "hamming_distance": hamming_distance,
+                 "cosine_distance": cosine_distance}
 
-# decode functions received from server
-def lambda_F(p, v): return False
-def lambda_T(p, v): return True
-def lambda_1(p, v): return len(p.get_domain(v))==1
-def lambda_12(p, v): return len(p.get_domain(v)) in [1, 2]
-def lambda_B(p, v): return v=='B'
-def lambda_BC(p, v): return v in 'BC'
-function_dict = {'lambda_F': lambda_F, 'lambda_T': lambda_T,
-                 'lambda_1': lambda_1, 'lambda_B': lambda_B,
-                 'lambda_12': lambda_12, 'lambda_BC': lambda_BC}
-
+def encode_IDTNode(node):
+    return [node.target_classifier,
+            node._parent_branch_name,
+            node._classification,
+            node._classifier,
+            map(list, node._children.items())]
+def decode_IDTNode(target_classifier, _parent_branch_name, _classification,
+                   _classifier, _children):
+    node = IdentificationTreeNode(target_classifier, _parent_branch_name)
+    node._classification = _classification
+    node._classifier = _classifier
+    node._children = dict(_children)
+    return node
 
 def type_decode(arg, lab):
     """
@@ -149,10 +133,14 @@ def type_decode(arg, lab):
     original data type.
     """
     if isinstance(arg, list) and len(arg) >= 1: # There is no future magic for tuples.
-#        if arg[0] == 'Constraint': # not used because no lone Constraints (ie outside of a CSP) are sent from server
-#            return decode_constraint(*type_decode(arg[1], lab))
-        if arg[0] == 'CSP':
-            return decode_CSP(*type_decode(arg[1], lab))
+        if arg[0] == 'IDTNode':
+            return decode_IDTNode(*type_decode(arg[1], lab))
+        elif arg[0] == 'Point':
+            return decode_Point(*type_decode(arg[1], lab))
+        elif arg[0] == 'feature_test':
+            return feature_test(arg[1])
+        elif arg[0] == 'threshold_test':
+            return threshold_test(arg[1], arg[2])
         elif arg[0] == 'callable':
             return function_dict[arg[1]]
         else:
@@ -167,21 +155,21 @@ def type_decode(arg, lab):
     else:
         return arg
 
-def is_list_of_constraints(arg):
-    return (arg != [] and isinstance(arg, (tuple, list))
-            and all(map(isinstance_Constraint, arg)))
-
 def type_encode(arg):
-    "Encode objects as lists in a way that can be decoded by 'type_decode'"
-    if isinstance_Constraint(arg):
-        return [ 'Constraint', type_encode(encode_constraint(arg)) ]
-    elif (isinstance(arg, list) and len(arg) == 2 # special case for FUNCTION_WITH_CSP
-          and isinstance_ConstraintSatisfactionProblem(arg[1])):
-        return [type_encode(arg[0]), type_encode(encode_CSP(arg[1]))]
-    elif is_list_of_constraints(arg): # special case for all_different
-        return ['list-of-constraints', map(encode_constraint, arg)]
+    "Encode objects as lists in a way that the server expects"
+    if isinstance(arg, (tuple,list)): #note that tuples become lists
+        return [type_encode(x) for x in arg]
+    if isinstance_Classifier(arg):
+        return ['Classifier', arg.name]
+    elif isinstance_IdentificationTreeNode(arg):
+        return ['IDTNode', type_encode(encode_IDTNode(arg))]
+    elif isinstance_Point(arg):
+        return ['Point', encode_Point(arg)]
+    elif callable(arg):
+        return ['callable', arg.__name__]
     else:
         return arg
+    return arg
 
 def run_test(test, lab):
     """
@@ -207,20 +195,21 @@ def run_test(test, lab):
         return attr
     elif mytype == 'FUNCTION':
         return apply(attr, args)
-    elif mytype == 'FUNCTION_WITH_CSP':
-        # return modified version of input csp
-        for a in args:
-            if isinstance_ConstraintSatisfactionProblem(a):
-                return [apply(attr, args), a]
-        raise Exception("Test Error: 'FUNCTION_WITH_CSP' test missing CSP. "
-                        + "Please contact a TA if you see this error.")
+    elif mytype == 'FUNCTION_EXPECTING_EXCEPTION':
+        try:
+            result = apply(attr, args)
+            return "Error: expected raised exception, but got returned answer: " + str(result)
+        except NotImplementedError, e:
+            raise e
+        except Exception, e:
+            return type(e)
     elif mytype == 'MULTIFUNCTION':
         return [ run_test( (id, 'FUNCTION', attr_name, FN), lab)
                 for FN in type_decode(args, lab) ]
     elif mytype == 'FUNCTION_ENCODED_ARGS':
         return run_test( (id, 'FUNCTION', attr_name, type_decode(args, lab)), lab )
-    elif mytype == 'FUNCTION_ENCODED_ARGS_WITH_CSP':
-        return run_test( (id, 'FUNCTION_WITH_CSP', attr_name, type_decode(args, lab)), lab )
+    elif mytype == 'FUNCTION_ENCODED_ARGS_EXPECTING_EXCEPTION':
+        return run_test( (id, 'FUNCTION_EXPECTING_EXCEPTION', attr_name, type_decode(args, lab)), lab )
     else:
         raise Exception("Test Error: Unknown TYPE: " + str(mytype)
                         + ".  Please make sure you have downloaded the latest"
@@ -261,6 +250,7 @@ def test_offline(verbosity=1):
         except (KeyboardInterrupt, SystemExit): # Allow user to interrupt tester
             raise
         except Exception:
+            #raise   # To debug tests by allowing them to raise exceptions, uncomment this
             correct = False
 
         show_result(summary, testname, correct, answer, expected, verbosity)
