@@ -371,7 +371,7 @@ def solve_constraint_generic(problem, enqueue_condition=None) :
 #    with DFS and forward checking, but no propagation? (Don't use domain
 #    reduction before solving it.)
 
-ANSWER_5 = None
+ANSWER_5 = 9
 
 
 #### PART 7: DEFINING CUSTOM CONSTRAINTS
