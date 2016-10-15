@@ -109,16 +109,13 @@ def eliminate_from_neighbors(csp, var) :
         # note: important python quirk
         neighbor_domain = csp.copy().get_domain(neighbor)
         for value in neighbor_domain:
-            # print value
             # if value violates a constraint with every value in my_domain, remove value
             every_conflict = True
             for value2 in my_domain:
                 this_conflict = has_conflict(cons,value,value2)
-                # print this_conflict
                 every_conflict = every_conflict and this_conflict
             if every_conflict:
                 # remove value from neighbors domain
-                # print csp
                 # failing 53 online ->
 
                 # switch
@@ -126,7 +123,6 @@ def eliminate_from_neighbors(csp, var) :
                 # switch
                 # neighbor_vals.append((neighbor, value))
 
-                # print csp
                 # append to vars_reduced
                 vars_reduced.append(neighbor)
                 # if neighbors domain is now 0:
@@ -151,7 +147,6 @@ def domain_reduction(csp, queue=None) :
     # python quirk, different from if not queue (note:)
     if queue is None:
         queue = csp.get_all_variables()
-        # print queue
     while queue:
         var = queue.pop(0)
         dqd.append(var)
@@ -159,15 +154,12 @@ def domain_reduction(csp, queue=None) :
         # again, not if not result (note:)
         # this one was HUGE
         if result is None:
-            print result
-            # print "returning none on purpose"
-            # print csp
+
             return None
         else:
             for v in result:
                 if v not in queue:
                     queue.append(v)
-    # print csp
     return dqd
 
 
@@ -237,7 +229,6 @@ def domain_reduction_singleton_domains(csp, queue=None) :
     # python quirk, different from if not queue (note:)
     if queue is None:
         queue = csp.get_all_variables()
-        # print queue
     while queue:
         var = queue.pop(0)
         dqd.append(var)
@@ -245,15 +236,12 @@ def domain_reduction_singleton_domains(csp, queue=None) :
         # again, not if not result (note:)
         # this one was HUGE
         if result is None:
-            print result
-            # print "returning none on purpose"
-            # print csp
+
             return None
         else:
             for v in result:
                 if v not in queue and len(csp.get_domain(v)) is 1:
                     queue.append(v)
-    # print csp
     return dqd
 
 def solve_constraint_propagate_singleton_domains(problem) :
