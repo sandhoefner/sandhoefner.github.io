@@ -24,7 +24,15 @@ def split_on_classifier(data, classifier):
     """Given a set of data (as a list of points) and a Classifier object, uses
     the classifier to partition the data.  Returns a dict mapping each feature
     values to a list of points that have that value."""
-    raise NotImplementedError
+    ret = {}
+    for point in data:
+        classification = classifier.classify(point)
+        try:
+            noodles = ret[classification]
+            ret[classification] = ret[classification].append(point)
+        except:
+            ret[classification] = [point]
+    return ret
 
 
 #### CALCULATING DISORDER
