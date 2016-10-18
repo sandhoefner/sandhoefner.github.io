@@ -42,7 +42,18 @@ def branch_disorder(data, target_classifier):
     """Given a list of points representing a single branch and a Classifier
     for determining the true classification of each point, computes and returns
     the disorder of the branch."""
-    raise NotImplementedError
+    classes = {}
+    for datum in data:
+        clas = target_classifier.classify(datum)
+        try:
+            classes[clas] += 1
+        except:
+            classes[clas] = 1
+    summ = 0
+    for clas in classes:
+        summ -= (classes[clas] / len(data)) * log2(classes[clas] / len(data))
+    return summ
+
 
 def average_test_disorder(data, test_classifier, target_classifier):
     """Given a list of points, a feature-test Classifier, and a Classifier
