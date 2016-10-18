@@ -269,7 +269,17 @@ def cross_validate(data, k, distance_metric):
     """Given a list of points (the data), an int 0 < k <= len(data), and a
     distance metric (a function), performs leave-one-out cross-validation.
     Return the fraction of points classified correctly, as a float."""
-    raise NotImplementedError
+    summ = 0
+    for i in range(len(data)):
+        training = data[:]
+        test = training[i]
+        trueClass = test.classification
+        del training[i]
+        if trueClass is knn_classify_point(test, training, k, distance_metric):
+            summ += 1
+    return summ / float(len(data))
+
+
 
 def find_best_k_and_metric(data):
     """Given a list of points (the data), uses leave-one-out cross-validation to
