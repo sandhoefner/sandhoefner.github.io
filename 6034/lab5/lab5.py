@@ -51,7 +51,8 @@ def branch_disorder(data, target_classifier):
             classes[clas] = 1
     summ = 0
     for clas in classes:
-        summ -= (classes[clas] / len(data)) * log2(classes[clas] / len(data))
+        ratio = classes[clas] / float(len(data))
+        summ -= ratio * log2(ratio)
     return summ
 
 
