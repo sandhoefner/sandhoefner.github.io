@@ -196,7 +196,8 @@ def get_k_closest_points(point, data, k, distance_metric):
     and a distance metric (a function), returns a list containing the k points
     from the data that are closest to the test point, according to the distance
     metric.  Breaks ties lexicographically by coordinates."""
-    data = sorted(data)
+    # beautiful
+    data = sorted(data, key=lambda datum: datum.coords)
     data = sorted(data, key=lambda datum: distance_metric(datum, point))
     return data[:k]
 
