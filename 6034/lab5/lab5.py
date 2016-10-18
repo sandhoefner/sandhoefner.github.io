@@ -128,7 +128,8 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
             error = True
         id_tree_node = IdentificationTreeNode(best_classifier)
     # if is leaf
-    if len(id_tree_node.get_branches()) is 1:
+    print id_tree_node.get_branches()
+    if average_test_disorder(data, target_classifier, best_classifier) is 0:
         id_tree_node.set_node_classification(best_classifier)
     elif error:
         pass
