@@ -132,9 +132,12 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
         id_tree_node.set_node_classification(best_classifier)
     elif error:
         pass
-    elif morediv:
+    else:
         id_tree_node.set_classifier_and_expand(best_classifier, ["??", "??"])
-        return construct_greedy_id_tree(data, possible_classifiers, target_classifier, child)
+        branches = id_tree_node.get_branches()
+        for key in branches:
+            newNode = branches[key]
+            construct_greedy_id_tree(data, possible_classifiers, target_classifier, newNode)
     return id_tree_node
 
 
