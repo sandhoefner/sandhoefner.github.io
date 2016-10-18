@@ -29,7 +29,8 @@ def split_on_classifier(data, classifier):
         classification = classifier.classify(point)
         try:
             noodles = ret[classification]
-            ret[classification] = ret[classification].append(point)
+            # don't need equals here, it just goes in and does it
+            ret[classification].append(point)
         except:
             ret[classification] = [point]
     return ret
@@ -135,28 +136,57 @@ BOUNDARY_ANS_14 = None
 def dot_product(u, v):
     """Computes dot product of two vectors u and v, each represented as a tuple
     or list of coordinates.  Assume the two vectors are the same length."""
-    raise NotImplementedError
+    ret = 0
+    for i in range(len(u)):
+        ret += u[i] * v[i]
+    return ret
+
 
 def norm(v):
     "Computes length of a vector v, represented as a tuple or list of coords."
-    raise NotImplementedError
+    summ = 0
+    for i in range(len(v)):
+        summ += v[i] ** 2
+    return summ ** 0.5
+
 
 def euclidean_distance(point1, point2):
     "Given two Points, computes and returns the Euclidean distance between them."
-    raise NotImplementedError
+    summ = 0
+    a = point1.coords
+    b = point2.coords
+    for i in range(len(a)):
+        summ += (a[i] - b[i]) ** 2
+    return summ ** 0.5
+
 
 def manhattan_distance(point1, point2):
     "Given two Points, computes and returns the Manhattan distance between them."
-    raise NotImplementedError
+    summ = 0
+    a = point1.coords
+    b = point2.coords
+    for i in range(len(a)):
+        summ += abs(a[i] - b[i])
+    return summ
+
 
 def hamming_distance(point1, point2):
     "Given two Points, computes and returns the Hamming distance between them."
-    raise NotImplementedError
+    summ = 0
+    a = point1.coords
+    b = point2.coords
+    for i in range(len(a)):
+        if a[i] is not b[i]:
+            summ += 1
+    return summ
+
 
 def cosine_distance(point1, point2):
     """Given two Points, computes and returns the cosine distance between them,
     where cosine distance is defined as 1-cos(angle_between(point1, point2))."""
-    raise NotImplementedError
+    a = point1.coords
+    b = point2.coords
+    return 1 - dot_product(a, b) / (norm(a) * norm(b))
 
 
 #### CLASSIFYING POINTS
@@ -166,7 +196,8 @@ def get_k_closest_points(point, data, k, distance_metric):
     and a distance metric (a function), returns a list containing the k points
     from the data that are closest to the test point, according to the distance
     metric.  Breaks ties lexicographically by coordinates."""
-    raise NotImplementedError
+    return "pass"
+
 
 def knn_classify_point(point, data, k, distance_metric):
     """Given a test point, a list of points (the data), an int 0 < k <= len(data),
