@@ -60,7 +60,18 @@ def average_test_disorder(data, test_classifier, target_classifier):
     """Given a list of points, a feature-test Classifier, and a Classifier
     for determining the true classification of each point, computes and returns
     the disorder of the feature-test stump."""
-    raise NotImplementedError
+    branches = {}
+    for datum in data:
+        branch = test_classifier.classify(datum)
+        try:
+            branches[branch].append(datum)
+        except:
+            branches[branch] = [datum]
+    summ = 0
+    for key in branches:
+        branch = branches[key]
+        summ += branch_disorder(branch, target_classifier) * len(branch) / float(len(data))
+    return summ
 
 ## To use your functions to solve part A2 of the "Identification of Trees"
 ## problem from 2014 Q2, uncomment the lines below and run lab5.py:
