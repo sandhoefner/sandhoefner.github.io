@@ -120,7 +120,23 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
     optionally a partially completed ID tree, returns a completed ID tree by
     adding classifiers and classifications until either perfect classification
     has been achieved, or there are no good classifiers left."""
-    raise NotImplementedError
+    error = False
+    if id_tree_node is None:
+        try:
+            best_classifier = find_best_classifier(data, possible_classifiers, target_classifier)
+        except NoGoodClassifiersError:
+            error = True
+        id_tree_node = IdentificationTreeNode(best_classifier)
+    # if is leaf
+    if len(id_tree_node.get_branches()) is 1:
+        id_tree_node.set_node_classification(best_classifier)
+    elif error:
+        pass
+    elif morediv:
+        id_tree_node.set_classifier_and_expand(best_classifier, ["??", "??"])
+        return construct_greedy_id_tree(data, possible_classifiers, target_classifier, child)
+    return id_tree_node
+
 
 
 ## To construct an ID tree for 2014 Q2, Part A:
