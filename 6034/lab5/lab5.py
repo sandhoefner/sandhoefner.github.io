@@ -88,7 +88,27 @@ def find_best_classifier(data, possible_classifiers, target_classifier):
     finds and returns the classifier with the lowest disorder.  Breaks ties by
     preferring classifiers that appear earlier in the list.  If the best
     classifier has only one branch, raises NoGoodClassifiersError."""
-    raise NotImplementedError
+    best = INF
+    best_name = None
+
+    for option in possible_classifiers:
+        this_score = average_test_disorder(data, option, target_classifier)
+        if this_score < best:
+            best = this_score
+            best_name = option
+
+    branches = {}
+    for datum in data:
+        branch = best_name.classify(datum)
+        try:
+            branches[branch].append(datum)
+        except:
+            branches[branch] = [datum]
+    if len(branches) is 1:
+        raise NoGoodClassifiersError
+    else:
+        return best_name
+
 
 ## To find the best classifier from 2014 Q2, Part A, uncomment:
 #print find_best_classifier(tree_data, tree_classifiers, feature_test("tree_type"))
