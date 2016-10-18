@@ -73,6 +73,7 @@ def average_test_disorder(data, test_classifier, target_classifier):
         summ += branch_disorder(branch, target_classifier) * len(branch) / float(len(data))
     return summ
 
+
 ## To use your functions to solve part A2 of the "Identification of Trees"
 ## problem from 2014 Q2, uncomment the lines below and run lab5.py:
 #for classifier in tree_classifiers:
