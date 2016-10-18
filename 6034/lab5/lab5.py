@@ -93,17 +93,17 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
 
 #### MULTIPLE CHOICE
 
-ANSWER_1 = None
-ANSWER_2 = None
-ANSWER_3 = None
+ANSWER_1 = "bark_texture"
+ANSWER_2 = "leaf_shape"
+ANSWER_3 = "orange_foliage"
 
-ANSWER_4 = None
-ANSWER_5 = None
-ANSWER_6 = None
-ANSWER_7 = None
+ANSWER_4 = [2,3]
+ANSWER_5 = [3]
+ANSWER_6 = [2]
+ANSWER_7 = 2
 
-ANSWER_8 = None
-ANSWER_9 = None
+ANSWER_8 = "no"
+ANSWER_9 = "no"
 
 
 ################################################################################
@@ -112,23 +112,23 @@ ANSWER_9 = None
 
 #### MULTIPLE CHOICE: DRAWING BOUNDARIES
 
-BOUNDARY_ANS_1 = None
-BOUNDARY_ANS_2 = None
+BOUNDARY_ANS_1 = 3
+BOUNDARY_ANS_2 = 4
 
-BOUNDARY_ANS_3 = None
-BOUNDARY_ANS_4 = None
+BOUNDARY_ANS_3 = 1
+BOUNDARY_ANS_4 = 2
 
-BOUNDARY_ANS_5 = None
-BOUNDARY_ANS_6 = None
-BOUNDARY_ANS_7 = None
-BOUNDARY_ANS_8 = None
-BOUNDARY_ANS_9 = None
+BOUNDARY_ANS_5 = 2
+BOUNDARY_ANS_6 = 4
+BOUNDARY_ANS_7 = 1
+BOUNDARY_ANS_8 = 4
+BOUNDARY_ANS_9 = 4
 
-BOUNDARY_ANS_10 = None
-BOUNDARY_ANS_11 = None
-BOUNDARY_ANS_12 = None
-BOUNDARY_ANS_13 = None
-BOUNDARY_ANS_14 = None
+BOUNDARY_ANS_10 = 4
+BOUNDARY_ANS_11 = 2
+BOUNDARY_ANS_12 = 1
+BOUNDARY_ANS_13 = 4
+BOUNDARY_ANS_14 = 4
 
 
 #### WARM-UP: DISTANCE METRICS
@@ -196,7 +196,7 @@ def get_k_closest_points(point, data, k, distance_metric):
     and a distance metric (a function), returns a list containing the k points
     from the data that are closest to the test point, according to the distance
     metric.  Breaks ties lexicographically by coordinates."""
-    return "pass"
+    raise NotImplementedError
 
 
 def knn_classify_point(point, data, k, distance_metric):
@@ -232,14 +232,14 @@ def find_best_k_and_metric(data):
 
 #### MORE MULTIPLE CHOICE
 
-kNN_ANSWER_1 = None
-kNN_ANSWER_2 = None
-kNN_ANSWER_3 = None
+kNN_ANSWER_1 = "overfitting"
+kNN_ANSWER_2 = "underfitting"
+kNN_ANSWER_3 = 4
 
-kNN_ANSWER_4 = None
-kNN_ANSWER_5 = None
-kNN_ANSWER_6 = None
-kNN_ANSWER_7 = None
+kNN_ANSWER_4 = 4
+kNN_ANSWER_5 = 1
+kNN_ANSWER_6 = 3
+kNN_ANSWER_7 = 3
 
 #### SURVEY ###################################################
 
