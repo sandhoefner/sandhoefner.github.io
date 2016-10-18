@@ -286,7 +286,16 @@ def find_best_k_and_metric(data):
     determine the best value of k and distance_metric, choosing from among the
     four distance metrics defined above.  Returns a tuple (k, distance_metric),
     where k is an int and distance_metric is a function."""
-    raise NotImplementedError
+    best_score = -1
+    best_tup = None
+    for k in range(1, len(data) + 1):
+        for f in [euclidean_distance, hamming_distance, manhattan_distance, cosine_distance]:
+            this_score = cross_validate(data, k, f)
+            if this_score > best_score:
+                best_score = this_score
+                best_tup = (k, f)
+    return best_tup
+
 
 ## To find the best k and distance metric for 2014 Q2, part B, uncomment:
 #print find_best_k_and_metric(knn_tree_data)
