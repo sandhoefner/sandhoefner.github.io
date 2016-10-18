@@ -243,9 +243,9 @@ kNN_ANSWER_7 = None
 
 #### SURVEY ###################################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+NAME = "Evan Sandhoefner"
+COLLABORATORS = "Ryan Kerr"
+HOW_MANY_HOURS_THIS_LAB_TOOK = 8
+WHAT_I_FOUND_INTERESTING = "Different distance metrics"
+WHAT_I_FOUND_BORING = "MCQ"
 SUGGESTIONS = None
