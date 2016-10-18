@@ -251,7 +251,12 @@ def knn_classify_point(point, data, k, distance_metric):
     and a distance metric (a function), returns the classification of the test
     point based on its k nearest neighbors, as determined by the distance metric.
     Assumes there are no ties."""
-    raise NotImplementedError
+    nn = get_k_closest_points(point, data, k, distance_metric)
+    nn_classes = []
+    for n in nn:
+        nn_classes.append(n.classification)
+    mode = max(set(nn_classes), key=nn_classes.count)
+    return mode
 
 ## To run your classify function on the k-nearest neighbors problem from 2014 Q2
 ## part B2, uncomment the line below and try different values of k:
