@@ -1,0 +1,931 @@
+As a PM, walk me through the process of designing an alarm clock app  
+
+Why Microsoft, and why PM?  
+
+Behavioral questions, and technical questions about my past projects  
+
+I don't recall specific questions, but the pattern was to ask about a time when I had encountered problem X, and how i dealt with it. In order to prepare for the interview I tried to anticipate the various kinds of questions they would ask, and then look back over my experience to identify occasions when those kinds of challenges came up, so that I would have them at hand…  without too much digging through my memory.  
+
+Why Microsoft, How would you deal with a difficult stakeholder, how do you tell a story  
+
+How do you know what your customers want?  
+
+Design a bingtube (similar to youtube) for videos streaming.  
+
+Explain a project which you think has helped you the most?  
+
+Describe the data flow for the Microsoft Band to the phone (and cloud)  
+
+Describe a difficult problem that you had to resolve and what steps did you take and how was it communicated to upper management  
+
+I have a rechargeable portable battery(the ones you use the charge your phone on the go), what would you change it or how would you redesign it.  
+
+What did you wish you knew before starting a certain project you did?  
+
+Explain a situation where you were in a team and you had to prove yourself or something.  
+
+design elevator algorithm, describe current industry trends, how would you design a 3 button remote for a television  
+
+Design an elevator algorithm for an office building taking into account usage patterns.  
+
+Write a program that solves a wordsearch puzzle.  
+
+Be prepared for any number of questions ranging from very specific to very broad. 3 questions I was asked:Take any production chain, how can you optimize the production process?Design a product to monitor the wellbeing of pets while the owner is away.You are a PM at a startup that works with big data. Now what?  
+
+What's one positive and negative outcome that has occurred when working in a group?  
+
+how would you handle an upset customer who is ready to move to a competitor service  
+
+What is your favorite product and why?  
+
+What technology stacks do you work with?  
+
+Some behavioral questions, and a lot of product questions on Microsoft's products. You don't need to know in advance the in and outs of every Microsoft product but it helps to get a PM mindset beforehand. I prepared mostly with "Decode and Conquer: Answers to Product Management Interviews" by Lewis Lin. I found the book very helpful with lots of practice questions and template answers.  
+
+(After explaining their system's process, end to end) How would you streamline our process in terms of automation?  
+
+Questions were related to typical PM job, tracking features/resources, resolving conflicts, how to prioritize/cut/add features or make product decisions.  
+
+How would you make the Amazon checkout process easier without compromising security?  
+
+Design a file sharing system.Design a airport ticket booking system.  
+
+How would you explain the internet to someone who doesn't use technology/understand it?  
+
+How do you improve Bing search's accuracy?  
+
+Disney is trying to make their movies available to the public, you're the lead with all resources, what is your pitch?  
+
+- tell me about a product you like, how can you improve it, why- design for me a tablet that will be at every seat in a stadium of a football game- explain the PM position to someone that doesn't get it- 3 step design problem, but basically design for me a tablet that will be used in taxi cabs. You decide the features, scenarios, and users. and then storyboard…  from there.- design a tablet thats sole purpose is to play sudoku- now tell me how you would implement the sudoku logic software in the tablet- now write out UML diagrams for the classes of the sudoku game  
+
+Design an algorithm for looking at someone's email and returning a list of their contacts in order of how connected they are to each person in their inbox.  
+
+NDA. Nothing Unexpected.  
+
+Alot of technical questions and questions about projects. One problem solving question.  
+
+No behavioral questions. Some questions about what I did in my previous internship. Design an elevator. But was given events or methods (he wasn't clear about what they were until I asked quite a few questions) that were pre-implemented.  
+
+Why do you want to work at Microsoft?  
+
+Classic string permutations question.  
+
+1. Reverse a string2. Conceptual question  
+
+Describe a software product that you like/don't like & how you would improve it.  
+
+How will you design a universal remote for the visually challenged?  
+
+Describe a difficult stakeholder on a project, the situation, and how you dealt with them  
+
+General questions about what I'm passionate about and reflection on my past summer internship.  
+
+2 technical and a couple design questions.  
+
+What's your favorite application?  
+
+Tell me three things you learned at ______ (internship I had the previous summer).  
+
+Tell me about yourself  
+
+What is a linked list and write a function to insert a value into it.Design an X for Y target demographic. (Common household device)Here are the specifications for a V1 of a product. It sells well to prosumers but we want it to be more generally marketable, how would you go about designing a V2 of it.  
+
+How would you design a beverage machine application?  
+
+Signed NDA. Mix of technical & project management questions  
+
+Program a url decoder  
+
+Design a cloud system for the url decoder  
+
+What is the difference between managed vs. unmanaged code. Tell me about one of your projects, what type of problem did you face, how did you solve it.  
+
+Design a traffic control system.Design an IT monitoring system  
+
+Describe your most challenging project.  
+
+Please tell me about yourself.  
+
+Tell me about a course in which you had a large coding project. In terms of large amounts of code.Tell me about another.How does that tie back to the program manager?Tell me everything you know about the program manager position.What are the differences between the PM and TD?Why does Microsoft have program managers?What is an application you know well and tell me about it as if you were a program…  manager.Why would Microsoft purchase Skype? What is its value?Why would Skype create Skype?Who are Skype’s competitors?  
+
+Disney would like to start selling their movies on a new online portal. Design the website.  
+
+I've been asked to not repeat the interview questions however I will say that they were designed on the spot and tailored to circumstances which we discussed. Some questions were impossible scenarios and didn't have an answer. They are looking to see how you think and your confidence in your answers. Anything on your resume is fair game so ensure you truly know what it says you do.  
+
+Expected a different background and experience than mine  
+
+Design questions, make sure you are able to determine requirements for a problem  
+
+In the first 2 rounds they asked behavioral questions and design question like elevator. One was a technical round where they asked me a sorting question which I typically failed to answer.  
+
+Questions are pretty standard  
+
+Design a drone.  
+
+The interviewer didn't ask anything about my resume  
+
+What would you build if you could build anything?  
+
+Design an House Management System  
+
+Design an airport?  
+
+Past experiences/projects.Design a coffee maker.  
+
+Most the questions are non-technical design questions like "design an elevator for a high-rise building." I did get a probability question but I fumbled with the answer so it apparently wasn't too important.  
+
+I was asked to design a network topology for a specific use case. I'm still not sure why since the role was specific to a data analytics engine - why not ask me to propose a design for some improvement to the data platform?  
+
+How would you design a clock?  
+
+All fairly standard product questions: What is a non-high-tech product you love? Talk about an app you really like and how you'd improve it.  
+
+Detect square in an image.  
+
+Implement a function that returns a boolean of whether two rectangles overlap.  
+
+Can you think of a game?How would you code it? Describe with pseudo code.  
+
+The technical questions were pretty standard. The design questions were interesting and challenging.  
+
+Everything was pretty standard for a PM position. Started off with behavioral questions. Mostly asked for implementations of a specific system. They are looking for creative and detailed-oriented people.  
+
+There was not any unexpected question all questions were pretty standard.  
+
+Design a smart chair.  
+
+The most unexpected questioning was from a female manager who wanted my specific experiences with sexism and misogyny in the workplace. She asked me many variations along this line of questioning.  
+
+What is the most efficient way to add an element to a circularly indexed array.  
+
+Design a travel-planning app.  
+
+Marketing the app since as an Engineer I do not have a background in marketing new products  
+
+Nothing really. Even if it comes up. Stay calm and take a moment to think about it. Always think back to the user and you'll be good.  
+
+Data structure question on B-Trees.  
+
+Your stack rank in record.  
+
+Since I was interviewing for a Program Manager role, all the questions rotated around software development management (read the "Mythical Man Month" book!), explaining products that I like and don't like (why I like it, why I don't, how I would change, what is good, etc). People were very nice and the interviewing process was very pleasant.Communication and social skills are a must for PMs, so if you like to…  work alone in front of your computer, that's not for you.  
+
+I struggle with a technical question during my first interview that asked something along the lines how would you create and implement database that deals with multiple servers?  
+
+-Brain teasers  
+
+General question  
+
+There were no unexpected questions in the interview.  
+
+"A CEO complains that the elevator in his building sucks - what would I do?" (I own the elevator company) - I couldn't talk with the CEO to find out what's wrong, everything was normal, the other people weren't complaining. I was focused more on customer interviews to find out what was wrong, in the end I had to test it. I could not figure the question myself, so the…  interviewer gave me a hint (I had to think about my phone and its parameters and why I chose it)  
+
+Problem solving questions depending on the interviewer  
+
+Have you ever been fired from a position?  
+
+What is your understanding of the position and what are your expectation?  
+
+Add two integer together and return a integer without using any arithmetic operators  
+
+Seriously, none. The behavioral style is great, but it's also predictable.  
+
+nothing too difficult, interview was as expected  
+
+Not so much a difficult or unexpected question, but you may encounter an interviewer whose job it is to either make you NOT WANT the job or to trip you up so they can say "No Hire".  
+
+I don't think any of the questions were difficult and neither were they unexpected (they were the types of question a PM candidate would be asked). Strengths and weaknesses regarding being a PM, I was pretty honest and wasn't sure if my honestly would come back to bite me later (yup, I was THAT honest about my weakness).  
+
+Design a vending machine for an airport. What challenges or considerations are there?  
+
+5 interviews at redmond the same day. Design questions.  
+
+How would you redesign windows 8?  
+
+If I spoke to coworkers of you over the years, what are the 3 things they would say are positives, and the 3 things they would say are negatives of you?  
+
+Suppose a deadline for a project was just cut in half. As a Program Manager, how do you prioritize the following things?10% Performance Increase15% Reliability IncreaseSoftware Developer FeatureUser FeatureCompetitor Feature  
+
+Pretty easy question but it's one that you can over think by asking a lot of questions!You are going to have a showing next week for a new search program your making for enterprise businesses. Unfortunately, you have two large problems- 1) scalability 2) inputted data is getting lost in translation (u don't know where it is, but you can't view it in the end). You only can fix one…  before the showing, which one and why?  
+
+pretty easy  
+
+How would you design an algorithm for an elevator control system  
+
+what would you improve in Java eco-system  
+
+What do engineers want?This was asked as part of designing a solution, and I wasn't sure how to answer it.  
+
+Design my backyard for me.DIfference between python and java.  
+
+Be prepared to whiteboard algorithm.  
+
+To devise a GPS system, its services, hardware, technology and user specifications for a 16 yr old newly driver.  
+
+Tell me an algorithm to find the angle between hour hand and minute hand of an analog clock.  
+
+Where do you see the company and yourself in 5 years?  
+
+Design a GPS for a 16 year old novice driver.I started talking about safety features and my interviewers latched on to that idea and followed through with it. I eventually came up with an idea where the parents could set controls through an online account. Then he asked me how would the GPS communicate with the online account.  
+
+Design a mobile app that is a rubic's cube game  
+
+Design an app that controls all the blinds in the building.  
+
+design a movie ticket kiosk  
+
+Name 5 things you would change about your smartphoneName 10 thingsAt what point would you have to say 'enough is enough'?  
+
+The interviewer is a seasoned software developer. He asked me to come up with an algorithm for searching Palindrome after I told him in the very beginning that programming is not my strong suit. I am a PhD in mechanical engineering, and I have extensive communication, networking and managing skills from co-founding startup companies to project management. But he seemed less interested in these and only wanted to know how…  much I can code. In the previous interview workshop, he said Microsoft is interested in communication, customer focus, analytical skills and thinking process. And Microsoft is not looking for a specific skill such as coding. But during the interview, it is really just programming skill he is looking for. So If you are not a programmer, please don't waste your time.  
+
+The questions were all standard nothing difficult. But they did ask what is your favorite Microsoft product and is there any improvements that you would make to the product.  
+
+Design the dorm room of the future  
+
+The first interviewer in Redmond asked a very ambiguous question about windows 8 apps, but was expecting a very specific answer. The other questions were design me a thermostat for a hotel chain,and design me an online music store. All in all it wasn't too bad after the first round, that may have just been a weeding round, however.  
+
+I didn't expect to have the classic (  
+
+What would you do if you are slipping on Project target date?  
+
+I was asked to whiteboard a lot. Practice at a whiteboard before hand - even if it's just diagraming the process of making cookies.  
+
+some questions are technical and you dont expect them in the product management.  
+
+Design a system to prevent click fraud.  
+
+The interview had no particular tricks. It all revolved around projet management and technology.  
+
+You are on a desert island, and all you have is a pair of dice. You know that a plane flies over the island on the 30th day of the month. Using the dice, how can you make a calendar that always tells you the day of the month?  
+
+The elevator pitch was difficult to me since I wasn't expecting it.  
+
+Improve Outlook. Make it novel.  
+
+There was a question about how I would handle and solve a problem with designing an elevator system for the building, with some constraints. Nothing to do with the job... it was a fabrication of a scenario with no real correct answer, but used to check how I dealt with something unexpected as well as logical approach to problem solving.  
+
+(in the last interview) what were you asked in all of your previous rounds. Which ones do you think you could have done better. Do you have better responses to them now.  
+
+Tell me how you would design an airport  
+
+None. Pretty standard  
+
+what are some of the design elements to consider when designing for large screens?  
+
+I've given you a task to complete and you are a week away from shipping. You are told from your feature crew that you can't make shipping deadline. I tell you that if we miss the deadline you will cost us $1bln. What do you do?  
+
+What is the worst thing that you've done in the company?  
+
+Display all the days in a month (0 to 31) using two 6 sided cubes?  
+
+Most of the questions were "what have you done in x situation"  
+
+Design a spice rack for blind people and come up with as many different aspects of it as you can think of and shortly elaborate on them.  
+
+Asked by a senior manager. If your team is unable to deliver a feature asked for or promised, how are you going to tell me no?  
+
+only one question "Design a tV controler with 2 buttons.Low cost and no other functions can be added"  
+
+What you think is the biggest challenge in IT Industry currently.  
+
+Design a product that allows a blind person to determine the amount of spices left in a jar.  
+
+None of the questions that I encountered were out of the ordinary but all were very challenging and required a variety of skills to complete (data structure knowledge, customer apathy, etc.)  
+
+Being asked the light bulb question. When I figured out it was to use the heat of the light bulbs, I was a little annoyed.  
+
+Given an array from 0 to n integers containing values 1 through n, write a method that can find any duplicate and return it (note there must be at least one duplicate because of there being more indices than available values). Write a method with "good" running time and space complexity.  
+
+security related questions  
+
+The algorithm question was about storing a tuples as efficiently as possible while keeping the order in which they were received intact.  
+
+Design an elevator system for the particular building we were in.  
+
+Design an app to track your packages that you ordered online.What are some designs you think about in your free time?  
+
+Which MRI machine is better given the specs.  
+
+I was asked to come up with a design that would allow my smartphone to act as a remote control for the TV  
+
+Nothing unexpected, all the questions were experience related. I had 6 interviews and thought I got the job. But then I dont know what happened. and I got declined  
+
+nothing I can remember  
+
+List the difficulties a UI designer will have when communicating with a developer about the implementation of a table tennis game for the xbox kinect, in multiplayer mode.  
+
+Show me how you designed (personal project) and why you made the choices that you made. In retrospect, what would you do differently? Are there things that could changed or improved without negative consequences?  
+
+What Microsoft Product do you like? What would you change about the product.  
+
+How would you design a Course, signup system.  
+
+How to design strange items from outerspace.  
+
+Given a string s and an array of smaller strings A, design a method to search s for each small string in A.  
+
+Given an NxN matrix of positive and negative integers, write code to find the submatrix with the largest possible sum.  
+
+Design a microwave for college students  
+
+Design a commercial airplane.  
+
+What would you do in this situation? You may have imperfect data but what they are really asking is what is your thought process and steps you would take to resolve the problem.  
+
+Make the business case for Microsoft to enter the retail market, and design the architecture for the Point of Sale system.  
+
+just asked about my previous experience and why microsoft  
+
+What if executive management made an edict on your infrastructure implementation and said Org A had to match Org B. Respond.  
+
+Talk about what inspires you the most right now.  
+
+Design a Keyboard  
+
+Explain the internet to a six year old  
+
+Re-design hotmail composing website  
+
+Design algorithm that plays "Boggle"  
+
+Redesign a newspaper website  
+
+How would you go about redesigning a musical interface for a Windows 8 application?  
+
+Phone app for a super market...  
+
+Designing and Programming for a physics problemMathematics: complete divisible numbers to N in a rangeString modification  
+
+Describe, and outline implimentation of an atoi function, use the whiteboard and psudeocode is encouraged  
+
+Why Microsoft?  
+
+Design a refrigerator that uses modern technology with no consideration for cost.  
+
+Design an iPad recipe app geared towards soccer moms.  
+
+There's something next to your bed, the size of a toaster. What does it do?  
+
+"How would you design an app store for windows mobile app?" She was looking for an answer from both the retail users and the developers perspective. "How easily a developer can upload his apps etc etc"  
+
+How would you explain the value of your job to a new product group?  
+
+You have a cake. How many straight cuts do you need to divide the cake into 8 equal pieces?  
+
+A variety of design, strategy, and technical questions. Most questions were design-related - anything from software design to user/feature design to backend server design.  
+
+Redesign the airport security experience.  
+
+Visually represent a graph to a person with no computer science knowledge.  
+
+Tell me about the one feature of your email provider you would change and why?  
+
+How would you write code to sort students test grades ranging from 0 - 100, so that the students in the class could be ranked according to score?  
+
+Design a video thumbnail picture selector.  
+
+Design a parking structure  
+
+Talk about experience  
+
+Design a website for Microsoft employees to book Hotels, Tickets, ...  
+
+Describe the Use Case for and Elevator control system in a 4 story building  
+
+mix of standard and behavioral question, such as, give me an example of when you've dealt with a difficult person.  
+
+design an alarm clock near a busy airport  
+
+what do you think program managers do?  
+
+Describe some design principles in a project you've participated in.  
+
+Design a page for a customer to leave Mint.com  
+
+What do you bring to the table that is unique?  
+
+What makes you qualified for this position?  
+
+Design a system that will allow users to electronically purchase tickets to a concert / sports event on-site at the venue.  
+
+Design a mobile application that will allow users to order pizza.  
+
+Create Hotmail from scratch, since inception to developement  
+
+Question on battery life and hardware in Windows-OS computers  
+
+How would you design a kitchen for a blind person?  
+
+The most question was choose a system you're familiar with - how would you make it better?  
+
+Design a better post-office  
+
+Talk about the mobile comm playing field.  
+
+How to design a remoter for TV  
+
+Data structure questions, most of time about binary tree  
+
+What are your favorite products and why?  
+
+How would you design Facebook from scratch if you wre Mark Zuckerberg?  
+
+Question on hash logic.  
+
+Why do you want to work at MS  
+
+What changes would you make to the group  
+
+Most difficult situation you have encountered and how did you over come it?  
+
+Interview questions depends on the discipline. Aptitude questions for PM is a must.  
+
+define utilization of flights if you were CEO of Southwest.  
+
+Technical design question on high availability websites - a real problem they were trying to solve (or so I was told)  
+
+Reverse every word in a string  
+
+Design a calculator  
+
+Standard string manipulation question in C. Pencil and paper.  
+
+Explain this and that project on your resume. More details about teamwork, bugs fixed, etc.  
+
+Situational question: you are a PM and you run into a certain issue. What do you do? What if the problem is bigger or smaller in scope than you originally anticipated? What if your team members disagree, with you or each other?  
+
+Brain Teaser #1 -You are on a game show. Pretend I am the game show host. Now, pretend that I am showing you 3 curtains and I am also telling you that behind 2 curtains are goats and behind the remaining curtain is a car. He then draws 3 boxes on the board and labels then 1, 2, and 3. Now he tells me to pick a curtain. I pick…  curtain number 3. Now he says, "Okay. I'm going to tell you now that curtain #1 contains a goat (and he tells me this as he crosses off curatin #1). I'll give me a chance to change your answer to curtain #2 or stick with curtain #3.What do you do and why?  
+
+Brain Teaser #2 -Implement an algorithm in pseudo-code that outputs the angle between the hour hand and minute hand of an ordinary clock at any moment in time. (You are not allowed to hardcode anything. The algorithm must use formulas that you come up with yourself to translate the hours to degrees and the same for the minutes). For example, if the minute hand is exactly at 12, you cannot…  hardcode 12 = 0 degrees.  
+
+Pretend you are in a factory that produces cones. There is a conveyor belt in a factory that moves these cones from 1 machine to another. The operations manager of this factory tells you that they could increase the efficiency of their factory if the cones were delivered facing the exact same way from 1 machine to the other. Basically, the cones today are getting delivered in what ever angle…  they happened to fall into once the first machine completed its task (some are standing up, others facing left, others facing right, etc...)Develop a process that will take these cones and arrange them all to face LEFT before they are inputted into the 2nd machine.  
+
+Design a grocery shopping assistant.  
+
+How would you find a tank in a grayscale satellite image?  
+
+How would you find user data consisting of 600 million entries spread across 600 machines?  
+
+same questions with 12 people. strengths, weaknesses, how would you handle a situation  
+
+They ask you imaginary to implement a non existing item and you have to go about it.  
+
+Given a linked list, remove the maximum element(s) from the list.For example: 1, 7, 4, 9, 2, 9, 1, you would remove both instances of 9.  
+
+Design elevator system for 1000 storey building..  
+
+Re-design airport baggage system..  
+
+How will you describe OOP to kids?  
+
+On Site- describe how you would implement a system where you have multiple monitors and a single keyboard and mouse to use across all monitors.  
+
+On Site- describe how you would program and elevator system  
+
+Phone- Design new features for Facebook.  
+
+What was your worst grade at your school, and why is that?  
+
+design clock for blind  
+
+write a program to reverse a string; reverse a string and not reverse the words  
+
+What piece of new technology have you seen that you think will be a resounding success one day? What have you seen that is new but is doomed to fail? And why?  
+
+Didn't find a most difficult question but enjoyed open ended design questions. Be prepared for a few of these.  
+
+Name one software/computer product that you currently use and how you would improve it.  
+
+Design an app for an iPad that will order me a Papa John's pizza.  
+
+1) What is a product that you think is perfect?2) How could you improve it?3) Ok, show me specifically what that would mean: design the user interface.  
+
+throw away everything but one best feature in MS word.  
+
+explain your project in a few seconds. and in two min as if you were at a conference.  
+
+design DNS.  
+
+How would you improve youtube?  
+
+The only question was the design of the elevator  
+
+What features of a microsoft software would you see need to be improve  
+
+why do you want to work at microsoft?  
+
+what's the most important project you had?  
+
+Write the algorithm to move bytes of data from one piece of memory (fragmented memory) to another  
+
+Explain the internet to your non-technical grandma.How would you design an alarm clock for a student that guarantees that they are never late for class. What features would you have and why  
+
+Design [X].
+
+Remove the duplicates from a linked-list.  
+
+Describe a project that you worked on that was complex, and explain the complexity. (after explaining) what was one thing that you would do differently about the design?  
+
+You are on a game show. There are three doors, behind one of which is a prize and the other two is a chunk of coal, and the host knows which door holds the prize. You choose door #1. Before it is opened, the host opens door #3 and reveals a lump of coal. You have the choice to stick with the door you chose originally or switch to door…  #2. What do you do?  
+
+Design a vending machine for drinks.  
+
+What was the most challenging design problem and why was it challenging?  
+
+Traverse through a linked list and remove duplicates  
+
+Design an interface for a camera that will allow users to upload photos to facebook  
+
+Design a children's cell phone.  
+
+The government has decided that driving on the left side of the road is safer and better than the right. What process would you use to implement this new system of driving?  
+
+If I hire you I am stuck with you for up to 2 years. What career path are you on? What next job are you working toward at Microsoft?  
+
+Design a template processing system that a small business owner would be able to use.  
+
+Explain risk management  
+
+Write a basic spell checker function that checks strings for typos against a dictionary.  
+
+Design a recorder for a car which records radio channels  
+
+Reverse a linked list  
+
+Remove Duplicates from an array  
+
+Give an example of when you failed and what did you learn from it.  
+
+Design a system to help elementary school students with homework from home  
+
+explain your project to a people who lives thousands of years ago.  
+
+Gather the requirements for an ATM for kids.  
+
+Design the UI for a product.  
+
+Design the UI for an online restaurant ordering system.  
+
+Design a cell phone for kids.  
+
+How would you design a hotel for your college?  
+
+Tell me about a software/technology you like/dislike and why?  
+
+Tell me about an interesting project you worked on.  
+
+I was asked to integrate the Microsoft on-line shop and Windows Update to be a seemless delivery channel.  
+
+How would you determine that a rectangle is not overlapping with another rectangle.  
+
+Honestly, the most difficult questions were the ones that did not seem to pertain to the listed job responsibilities. This should have been my first clue that something was not quite right. The questions pointed in the direction of writing technical documentation.  
+
+End to end design of a new core platform product that integrates with some of the existing products  
+
+How would you go about improving the strategy and features for a product?  
+
+If a tester comes to you and says that there is a bug in the software and we cant deliver it because it cant be fixed till tomorrow(delivery promised) what would you do. Would you ship it? Analyze the question  
+
+How would you design a multi-media cookbook?  
+
+What features would you add to Excel and why?  
+
+What would you improve in Windows Vista? It was more focussed towards design since my position was a PM.  
+
+Design the architecture of a server to back up emails.  
+
+Design a universal remote control.  
+
+Years ago, brain teasers were more in fashion in Microsoft interviews (much less so now). I did get asked to explain how the internet worked to someone's grandmother (with a great deal of probing into technical details). One interviewer asked me to explain what a B-tree was, but it was pretty clear that they didn't know. Another interviewer asked me to come up with as many possible techniques for measuring…  the height of a building with a 12" ruler.  
+
+Write code to implement a CD burning software???  
+
+Suppose you are to release a software with a certain set of features on a certain tight deadline. Yet, your team was not able to complete all the agreed-upon features. What would you do?  
+
+"Is this just the GREATEST place you've ever BEEN!?!" (from the HR person)  
+
+Since this was for program management, I expected some ambiguous questions. The main one was : "What would you do if you see a colleague who is running late for a meeting, and is struggling with a vending machine that has taken the cash but not dispensed the soft drink yet ?"  
+
+The SQL team has identified a number of features important to various customers/constituencies. Explain how you would prioritize them  
+
+Why do you want to join Microsoft and what domain are you most interested in?  
+
+Describe a project you did that you were really excited about. (I was a grad student candidate.)  
+
+Write a bit of code using pointers to find a particular position in an array that could only be scanned once.  
+
+Design an architecture to solve a particular problem.  
+
+What do you like about Messenger?  
+
+Forgot the actual question - but something totally unrelated to the job, like "how will you design a toaster" type question  
+
+(Interviewer goes to whiteboard and draws a simple shape that looks like a shark fin, turns to me an commands) Design this!  
+
+Write an algorithm that calculates the angle between hour and minute hand of a clock for any arbitrary time  
+
+Develop a brochure over the weekend describing my team's function to its prospective internal stakeholders.  
+
+Why should I bother to hire you?  
+
+What is your biggest past mistake at work?  
+
+How would you go about designing a better vending machine for coke?  
+
+What is one functionality you would love to have in a tech device (phone/laptop etc)? How would you design this functionality? What are the considerations you would take into account during this design.  
+
+Describe yourself  
+
+What is the user experience for you of using input method of Google.  
+
+Work Ex Related QuestionsEnterprise Architecture of my projectAbstract Case: Design video streaming tool- peer to peer shaing  
+
+Describe how would you improve the following project if you were PM  
+
+Questions about the big challenges I had till now and how I overcame them. About PM. Interviewer draw a linked list and asked me to give him an algorithm to identify if there is a circle in the linked list.  
+
+How would you design a controller to do... (I think that interviewers have discretion on what they ask you to design.)  
+
+Professional journey  
+
+Product design question  
+
+Design an elevator  
+
+Design an engine to predict the outcome of a certain cricket match.  
+
+A design question revolving around operating systems  
+
+Easy technical question for programming  
+
+How would you describe __________(an example product) to your 80-year-old grandmother?  
+
+Design a remote control for old people  
+
+Whats your dream job?  
+
+Clarity on role and Job Title  
+
+What's your favorite piece of software? Why? Now redesign it to be better  
+
+If you could invent anything, what would it be? (unexpected). How would you improve UX in airports? (I had very little time to come up with my answer)  
+
+Design an mobile application for a kids phone to let them call, message and manage contacts.  
+
+How would you go about making such an improvement?  
+
+What is the best way to get feedback from users?  
+
+How to determine when to use C++ and when to use C#  
+
+given a chance to join apple, Microsoft where do u join?  
+
+You have a 5-sided die. You need to produce a uniform random number between 1-7. You can re-roll the die as much as you need. How do you achieve this?  
+
+Nothing was very difficult to answer. There were a few challenging ones, but one can manage with good preparation.  
+
+*Explain _technical term__ to a 5 year old.  
+
+If you need to add a feature that users would pay for it to the app (Whatever app we were talking before), what would you add? (I did not expect this Q).  
+
+Describe your career path  
+
+Develop a new technology which uses Big Data.  
+
+Create a program design for playing card games  
+
+Estimate the market size for ms word  
+
+design a locker system in a subway  
+
+Design your dream elevator  
+
+Nothing was really unexpected. I think I should have been better prepared though. Make sure you get enough sleep the night before.  
+
+The questions were generally very easy, just standard ones about my previous experiences and the projects I used to manage. There were also a couple of behavioral questions but also nothing special.  
+
+Detailed design for Setup box.  
+
+I personally didn't find anything unexpected. The questions tested the competency rather than my technical skills.  
+
+Q: design a thermostat system for a shared flat.  
+
+3] Explain what the internet is to a KindergartenerThis is difficult to do as the internet and its functions are most likely completely foreign to a child that age. Also, this as well as most of the questions asked were extremely vague.  
+
+Design a system for controlling the blinds in a home.  
+
+Unexpected technical questions  
+
+What will your vision for Microsoft?  
+
+Basic questions regarding designing of applications and satisfaction with current laptop performance  
+
+Again, the same set of questionnaire used by same five different interviewers;the agent who helped to organize the conference call had poor knowledge of the call system, being experienced Microsoft contractor, I would have to teach the agent how to conduct a proper conference call.  
+
+Programming questions  
+
+Write a code for B-trees with all the operations.  
+
+How do you explain the concept of internet to your grandma? :)  
+
+Design a functions of lights in a soda machine.What did you do when someone in your team did not cooperate?  
+
+Write some pseudo-code for a basic problem solving process/write an algorithim. (for a non-programming job).  
+
+three elevators in 15 floor building. Which floor should those elevator be placed during their free time to achieve shortest passenger waiting time.  
+
+how many elevators needed for a 100-floor building?  
+
+none  
+
+What is the difference between a process and a thread? What makes it possible to share data between two threads and how would you do it?  
+
+Sketch the major elements of a mobile operator's infrastructure and explain the function of thoese elements.  
+
+Find if a B-tree is a balanced or not  
+
+How would you determine the heaviest marble among 9 marbles where 8 weigh the same and you can use the scale only twice?  
+
+How would you design a watch for university students?  
+
+how to design a cell phone contacts app?  
+
+discuss various existing apps and tell what features will make our app stand out.  
+
+Why do you choose to do this project. show me your thinking process  
+
+how do you prioritze projects?  
+
+Given three integers as input, write a function that tells whether it is equilateral, isosceles, or right triangle. if it is not a triangle, it should say so as well.  
+
+Design question and behavior question, and questions about my school projects  
+
+how to make a clock for a blind person  
+
+Describe an text auto-complete product  
+
+Tell me about your resume  
+
+Count the character values in a string using a counter  
+
+Consider a lift lobby where people are waiting for the lift. Now when lift arrives people get in irrespective of who came first. Thus, the person who came first keeps waiting and others keep getting in. Design a lift system which can solve the problem of this person.  
+
+Tell me about the hardest technical problem you've faced and how you solved it.How many lines of code have you written? How many lines of code did you write for this hardest program?  
+
+How will you tell whether a piece of code is good code?  
+
+How will you test a 4-function calculator?  
+
+How will you "break" a ball-point pen without snapping it in half (pen should stop doing what it's supposed to)?  
+
+How do you manage a rob with limited set of instructions to cross one and another  
+
+How would you test a tool that converted one language to other  
+
+A question related to computer networks  
+
+On the first interview I was told " so you are given a project that consist on bringing internet on the TV what do you do"?  
+
+Asked for a full interface and feature design for an online application  
+
+Did not ask any technical questions. All design-based questions and beahvioural based questions:- Why do you want to be a PM.- Describe a time when you solved a technical problem.- What is your favourite IDE.- Design a new feature for your IDE.  
+
+Shift a String 10 elements forward, and have the elements that fall off at the end of the String move to the front of the String. Don't use a second String.  
+
+Design a watch  
+
+String reversal"Hello word" to "world hello"  
+
+None, except that they are looking for a specific personality type!  
+
+Design a flexible mouse trap  
+
+How many Java Developers are there in this IT park?  
+
+How would you get Java developers to use Microsoft technologies?  
+
+questions about trees  
+
+Describe your background.  
+
+I was given a business case to be completed in a week by the hiring manager. During the interview, I was asked questions about the business case with a focus on managing customers' expectation and dealing with difficult scenarios. Project management questions are asked.  
+
+Describe your experience  
+
+tell me abouta conflict that you've dealt with  
+
+Q: You are king of an island. You want to switch which side of the road everyone is driving on. How do you go about doing it?  
+
+Describe a product in the market right now, what do u like about it and how would u make it better.  
+
+Design a shoe.  
+
+Prove that this sentence "A man, a plan, a canal: Panama" is a palindrome using code. They also had a couple of questions continue off of that one such as how would you break the code.  
+
+Design online table booking system for a restaurant  
+
+design an online backup system  
+
+What's a technology you find really awesome, really cool, and you think it's perfect?  
+
+Implement an user interface that will make it better  
+
+Tell me about yourself?  
+
+What does a PM do?  
+
+Design an ATM for kids.  
+
+Design a mouse and how would you test it.  
+
+Design a program or features that you think will be useful for a small business (you will be given a scenario)  
+
+How could IE be expanded to other platforms?  
+
+Hands on round is quite tough  
+
+what could you improve/change in this (given) smartphone  
+
+if you were given the xbox, what would you do with it?  
+
+in a linked list, how do you delete a node and still link them together  
+
+Broad design questions: If you had to design a phone app for an amusement park, what would it be, what would it do, and how would it do it?  
+
+Describe a project that you did not complete and deliver on time.  
+
+Write an algorithm for merging two sorted list and return a third merged sorted list.  
+
+I did not know about Program Management role and the hiring manager could not fully articulate it. I realised, if hiring manager is having such a hard time explaining, it must be a challenging role.  
+
+Discuss a software product say Bing, prioritize its features and do a competitive analysis  
+
+How do you shuffle a deck of cards randomly?  
+
+How would you describe a MOSFET to your mum?  
+
+Some truth table logic.  
+
+Phone call interview, with specific details about Unicode and Fonts focused on testing scenarios.  
+
+I am in need of hiring a third party consultant to fix a flawed implementation. How should I go about selecting a consulting firm?  
+
+How would you promote your software+services offering to your current customers?  
+
+If you were to design a GPS product for the 60+ population, what features would you include in it?  
+
+Design a remote for kids 9-12  
+
+Design a microwave with a touchscreen  
+
+what new feature i would add to the cables converter?  
+
+design questions, resume questions  
+
+Conduct a thinking process about mathematical formula to calculate number of minutes on traditional clock with given time.  
+
+Design Remote Control with 2 buttons  
+
+Give me the greatest invention you think that was ever made and tell me why it's so great. It could be something as simple as a pencil.  
+
+Discuss a time when I faced a difficult challenge or obstacles on a technical project.  
+
+I was asked to determine three things about the computers that need improvement and suggest improvement.  
+
+Design a cell phone for a 2 yr old kid  
+
+Why are you interested in this position  
+
+Solve a problem consisting in transform a roman number to integer value  
+
+Give test cases to test that a soda machine works  
+
+How to remove every alternate node from a linked list  
+
+What skills do you bring that will allow you to hit the ground running?  
+
+What is your communication style  
+
+Looking at your past with entrepreneurial and free spirited actions. I don't think you will be happy even if I give you this job, will you be? [this is a specific question for entrepreneurs turning to jobs, not a general question]  
+
+Design a mall kiosk with a focus on wrist-watches.  
+
+Design a rubik's cube game.  
+
+Explain how the internet works in layman's terms.  
+
+You are at the southwest corner of a city. The city streets are laid out in a simple grid fashion, with 8 streets running north-south and 8 running east-west. If you can only travel northward and eastward, how many different routes can you take to arrive at the northeast corner of the city?  
+
+Describe service level architecture  
+
+Behavioural question - give examples where your communication skills were tested  
+
+How do you design a coffee shop  
+
+Find the missing number in a list of continuous number  
+
+What was your greatest acheivement?  
+
+Design a park-o-meter  
+
+How to get information/cooperation from remote groups.  
