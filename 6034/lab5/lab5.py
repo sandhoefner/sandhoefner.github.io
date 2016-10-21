@@ -113,6 +113,12 @@ def find_best_classifier(data, possible_classifiers, target_classifier):
 ## To find the best classifier from 2014 Q2, Part A, uncomment:
 #print find_best_classifier(tree_data, tree_classifiers, feature_test("tree_type"))
 
+def is_homogeneous(id_tree_node):
+    branches = id_tree_node.get_branches()
+    # A branch whose points all have the same final classification is homogeneous, and has a disorder of 0
+    all_homo =
+    for branch in branches:
+
 
 def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_tree_node=None):
     """Given a list of points, a list of possible Classifiers to use as tests,
@@ -121,24 +127,29 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
     adding classifiers and classifications until either perfect classification
     has been achieved, or there are no good classifiers left."""
     error = False
+
+    try:
+        best_classifier = find_best_classifier(data, possible_classifiers, target_classifier)
+    except NoGoodClassifiersError:
+        error = True
+
     if id_tree_node is None:
-        try:
-            best_classifier = find_best_classifier(data, possible_classifiers, target_classifier)
-        except NoGoodClassifiersError:
-            error = True
         id_tree_node = IdentificationTreeNode(best_classifier)
+
+
     # if is leaf
-    print id_tree_node.get_branches()
-    if error:
-        pass
-    elif average_test_disorder(data, target_classifier, best_classifier) is 0:
+    if is_homogeneous(id_tree_node):
         id_tree_node.set_node_classification(best_classifier)
+
     else:
-        id_tree_node.set_classifier_and_expand(best_classifier, ["??", "??"])
+        classes = split_on_classifier(data, best_classifier)
+        id_tree_node.set_classifier_and_expand(best_classifier, classes)
         branches = id_tree_node.get_branches()
+
         for key in branches:
             newNode = branches[key]
             construct_greedy_id_tree(data, possible_classifiers, target_classifier, newNode)
+
     return id_tree_node
 
 
