@@ -132,8 +132,7 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
 
     # if is leaf
     split = split_on_classifier(data, target_classifier)
-    # .keys, ==
-    if len(split.keys()) == 1:
+    if len(split) is 1:
         # classification, not classifier
         id_tree_node.set_node_classification(split.keys()[0])
 
@@ -148,7 +147,6 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
         for key in branches:
             newNode = branches[key]
             # give it only subset of data
-            print newNode
             # classes[key] was right
             construct_greedy_id_tree(classes[key], possible_classifiers, target_classifier, newNode)
 
