@@ -119,6 +119,7 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
     optionally a partially completed ID tree, returns a completed ID tree by
     adding classifiers and classifications until either perfect classification
     has been achieved, or there are no good classifiers left."""
+
     error = False
 
     try:
@@ -211,18 +212,18 @@ BOUNDARY_ANS_14 = 4
 def dot_product(u, v):
     """Computes dot product of two vectors u and v, each represented as a tuple
     or list of coordinates.  Assume the two vectors are the same length."""
-    ret = 0
+    ret = 0.0
     for i in range(len(u)):
-        ret += u[i] * v[i]
+        ret += float(float(u[i]) * float(v[i]))
     return ret
 
 
 def norm(v):
     "Computes length of a vector v, represented as a tuple or list of coords."
-    summ = 0
+    summ = 0.0
     for i in range(len(v)):
-        summ += v[i] ** 2
-    return summ ** 0.5
+        summ += float(float(v[i]) ** 2)
+    return float(float(summ) ** 0.5)
 
 
 def euclidean_distance(point1, point2):
@@ -231,8 +232,8 @@ def euclidean_distance(point1, point2):
     a = point1.coords
     b = point2.coords
     for i in range(len(a)):
-        summ += (a[i] - b[i]) ** 2
-    return summ ** 0.5
+        summ += float(float(a[i] - b[i]) ** 2)
+    return float(float(summ) ** 0.5)
 
 
 def manhattan_distance(point1, point2):
@@ -261,7 +262,8 @@ def cosine_distance(point1, point2):
     where cosine distance is defined as 1-cos(angle_between(point1, point2))."""
     a = point1.coords
     b = point2.coords
-    return 1 - dot_product(a, b) / (norm(a) * norm(b))
+    # if this is it
+    return 1 - dot_product(a, b) / float(float(norm(a)) * float(norm(b)))
 
 
 #### CLASSIFYING POINTS
@@ -273,7 +275,7 @@ def get_k_closest_points(point, data, k, distance_metric):
     metric.  Breaks ties lexicographically by coordinates."""
     # beautiful
     data = sorted(data, key=lambda datum: datum.coords)
-    data = sorted(data, key=lambda datum: distance_metric(datum, point))
+    data = sorted(data, key=lambda datum: distance_metric(point, datum))
     return data[:k]
 
 
@@ -283,10 +285,8 @@ def knn_classify_point(point, data, k, distance_metric):
     point based on its k nearest neighbors, as determined by the distance metric.
     Assumes there are no ties."""
     nn = get_k_closest_points(point, data, k, distance_metric)
-    nn_classes = []
-    for n in nn:
-        nn_classes.append(n.classification)
-    mode = max(set(nn_classes), key=nn_classes.count)
+    classes = [n.classification for n in nn]
+    mode = max(set(classes), key=lambda c: classes.count(c))
     return mode
 
 ## To run your classify function on the k-nearest neighbors problem from 2014 Q2
@@ -300,15 +300,22 @@ def cross_validate(data, k, distance_metric):
     """Given a list of points (the data), an int 0 < k <= len(data), and a
     distance metric (a function), performs leave-one-out cross-validation.
     Return the fraction of points classified correctly, as a float."""
-    summ = 0
-    for i in range(len(data)):
-        training = data[:]
-        test = training[i]
+    right = 0
+    wrong = 0
+    # XRANGE???
+    for i in xrange(len(data)):
+        # print i
+        # training = data[:]
+        test = data[i]
+        training = data[:i] + data[i+1:]
         trueClass = test.classification
-        del training[i]
-        if trueClass is knn_classify_point(test, training, k, distance_metric):
-            summ += 1
-    return summ / float(len(data))
+        # del training[i]
+        # this line seemed to do it.... was it IS vs == or order matters?
+        if knn_classify_point(test, training, k, distance_metric) == trueClass:
+            right += 1
+        else:
+            wrong += 1
+    return right / float(right + wrong)
 
 
 
