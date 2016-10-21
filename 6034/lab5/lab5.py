@@ -113,11 +113,13 @@ def find_best_classifier(data, possible_classifiers, target_classifier):
 ## To find the best classifier from 2014 Q2, Part A, uncomment:
 #print find_best_classifier(tree_data, tree_classifiers, feature_test("tree_type"))
 
-def is_homogeneous(id_tree_node):
+def is_homogeneous(id_tree_node, data, target_classifier):
     branches = id_tree_node.get_branches()
     # A branch whose points all have the same final classification is homogeneous, and has a disorder of 0
-    all_homo =
+    summ = 0
     for branch in branches:
+        summ += branch_disorder(branch,target_classifier)
+    return summ is 0
 
 
 def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_tree_node=None):
@@ -138,7 +140,7 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
 
 
     # if is leaf
-    if is_homogeneous(id_tree_node):
+    if is_homogeneous(id_tree_node, data, target_classifier):
         id_tree_node.set_node_classification(best_classifier)
 
     else:
