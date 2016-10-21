@@ -149,6 +149,7 @@ def construct_greedy_id_tree(data, possible_classifiers, target_classifier, id_t
             newNode = branches[key]
             # give it only subset of data
             print newNode
+            # classes[key] was right
             construct_greedy_id_tree(classes[key], possible_classifiers, target_classifier, newNode)
 
     return id_tree_node
