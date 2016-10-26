@@ -1,0 +1,43 @@
+{
+  "name": "KanyeZone Bot",
+
+  "short_name": "KanyeBot",
+
+  "description": "Hustle, crush it, and go big.",
+
+  "version": "0.0.0",
+
+  // "page_action": {
+  //   "default_icon": {
+  //     "19": "doge-19.png",
+  //     "38": "doge-38.png"
+  //   },
+  //   "default_title": "AgroMod",
+  //   "default_popup": "popup.html"
+  // },
+
+  // "web_accessible_resources": ["options.html"],
+
+  "author": "Evan Sandhoefner",
+
+  // "background": { "scripts": ["background.js"], "persistent": false },
+
+  "content_scripts": [
+    {
+      "matches": ["http://www.kanyezone.com/"],
+      "js": ["d3.js", "page.js", "jquery.js"]
+    }
+  ],
+
+  // "options_page": "options.html",
+
+  "permissions": ["storage", "declarativeContent"],
+
+  "icons": {
+    "16": "doge-16-.png",
+    "48": "doge-48-.png",
+    "128": "doge-128-.png"
+  },
+
+  "manifest_version": 2
+}
