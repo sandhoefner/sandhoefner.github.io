@@ -28,9 +28,14 @@ def getLocations(path=None):
 		# don't put the shit outside the 255 dude
 
 		# ([235,150,180],[255,170,200]), # purple
-		([15,55,95],[115,175,235]), # brown
-		([200,110,10],[255,180,90]) # blue
+		# ([15,55,95],[115,175,235]), # brown
+		# ([200,110,10],[255,180,90]) # blue
 		# ([52,52,52],[67,67,67]), # gray
+
+		# assHOLE for $ and light blue:
+		# shows barely a hint of kanye and always shows a bit of purple too
+		([65,105,150],[70,135,190]), # brown
+		([200,110,10],[255,255,185]) # blue
 	]
 
 	# loop over the boundaries
@@ -118,29 +123,29 @@ def bestMove(oldPath, newPath):
 
 		if bumperX < 295 and bumperY > 295:
 			bumperQuadrant = 1
-			if kanyeLeft and not kanyeUp:
-				return 'space'
+			# if kanyeLeft and not kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 2
-			if not kanyeLeft and not kanyeUp:
-				return 'space'
+			# if not kanyeLeft and not kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY < 295:
 			bumperQuadrant = 3
-			if kanyeUp and not kanyeLeft:
-				return 'space'
+			# if kanyeUp and not kanyeLeft:
+			# 	return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 4
-			if kanyeLeft and kanyeUp:
-				return 'space'
+			# if kanyeLeft and kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 

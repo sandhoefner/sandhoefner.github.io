@@ -1,5 +1,5 @@
 # from http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/
-# usage: python anal.py --image test.png
+# usage: python anal.py --image 7
 
 
 # import the necessary packages
@@ -13,19 +13,30 @@ ap.add_argument("-i", "--image", help = "path to the image")
 args = vars(ap.parse_args())
 
 # load the image
-image = cv2.imread(args["image"])
+image = cv2.imread("caps/" + args["image"] + ".png")
 
 
 
 # define the list of boundaries
 
+# boundaries = [
+# # bgr order
+# # shit, these are with flux on
+# # don't put the shit outside the 255 dude
+# 	([235,150,180],[255,170,200]), # purple
+# 	([15,55,95],[115,175,235]), # brown
+# 	([230,140,40],[240,150,60]), # blue
+# 	# ([52,52,52],[67,67,67]), # gray
+# ]
+
 boundaries = [
-# bgr order
-# shit, these are with flux on
-# don't put the shit outside the 255 dude
-	([235,150,180],[255,170,200]), # purple
-	([15,55,95],[115,175,235]), # brown
-	([230,140,40],[240,150,60]), # blue
+	# bgr order
+	# shit, these are with flux on
+	# don't put the shit outside the 255 dude
+
+	# ([235,150,180],[255,170,200]), # purple
+	([65,105,150],[70,135,190]), # brown
+	([200,110,10],[255,255,185]) # blue
 	# ([52,52,52],[67,67,67]), # gray
 ]
 
