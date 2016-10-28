@@ -127,8 +127,11 @@ def bestMove(oldPath, newPath):
 		print oldPath
 		print newPath
 		kanyeChange = [newLocations[0] - oldLocations[0], newLocations[1] - oldLocations[1]]
-		lookAhead = 1
+		# is this even logical
+		lookAhead = 0
 		kanyeNext = [newLocations[0] + lookAhead*kanyeChange[0], newLocations[1] + lookAhead*kanyeChange[1]]
+
+		# these might be too old by the time I'm making this decision???
 		bumperX = newLocations[2]
 		bumperY = newLocations[3]
 
@@ -142,29 +145,29 @@ def bestMove(oldPath, newPath):
 
 		if bumperX < 295 and bumperY > 295:
 			bumperQuadrant = 1
-			if kanyeLeft and not kanyeUp:
-				return 'space'
+			# if kanyeLeft and not kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 2
-			if not kanyeLeft and not kanyeUp:
-				return 'space'
+			# if not kanyeLeft and not kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY < 295:
 			bumperQuadrant = 3
-			if kanyeUp and not kanyeLeft:
-				return 'space'
+			# if kanyeUp and not kanyeLeft:
+			# 	return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 4
-			if kanyeLeft and kanyeUp:
-				return 'space'
+			# if kanyeLeft and kanyeUp:
+			# 	return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
@@ -213,7 +216,7 @@ def tick(direction='right', count=0):
 	if direction != 'space':
 
 		pyautogui.keyDown(direction)
-		time.sleep(0.1)
+		time.sleep(0.05)
 	else:
 		pyautogui.press('space')
 	count += 1
