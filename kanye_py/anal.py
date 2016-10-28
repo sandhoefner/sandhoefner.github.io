@@ -1,4 +1,6 @@
 # from http://www.pyimagesearch.com/2014/08/04/opencv-python-color-detection/
+# usage: python anal.py --image test.png
+
 
 # import the necessary packages
 import numpy as np
@@ -24,7 +26,7 @@ boundaries = [
 	([235,150,180],[255,170,200]), # purple
 	([15,55,95],[115,175,235]), # brown
 	([230,140,40],[240,150,60]), # blue
-	([52,52,52],[67,67,67]), # gray
+	# ([52,52,52],[67,67,67]), # gray
 ]
 
 
@@ -43,6 +45,8 @@ for (lower, upper) in boundaries:
 	cv2.imshow("images", np.hstack([image, output]))
 	cv2.waitKey(0)
 
+objects = ["zone", "kanye", "bumper"]
+obj = 0
 # loop over the boundaries
 for (lower, upper) in boundaries:
 	# create NumPy arrays from the boundaries
@@ -52,8 +56,22 @@ for (lower, upper) in boundaries:
 	# find the colors within the specified boundaries and apply
 	# the mask
 	mask = cv2.inRange(image, lower, upper)
+	# print mask
+	# print np.transpose(np.where(mask>0))
+	one = 0
+	two = 0
+	count = 0
+	for item in np.transpose(np.where(mask>0)):
+		one += item[0]
+		two += item[1]
+		count += 1
+	print "average (x,y) pixel coords for " + objects[obj] + ":"
+	print two / count
+	print one / count
+
+	obj += 1
 	output = cv2.bitwise_and(image, image, mask = mask)
 
 	# show the images
 	cv2.imshow("images", np.hstack([image, output]))
-	cv2.waitKey(0)
+	# cv2.waitKey(0)
