@@ -9,6 +9,7 @@ import numpy as np
 import argparse
 import cv2
 import sys
+import threading
 
 sys.path.append('/usr/local/lib/python2.7/site-packages')
 sys.path.append('/usr/local/lib/python2.7/dist-packages')
@@ -88,6 +89,7 @@ def play():
 	pyautogui.press('enter')
 	time.sleep(2)
 	pyautogui.press('enter')
+	# spaceTick(True)
 	tick()
 
 def bestMove():
@@ -95,13 +97,43 @@ def bestMove():
 		return 'left'
 	return 'right'
 
-def tick():
-	thisMove = bestMove()
-	pyautogui.keyDown(thisMove)
-	screenGrab()
-	time.sleep(1)
-	pyautogui.keyUp(thisMove)
-	tick()
+def spaceTick(first):
+	if first:
+		tick()
+	print "spaceTick"
+	pyautogui.press('space')
+	# does this sleep whole program or just function
+	time.sleep(0.01)
+	spaceTick(False)
+
+count = 0
+
+# def tick():
+# 	global count
+# 	pyautogui.press('space')
+# 	if count is 10:
+# 		count = 1
+# 		thisMove = bestMove()
+# 		pyautogui.keyDown(thisMove)
+# 		# screenGrab()
+# 		time.sleep(0.01)
+# 		pyautogui.keyUp(thisMove)
+# 		tick()
+# 	else:
+# 		count += 1
+# 		time.sleep(0.01)
+# 		tick()
+
+def tick(count=0, direction='right'):
+	pyautogui.press('space')
+	if count % 10 is 0:
+		pyautogui.keyUp(direction)
+		direction = bestMove()
+		pyautogui.keyDown(direction)
+	count += 1
+	time.sleep(0.01)
+	tick(count, direction)
+
 
 play()
 
