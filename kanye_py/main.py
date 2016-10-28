@@ -6,8 +6,9 @@ import pyscreenshot as ImageGrab
 import os
 
 def screenGrab():
-	box = ()
-	im = ImageGrab.grab()
+	# pixels for chromium, 100% zoom, top of page scroll
+	box = (660, 325, 1250, 920)
+	im = ImageGrab.grab(box)
 	im.save(os.getcwd() + '/full_snap__' + str(int(time.time())) + '.png', 'PNG')
 
 def play(keys_combination):
@@ -24,3 +25,5 @@ def play(keys_combination):
 	screenGrab()
 
 play(None)
+
+
