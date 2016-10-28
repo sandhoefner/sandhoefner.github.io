@@ -10,17 +10,32 @@ import argparse
 import cv2
 import sys
 import threading
+import glob
+
 
 sys.path.append('/usr/local/lib/python2.7/site-packages')
 sys.path.append('/usr/local/lib/python2.7/dist-packages')
 sys.path.append('/usr/local/lib/python3.5/dist-packages')
 sys.path.append('/usr/local/lib/python3.4/dist-packages')
 
+delMe = os.getcwd() + "/caps/*"
+print delMe
+files = glob.glob(delMe)
+print files
+for f in files:
+	os.remove(f)
 
-def getLocations(path=None):
+def getLocations(image=None):
 	# load the image
-	image = cv2.imread(path)
+	# image = cv2.imread(path)
+	# print type(image)
+	pil_image = image.convert('RGB')
+	open_cv_image = np.array(pil_image)
+	# Convert RGB to BGR
+	open_cv_image = open_cv_image[:, :, ::-1].copy()
+	image = open_cv_image
 
+	# image = cv2.imread(path)
 	# define the list of boundaries
 	boundaries = [
 		# bgr order
@@ -85,7 +100,8 @@ def screenGrab(count):
 	# left top right bottom I think
 	box = (660, 325, 1250, 920)
 	im = ImageGrab.grab(box)
-	im.save(os.getcwd() + '/caps/' + str(count) + '.png', 'PNG')
+	return im
+	# im.save(os.getcwd() + '/caps/' + str(count) + '.png', 'PNG')
 
 def play():
 	pyautogui.hotkey('winleft', '9')
@@ -93,12 +109,15 @@ def play():
 	pyautogui.hotkey('ctrl', 't')
 	pyautogui.typewrite('http://www.kanyezone.com/', interval = 0.05)
 	pyautogui.press('enter')
-	time.sleep(2)
-	pyautogui.press('enter')
+	time.sleep(4)
+	# pyautogui.press('enter')
+	pyautogui.keyDown('right')
+	time.sleep(0.25)
+	pyautogui.keyUp('right')
 	tick()
 
 def bestMove(oldPath, newPath):
-	if oldPath is not None and newPath is not None:
+	if oldPath != None and newPath != None:
 		newLocations = getLocations(newPath)
 		oldLocations = getLocations(oldPath)
 		# kanyeX kanyeY bumperX bumperY
@@ -108,7 +127,7 @@ def bestMove(oldPath, newPath):
 		print oldPath
 		print newPath
 		kanyeChange = [newLocations[0] - oldLocations[0], newLocations[1] - oldLocations[1]]
-		lookAhead = 0
+		lookAhead = 1
 		kanyeNext = [newLocations[0] + lookAhead*kanyeChange[0], newLocations[1] + lookAhead*kanyeChange[1]]
 		bumperX = newLocations[2]
 		bumperY = newLocations[3]
@@ -123,29 +142,29 @@ def bestMove(oldPath, newPath):
 
 		if bumperX < 295 and bumperY > 295:
 			bumperQuadrant = 1
-			# if kanyeLeft and not kanyeUp:
-			# 	return 'space'
+			if kanyeLeft and not kanyeUp:
+				return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 2
-			# if not kanyeLeft and not kanyeUp:
-			# 	return 'space'
+			if not kanyeLeft and not kanyeUp:
+				return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY < 295:
 			bumperQuadrant = 3
-			# if kanyeUp and not kanyeLeft:
-			# 	return 'space'
+			if kanyeUp and not kanyeLeft:
+				return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 4
-			# if kanyeLeft and kanyeUp:
-			# 	return 'space'
+			if kanyeLeft and kanyeUp:
+				return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
@@ -165,19 +184,36 @@ def bestMove(oldPath, newPath):
 # 	time.sleep(0.01)
 # 	tick(count, direction)
 
+oldIm = None
+newIm = None
+
 def tick(direction='right', count=0):
-	screenGrab(count)
-	if direction != "space":
-		pyautogui.keyUp(direction)
-	oldPath, newPath = None, None
-	if count > 1:
+	global oldIm
+	global newIm
+	# no sleep but there's a long step size... is it hanging on the screenshot???
+	# screenGrab(count)
+
+	# oldPath, newPath = None, None
+	if count is 0:
+		newIm = screenGrab(count)
+	else:
+		oldIm = newIm
+		newIm = screenGrab(count)
+
 		# shouldn't be getcwding every time
-		oldPath = os.getcwd() + '/caps/' + str(count - 1) + '.png'
-		newPath = os.getcwd() + '/caps/' + str(count) + '.png'
-	direction = bestMove(oldPath, newPath)
+		# oldPath = os.getcwd() + '/caps/' + str(count - 1) + '.png'
+		# oldPath = s
+		# newPath = os.getcwd() + '/caps/' + str(count) + '.png'
+	# direction = bestMove(oldPath, newPath)
+	oldDirection = direction
+	direction = bestMove(oldIm, newIm)
+
+	if oldDirection != 'space':
+		pyautogui.keyUp(oldDirection)
 	if direction != 'space':
+
 		pyautogui.keyDown(direction)
-		# time.sleep(0.001)
+		time.sleep(0.1)
 	else:
 		pyautogui.press('space')
 	count += 1
