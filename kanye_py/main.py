@@ -29,7 +29,7 @@ def getLocations(path=None):
 
 		# ([235,150,180],[255,170,200]), # purple
 		([15,55,95],[115,175,235]), # brown
-		([230,140,40],[240,150,60]) # blue
+		([200,110,10],[255,180,90]) # blue
 		# ([52,52,52],[67,67,67]), # gray
 	]
 
@@ -80,7 +80,7 @@ def screenGrab(count):
 	# left top right bottom I think
 	box = (660, 325, 1250, 920)
 	im = ImageGrab.grab(box)
-	im.save(os.getcwd() + '/' + str(count) + '.png', 'PNG')
+	im.save(os.getcwd() + '/caps/' + str(count) + '.png', 'PNG')
 
 def play():
 	pyautogui.hotkey('winleft', '9')
@@ -97,10 +97,14 @@ def bestMove(oldPath, newPath):
 		newLocations = getLocations(newPath)
 		oldLocations = getLocations(oldPath)
 		# kanyeX kanyeY bumperX bumperY
+		# frequently fails to find bumper
 		print oldLocations
 		print newLocations
+		print oldPath
+		print newPath
 		kanyeChange = [newLocations[0] - oldLocations[0], newLocations[1] - oldLocations[1]]
-		kanyeNext = [newLocations[0] + kanyeChange[0], newLocations[1] + kanyeChange[1]]
+		lookAhead = 0
+		kanyeNext = [newLocations[0] + lookAhead*kanyeChange[0], newLocations[1] + lookAhead*kanyeChange[1]]
 		bumperX = newLocations[2]
 		bumperY = newLocations[3]
 
@@ -114,21 +118,29 @@ def bestMove(oldPath, newPath):
 
 		if bumperX < 295 and bumperY > 295:
 			bumperQuadrant = 1
+			if kanyeLeft and not kanyeUp:
+				return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 2
+			if not kanyeLeft and not kanyeUp:
+				return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY < 295:
 			bumperQuadrant = 3
+			if kanyeUp and not kanyeLeft:
+				return 'space'
 			if kanyeLeft or kanyeUp:
 				return 'left'
 
 		elif bumperX > 295 and bumperY > 295:
 			bumperQuadrant = 4
+			if kanyeLeft and kanyeUp:
+				return 'space'
 			if kanyeLeft or not kanyeUp:
 				return 'left'
 
@@ -150,14 +162,19 @@ def bestMove(oldPath, newPath):
 
 def tick(direction='right', count=0):
 	screenGrab(count)
-	pyautogui.keyUp(direction)
+	if direction != "space":
+		pyautogui.keyUp(direction)
 	oldPath, newPath = None, None
 	if count > 1:
-		oldPath = str(count - 1) + '.png'
-		newPath = str(count) + '.png'
+		# shouldn't be getcwding every time
+		oldPath = os.getcwd() + '/caps/' + str(count - 1) + '.png'
+		newPath = os.getcwd() + '/caps/' + str(count) + '.png'
 	direction = bestMove(oldPath, newPath)
-	pyautogui.keyDown(direction)
-	time.sleep(0.01)
+	if direction != 'space':
+		pyautogui.keyDown(direction)
+		# time.sleep(0.001)
+	else:
+		pyautogui.press('space')
 	count += 1
 	tick(direction, count)
 
