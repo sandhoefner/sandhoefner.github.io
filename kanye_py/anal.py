@@ -19,9 +19,10 @@ image = cv2.imread(args["image"])
 
 boundaries = [
 # bgr order
+# shit, these are with flux on
+	([239,154,184],[252,164,197]), # purple
 	([50,90,130],[90,150,210]), # brown
-	([230,140,40],[240,150,60]), # blue
-	([230,150,180],[260,170,200])  # purple
+	([230,140,40],[240,150,60]) # blue
 ]
 
 
