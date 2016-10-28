@@ -62,7 +62,8 @@ def getLocations(path=None):
 		mask = cv2.inRange(image, lower, upper)
 		one = 0
 		two = 0
-		count = 0
+		# don't divide by 0
+		count = 0.0000001
 		for item in np.transpose(np.where(mask>0)):
 			one += item[0]
 			two += item[1]
@@ -74,14 +75,14 @@ def getLocations(path=None):
 
 	return ret
 
-def screenGrab():
+def screenGrab(count):
 	# pixels for chromium, 100% zoom, top of page scroll
+	# left top right bottom I think
 	box = (660, 325, 1250, 920)
 	im = ImageGrab.grab(box)
-	im.save(os.getcwd() + '/full_snap__' + str(int(time.time())) + '.png', 'PNG')
+	im.save(os.getcwd() + '/' + str(count) + '.png', 'PNG')
 
 def play():
-	print getLocations('test.png')
 	pyautogui.hotkey('winleft', '9')
 	time.sleep(0.5)
 	pyautogui.hotkey('ctrl', 't')
@@ -91,12 +92,49 @@ def play():
 	pyautogui.press('enter')
 	tick()
 
-def bestMove():
-	if randint(0,1) is 0:
-		return 'left'
+def bestMove(oldPath, newPath):
+	if oldPath is not None and newPath is not None:
+		newLocations = getLocations(newPath)
+		oldLocations = getLocations(oldPath)
+		# kanyeX kanyeY bumperX bumperY
+		print oldLocations
+		print newLocations
+		kanyeChange = [newLocations[0] - oldLocations[0], newLocations[1] - oldLocations[1]]
+		kanyeNext = [newLocations[0] + kanyeChange[0], newLocations[1] + kanyeChange[1]]
+		bumperX = newLocations[2]
+		bumperY = newLocations[3]
+
+		# this could all be wrong
+		kanyeLeft, kanyeUp = True, True
+		if kanyeNext[0] - bumperX > 0:
+			kanyeLeft = False
+		if kanyeNext[1] - bumperY > 0:
+			kanyeUp = False
+
+
+		if bumperX < 295 and bumperY > 295:
+			bumperQuadrant = 1
+			if kanyeLeft or kanyeUp:
+				return 'left'
+
+		elif bumperX > 295 and bumperY > 295:
+			bumperQuadrant = 2
+			if kanyeLeft or not kanyeUp:
+				return 'left'
+
+		elif bumperX > 295 and bumperY < 295:
+			bumperQuadrant = 3
+			if kanyeLeft or kanyeUp:
+				return 'left'
+
+		elif bumperX > 295 and bumperY > 295:
+			bumperQuadrant = 4
+			if kanyeLeft or not kanyeUp:
+				return 'left'
+
+
 	return 'right'
 
-count = 0
 
 # flutter
 # def tick(count=0, direction='right'):
@@ -110,13 +148,18 @@ count = 0
 # 	time.sleep(0.01)
 # 	tick(count, direction)
 
-def tick(direction='right'):
-	screenGrab()
+def tick(direction='right', count=0):
+	screenGrab(count)
 	pyautogui.keyUp(direction)
-	direction = bestMove()
+	oldPath, newPath = None, None
+	if count > 1:
+		oldPath = str(count - 1) + '.png'
+		newPath = str(count) + '.png'
+	direction = bestMove(oldPath, newPath)
 	pyautogui.keyDown(direction)
-	time.sleep(0.1)
-	tick(direction)
+	time.sleep(0.01)
+	count += 1
+	tick(direction, count)
 
 play()
 
