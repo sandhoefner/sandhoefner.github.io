@@ -144,9 +144,9 @@ def get_next_bumper_pos(current_bumper_pos,step_size):
 	next_i_left = (best_i - step_size)
 	next_i_right = (best_i + step_size)
 	next_i_space = (best_i + len(starting_circle) / 2)
-	return (starting_circle[next_i_left % len(starting_circle)],
+	return [starting_circle[next_i_left % len(starting_circle)],
 			starting_circle[next_i_right % len(starting_circle)],
-			starting_circle[next_i_space % len(starting_circle)])
+			starting_circle[next_i_space % len(starting_circle)]]
 
 
 
@@ -180,7 +180,7 @@ def bestMove(oldPath, newPath):
 		print newPath
 		kanyeChange = [newLocations[0] - oldLocations[0], newLocations[1] - oldLocations[1]]
 		# is this even logical
-		lookAhead = 0.5
+		lookAhead = 0.25
 		kanyeNext = [newLocations[0] + lookAhead*kanyeChange[0], newLocations[1] + lookAhead*kanyeChange[1]]
 
 		# these might be too old by the time I'm making this decision???
@@ -188,14 +188,15 @@ def bestMove(oldPath, newPath):
 		bumperY = newLocations[3]
 
 		#  int parameter here should be 256 * percentage of circumference traveled per step, observationally
-		options = get_next_bumper_pos((bumperX, bumperY), int(256 * 0.17))
+		options = get_next_bumper_pos((bumperX, bumperY), int(256 * 0.25))
+		options.append((bumperX, bumperY))
 
 		distances = [distance(p, kanyeNext) for p in options]
 
 		# from http://stackoverflow.com/questions/13300962/python-find-index-of-minimum-item-in-list-of-floats
 		best_idx = min(enumerate(distances), key=itemgetter(1))[0]
 
-		named_options = ['left', 'right', 'space']
+		named_options = ['left', 'right', 'space', 'sit']
 
 		return named_options[best_idx]
 
@@ -277,13 +278,13 @@ def tick(direction='right', count=0):
 	oldDirection = direction
 	direction = bestMove(oldIm, newIm)
 
-	if oldDirection != 'space':
+	if oldDirection not in ['space','sit']:
 		pyautogui.keyUp(oldDirection)
-	if direction != 'space':
+	if direction not in ['space','sit']:
 
 		pyautogui.keyDown(direction)
-		time.sleep(0.05)
-	else:
+		# time.sleep(0.05)
+	elif direction == "space":
 		pyautogui.press('space')
 	count += 1
 	tick(direction, count)
