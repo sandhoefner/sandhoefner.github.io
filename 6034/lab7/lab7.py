@@ -50,6 +50,11 @@ def check_gutter_constraint(svm):
     Assumes that the SVM has support vectors assigned."""
     wrong = []
     for point in svm.training_points:
+        print '\n'
+        print point.classification
+        print positiveness(svm, point)
+        print '\n'
+        print point.classification * (dot_product(svm.w, point) + svm.b)
         if ((point in svm.support_vectors and point.classification != positiveness(svm, point)) or
         (point.classification * (dot_product(svm.w, point) + svm.b) < 1)):
             wrong.append(point)
