@@ -61,7 +61,19 @@ def forward_prop(net, input_values, threshold_fn=stairstep):
     This function should not modify the input net.  Returns a tuple containing:
     (1) the final output of the neural net
     (2) a dictionary mapping neurons to their immediate outputs"""
-    raise NotImplementedError
+
+
+    # for a single neuron:
+    # each input into the neuron is multiplied by the weight on the wire
+    # the weighted inputs are summed together
+    # the sum is passed through a specified threshold function to produce the output
+
+    print net.topological_sort()
+    summer = 0
+    for neuron in net.topological_sort():
+        summer += node_value(neuron, input_values, net)
+    return threshold_fn(summer)
+
 
 # Backward propagation warm-up
 def gradient_ascent_step(func, inputs, step_size):
@@ -71,6 +83,7 @@ def gradient_ascent_step(func, inputs, step_size):
     After trying all possible variable assignments, returns a tuple containing:
     (1) the maximum function output found, and
     (2) the list of inputs that yielded the highest function output."""
+
     raise NotImplementedError
 
 def get_back_prop_dependencies(net, wire):
