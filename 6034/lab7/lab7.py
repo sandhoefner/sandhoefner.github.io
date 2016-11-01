@@ -7,26 +7,40 @@ from svm_data import *
 def dot_product(u, v):
     """Computes dot product of two vectors u and v, each represented as a tuple
     or list of coordinates.  Assume the two vectors are the same length."""
-    raise NotImplementedError
+    ret = 0.0
+    for i in range(len(u)):
+        ret += float(float(u[i]) * float(v[i]))
+    return ret
+
 
 def norm(v):
     "Computes length of a vector v, represented as a tuple or list of coords."
-    raise NotImplementedError
+    summ = 0.0
+    for i in range(len(v)):
+        summ += float(float(v[i]) ** 2)
+    return float(float(summ) ** 0.5)
+
 
 # Equation 1
 def positiveness(svm, point):
     "Computes the expression (w dot x + b) for the given point"
-    raise NotImplementedError
+    return dot_product(svm.w, point) + svm.b
+
 
 def classify(svm, point):
     """Uses given SVM to classify a Point.  Assumes that point's true
     classification is unknown.  Returns +1 or -1, or 0 if point is on boundary"""
-    raise NotImplementedError
+    try:
+        return int(positiveness(svm, point) / abs(positiveness(svm, point)))
+    except ZeroDivisionError:
+        return 0
+
 
 # Equation 2
 def margin_width(svm):
     "Calculate margin width based on current boundary."
-    raise NotImplementedError
+    return 2 / norm(svm.w)
+
 
 # Equation 3
 def check_gutter_constraint(svm):
@@ -49,7 +63,13 @@ def check_alpha_equations(svm):
     """Returns True if both Lagrange-multiplier equations are satisfied,
     otherwise False.  Assumes that the SVM has support vectors assigned, and
     that all training points have alpha values assigned."""
-    raise NotImplementedError
+    fourSum = 0
+    fiveSum = [0,0]
+    for point in svm.training_points:
+        fourSum += point.classification * point.alpha
+        fiveSum = vector_add(fiveSum, scalar_mult(point.classification * point.alpha, point))
+    return fourSum is 0 and fiveSum[0] == svm.w[0] and fiveSum[1] == svm.w[1]
+
 
 # Classification accuracy
 def misclassified_training_points(svm):

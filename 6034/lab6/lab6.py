@@ -135,9 +135,9 @@ ANSWER_12 = None
 
 #### SURVEY ####################################################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+NAME = 'Evan Sandhoefner'
+COLLABORATORS = 'Ryan Kerr'
+HOW_MANY_HOURS_THIS_LAB_TOOK = 12
+WHAT_I_FOUND_INTERESTING = 'Getting under the hood of a neural net'
+WHAT_I_FOUND_BORING = 'writing helper functions'
 SUGGESTIONS = None
