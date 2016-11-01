@@ -48,7 +48,12 @@ def check_gutter_constraint(svm):
         * gutter constraint (positiveness == classification for support vectors)
         * training points must not be between the gutters
     Assumes that the SVM has support vectors assigned."""
-    raise NotImplementedError
+    wrong = []
+    for point in svm.training_points:
+        if ((point in svm.support_vectors and point.classification != positiveness(svm, point)) or
+        (point.classification * (dot_product(svm.w, point) + svm.b) < 1)):
+            wrong.append(point)
+    return set(wrong)
 
 # Equations 4, 5
 def check_alpha_signs(svm):
@@ -57,7 +62,14 @@ def check_alpha_signs(svm):
         * all support vectors have alpha > 0
     Assumes that the SVM has support vectors assigned, and that all training
     points have alpha values assigned."""
-    raise NotImplementedError
+    wrong = []
+    for point in svm.training_points:
+        if ((point in svm.support_vectors and point.alpha <= 0) or
+        (point not in svm.support_vectors and point.alpha is not 0)):
+            wrong.append(point)
+    return set(wrong)
+
+
 
 def check_alpha_equations(svm):
     """Returns True if both Lagrange-multiplier equations are satisfied,
@@ -75,7 +87,11 @@ def check_alpha_equations(svm):
 def misclassified_training_points(svm):
     """Returns the set of training points that are classified incorrectly
     using the current decision boundary."""
-    print svm
+    wrong = []
+    for point in svm.training_points:
+        if point.classification is not classify(svm, point):
+            wrong.append(point)
+    return set(wrong)
 
 # Training
 def update_svm_from_alphas(svm):
@@ -112,9 +128,9 @@ ANSWER_20 = None
 
 #### SURVEY ####################################################################
 
-NAME = None
-COLLABORATORS = None
-HOW_MANY_HOURS_THIS_LAB_TOOK = None
-WHAT_I_FOUND_INTERESTING = None
-WHAT_I_FOUND_BORING = None
+NAME = 'Evan Sandhoefner'
+COLLABORATORS = 'Ryan Kerr'
+HOW_MANY_HOURS_THIS_LAB_TOOK = 6
+WHAT_I_FOUND_INTERESTING = 'Checking if classifications are correct'
+WHAT_I_FOUND_BORING = 'Nothing'
 SUGGESTIONS = None
