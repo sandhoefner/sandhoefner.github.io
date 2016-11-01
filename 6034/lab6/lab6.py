@@ -68,11 +68,13 @@ def forward_prop(net, input_values, threshold_fn=stairstep):
     # the weighted inputs are summed together
     # the sum is passed through a specified threshold function to produce the output
 
-    print net.topological_sort()
-    summer = 0
+    intermediate_values = input_values.copy()
+    # print intermediate_values
+    # print net
     for neuron in net.topological_sort():
-        summer += node_value(neuron, input_values, net)
-    return threshold_fn(summer)
+        intermediate_values[neuron] = threshold_fn(node_value(neuron, input_values, {neuron: 0}))
+
+    return (intermediate_values[net.get_output_neuron()], intermediate_values)
 
 
 # Backward propagation warm-up
