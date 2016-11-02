@@ -102,7 +102,33 @@ def misclassified_training_points(svm):
 def update_svm_from_alphas(svm):
     """Given an SVM with training data and alpha values, use alpha values to
     update the SVM's support vectors, w, and b.  Return the updated SVM."""
-    raise NotImplementedError
+
+    # take the alpha values determined by SMO and use them to determine
+    # the support vectors, the normal vector w, and the offset b
+
+    # If the input SVM already has w, b, and/or support_vectors defined, ignore them and overwrite them
+    svm.w = [0,0]
+    svm.b = 0
+    svm.support_vectors = []
+
+    # Any training point with alpha > 0 is a support vector
+    for training_point in svm.training_points:
+        if training_point.alpha > 0:
+            svm.support_vectors.append(training_point)
+    # w can be calculated using Equation 5
+    fiveSum = [0,0]
+    for point in svm.training_points:
+        fiveSum = vector_add(fiveSum, scalar_mult(point.classification * point.alpha, point))
+    svm.w = fiveSum
+    # If training is complete, b can be calculated using the gutter constraint (Equation 3)
+    svm.b = svm.training_points[0].classification - dot_product(svm.w, svm.training_points[0])
+    """However, during training, the gutter constraint will produce different values of b
+    depending on which support vector is used!
+    To resolve this ambiguity, we will take the average of two values:
+    the minimum value of b produced by a negative support vector,
+    and the maximum value of b produced by a positive support vector"""
+
+    return svm
 
 # Multiple choice
 ANSWER_1 = None
