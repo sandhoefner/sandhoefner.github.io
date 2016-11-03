@@ -76,7 +76,7 @@ def check_alpha_equations(svm):
     otherwise False.  Assumes that the SVM has support vectors assigned, and
     that all training points have alpha values assigned."""
     fourSum = 0
-    fiveSum = [0,0]
+    fiveSum = [0] * len(svm.training_points[0])
     for point in svm.training_points:
         fourSum += point.classification * point.alpha
         fiveSum = vector_add(fiveSum, scalar_mult(point.classification * point.alpha, point))
@@ -137,30 +137,30 @@ def update_svm_from_alphas(svm):
     return svm
 
 # Multiple choice
-ANSWER_1 = None
-ANSWER_2 = None
-ANSWER_3 = None
-ANSWER_4 = None
+ANSWER_1 = 11
+ANSWER_2 = 6
+ANSWER_3 = 3
+ANSWER_4 = 2
 
-ANSWER_5 = None
-ANSWER_6 = None
-ANSWER_7 = None
-ANSWER_8 = None
-ANSWER_9 = None
-ANSWER_10 = None
+ANSWER_5 = ['A','D']
+ANSWER_6 = ['A','B','D']
+ANSWER_7 = ['A','B','D']
+ANSWER_8 = []
+ANSWER_9 = ['A','B','D']
+ANSWER_10 = ['A','B','D']
 
-ANSWER_11 = None
-ANSWER_12 = None
-ANSWER_13 = None
-ANSWER_14 = None
-ANSWER_15 = None
-ANSWER_16 = None
+ANSWER_11 = False
+ANSWER_12 = True
+ANSWER_13 = False
+ANSWER_14 = False
+ANSWER_15 = False
+ANSWER_16 = True
 
-ANSWER_17 = None
-ANSWER_18 = None
-ANSWER_19 = None
+ANSWER_17 = [1,3,6,8]
+ANSWER_18 = [1,2,4,5,6,7,8]
+ANSWER_19 = [1,2,4,5,6,7,8]
 
-ANSWER_20 = None
+ANSWER_20 = 6
 
 
 #### SURVEY ####################################################################
@@ -168,6 +168,6 @@ ANSWER_20 = None
 NAME = 'Evan Sandhoefner'
 COLLABORATORS = 'Ryan Kerr'
 HOW_MANY_HOURS_THIS_LAB_TOOK = 6
-WHAT_I_FOUND_INTERESTING = 'Checking if classifications are correct'
+WHAT_I_FOUND_INTERESTING = 'training and visualizing'
 WHAT_I_FOUND_BORING = 'Nothing'
 SUGGESTIONS = None
