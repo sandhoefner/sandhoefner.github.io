@@ -120,14 +120,14 @@ def update_svm_from_alphas(svm):
     min_neg = 1000
     max_pos = -1000
 
-    for point in svm.training_points:
+    for point in svm.support_vectors:
         val = point.classification - dot_product(svm.w, point)
         if point.classification < 0 and val < min_neg:
             min_neg = val
         elif point.classification > 0 and val > max_pos:
             max_pos = val
 
-    svm.b = (min_neg + max_pos) / 2
+    svm.b = float(min_neg + max_pos) / 2
     """However, during training, the gutter constraint will produce different values of b
     depending on which support vector is used!
     To resolve this ambiguity, we will take the average of two values:
