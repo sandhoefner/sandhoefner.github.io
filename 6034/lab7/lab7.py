@@ -102,8 +102,8 @@ def update_svm_from_alphas(svm):
     # the support vectors, the normal vector w, and the offset b
 
     # If the input SVM already has w, b, and/or support_vectors defined, ignore them and overwrite them
-    svm.w = [0,0]
-    svm.b = 0
+    svm.w = [None, None]
+    svm.b = None
     svm.support_vectors = []
 
     # Any training point with alpha > 0 is a support vector
@@ -116,7 +116,18 @@ def update_svm_from_alphas(svm):
         fiveSum = vector_add(fiveSum, scalar_mult(point.classification * point.alpha, point))
     svm.w = fiveSum
     # If training is complete, b can be calculated using the gutter constraint (Equation 3)
-    svm.b = svm.training_points[0].classification - dot_product(svm.w, svm.training_points[0])
+    # 1000 is basically infinity
+    min_neg = 1000
+    max_pos = -1000
+
+    for point in svm.training_points:
+        val = point.classification - dot_product(svm.w, point)
+        if point.classification < 0 and val < min_neg:
+            min_neg = val
+        elif point.classification > 0 and val > max_pos:
+            max_pos = val
+
+    svm.b = (min_neg + max_pos) / 2
     """However, during training, the gutter constraint will produce different values of b
     depending on which support vector is used!
     To resolve this ambiguity, we will take the average of two values:
