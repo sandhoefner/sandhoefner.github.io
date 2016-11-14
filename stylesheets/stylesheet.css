@@ -237,13 +237,17 @@ dl p {
 
 hr.style-five {
     border: 0;
+
     height: 0; /* Firefox... */
     box-shadow: 0 0 10px 1px black;
 }
 
 
 
-
+hr {
+      margin-top: 40px;
+    margin-bottom: 40px;
+  }
 
 table {
   border: 1px solid #373737;
