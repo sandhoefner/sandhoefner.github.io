@@ -37,6 +37,7 @@ footer, header, hgroup, menu, nav, section {
 
 ol, ul {
   list-style: none;
+  margin-left: 30px;
 }
 
 table {
@@ -226,12 +227,23 @@ dl p {
   font-style: italic;
 }
 
-hr {
+/*hr {
   height: 1px;
   margin-bottom: 5px;
   border: none;
   background: url('../images/bg_hr.png') repeat-x center;
+}*/
+
+
+hr.style-five {
+    border: 0;
+    height: 0; /* Firefox... */
+    box-shadow: 0 0 10px 1px black;
 }
+
+
+
+
 
 table {
   border: 1px solid #373737;
