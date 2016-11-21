@@ -80,7 +80,12 @@ def probability(net, hypothesis, givens=None):
 
 def number_of_parameters(net):
     "Computes minimum number of parameters required for net"
-    raise NotImplementedError
+    summ = 0
+    for var in net.get_variables():
+        dom = net.get_domain(var)
+        print dom
+        summ += len(dom)
+    return summ
 
 
 def is_independent(net, var1, var2, givens=None):
