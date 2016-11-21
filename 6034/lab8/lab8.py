@@ -48,21 +48,16 @@ def simplify_givens(net, var, givens):
 def probability_lookup(net, hypothesis, givens=None):
     "Looks up a probability in the Bayes net, or raises LookupError"
     var = hypothesis.keys()[0]
-    print var
+
     if givens is not None:
         givens = simplify_givens(net, var, givens)
 
-    parents = net.get_parents(var)
-    parents_vals = {}
-    # for parent in parents:
-        # parents_vals[parent] = net.get_
-    # try:
     try:
         return net.get_probability(hypothesis, givens, infer_missing=True)
     except:
         raise LookupError
-    # except LookupError:
-    #     return LookupError
+
+
 
 def probability_joint(net, hypothesis):
     "Uses the chain rule to compute a joint probability"
