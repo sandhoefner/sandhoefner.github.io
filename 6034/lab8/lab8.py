@@ -57,7 +57,10 @@ def probability_lookup(net, hypothesis, givens=None):
     # for parent in parents:
         # parents_vals[parent] = net.get_
     # try:
-    return net.get_probability(hypothesis, givens, infer_missing=True)
+    try:
+        return net.get_probability(hypothesis, givens, infer_missing=True)
+    except:
+        raise LookupError
     # except LookupError:
     #     return LookupError
 
