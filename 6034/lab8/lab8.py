@@ -78,13 +78,27 @@ def probability(net, hypothesis, givens=None):
 
 #### PARAMETER-COUNTING AND INDEPENDENCE #######################################
 
+def get_neighbors(net, var):
+    ret = []
+    for tested in net.get_variables():
+        if net.is_neighbor(var, tested):
+            ret.append(tested)
+    return ret
+
 def number_of_parameters(net):
     "Computes minimum number of parameters required for net"
     summ = 0
     for var in net.get_variables():
-        dom = net.get_domain(var)
-        print dom
-        summ += len(dom)
+        neighbors = net.get_parents(var)
+        dom = len(net.get_domain(var)) - 1
+        if len(neighbors) > 0:
+            product = 1
+            for neighbor in neighbors:
+                product *= len(net.get_domain(neighbor)) * dom
+        # summ += len(dom)
+            summ += product
+        else:
+            summ += dom
     return summ
 
 
