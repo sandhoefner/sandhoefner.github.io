@@ -152,8 +152,11 @@ def is_independent(net, var1, var2, givens=None):
         if approx_equal(probability_conditional(net, {var1: True}, hyp1), probability_conditional(net, {var1: True}, {var2: True})):
             return True
     else:
-        # return True if var1 and var2 are marginally independent
-        pass
+        a = {var1: True}
+        b = {var2: True}
+        ab = dict(a, **b)
+        if approx_equal(probability_marginal(net, ab), probability_marginal(net, a) * probability_marginal(net, b)):
+            return True
     return False
 
 def is_structurally_independent(net, var1, var2, givens=None):
