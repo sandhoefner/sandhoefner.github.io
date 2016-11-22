@@ -143,17 +143,18 @@ def is_independent(net, var1, var2, givens=None):
     otherwise False.  Uses numerical independence."""
     # print net.get_domain(var1)
     # print net.get_domain(var2)
+    chosenBool = True
     if givens is not None:
         #  return True if var1 and var2 are conditionally independent given the givens
         if givens is not None:
-            hyp1 = dict({var2: True}, **givens)
+            hyp1 = dict({var2: chosenBool}, **givens)
         else:
-            hyp1 = {var2: True}
-        if approx_equal(probability_conditional(net, {var1: True}, hyp1), probability_conditional(net, {var1: True}, {var2: True})):
+            hyp1 = {var2: chosenBool}
+        if approx_equal(probability_conditional(net, {var1: chosenBool}, hyp1), probability_conditional(net, {var1: chosenBool}, {var2: chosenBool})):
             return True
     else:
-        a = {var1: True}
-        b = {var2: True}
+        a = {var1: chosenBool}
+        b = {var2: chosenBool}
         ab = dict(a, **b)
         if approx_equal(probability_marginal(net, ab), probability_marginal(net, a) * probability_marginal(net, b)):
             return True
