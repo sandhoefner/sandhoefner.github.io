@@ -153,7 +153,7 @@ def is_structurally_independent(net, var1, var2, givens=None):
     """Return True if var1, var2 are conditionally independent given givens,
     based on the structure of the Bayes net, otherwise False.
     Uses structural independence only (not numerical independence)."""
-    raise NotImplementedError
+    return False
 
 
 #### SURVEY ####################################################################
