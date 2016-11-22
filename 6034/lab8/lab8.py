@@ -104,12 +104,12 @@ def probability(net, hypothesis, givens=None):
     try:
         return probability_lookup(net, hypothesis, givens)
     except:
-        # if givens is not None:
-        #     return probability_conditional(net, hypothesis, givens)
-        # elif hypothesis.keys() == net.get_variables():
-        return probability_joint(net, hypothesis)
-        # else:
-        # return probability_marginal(net, hypothesis)
+        if givens is not None:
+            return probability_conditional(net, hypothesis, givens)
+        elif hypothesis.keys() == net.get_variables():
+            return probability_joint(net, hypothesis)
+        else:
+            return probability_marginal(net, hypothesis)
 
 
 #### PARAMETER-COUNTING AND INDEPENDENCE #######################################
