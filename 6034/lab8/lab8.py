@@ -61,19 +61,33 @@ def probability_lookup(net, hypothesis, givens=None):
 
 def probability_joint(net, hypothesis):
     "Uses the chain rule to compute a joint probability"
-    raise NotImplementedError
+    keys = net.topological_sort()
+    keys.reverse()
+    events = copy.deepcopy(hypothesis)
+    product = 1
+    while keys:
+        key = keys.pop(0)
+        event = {key: events.pop(key)}
+        product *= probability_lookup(net, event, events)
+    return product
+
+
 
 def probability_marginal(net, hypothesis):
     "Computes a marginal probability as a sum of joint probabilities"
     raise NotImplementedError
 
+
+
 def probability_conditional(net, hypothesis, givens=None):
     "Computes a conditional probability as a ratio of marginal probabilities"
     raise NotImplementedError
 
+
+
 def probability(net, hypothesis, givens=None):
     "Calls previous functions to compute any probability"
-    raise NotImplementedError
+    return probability_lookup(net, hypothesis, givens)
 
 
 #### PARAMETER-COUNTING AND INDEPENDENCE #######################################
