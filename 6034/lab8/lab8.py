@@ -85,7 +85,11 @@ def probability_marginal(net, hypothesis):
 
 def probability_conditional(net, hypothesis, givens=None):
     "Computes a conditional probability as a ratio of marginal probabilities"
-    num = probability_marginal(net, dict(hypothesis, **givens))
+    if givens is not None:
+        dummy = dict(hypothesis, **givens)
+    else:
+        dummy = hypothesis
+    num = probability_marginal(net, dummy)
     den = probability_marginal(net, givens)
     return num / float(den)
 
