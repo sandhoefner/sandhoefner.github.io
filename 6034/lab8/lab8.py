@@ -141,7 +141,13 @@ def number_of_parameters(net):
 def is_independent(net, var1, var2, givens=None):
     """Return True if var1, var2 are conditionally independent given givens,
     otherwise False.  Uses numerical independence."""
-    raise NotImplementedError
+    if givens is not None:
+        #  return True if var1 and var2 are conditionally independent given the givens
+        pass
+    else:
+        # return True if var1 and var2 are marginally independent
+        pass
+    return False
 
 def is_structurally_independent(net, var1, var2, givens=None):
     """Return True if var1, var2 are conditionally independent given givens,
