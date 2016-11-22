@@ -85,11 +85,11 @@ def probability_marginal(net, hypothesis):
 
 def probability_conditional(net, hypothesis, givens=None):
     "Computes a conditional probability as a ratio of marginal probabilities"
-    for key in hypothesis.keys():
-        if key in givens.keys():
-            if hypothesis[key] != givens[key]:
-                return 0.0
     if givens is not None:
+        for key in hypothesis.keys():
+            if key in givens.keys():
+                if hypothesis[key] != givens[key]:
+                    return 0.0
         dummy = dict(hypothesis, **givens)
     else:
         dummy = hypothesis
