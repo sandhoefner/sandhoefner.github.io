@@ -141,9 +141,16 @@ def number_of_parameters(net):
 def is_independent(net, var1, var2, givens=None):
     """Return True if var1, var2 are conditionally independent given givens,
     otherwise False.  Uses numerical independence."""
+    print net.get_domain(var1)
+    print net.get_domain(var2)
     if givens is not None:
         #  return True if var1 and var2 are conditionally independent given the givens
-        pass
+        if givens is not None:
+            hyp1 = dict({var2: True}, **givens)
+        else:
+            hyp1 = {var2: True}
+        if approx_equal(probability_conditional(net, {var1: True}, hyp1), probability_conditional(net, {var1: True}, {var2: True})):
+            return True
     else:
         # return True if var1 and var2 are marginally independent
         pass
