@@ -26,6 +26,12 @@ def calculate_error_rates(point_to_weight, classifier_to_misclassified):
         ret[classifier] = summ
     return ret
 
+# from lab 5 api
+# class NoGoodClassifiersError(ValueError):
+#     def __init__(self, value=""):
+#         self.value = value
+#     def __str__(self):
+#         return repr(self.value)
 
 def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
     """Given a dictionary mapping classifiers to their error rates, returns the
@@ -41,7 +47,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
                 best_score = v
                 best_classifier = k
         if best_score == make_fraction(1, 2):
-            raise NoGoodClassifiersError
+            raise NoGoodClassifiersError("fish")
         else:
             return best_classifier
     else:
@@ -52,7 +58,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
                 best_score = abs(make_fraction(1, 2) - v)
                 best_classifier = k
         if best_score == make_fraction(1, 2):
-            raise NoGoodClassifiersError
+            raise NoGoodClassifiersError("fish")
         else:
             return best_classifier
 
@@ -73,7 +79,20 @@ def get_overall_misclassifications(H, training_points, classifier_to_misclassifi
     dictionary mapping classifiers to the training points they misclassify,
     returns a set containing the training points that H misclassifies.
     H is represented as a list of (classifier, voting_power) tuples."""
-    raise NotImplementedError
+    misclassified = set()
+
+    for p in sorted(training_points):
+        score = 0
+        for voting_power in sorted(H):
+            if p not in classifier_to_misclassified[voting_power[0]]:
+                score += voting_power[1]
+            else:
+                score -= voting_power[1]
+
+    if score <= 0:
+        misclassified.add(p)
+
+    return misclassified
 
 
 def is_good_enough(H, training_points, classifier_to_misclassified, mistake_tolerance=0):
@@ -84,6 +103,7 @@ def is_good_enough(H, training_points, classifier_to_misclassified, mistake_tole
     otherwise True.  H is represented as a list of (classifier, voting_power)
     tuples."""
     return False
+    # return len(get_overall_misclassifications(H, training_points, classifier_to_misclassified)) <= mistake_tolerance
 
 
 def update_weights(point_to_weight, misclassified_points, error_rate):
@@ -93,10 +113,10 @@ def update_weights(point_to_weight, misclassified_points, error_rate):
     training points to their new weights.  This function is allowed (but not
     required) to modify the input dictionary point_to_weight."""
     for p in point_to_weight:
-        if p in misclassified_points:
-            point_to_weight[p] = make_fraction(1, 2) * make_fraction(1, error_rate) * point_to_weight[p]
-        else:
+        if p not in misclassified_points:
             point_to_weight[p] = make_fraction(1, 2) * make_fraction(1, 1 - error_rate) * point_to_weight[p]
+        else:
+            point_to_weight[p] = make_fraction(1, 2) * make_fraction(1, error_rate) * point_to_weight[p]
     return point_to_weight
 
 
@@ -105,7 +125,29 @@ def adaboost(training_points, classifier_to_misclassified,
     """Performs the Adaboost algorithm for up to max_rounds rounds.
     Returns the resulting overall classifier H, represented as a list of
     (classifier, voting_power) tuples."""
-    raise NotImplementedError
+    if max_rounds == INF:
+        max_rounds = 10
+
+    p2w = {}
+    for p in training_points:
+        p2w[p] = make_fraction(1, len(training_points))
+
+    H, c = [], 0
+
+    while c < max_rounds:
+        c2err = calculate_error_rates(p2w, classifier_to_misclassified)
+        try:
+            best = pick_best_classifier(c2err, use_smallest_error)
+        except:
+            best = c2err.keys()[0]
+        best_v = calculate_voting_power(c2err[best])
+        c += 1
+        if is_good_enough(H, training_points, classifier_to_misclassified, mistake_tolerance) or c2err[best] == make_fraction(1, 2):
+            break
+        H.append((best, best_v))
+        p2w = update_weights(p2w, classifier_to_misclassified[best], c2err[best])
+
+    return H
 
 
 #### SURVEY ####################################################################
