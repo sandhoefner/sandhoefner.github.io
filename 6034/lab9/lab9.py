@@ -32,14 +32,11 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
     best* classifier, or raises NoGoodClassifiersError if best* classifier has
     error rate 1/2.  best* means 'smallest error rate' if use_smallest_error
     is True, otherwise 'error rate furthest from 1/2'."""
-    print classifier_to_error_rate
     fish = sorted(classifier_to_error_rate.iteritems())
-    print fish
     if use_smallest_error:
         best_classifier = None
         best_score = 1000000
         for k,v in fish:
-            # v = fish[k]
             if v < best_score:
                 best_score = v
                 best_classifier = k
@@ -51,7 +48,6 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
         best_classifier = None
         best_dist = 0
         for k,v in fish:
-            # v = fish[k]
             if abs(make_fraction(1, 2) - v) >= best_dist:
                 best_score = abs(make_fraction(1, 2) - v)
                 best_classifier = k
