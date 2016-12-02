@@ -41,7 +41,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
                 best_score = v
                 best_classifier = k
         if best_score == make_fraction(1, 2):
-            raise NoGoodClassifiersError("message")
+            raise NoGoodClassifiersError
         else:
             return best_classifier
     else:
@@ -52,7 +52,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
                 best_score = abs(make_fraction(1, 2) - v)
                 best_classifier = k
         if best_score == make_fraction(1, 2):
-            raise NoGoodClassifiersError("message")
+            raise NoGoodClassifiersError
         else:
             return best_classifier
 
@@ -60,7 +60,12 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
 def calculate_voting_power(error_rate):
     """Given a classifier's error rate (a number), returns the voting power
     (aka alpha, or coefficient) for that classifier."""
-    return make_fraction(1, 2) * ln(make_fraction(1 - error_rate, error_rate))
+    if error_rate is 1:
+        return -INF
+    elif error_rate is 0:
+        return INF
+    else:
+        return make_fraction(1, 2) * ln(make_fraction(1 - error_rate, error_rate))
 
 
 def get_overall_misclassifications(H, training_points, classifier_to_misclassified):
@@ -87,7 +92,12 @@ def update_weights(point_to_weight, misclassified_points, error_rate):
     error rate of the current weak classifier, returns a dictionary mapping
     training points to their new weights.  This function is allowed (but not
     required) to modify the input dictionary point_to_weight."""
-    raise NotImplementedError
+    for p in point_to_weight:
+        if p in misclassified_points:
+            point_to_weight[p] = make_fraction(1, 2) * make_fraction(1, error_rate) * point_to_weight[p]
+        else:
+            point_to_weight[p] = make_fraction(1, 2) * make_fraction(1, 1 - error_rate) * point_to_weight[p]
+    return point_to_weight
 
 
 def adaboost(training_points, classifier_to_misclassified,
