@@ -10,25 +10,59 @@ from utils import *
 def initialize_weights(training_points):
     """Assigns every training point a weight equal to 1/N, where N is the number
     of training points.  Returns a dictionary mapping points to weights."""
-    raise NotImplementedError
+    return {point: make_fraction(1, len(training_points)) for point in training_points}
+
 
 def calculate_error_rates(point_to_weight, classifier_to_misclassified):
     """Given a dictionary mapping training points to their weights, and another
     dictionary mapping classifiers to the training points they misclassify,
     returns a dictionary mapping classifiers to their error rates."""
-    raise NotImplementedError
+    ret = {}
+    for classifier in classifier_to_misclassified:
+        misclassified = classifier_to_misclassified[classifier]
+        summ = 0
+        for point in misclassified:
+            summ += point_to_weight[point]
+        ret[classifier] = summ
+    return ret
+
 
 def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
     """Given a dictionary mapping classifiers to their error rates, returns the
     best* classifier, or raises NoGoodClassifiersError if best* classifier has
     error rate 1/2.  best* means 'smallest error rate' if use_smallest_error
     is True, otherwise 'error rate furthest from 1/2'."""
-    raise NotImplementedError
+    if use_smallest_error:
+        best_classifier = None
+        best_score = 1000000
+        for k in classifier_to_error_rate:
+            v = classifier_to_error_rate[k]
+            if v < best_score:
+                best_score = v
+                best_classifier = k
+        if best_score == 0.5:
+            raise NoGoodClassifiersError
+        else:
+            return best_classifier
+    else:
+        best_classifier = None
+        best_dist = 0
+        for k in classifier_to_error_rate:
+            v = classifier_to_error_rate[k]
+            if abs(make_fraction(1, 2) - v) >= best_dist:
+                best_score = abs(make_fraction(1, 2) - v)
+                best_classifier = k
+        if best_score == 0.5:
+            raise NoGoodClassifiersError
+        else:
+            return best_classifier
+
 
 def calculate_voting_power(error_rate):
     """Given a classifier's error rate (a number), returns the voting power
     (aka alpha, or coefficient) for that classifier."""
     raise NotImplementedError
+
 
 def get_overall_misclassifications(H, training_points, classifier_to_misclassified):
     """Given an overall classifier H, a list of all training points, and a
@@ -36,6 +70,7 @@ def get_overall_misclassifications(H, training_points, classifier_to_misclassifi
     returns a set containing the training points that H misclassifies.
     H is represented as a list of (classifier, voting_power) tuples."""
     raise NotImplementedError
+
 
 def is_good_enough(H, training_points, classifier_to_misclassified, mistake_tolerance=0):
     """Given an overall classifier H, a list of all training points, a
@@ -46,6 +81,7 @@ def is_good_enough(H, training_points, classifier_to_misclassified, mistake_tole
     tuples."""
     raise NotImplementedError
 
+
 def update_weights(point_to_weight, misclassified_points, error_rate):
     """Given a dictionary mapping training points to their old weights, a list
     of training points misclassified by the current weak classifier, and the
@@ -53,6 +89,7 @@ def update_weights(point_to_weight, misclassified_points, error_rate):
     training points to their new weights.  This function is allowed (but not
     required) to modify the input dictionary point_to_weight."""
     raise NotImplementedError
+
 
 def adaboost(training_points, classifier_to_misclassified,
              use_smallest_error=True, mistake_tolerance=0, max_rounds=INF):
