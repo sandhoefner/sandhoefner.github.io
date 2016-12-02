@@ -48,7 +48,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
         best_classifier = None
         best_dist = 0
         for k,v in fish:
-            if abs(make_fraction(1, 2) - v) >= best_dist:
+            if abs(make_fraction(1, 2) - v) > best_dist:
                 best_score = abs(make_fraction(1, 2) - v)
                 best_classifier = k
         if best_score == make_fraction(1, 2):
@@ -60,7 +60,7 @@ def pick_best_classifier(classifier_to_error_rate, use_smallest_error=True):
 def calculate_voting_power(error_rate):
     """Given a classifier's error rate (a number), returns the voting power
     (aka alpha, or coefficient) for that classifier."""
-    raise NotImplementedError
+    return make_fraction(1, 2) * ln(make_fraction(1 - error_rate, error_rate))
 
 
 def get_overall_misclassifications(H, training_points, classifier_to_misclassified):
