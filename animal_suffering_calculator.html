@@ -9,8 +9,13 @@
 .rectangle:hover {
 	fill: orange;
 }
+
 .axis {
-  font: 10px sans-serif;
+  font: 14px sans-serif;
+}
+
+body {
+  font: 14px sans-serif;
 }
 
 .axis path,
@@ -22,7 +27,7 @@
 </style>
 </head>
 <body>
-<div id="drop" align=center></div>
+<div id="drop" align=center>Expected suffering per </div>
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -38,12 +43,12 @@ var svg = d3.select("body").append("svg")
 
 d3.tsv("VotingInformation.tsv", function(error, data){
 	console.log(data);
-	// filter year
-	var data = data.filter(function(d){return d.Year == '2012';});
+	// filter
+	var data = data.filter(function(d){return true;});
 	// Get every column value
 	var elements = Object.keys(data[0])
 		.filter(function(d){
-			return ((d != "Year") & (d != "State"));
+			return d != "Product";
 		});
 	var selection = elements[0];
 
@@ -54,7 +59,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 			.range([height, 0]);
 
 	var x = d3.scale.ordinal()
-			.domain(data.map(function(d){ return d.State;}))
+			.domain(data.map(function(d){ return d.Product;}))
 			.rangeBands([0, width]);
 
 
@@ -71,11 +76,11 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 		.attr("transform", "translate(0," + height + ")")
 		.call(xAxis)
 		.selectAll("text")
-		.style("font-size", "8px")
-		.style("text-anchor", "end")
-		.attr("dx", "-.8em")
-		.attr("dy", "-.55em")
-		.attr("transform", "rotate(-90)" );
+		.style("font-size", "14px")
+		.style("text-anchor", "center")
+		.attr("dx", "-0em")
+		.attr("dy", "+1em")
+		.attr("transform", "rotate(0)" );
 
 
 	svg.append("g")
@@ -99,7 +104,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 		})
 		.append("title")
 		.text(function(d){
-			return d.State + " : " + d[selection];
+			return d.Product + " : " + d[selection];
 		});
 
 	var selector = d3.select("#drop")
@@ -127,7 +132,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 				.ease("linear")
 				.select("title")
 				.text(function(d){
-					return d.State + " : " + d[selection.value];
+					return d.Product + " : " + d[selection.value];
 				});
 
 			d3.selectAll("g.y.axis")
