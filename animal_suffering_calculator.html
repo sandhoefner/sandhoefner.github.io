@@ -5,6 +5,7 @@
 
 .rectangle {
 	fill: steelblue;
+	/*border: 5px solid black;*/
 }
 .rectangle:hover {
 	fill: orange;
@@ -30,15 +31,19 @@ body {
 <div id="drop" align=center>Expected direct suffering per </div>
 
 <div align=center>Species weighting: <select id="weight">
-  <option value="Equal">Equal</option>
-  <option value="Neuron count, linear">Neuron count, linear</option>
+
   <option value="Neuron count, log">Neuron count, log</option>
-  <option value="Brain mass, linear">Brain mass, linear</option>
+  <option value="Neuron count, linear">Neuron count, linear</option>
   <option value="Brain mass, log">Brain mass, log</option>
+  <option value="Brain mass, linear">Brain mass, linear</option>
+	<option value="Equal">Equal</option>
 </select></div>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
+
+var unit = 'Kilogram';
+var weighting = 'Neuron count, log';
 
 var margin = {top: 80, right: 180, bottom: 80, left: 180},
 	width = 960 - margin.left - margin.right,
@@ -64,7 +69,8 @@ d3.tsv("suffering.tsv", function(error, data){
 
 	var y = d3.scale.linear()
 			.domain([0, d3.max(data, function(d){
-				return +d[selection];
+				val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+				return +val;
 			})])
 			.range([height, 0]);
 
@@ -104,17 +110,21 @@ d3.tsv("suffering.tsv", function(error, data){
 		.attr("class","rectangle")
 		.attr("width", width/data.length)
 		.attr("height", function(d){
-			return height - y(+d[selection]);
+			var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+
+			return height - y(+val);
 		})
 		.attr("x", function(d, i){
 			return (width / data.length) * i ;
 		})
 		.attr("y", function(d){
-			return y(+d[selection]);
+						var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+
+			return y(+val);
 		})
 		.append("title")
 		.text(function(d){
-			return d.Product + " : " + d[selection];
+			return d.Product + " : " + d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 		});
 
 	var selector = d3.select("#drop")
@@ -122,28 +132,33 @@ d3.tsv("suffering.tsv", function(error, data){
 		.attr("id","dropdown")
 		.on("change", function(d){
 			selection = document.getElementById("dropdown");
-
+			unit = selection.value;
 			y.domain([0, d3.max(data, function(d){
 				// console.log(selection.value);
-				return +d[selection.value];})]);
+				val = d[selection.value] * d['Norwood-Lusk Elasticity'] * d[weighting];
+				// console.log(val,d[selection.value],d['Norwood-Lusk Elasticity'], weighting, d[weighting]);
+				return +val;})]);
 
 			yAxis.scale(y);
 
 			d3.selectAll(".rectangle")
 				.transition()
 				.attr("height", function(d){
-					return height - y(+d[selection.value]);
+					val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+
+			return height - y(+val);
+
 				})
 				.attr("x", function(d, i){
 					return (width / data.length) * i ;
 				})
 				.attr("y", function(d){
-					return y(+d[selection.value]);
+					return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
 				})
 				.ease("linear")
 				.select("title")
 				.text(function(d){
-					return d.Product + " : " + d[selection.value];
+					return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
 				});
 
 			d3.selectAll("g.y.axis")
@@ -158,30 +173,32 @@ d3.tsv("suffering.tsv", function(error, data){
 
 			var weight_selector = d3.select("#weight")
 		.on("change", function(d){
-			console.log("you just picked a weight");
-			selection = document.getElementById("dropdown");
-
+			// console.log("you just picked a weight");
+			selection = document.getElementById("weight");
+			// console.log(selection.value);
+			weighting = selection.value;
 			y.domain([0, d3.max(data, function(d){
 				// console.log(selection.value);
-				return +d[selection.value];})]);
+				val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+				return +val;})]);
 
 			yAxis.scale(y);
 
 			d3.selectAll(".rectangle")
 				.transition()
 				.attr("height", function(d){
-					return height - y(+d[selection.value]);
+					return height - y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
 				})
 				.attr("x", function(d, i){
 					return (width / data.length) * i ;
 				})
 				.attr("y", function(d){
-					return y(+d[selection.value]);
+					return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
 				})
 				.ease("linear")
 				.select("title")
 				.text(function(d){
-					return d.Product + " : " + d[selection.value];
+					return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
 				});
 
 			d3.selectAll("g.y.axis")
@@ -189,7 +206,6 @@ d3.tsv("suffering.tsv", function(error, data){
 				.call(yAxis);
 
 		 });
-
 
 
 
