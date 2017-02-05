@@ -27,7 +27,16 @@ body {
 </style>
 </head>
 <body>
-<div id="drop" align=center>Expected suffering per </div>
+<div id="drop" align=center>Expected direct suffering per </div>
+
+<div align=center>Species weighting: <select id="weight">
+  <option value="Equal">Equal</option>
+  <option value="Neuron count, linear">Neuron count, linear</option>
+  <option value="Neuron count, log">Neuron count, log</option>
+  <option value="Brain mass, linear">Brain mass, linear</option>
+  <option value="Brain mass, log">Brain mass, log</option>
+</select></div>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
 
@@ -41,8 +50,8 @@ var svg = d3.select("body").append("svg")
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("VotingInformation.tsv", function(error, data){
-	console.log(data);
+d3.tsv("suffering.tsv", function(error, data){
+	// console.log(data);
 	// filter
 	var data = data.filter(function(d){return true;});
 	// Get every column value
@@ -50,6 +59,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 		.filter(function(d){
 			return d != "Product";
 		});
+	// console.log(elements);
 	var selection = elements[0];
 
 	var y = d3.scale.linear()
@@ -114,6 +124,7 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 			selection = document.getElementById("dropdown");
 
 			y.domain([0, d3.max(data, function(d){
+				// console.log(selection.value);
 				return +d[selection.value];})]);
 
 			yAxis.scale(y);
@@ -141,10 +152,53 @@ d3.tsv("VotingInformation.tsv", function(error, data){
 
 		 });
 
+
+
+
+
+			var weight_selector = d3.select("#weight")
+		.on("change", function(d){
+			console.log("you just picked a weight");
+			selection = document.getElementById("dropdown");
+
+			y.domain([0, d3.max(data, function(d){
+				// console.log(selection.value);
+				return +d[selection.value];})]);
+
+			yAxis.scale(y);
+
+			d3.selectAll(".rectangle")
+				.transition()
+				.attr("height", function(d){
+					return height - y(+d[selection.value]);
+				})
+				.attr("x", function(d, i){
+					return (width / data.length) * i ;
+				})
+				.attr("y", function(d){
+					return y(+d[selection.value]);
+				})
+				.ease("linear")
+				.select("title")
+				.text(function(d){
+					return d.Product + " : " + d[selection.value];
+				});
+
+			d3.selectAll("g.y.axis")
+				.transition()
+				.call(yAxis);
+
+		 });
+
+
+
+
+
 	selector.selectAll("option")
-	  .data(elements)
+	  .data(["Kilogram", "Gram of Protein", "Calorie"])
 	  .enter().append("option")
 	  .attr("value", function(d){
+		// console.log(d);
 		return d;
 	  })
 	  .text(function(d){

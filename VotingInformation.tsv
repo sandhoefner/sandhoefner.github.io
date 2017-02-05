@@ -1,4 +1,6 @@
-Product	Kilogram	Calorie	Gram of Protein
-Milk	0.0392	0.00008	0.00119
-Beef	0.816	0.0003	0.00308
-Chicken	34.96	0.01461	0.12927
+Product	Kilogram	Calories per Kg	Grams Protein per Kg	Norwood-Lusk Elasticity	Brain Mass (g)	Brain Neurons (millions)	Body Mass (kg)	EQ	Brain Metabolic Cost	Neural Firing Rate	Nervous System Mass	Protein	Calorie
+Cage Eggs	63	1550	130	0.91	4	221	2.15					484.6153846	40.64516129
+Chicken	46	2351.6	270.4336109	0.76	4	221						170.0972	19.56114986
+Conventional Pork	3.7	2420	270	0.74	180	2230						13.7037037	1.52892562
+Beef	1.2	2704.34	264.5546194	0.68	442	3000						4.535925333	0.4437311876
+Milk	0.07	504	33	0.56	442	3000						2.121212121	0.1388888889
