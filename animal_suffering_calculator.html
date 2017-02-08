@@ -106,14 +106,20 @@ h1, h2, h3, h4, h5 {
 	<div id="drop" align=center>Expected direct suffering per </div>
 
 <div align=center>Species weighting: <select id="weight">
+<!-- equal, neuron log, mass log, max log, neuron linear, mass linear, synapse linear -->
+<option value="Equal">Equal</option>
 
   <option value="Neuron count, log">Neuron count, log</option>
-  <option value="Neuron count, linear">Neuron count, linear</option>
+	<option value="Synapse max, log">Synapse max, log</option>
   <option value="Brain mass, log">Brain mass, log</option>
+
+
+  <option value="Neuron count, linear">Neuron count, linear</option>
+
   <option value="Brain mass, linear">Brain mass, linear</option>
-  <option value="Synapse max, log">Synapse max, log</option>
+
   <option value="Synapse max, linear">Synapse max, linear</option>
-	<option value="Equal">Equal</option>
+
 </select></div>
 
 
@@ -162,7 +168,7 @@ asdf
 <script>
 
 var unit = 'Kilogram';
-var weighting = 'Neuron count, log';
+var weighting = 'Equal';
 
 var margin = {top: 80, right: 180, bottom: 80, left: 180},
 	width = 960 - margin.left - margin.right,
