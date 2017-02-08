@@ -1,7 +1,18 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
-<head>
+<title>Animal Suffering Comparisons</title>
+
+
+
+
+<div id="wrapper" style="text-align:center">
 <style>
+body {
+	 font: 14px sans-serif;
+		background-color: black;
+		padding: 5%;
+	}
+
 
 .rectangle {
 	fill: steelblue;
@@ -15,8 +26,8 @@
   font: 14px sans-serif;
 }
 
-body {
-  font: 14px sans-serif;
+hr {
+	height: 100px;
 }
 
 .axis path,
@@ -25,10 +36,74 @@ body {
   stroke: #000;
   shape-rendering: crispEdges;
 }
+
+
+
+
+
+
+	input {
+		margin: 5px;
+		border-style: solid;
+		border: single black;
+		overflow: visible;
+		padding: 5px;
+	}
+
+	#wrapper {
+		/*margin: 5%;*/
+		background-color: rgb(250,250,250);
+		padding: 40px;
+		border-radius: 5px;
+		border: 2px solid #73AD21;
+	}
+
+	.row {
+		margin-top: 3.5%;
+		padding-top: 3.5%;
+		border-top: 2px solid #73AD21;
+		/*margin-bottom: 7%;*/
+	}
+
+	.hugMe {
+		border: 2px solid #73AD21;
+	}
+
+	.strongbold {
+		font-weight: 700;
+	}
+	/*.gray {background-color:#E0E0EB}*/
+
+h1, h2, h3, h4, h5 {
+	text-align: center;
+}
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+
+	.dot {
+		stroke: #000;
+	}
+
+
+
+
+
 </style>
-</head>
-<body>
-<div id="drop" align=center>Expected direct suffering per </div>
+<h2>Farm Animal Suffering Comparisons</h2>
+<h4>How much suffering do we cause when we buy _____? Aimed at informing ethical consumers. Some results run counter to common perception - for example, buying chicken is probably more unethical than buying beef.</h4>
+ <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="libs/d3/d3.min.js" charset="utf-8"></script>
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+<script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+<script src="http://d3js.org/queue.v1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+
+<div id="vis" class="row">
+	<div id="drop" align=center>Expected direct suffering per </div>
 
 <div align=center>Species weighting: <select id="weight">
 
@@ -41,7 +116,49 @@ body {
 	<option value="Equal">Equal</option>
 </select></div>
 
+
+</div>
+
+
+<div id="article" align="left" class='row'>
+
+<h3>Discussion</h3>
+asdf
+
+<h3>References</h3>
+<p>The primary motivation for this post is Brian Tomasik's <a href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/" target="_blank">How Much Direct Suffering Is Caused by Various Animal Foods?</a> Brian has done a lot of great work and I'd encourage you to take a look at his site!
+</p>
+<p>Other sources:
+
+<ul>
+<li>"Compassion by the Pound" - Norwood, Lusk</li>
+<li><a target="_blank" href="http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html">http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html</a></li>
+<li><a target="_blank" href="http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093">http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093</a></li>
+<li><a target="_blank" href="https://www.theatlas.com/charts/Byju0L-r">https://www.theatlas.com/charts/Byju0L-r</a></li>
+<li><a target="_blank" href="http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2">http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2</a></li>
+<li><a target="_blank" href="http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry">http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry</a></li>
+<li><a target="_blank" href="http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11">http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11</a></li>
+<li><a target="_blank" href="https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart">https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart</a></li>
+<li><a target="_blank" href="http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html">http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html</a></li>
+<li><a target="_blank" href="https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/">https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/</a></li>
+<li><a target="_blank" href="http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons">http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons</a></li>
+<li><a target="_blank" href="https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext">https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext</a></li>
+<li><a target="_blank" href="http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf">http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf</a></li>
+<li><a target="_blank" href="http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2">http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2</a></li>
+<li><a target="_blank" href="http://link.springer.com/article/10.1007/BF01205946">http://link.springer.com/article/10.1007/BF01205946</a></li>
+<li><a target="_blank" href="http://www.sciencedirect.com/science/article/pii/S1573521406800199">http://www.sciencedirect.com/science/article/pii/S1573521406800199</a></li>
+</ul>
+</div>
+
+</div>
+
 <script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+
+<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
+
+<script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+
 <script>
 
 var unit = 'Kilogram';
@@ -51,7 +168,7 @@ var margin = {top: 80, right: 180, bottom: 80, left: 180},
 	width = 960 - margin.left - margin.right,
 	height = 500 - margin.top - margin.bottom;
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#vis").append("svg")
 	.attr("width", width + margin.left + margin.right)
 	.attr("height", height + margin.top + margin.bottom)
 	.append("g")
@@ -253,4 +370,3 @@ d3.tsv("why.tsv", function(error, data){
 });
 
 </script>
-</body>
