@@ -36,6 +36,8 @@ body {
   <option value="Neuron count, linear">Neuron count, linear</option>
   <option value="Brain mass, log">Brain mass, log</option>
   <option value="Brain mass, linear">Brain mass, linear</option>
+  <option value="Synapse max, log">Synapse max, log</option>
+  <option value="Synapse max, linear">Synapse max, linear</option>
 	<option value="Equal">Equal</option>
 </select></div>
 
@@ -55,7 +57,7 @@ var svg = d3.select("body").append("svg")
 	.append("g")
 	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.tsv("suffering.tsv", function(error, data){
+d3.tsv("why.tsv", function(error, data){
 	// console.log(data);
 	// filter
 	var data = data.filter(function(d){return true;});
@@ -103,6 +105,14 @@ d3.tsv("suffering.tsv", function(error, data){
 		.attr("class", "y axis")
 		.call(yAxis);
 
+
+
+
+		//
+		//
+		// instantiate
+		//
+		//
 	svg.selectAll("rectangle")
 		.data(data)
 		.enter()
@@ -118,6 +128,7 @@ d3.tsv("suffering.tsv", function(error, data){
 			return (width / data.length) * i ;
 		})
 		.attr("y", function(d){
+
 						var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 
 			return y(+val);
@@ -127,6 +138,16 @@ d3.tsv("suffering.tsv", function(error, data){
 			return d.Product + " : " + d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 		});
 
+
+
+
+
+
+		//
+		//
+		// change unit
+		//
+		//
 	var selector = d3.select("#drop")
 		.append("select")
 		.attr("id","dropdown")
@@ -170,7 +191,11 @@ d3.tsv("suffering.tsv", function(error, data){
 
 
 
-
+		//
+		//
+		// change weighting
+		//
+		//
 			var weight_selector = d3.select("#weight")
 		.on("change", function(d){
 			// console.log("you just picked a weight");
@@ -187,6 +212,9 @@ d3.tsv("suffering.tsv", function(error, data){
 			d3.selectAll(".rectangle")
 				.transition()
 				.attr("height", function(d){
+			// 		console.log(weighting);
+			// console.log(d[weighting]);
+			// console.log(d);
 					return height - y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
 				})
 				.attr("x", function(d, i){
