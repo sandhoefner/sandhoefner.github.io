@@ -1,111 +1,108 @@
 <!DOCTYPE html>
 <meta charset="utf-8">
+<link rel="shortcut icon" href="http://faviconist.com/icons/102eeb5a310a41dd6f4f3c8ef5082270/favicon.ico" />
+
 <title>Comparing Suffering</title>
 
 
 
 
 <div id="wrapper" style="text-align:center">
-<style>
-body {
-	 font: 14px sans-serif;
-		background-color: black;
-		padding: 5%;
-	}
+	<style>
+		body {
+			font: 14px sans-serif;
+			background-color: black;
+			padding: 5%;
+		}
 
+		.rectangle {
+			fill: steelblue;
+			/*border: 5px solid black;*/
+		}
 
-.rectangle {
-	fill: steelblue;
-	/*border: 5px solid black;*/
-}
-.rectangle:hover {
-	fill: orange;
-}
+		.rectangle:hover {
+			fill: orange;
+		}
 
-.axis {
-  font: 14px sans-serif;
-}
+		.axis {
+			font: 14px sans-serif;
+		}
 
-hr {
-	height: 100px;
-}
+		hr {
+			height: 100px;
+		}
 
-.axis path,
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
 
+		input {
+			margin: 5px;
+			border-style: solid;
+			border: single black;
+			overflow: visible;
+			padding: 5px;
+		}
 
+		#wrapper {
+			/*margin: 5%;*/
+			background-color: rgb(250, 250, 250);
+			padding: 40px;
+			border-radius: 5px;
+			border: 2px solid #73AD21;
+		}
 
+		.row {
+			margin-top: 3.5%;
+			padding-top: 3.5%;
+			border-top: 2px solid #73AD21;
+			/*margin-bottom: 7%;*/
+		}
 
+		.hugMe {
+			border: 2px solid #73AD21;
+		}
 
+		.strongbold {
+			font-weight: 700;
+		}
+		/*.gray {background-color:#E0E0EB}*/
 
-	input {
-		margin: 5px;
-		border-style: solid;
-		border: single black;
-		overflow: visible;
-		padding: 5px;
-	}
+		h1,
+		h2,
+		h3,
+		h4,
+		h5 {
+			text-align: center;
+		}
 
-	#wrapper {
-		/*margin: 5%;*/
-		background-color: rgb(250,250,250);
-		padding: 40px;
-		border-radius: 5px;
-		border: 2px solid #73AD21;
-	}
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
 
-	.row {
-		margin-top: 3.5%;
-		padding-top: 3.5%;
-		border-top: 2px solid #73AD21;
-		/*margin-bottom: 7%;*/
-	}
+		.dot {
+			stroke: #000;
+		}
+	</style>
+	<h2>Farm Animal Suffering Comparisons</h2>
+	<h4>How much suffering do we cause when we buy _____? Aimed at informing ethical consumers. Some results run counter to common perception - for example, buying chicken is probably more unethical than buying beef.</h4>
+	<script src="http://d3js.org/d3.v3.min.js"></script>
+	<script src="libs/d3/d3.min.js" charset="utf-8"></script>
+	<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+	<script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+	<script src="http://d3js.org/queue.v1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
 
-	.hugMe {
-		border: 2px solid #73AD21;
-	}
+	<div id="vis" class="row">
+		<div id="drop" align=center>Expected direct suffering per </div>
 
-	.strongbold {
-		font-weight: 700;
-	}
-	/*.gray {background-color:#E0E0EB}*/
-
-h1, h2, h3, h4, h5 {
-	text-align: center;
-}
-	.axis path,
-	.axis line {
-		fill: none;
-		stroke: #000;
-		shape-rendering: crispEdges;
-	}
-
-	.dot {
-		stroke: #000;
-	}
-
-
-
-
-
-</style>
-<h2>Farm Animal Suffering Comparisons</h2>
-<h4>How much suffering do we cause when we buy _____? Aimed at informing ethical consumers. Some results run counter to common perception - for example, buying chicken is probably more unethical than buying beef.</h4>
- <script src="http://d3js.org/d3.v3.min.js"></script>
-<script src="libs/d3/d3.min.js" charset="utf-8"></script>
-<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
-<script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
-<script src="http://d3js.org/queue.v1.min.js"></script>
-<link rel="stylesheet" type="text/css" href="libs/bootstrap/css/bootstrap.min.css">
-
-<div id="vis" class="row">
-	<div id="drop" align=center>Expected direct suffering per </div>
-
-<div align=center>Species weighting: <select id="weight">
+		<div align=center>Species weighting: <select id="weight">
 <!-- equal, neuron log, mass log, max log, neuron linear, mass linear, synapse linear -->
 <option value="Equal">Equal</option>
 
@@ -123,48 +120,62 @@ h1, h2, h3, h4, h5 {
 </select></div>
 
 
-</div>
+	</div>
 
 
-<div id="article" align="left" class='row'>
+	<div id="article" align="left" class='row'>
 
-<h3>Discussion</h3>
-<p>First written: February 8, 2017. Last update: February 8, 2017.</p>
-<p>The chart expresses the amount of direct suffering you should expect to cause by buying a unit of a given animal product. Direct suffering here means suffering experienced by the primary animal subject, not including externalities.</p><p> I started with data on suffering per kilogram from <a target="_blank" href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/">an article</a> by Brian Tomasik. Please refer to his post for the methodological details. Basically, he combines subjective assessments of suffering per day (as well as pain of death) with objective data on days of life necessary to yield a kilogram of product. </p><p>I updated his figures by factoring in elasticity effects. The principle here is discussed at some length in a book where I found the elasticity data - "Compassion by the Pound" by Norwood and Lusk. Basically, when you purchase a kilogram of product, you increase demand, which increases price, so other consumers end up buying less. The result is that purchasing an additional kilogram of product causes only some fraction of an additional kilogram of product to be produced. The value of that fraction depends on the demand and supply elasticities for the product - i.e., how much price changes in response to your purchase, and how much other consumers change their behavior in response to the increase in price. </p><p>The new unit options (gram of protein, calorie) are also my additions, as well as the species weighting options.
-</p><p>
-My intention here is to empower people to play with the data and understand the range of possible reasonable approaches to cross-species comparisons of actual suffering. I think it would be harmful to suggest that any specific numbers here are really accurate, or that any of the crude options I've included for species weighting are really very good. (Some are almost definitely quite bad. Brain mass, for example, seems almost strictly less informative than neuron count, but it was the easiest data to find so I thought I'd leave it in.) The idea is to get a basic sense of the terrain, and to see at least which weightings produce the greatest effects. It is in that spirit that the weightings are roughly sorted - from pure equality to severe pro-big-brain weighting. </p><p>For what it's worth, my intuition is that what matters for consequentialism is the algorithm(s) being implemented by a mind. So sophisticated brains may be capable of quantitatively or qualitatively more suffering than primitive ones. But sophistication is not the same as size, and pain-relevant sophistication is not the same as general sophistication. I suspect that, as an extremely rough approximation, increases in the size of a neural net provide diminishing returns to the being's capacity for suffering. So although we humans are much smarter than other animals, we may not have dramatically greater capacity for (especially physical) suffering.  Gun to my head, I think the best weighting option with the crude data available here is some increasing concave function of synapse count. I would not be surprised if that function leveled off substantially before reaching the level of fish or even insects, let alone chickens. But a better weighting system would differentiate between pain-related and other neurons, account for structural efficiency of the brain, and perhaps account for neural firing rates. And my choice of a base-10 logarithm here is basically arbitrary.</p>
-<p>A note on subjectivity: I think it's fairly safe to conclude from this analysis that, among other things, chicken is more unethical per kilogram than beef. You can disagree with this for any of the following reasons:
-<ul><li>You disagree severely with Tomasik's appraisals of direct suffering</li><li>You strongly believe that linear brain mass or linear max synapses (or something similar) is the best weighting system
-</li><li>You believe that the <i>in</i>direct suffering caused by beef is substantially greater than the <i>in</i>direct suffering caused by chicken</li>
-</ul>Barring those considerations, the conclusion is fairly robust, because productivity is so important. In sloppy but intuitive language, eat chicken for dinner and you've killed half a chicken; eat beef for dinner and you've killed less than 1% of a cow.</p>
+		<h3>Discussion</h3>
+		<p>First written: February 8, 2017. Last update: February 8, 2017.</p>
+		<p>The chart expresses the amount of direct suffering you should expect to cause by buying a unit of a given animal product. Direct suffering here means suffering experienced by the primary animal subject, not including externalities.</p>
+		<p> I started with data on suffering per kilogram from <a target="_blank" href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/">an article</a> by Brian Tomasik. Please refer to his post for the methodological details. Basically, he combines subjective assessments of suffering per day (as well as pain of death) with objective data on days of life necessary to yield a kilogram of product. </p>
+		<p>I updated his figures by factoring in elasticity effects. The principle here is discussed at some length in a book where I found the elasticity data - "Compassion by the Pound" by Norwood and Lusk. Basically, when you purchase a kilogram of product, you increase demand, which increases price, so other consumers end up buying less. The result is that purchasing an additional kilogram of product causes only some fraction of an additional kilogram of product to be produced. The value of that fraction depends on the demand and supply elasticities for the product - i.e., how much price changes in response to your purchase, and how much other consumers change their behavior in response to the increase in price. </p>
+		<p>The new unit options (gram of protein, calorie) are also my additions, as well as the species weighting options.
+		</p>
+		<p>
+			My intention here is to empower people to play with the data and understand the range of possible reasonable approaches to cross-species comparisons of actual suffering. I think it would be harmful to suggest that any specific numbers here are really accurate, or that any of the crude options I've included for species weighting are really very good. (Some are almost definitely quite bad. Brain mass, for example, seems almost strictly less informative than neuron count, but it was the easiest data to find so I thought I'd leave it in.) The idea is to get a basic sense of the terrain, and to see at least which weightings produce the greatest effects. It is in that spirit that the weightings are roughly sorted - from pure equality to severe pro-big-brain weighting. </p>
+		<p>For what it's worth, my intuition is that what matters for consequentialism is the algorithm(s) being implemented by a mind. So sophisticated brains may be capable of quantitatively or qualitatively more suffering than primitive ones. But sophistication is not the same as size, and pain-relevant sophistication is not the same as general sophistication. I suspect that, as an extremely rough approximation, increases in the size of a neural net provide diminishing returns to the being's capacity for suffering. So although we humans are much smarter than other animals, we may not have dramatically greater capacity for (especially physical) suffering. Gun to my head, I think the best weighting option with the crude data available here is some increasing concave function of synapse count. I would not be surprised if that function leveled off substantially before reaching the level of fish or even insects, let alone chickens. But a better weighting system would differentiate between pain-related and other neurons, account for structural efficiency of the brain, and perhaps account for neural firing rates. And my choice of a base-10 logarithm here is basically arbitrary.</p>
+		<p>A note on subjectivity: I think it's fairly safe to conclude from this analysis that, among other things, chicken is more unethical per kilogram than beef. You can disagree with this for any of the following reasons:
+			<ul>
+				<li>You disagree severely with Tomasik's appraisals of direct suffering</li>
+				<li>You strongly believe that linear brain mass or linear max synapses (or something similar) is the best weighting system
+				</li>
+				<li>You believe that the <i>in</i>direct suffering caused by beef is substantially greater than the <i>in</i>direct suffering caused by chicken</li>
+			</ul>Barring those considerations, the conclusion is fairly robust, because productivity is so important. In sloppy but intuitive language, eat chicken for dinner and you've killed half a chicken; eat beef for dinner and you've killed less than 1% of a cow.</p>
 
-<p>A few notes on my data contributions: <ul><li>Conversions from kilogram to calories/protein are not entirely straightforward, because, for example, "beef" is such a general category, and I haven't been able to find a weighted average of nutritional information across all cuts of beef. I did my best to pick data in the midfield in these cases (2% milk, for example, because - although I couldn't find data on this - I perceive it to be the most commonly drunk in my communities). </li><li>"Synapse max" in the weighting options means the maximum number of synapses possible given the number of neurons - i.e., s = n*(n-1)/2. The max (rather than the expectation) is chosen to provide a limiting case, and for simplicity. </li><li>All logarithms are base 10.</li></ul></p>
-<p>Potential extensions include more products, more weighting options, and the ability to input one's own appraisals of suffering per day and pain of death.</p>
+		<p>A few notes on my data contributions:
+			<ul>
+				<li>Conversions from kilogram to calories/protein are not entirely straightforward, because, for example, "beef" is such a general category, and I haven't been able to find a weighted average of nutritional information across all cuts of beef. I did my best to pick data in the midfield in these cases (2% milk, for example, because - although I couldn't find data on this - I perceive it to be the most commonly drunk in my communities). </li>
+				<li>"Synapse max" in the weighting options means the maximum number of synapses possible given the number of neurons - i.e., s = n*(n-1)/2. The max (rather than the expectation) is chosen to provide a limiting case, and for simplicity. </li>
+				<li>All logarithms are base 10.</li>
+			</ul>
+		</p>
+		<p>Potential extensions include more products, more weighting options, and the ability to input one's own appraisals of suffering per day and pain of death.</p>
 
-<h3>References</h3>
-<p>The primary motivation for this post is Brian Tomasik's <a href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/" target="_blank">How Much Direct Suffering Is Caused by Various Animal Foods?</a> Brian has done a lot of great work on various topics (chiefly reducing suffering in various forms), and I'd encourage you to take a look at his site!
-</p>
-<p>Other sources:
+		<h3>References</h3>
+		<p>The primary motivation for this post is Brian Tomasik's <a href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/" target="_blank">How Much Direct Suffering Is Caused by Various Animal Foods?</a> Brian has done a lot of great work on various topics (chiefly reducing suffering in various forms), and I'd encourage you to take a look at his site!
+		</p>
+		<p>Other sources:
 
-<ul>
-<li>"Compassion by the Pound" - Norwood, Lusk</li>
-<li><a target="_blank" href="http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html">http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html</a></li>
-<li><a target="_blank" href="http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093">http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093</a></li>
-<li><a target="_blank" href="https://www.theatlas.com/charts/Byju0L-r">https://www.theatlas.com/charts/Byju0L-r</a></li>
-<li><a target="_blank" href="http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2">http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2</a></li>
-<li><a target="_blank" href="http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry">http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry</a></li>
-<li><a target="_blank" href="http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11">http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11</a></li>
-<li><a target="_blank" href="https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart">https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart</a></li>
-<li><a target="_blank" href="http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html">http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html</a></li>
-<li><a target="_blank" href="https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/">https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/</a></li>
-<li><a target="_blank" href="http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons">http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons</a></li>
-<li><a target="_blank" href="https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext">https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext</a></li>
-<li><a target="_blank" href="http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf">http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf</a></li>
-<li><a target="_blank" href="http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2">http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2</a></li>
-<li><a target="_blank" href="http://link.springer.com/article/10.1007/BF01205946">http://link.springer.com/article/10.1007/BF01205946</a></li>
-<li><a target="_blank" href="http://www.sciencedirect.com/science/article/pii/S1573521406800199">http://www.sciencedirect.com/science/article/pii/S1573521406800199</a></li>
-</ul>
-</div>
+			<ul>
+				<li>"Compassion by the Pound" - Norwood, Lusk</li>
+				<li><a target="_blank" href="http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html">http://reflectivedisequilibrium.blogspot.com/2013/09/how-is-brain-mass-distributed-among.html</a></li>
+				<li><a target="_blank" href="http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093">http://www.hellawella.com/meet-your-meat-calories-fat-protein-in-popular-cuts-infographic/18093</a></li>
+				<li><a target="_blank" href="https://www.theatlas.com/charts/Byju0L-r">https://www.theatlas.com/charts/Byju0L-r</a></li>
+				<li><a target="_blank" href="http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2">http://nutritiondata.self.com/facts/finfish-and-shellfish-products/4259/2</a></li>
+				<li><a target="_blank" href="http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry">http://extension.psu.edu/animals/poultry/topics/general-educational-material/the-chicken/modern-egg-industry</a></li>
+				<li><a target="_blank" href="http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11">http://www.businessinsider.com/how-big-turkeys-were-then-and-now-2015-11</a></li>
+				<li><a target="_blank" href="https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart">https://huntfish.mdc.mo.gov/fishing/species/catfish/catfish-tips-fishing/catfish-weight-chart</a></li>
+				<li><a target="_blank" href="http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html">http://www.fisheries.noaa.gov/pr/species/fish/atlantic-salmon.html</a></li>
+				<li><a target="_blank" href="https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/">https://www.newscientist.com/article/mg18224515.200-animal-minds-not-just-a-pretty-face/</a></li>
+				<li><a target="_blank" href="http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons">http://www.worldlibrary.org/articles/list_of_animals_by_number_of_neurons</a></li>
+				<li><a target="_blank" href="https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext">https://academic.oup.com/erae/article-abstract/36/3/425/385407/Demand-elasticities-for-farmed-salmon-in-world?redirectedFrom=fulltext</a></li>
+				<li><a target="_blank" href="http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf">http://ageconsearch.umn.edu/bitstream/170121/2/AAEA%20paper%20II_Yoonsuk%20Lee.pdf</a></li>
+				<li><a target="_blank" href="http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2">http://munin.uit.no/bitstream/handle/10037/7837/thesis.pdf?sequence=2</a></li>
+				<li><a target="_blank" href="http://link.springer.com/article/10.1007/BF01205946">http://link.springer.com/article/10.1007/BF01205946</a></li>
+				<li><a target="_blank" href="http://www.sciencedirect.com/science/article/pii/S1573521406800199">http://www.sciencedirect.com/science/article/pii/S1573521406800199</a></li>
+			</ul>
+	</div>
 
 </div>
 
@@ -176,67 +187,75 @@ My intention here is to empower people to play with the data and understand the 
 <script src="libs/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
 
 <script>
+	var unit = 'Kilogram';
+	var weighting = 'Equal';
 
-var unit = 'Kilogram';
-var weighting = 'Equal';
+	var margin = {
+			top: 40,
+			right: 180,
+			bottom: 40,
+			left: 180
+		},
+		width = 960 - margin.left - margin.right,
+		height = 500 - margin.top - margin.bottom;
 
-var margin = {top: 40, right: 180, bottom: 40, left: 180},
-	width = 960 - margin.left - margin.right,
-	height = 500 - margin.top - margin.bottom;
+	var svg = d3.select("#vis").append("svg")
+		.attr("width", width + margin.left + margin.right)
+		.attr("height", height + margin.top + margin.bottom)
+		.append("g")
+		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var svg = d3.select("#vis").append("svg")
-	.attr("width", width + margin.left + margin.right)
-	.attr("height", height + margin.top + margin.bottom)
-	.append("g")
-	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.tsv("why.tsv", function(error, data){
-	// console.log(data);
-	// filter
-	var data = data.filter(function(d){return true;});
-	// Get every column value
-	var elements = Object.keys(data[0])
-		.filter(function(d){
-			return d != "Product";
+	d3.tsv("why.tsv", function(error, data) {
+		// console.log(data);
+		// filter
+		var data = data.filter(function(d) {
+			return true;
 		});
-	// console.log(elements);
-	var selection = elements[0];
+		// Get every column value
+		var elements = Object.keys(data[0])
+			.filter(function(d) {
+				return d != "Product";
+			});
+		// console.log(elements);
+		var selection = elements[0];
 
-	var y = d3.scale.linear()
-			.domain([0, d3.max(data, function(d){
+		var y = d3.scale.linear()
+			.domain([0, d3.max(data, function(d) {
 				val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 				return +val;
 			})])
 			.range([height, 0]);
 
-	var x = d3.scale.ordinal()
-			.domain(data.map(function(d){ return d.Product;}))
+		var x = d3.scale.ordinal()
+			.domain(data.map(function(d) {
+				return d.Product;
+			}))
 			.rangeBands([0, width]);
 
 
-	var xAxis = d3.svg.axis()
-		.scale(x)
-		.orient("bottom");
+		var xAxis = d3.svg.axis()
+			.scale(x)
+			.orient("bottom");
 
-	var yAxis = d3.svg.axis()
-		.scale(y)
-		.orient("left");
+		var yAxis = d3.svg.axis()
+			.scale(y)
+			.orient("left");
 
-	svg.append("g")
-		.attr("class", "x axis")
-		.attr("transform", "translate(0," + height + ")")
-		.call(xAxis)
-		.selectAll("text")
-		.style("font-size", "14px")
-		.style("text-anchor", "center")
-		.attr("dx", "-0em")
-		.attr("dy", "+1em")
-		.attr("transform", "rotate(0)" );
+		svg.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(xAxis)
+			.selectAll("text")
+			.style("font-size", "14px")
+			.style("text-anchor", "center")
+			.attr("dx", "-0em")
+			.attr("dy", "+1em")
+			.attr("transform", "rotate(0)");
 
 
-	svg.append("g")
-		.attr("class", "y axis")
-		.call(yAxis);
+		svg.append("g")
+			.attr("class", "y axis")
+			.call(yAxis);
 
 
 
@@ -246,32 +265,30 @@ d3.tsv("why.tsv", function(error, data){
 		// instantiate
 		//
 		//
-	svg.selectAll("rectangle")
-		.data(data)
-		.enter()
-		.append("rect")
-		.attr("class","rectangle")
-		.attr("width", width/data.length)
-		.attr("height", function(d){
-			var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+		svg.selectAll("rectangle")
+			.data(data)
+			.enter()
+			.append("rect")
+			.attr("class", "rectangle")
+			.attr("width", width / data.length)
+			.attr("height", function(d) {
+				var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 
-			return height - y(+val);
-		})
-		.attr("x", function(d, i){
-			return (width / data.length) * i ;
-		})
-		.attr("y", function(d){
+				return height - y(+val);
+			})
+			.attr("x", function(d, i) {
+				return (width / data.length) * i;
+			})
+			.attr("y", function(d) {
 
-						var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+				var val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 
-			return y(+val);
-		})
-		.append("title")
-		.text(function(d){
-			return d.Product + " : " + d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
-		});
-
-
+				return y(+val);
+			})
+			.append("title")
+			.text(function(d) {
+				return d.Product + " : " + d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+			});
 
 
 
@@ -281,45 +298,46 @@ d3.tsv("why.tsv", function(error, data){
 		// change unit
 		//
 		//
-	var selector = d3.select("#drop")
-		.append("select")
-		.attr("id","dropdown")
-		.on("change", function(d){
-			selection = document.getElementById("dropdown");
-			unit = selection.value;
-			y.domain([0, d3.max(data, function(d){
-				// console.log(selection.value);
-				val = d[selection.value] * d['Norwood-Lusk Elasticity'] * d[weighting];
-				// console.log(val,d[selection.value],d['Norwood-Lusk Elasticity'], weighting, d[weighting]);
-				return +val;})]);
+		var selector = d3.select("#drop")
+			.append("select")
+			.attr("id", "dropdown")
+			.on("change", function(d) {
+				selection = document.getElementById("dropdown");
+				unit = selection.value;
+				y.domain([0, d3.max(data, function(d) {
+					// console.log(selection.value);
+					val = d[selection.value] * d['Norwood-Lusk Elasticity'] * d[weighting];
+					// console.log(val,d[selection.value],d['Norwood-Lusk Elasticity'], weighting, d[weighting]);
+					return +val;
+				})]);
 
-			yAxis.scale(y);
+				yAxis.scale(y);
 
-			d3.selectAll(".rectangle")
-				.transition()
-				.attr("height", function(d){
-					val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+				d3.selectAll(".rectangle")
+					.transition()
+					.attr("height", function(d) {
+						val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
 
-			return height - y(+val);
+						return height - y(+val);
 
-				})
-				.attr("x", function(d, i){
-					return (width / data.length) * i ;
-				})
-				.attr("y", function(d){
-					return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
-				})
-				.ease("linear")
-				.select("title")
-				.text(function(d){
-					return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
-				});
+					})
+					.attr("x", function(d, i) {
+						return (width / data.length) * i;
+					})
+					.attr("y", function(d) {
+						return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
+					})
+					.ease("linear")
+					.select("title")
+					.text(function(d) {
+						return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
+					});
 
-			d3.selectAll("g.y.axis")
-				.transition()
-				.call(yAxis);
+				d3.selectAll("g.y.axis")
+					.transition()
+					.call(yAxis);
 
-		 });
+			});
 
 
 
@@ -329,60 +347,60 @@ d3.tsv("why.tsv", function(error, data){
 		// change weighting
 		//
 		//
-			var weight_selector = d3.select("#weight")
-		.on("change", function(d){
-			// console.log("you just picked a weight");
-			selection = document.getElementById("weight");
-			// console.log(selection.value);
-			weighting = selection.value;
-			y.domain([0, d3.max(data, function(d){
+		var weight_selector = d3.select("#weight")
+			.on("change", function(d) {
+				// console.log("you just picked a weight");
+				selection = document.getElementById("weight");
 				// console.log(selection.value);
-				val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
-				return +val;})]);
+				weighting = selection.value;
+				y.domain([0, d3.max(data, function(d) {
+					// console.log(selection.value);
+					val = d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting];
+					return +val;
+				})]);
 
-			yAxis.scale(y);
+				yAxis.scale(y);
 
-			d3.selectAll(".rectangle")
-				.transition()
-				.attr("height", function(d){
-			// 		console.log(weighting);
-			// console.log(d[weighting]);
-			// console.log(d);
-					return height - y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
-				})
-				.attr("x", function(d, i){
-					return (width / data.length) * i ;
-				})
-				.attr("y", function(d){
-					return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
-				})
-				.ease("linear")
-				.select("title")
-				.text(function(d){
-					return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
-				});
+				d3.selectAll(".rectangle")
+					.transition()
+					.attr("height", function(d) {
+						// 		console.log(weighting);
+						// console.log(d[weighting]);
+						// console.log(d);
+						return height - y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
+					})
+					.attr("x", function(d, i) {
+						return (width / data.length) * i;
+					})
+					.attr("y", function(d) {
+						return y(+(d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]));
+					})
+					.ease("linear")
+					.select("title")
+					.text(function(d) {
+						return d.Product + " : " + (d[unit] * d['Norwood-Lusk Elasticity'] * d[weighting]);
+					});
 
-			d3.selectAll("g.y.axis")
-				.transition()
-				.call(yAxis);
+				d3.selectAll("g.y.axis")
+					.transition()
+					.call(yAxis);
 
-		 });
-
-
-
-
-	selector.selectAll("option")
-	  .data(["Kilogram", "Gram of Protein", "Calorie"])
-	  .enter().append("option")
-	  .attr("value", function(d){
-		// console.log(d);
-		return d;
-	  })
-	  .text(function(d){
-		return d;
-	  })
+			});
 
 
-});
 
+
+		selector.selectAll("option")
+			.data(["Kilogram", "Gram of Protein", "Calorie"])
+			.enter().append("option")
+			.attr("value", function(d) {
+				// console.log(d);
+				return d;
+			})
+			.text(function(d) {
+				return d;
+			})
+
+
+	});
 </script>
