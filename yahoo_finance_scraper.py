@@ -6,7 +6,7 @@ from yahoo_finance import Share
 # this will probably take like 2 hours to run and then still have some index_errors
 # should have it retry index error instead of just moving on
 # why won't it ctrl c?
-# ctrl shift \
+# ctrl shift \ works
 # just view page source to get split keys
 
 # downloaded on may 5 2017 from http://www.eoddata.com/symbols.aspx
