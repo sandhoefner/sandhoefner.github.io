@@ -18,6 +18,8 @@ from yahoo_finance import Share
 
 # looks like sectors are basic materials, conglomerates, consumer goods,
 # financial, healthcare, industrial goods, services, technology, utilities
+# avg price is 30 so you could get like 30 different stocks, 5 per category
+# weight sectors intelligently though. why not take thirty 1's
 # there are eighty 1's
 # 1 is strong buy
 # 2 is buy
@@ -25,6 +27,8 @@ from yahoo_finance import Share
 # ditching everything at 3 or above or no data or error cuts the space in half
 # I'm just gonna ditch everything above 2
 # down to 600 stocks
+
+
 
 # wtf the list is fucked. no goog, no msft...
 # downloaded on may 5 2017 from http://www.eoddata.com/symbols.aspx
@@ -38,6 +42,7 @@ extra_tickers = []
 for new in new_tickers:
 	if new not in ticker_list:
 		extra_tickers.append(new)
+extra_tickers.sort()
 # take only ase and nms from the other ticker list
 
 
@@ -118,5 +123,5 @@ for ticker in extra_tickers:
 	try:
 		data = get_data(ticker)
 	except:
-		data = ["server error","","","","",""]
+		data = ["server error","","","","","server error"]
 	put_data(data)
