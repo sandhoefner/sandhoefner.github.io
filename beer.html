@@ -1,0 +1,17 @@
+<input placeholder="Beer name / keyword(s)" id="query"/>fish <button id="go">Search</button>
+<div id="rating_output"/>
+<div id="veg_output"/>
+
+
+<script src="jquery.js"/>
+
+
+<script>
+console.log('wtf');
+window.onload = function () {
+	console.log('going!');
+	$.getJSON('http://anyorigin.com/go?url=http%3A//www.ratebeer.com/beer/dogfish-head-120-minute-ipa/22904/&callback=?', function(data){
+		$('#rating_output').html(data.contents);
+	});
+}
+</script>
