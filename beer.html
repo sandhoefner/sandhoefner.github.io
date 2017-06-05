@@ -29,6 +29,15 @@ shit they in different orders too
 
 
 
+features:
+print options to screen
+user picks correct one
+option to save so you can compare while shopping
+maybe localstorage
+
+
+
+
 */
 
 
@@ -57,7 +66,7 @@ function go() {
 	// var keyword = "dogfish%2Bhead";
 	// var keyword = "dogfish";
 	var keyword = document.getElementById("query").value.split(' ').join('%2B')
-	console.log(keyword);
+	// console.log(keyword);
 	var veg_obj = {};
 
 
@@ -94,19 +103,29 @@ function go() {
 		crossDomain: true,
 
 		success: function (data) {
+			try {
+				morph = JSON.stringify(data).split('[null,"ABV",null," score ","ratings"]},')[1].split('"}]}]')[0]
+				// console.log(morph);
+				morph = "[" + morph + '"}]}]';
+				console.log(JSON.parse(morph));
+			}
+			catch(err) {
+				console.log("no ratebeer data");
+			}
 			// console.log(data);
 			// console.log(data.query.results.body.div[0].div[2].div.div[1].div[1].table[1].tbody.tr);
-			try {
-			var temp = data.query.results.body.div[0].div[2].div.div[1].div[1];
-			var i = temp.h2.indexOf("beers");
-			if (i != 0 && i != 1) {
-				console.log("no ratebeer data");
-			} else {
-				console.log(temp.table[i].tbody.tr);
-			}
-		}
-		catch(err){console.log("no ratebeer data");
-	}
+	// 		try {
+	// 		var temp = data.query.results.body.div[0].div[2].div.div[1].div[1];
+	// 		console.log(JSON.stringify(temp));
+	// 		var i = temp.h2.indexOf("beers");
+	// 		if (i != 0 && i != 1) {
+	// 			console.log("no ratebeer data");
+	// 		} else {
+	// 			console.log(temp.table[i].tbody.tr);
+	// 		}
+	// 	}
+	// 	catch(err){console.log("no ratebeer data");
+	// }
 
 
 		},
