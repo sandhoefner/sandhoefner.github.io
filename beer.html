@@ -1,7 +1,16 @@
-<input autofocus placeholder="Beer name / keyword(s)" id="query"/> <button id="go" onclick="go()">Search</button>
+
+
+<div align="center">
+
+<br>
+
+<p class="paragraph">Search for a beer by name or keyword. The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. Aesthetics and functionality are still in early development, but I hope you find it useful even at this stage. This little app was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Beer is probably a product that most people don't know is sometimes nonvegan, and maybe don't care that much even after they find out (because it doesn't "seem" evil like a hamburger), so the goal of this app is to make picking high-quality vegan beer as easy as possible.
+</p> <br>
+<input autofocus placeholder="Beer name / keyword(s)" id="query"/> <button id="go" onclick="go()">Search</button></div><br><br>
 <!-- <div id="rating_output"/>
 <div id="veg_output"/> -->
 <br>
+<div align="center">
 <table>
 <tr>
 <td id="veg_slot"><table id="veg"></table></td>
@@ -12,9 +21,32 @@
 <td id="rate_new"></td>
 </tr>
 </table>
+</div>
+
+
+
 
 <style>
-td {vertical-align: top};
+td {vertical-align: top;
+/*padding: 10px 0;*/
+}
+
+.paragraph {padding-left:70px;
+padding-right: 70px;}
+
+table {
+  border-collapse: separate;
+  border-spacing: 30px 0;
+}
+
+
+
+/*tr:nth-child(odd) {
+	background-color:#eee;
+}
+tr:nth-child(even) {
+	background-color:#fff;
+}*/
 </style>
 
 <script src="jquery.js"></script>
@@ -165,7 +197,7 @@ function go() {
 			}
 			catch(err) {
 				// console.log("no ratebeer data");
-				document.getElementById("rate_new").innerHTML = "Either Ratebeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
+				document.getElementById("rate_new").innerHTML = "Either RateBeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
 			}
 			// console.log(data);
 			// console.log(data.query.results.body.div[0].div[2].div.div[1].div[1].table[1].tbody.tr);
@@ -186,7 +218,7 @@ function go() {
 		},
 		error: function (err) {
 			// alert("error: could not fetch data from ratebeer");
-			document.getElementById("rate_new").innerHTML = "Error fetching Ratebeer data for the last query";
+			document.getElementById("rate_new").innerHTML = "Error fetching RateBeer data for the last query";
 		}
 	});
 }
@@ -207,7 +239,7 @@ function save(id){
 
 first_save = {"rate": true, "veg": true};
 
-headers = {"rate": "<tr><td>Name</td> <td>ABV</td><td> Score</td><td> Ratings</td></tr>", "veg": "<tr><td>Name</td><td> Status</tr>"};
+headers = {"rate": "<tr class='shade'><td>Name</td> <td>ABV</td><td> Score</td><td> Ratings</td></tr>", "veg": "<tr class='shade'><td>Name</td><td> Status</tr>"};
 
 function do_save(info, table){
 	the_table = document.getElementById(table);
@@ -221,8 +253,8 @@ function do_save(info, table){
 	if (first_save[table]) {
 		the_table.innerHTML = headers[table];
 		first_save[table] = false;
-		document.getElementById("rate_slot").innerHTML += "<br>";
-		document.getElementById("veg_slot").innerHTML += "<br>";
+		document.getElementById("rate_slot").innerHTML += "<br><br>";
+		document.getElementById("veg_slot").innerHTML += "<br><br>";
 
 		// the_table.innerHTML += html;
 		// console.log(info,table);
