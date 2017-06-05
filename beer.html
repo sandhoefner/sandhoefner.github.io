@@ -1,23 +1,52 @@
 <head>
 	<title>Vegan Beer Picker</title>
+
 	<meta charset="utf-8" />
+
 	<link rel="icon"
 		  type="image/png"
 		  href="beer.png">
+
+	<style>
+		td {
+			vertical-align: top;
+		}
+
+		.paragraph {
+			padding-left: 70px;
+			padding-right: 70px;
+		}
+
+		table {
+			border-collapse: separate;
+			border-spacing: 30px 0;
+		}
+
+		.header {
+			font: 24px sans-serif;
+		}
+
+		* {
+			font: 14px sans-serif;
+		}
+	</style>
+
+	<script src="jquery.js"></script>
 </head>
 
 <div align="center">
+	<br><br>
 
+	<span class="header">Vegan Beer Picker</span>
 
-	<br><br><span class="header">Vegan Beer Picker</span><br><br>
+	<br><br>
 
-
-
-	<p class="paragraph">Search for a beer by name or keyword. The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. Aesthetics and functionality are still in early development, but I hope you find it useful even at this stage. This little app was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Most vegans probably don't know that beer is sometimes nonvegan. Even after finding out, it might be hard to remember or to take it seriously. With that in mind, the goal of this app is to make picking high-quality vegan beer as easy as possible, so we can all do our part as conscientious consumers with a minimum of personal inconvenience.</p>
+	<p class="paragraph">Search for a beer by name or keyword. (You might want to be somewhat specific, because the RateBeer results will truncate if there are too many hits.) The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. This app is still in early development, but I hope you find it useful even at this stage. It was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Most vegans probably don't know that beer is sometimes nonvegan. Even after finding out, it might be hard to remember or to take it seriously. With that in mind, the goal of this app is to make picking high-quality vegan beer as easy as possible, so we can all do our part as conscientious consumers with a minimum of personal inconvenience.</p>
 
 	<br>
 
 	<input autofocus placeholder="Beer name / keyword(s)" id="query" />
+
 	<button id="go" onclick="go()">Search</button>
 </div>
 
@@ -42,40 +71,19 @@
 	</table>
 </div>
 
-<style>
-	td {
-		vertical-align: top;
-	}
-	.paragraph {
-		padding-left: 70px;
-		padding-right: 70px;
-	}
-	table {
-		border-collapse: separate;
-		border-spacing: 30px 0;
-	}
-	.header {
-		font: 24px sans-serif;
-	}
-	* {
-		font: 14px sans-serif;
-	}
-</style>
-
-<script src="jquery.js"></script>
-
 <script>
 	// potential feature: localstorage
 	// definitely need aesthetics
-	// prevent double save
 	// improve error checking - sometimes you don't get data from ratebeer when you know it's there
+	// also barnivore search is kind of garbage with apostrophes (sumpin, tweason)
 	// definitely needs to be more mobile-friendly
 	// ability to remove rows from save table upon click
-	// clean up mystery characters in data
+	// clean up mystery characters in data less hackishly
 	// have a general function create_table(rows)
 	// replace whole table on interaction - easier than row search
 	// make temp row go away when saved
 	// store global variables for rows in each table, update array then recreate table
+	// overhaul architecture now that the api stuff works and you know where you're going?
 
 	document.onkeypress = function(e) {
 		if (!e) e = window.event;
