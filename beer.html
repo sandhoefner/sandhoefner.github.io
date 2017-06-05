@@ -139,7 +139,7 @@
 					html += "</table>";
 					document.getElementById("veg_new").innerHTML = html;
 				} catch (err) {
-					document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
+					document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again, perhaps with a different keyword.";
 				}
 			},
 			error: function(err) {
@@ -177,7 +177,7 @@
 					document.getElementById("rate_new").innerHTML = html;
 
 				} catch (err) {
-					document.getElementById("rate_new").innerHTML = "Either RateBeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
+					document.getElementById("rate_new").innerHTML = "Either RateBeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again, perhaps with a different keyword.";
 				}
 			},
 			error: function(err) {
