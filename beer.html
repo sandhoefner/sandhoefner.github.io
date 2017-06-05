@@ -1,17 +1,118 @@
-<input placeholder="Beer name / keyword(s)" id="query"/>fish <button id="go">Search</button>
+<input autofocus placeholder="Beer name / keyword(s)" id="query"/> <button id="go" onclick="go()">Search</button>
 <div id="rating_output"/>
 <div id="veg_output"/>
 
 
-<script src="jquery.js"/>
+<script src="jquery.js"></script>
+
+
 
 
 <script>
-console.log('wtf');
-window.onload = function () {
+
+
+
+/*
+test cases for ratebeer:
+
+
+4 w beer
+4 w/0 beer
+3 w beer
+3 w/o beer
+2 w beer
+2 w/0 beer
+1 w beer
+1 w/0 beer
+none
+shit they in different orders too
+
+
+
+*/
+
+
+// console.log('wtf');
+document.onkeypress = function(e){
+	if (!e) e = window.event;
+	var keyCode = e.keyCode || e.which;
+	if (keyCode == '13'){
+	  // Enter pressed
+	  go();
+	  return false;
+	}
+  }
+
+function go() {
+
+
+
+
+	/*
 	console.log('going!');
 	$.getJSON('http://anyorigin.com/go?url=http%3A//www.ratebeer.com/beer/dogfish-head-120-minute-ipa/22904/&callback=?', function(data){
 		$('#rating_output').html(data.contents);
+	});
+	*/
+	// var keyword = "dogfish%2Bhead";
+	// var keyword = "dogfish";
+	var keyword = document.getElementById("query").value.split(' ').join('%2B')
+	console.log(keyword);
+	var veg_obj = {};
+
+
+
+	$.ajax({
+		type: "GET",
+		url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22http%3A%2F%2Fwww.barnivore.com%2Fsearch%3Fkeyword%3D"+keyword+"%22%20&format=json&diagnostics=true&callback=",
+		crossDomain: true,
+
+		success: function (data) {
+			try {
+				var temp = data.query.results.body.div[1].div[2].ul.li;
+				// console.log(temp);
+				temp.forEach(function(item) {
+					key = item.div[2].div[0].a.content;
+					val = item.div[1].content;
+					veg_obj[key] = val;
+
+				});
+				console.log(veg_obj);
+			}
+			catch(err) {
+				console.log("no barnivore data");
+			}
+		},
+		error: function (err) {
+			alert("error: could not fetch data from barnivore");
+		}
+	});
+
+	$.ajax({
+		type: "GET",
+		url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22https%3A%2F%2Fwww.ratebeer.com%2Fsearch%3Fbeername%3D"+keyword+"%22&format=json&diagnostics=true&callback=",
+		crossDomain: true,
+
+		success: function (data) {
+			// console.log(data);
+			// console.log(data.query.results.body.div[0].div[2].div.div[1].div[1].table[1].tbody.tr);
+			try {
+			var temp = data.query.results.body.div[0].div[2].div.div[1].div[1];
+			var i = temp.h2.indexOf("beers");
+			if (i != 0 && i != 1) {
+				console.log("no ratebeer data");
+			} else {
+				console.log(temp.table[i].tbody.tr);
+			}
+		}
+		catch(err){console.log("no ratebeer data");
+	}
+
+
+		},
+		error: function (err) {
+			alert("error: could not fetch data from ratebeer");
+		}
 	});
 }
 </script>
