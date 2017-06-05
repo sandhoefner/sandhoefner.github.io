@@ -1,268 +1,198 @@
-
+<title>Vegan Beer Picker</title>
 
 <div align="center">
 
-<br>
+	<br>
 
-<p class="paragraph">Search for a beer by name or keyword. The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. Aesthetics and functionality are still in early development, but I hope you find it useful even at this stage. This little app was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Beer is probably a product that most people don't know is sometimes nonvegan, and maybe don't care that much even after they find out (because it doesn't "seem" evil like a hamburger), so the goal of this app is to make picking high-quality vegan beer as easy as possible.
-</p> <br>
-<input autofocus placeholder="Beer name / keyword(s)" id="query"/> <button id="go" onclick="go()">Search</button></div><br><br>
-<!-- <div id="rating_output"/>
-<div id="veg_output"/> -->
-<br>
-<div align="center">
-<table>
-<tr>
-<td id="veg_slot"><table id="veg"></table></td>
-<td id="rate_slot"><table id="rate"></table></td>
-</tr>
-<tr>
-<td id="veg_new"></td>
-<td id="rate_new"></td>
-</tr>
-</table>
+	<p class="paragraph">Search for a beer by name or keyword. The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. Aesthetics and functionality are still in early development, but I hope you find it useful even at this stage. This little app was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Beer is probably a product that most people don't know is sometimes nonvegan, and maybe don't care that much even after they find out (because it doesn't "seem" evil like a hamburger), so the goal of this app is to make picking high-quality vegan beer as easy as possible.</p>
+
+	<br>
+
+	<input autofocus placeholder="Beer name / keyword(s)" id="query" />
+	<button id="go" onclick="go()">Search</button>
 </div>
 
+<br>
+<br>
+<br>
 
-
+<div align="center">
+	<table>
+		<tr>
+			<td id="veg_slot">
+				<table id="veg"></table>
+			</td>
+			<td id="rate_slot">
+				<table id="rate"></table>
+			</td>
+		</tr>
+		<tr>
+			<td id="veg_new"></td>
+			<td id="rate_new"></td>
+		</tr>
+	</table>
+</div>
 
 <style>
-td {vertical-align: top;
-/*padding: 10px 0;*/
-}
-
-.paragraph {padding-left:70px;
-padding-right: 70px;}
-
-table {
-  border-collapse: separate;
-  border-spacing: 30px 0;
-}
-
-
-
-/*tr:nth-child(odd) {
-	background-color:#eee;
-}
-tr:nth-child(even) {
-	background-color:#fff;
-}*/
+	td {
+		vertical-align: top;
+	}
+	.paragraph {
+		padding-left: 70px;
+		padding-right: 70px;
+	}
+	table {
+		border-collapse: separate;
+		border-spacing: 30px 0;
+	}
 </style>
 
 <script src="jquery.js"></script>
 
-
-
-
 <script>
+	// potential feature: localstorage
+	// definitely need aesthetics
+	// prevent double save
+	// improve error checking - sometimes you don't get data from ratebeer when you know it's there
 
-
-
-/*
-test cases for ratebeer:
-
-
-4 w beer
-4 w/0 beer
-3 w beer
-3 w/o beer
-2 w beer
-2 w/0 beer
-1 w beer
-1 w/0 beer
-none
-shit they in different orders too
-
-
-
-features:
-print options to screen
-user picks correct one
-option to save so you can compare while shopping
-maybe localstorage
-
-
-
-
-*/
-
-
-// console.log('wtf');
-document.onkeypress = function(e){
-	if (!e) e = window.event;
-	var keyCode = e.keyCode || e.which;
-	if (keyCode == '13'){
-	  // Enter pressed
-	  go();
-	  return false;
-	}
-  }
-
-function go() {
-
-
-
-
-	/*
-	console.log('going!');
-	$.getJSON('http://anyorigin.com/go?url=http%3A//www.ratebeer.com/beer/dogfish-head-120-minute-ipa/22904/&callback=?', function(data){
-		$('#rating_output').html(data.contents);
-	});
-	*/
-	// var keyword = "dogfish%2Bhead";
-	// var keyword = "dogfish";
-	var keyword = document.getElementById("query").value.split(' ').join('%2B')
-	// console.log(keyword);
-	// var veg_obj = [["Name", "Status"]];
-	veg_obj = [];
-
-
-
-	$.ajax({
-		type: "GET",
-		url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22http%3A%2F%2Fwww.barnivore.com%2Fsearch%3Fkeyword%3D"+keyword+"%22%20&format=json&diagnostics=true&callback=",
-		crossDomain: true,
-
-		success: function (data) {
-			try {
-				var temp = data.query.results.body.div[1].div[2].ul.li;
-				// console.log(temp);
-				temp.forEach(function(item) {
-					key = item.div[2].div[0].a.content;
-					val = item.div[1].content;
-					// veg_obj[key] = val;
-					veg_obj.push([key,val]);
-
-				});
-				console.log(veg_obj);
-				// veg_obj.sort(function(a,b){return a[0]<b[0];});
-				// from https://stackoverflow.com/a/4373238/5380727
-				veg_obj.sort(function(a,b){
-					a = a[0]; b = b[0];
-  var a1=typeof a, b1=typeof b;
-  return a1<b1 ? -1 : a1>b1 ? 1 : a<b ? -1 : a>b ? 1 : 0;
-});
-				console.log(veg_obj);
-				veg_obj = [["Name", "Status"]].concat(veg_obj);
-				var html = "<table>";
-				var counter = 0;
-				veg_obj.forEach(function(row){
-					var id = "veg_" + counter;
-					html = html + "<tr onclick=save(this.id) id='" +id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td></tr>";
-					counter += 1;
-				});
-				html += "</table>";
-				document.getElementById("veg_new").innerHTML = html;
-			}
-			catch(err) {
-				// console.log("no barnivore data");
-				document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
-			}
-		},
-		error: function (err) {
-			// alert("error: could not fetch data from barnivore");
-			document.getElementById("veg_new").innerHTML = "Error fetching Barnivore data for the last query";
-		}
-	});
-
-	rating_obj = [["Name", "ABV", "Score", "Ratings"]];
-
-	$.ajax({
-		type: "GET",
-		url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22https%3A%2F%2Fwww.ratebeer.com%2Fsearch%3Fbeername%3D"+keyword+"%22&format=json&diagnostics=true&callback=",
-		crossDomain: true,
-
-		success: function (data) {
-			try {
-				morph = JSON.stringify(data).split('[null,"ABV",null," score ","ratings"]},')[1].split('"}]}]')[0]
-				// console.log(morph);
-				morph = "[" + morph + '"}]}]';
-				// console.log(JSON.parse(morph));
-				JSON.parse(morph).forEach(function(beer) {
-					beer = beer.td;
-					row = [beer[0].a.content || "", beer[1].small || "", beer[3].small || "", beer[4].small || ""];
-					rating_obj.push(row);
-				});
-				console.log(rating_obj);
-				var html = "<table>";
-				var counter = 0;
-				rating_obj.forEach(function(row){
-					var id = "rate_" + counter;
-					html = html + "<tr onclick=save(this.id) id='" +id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td><td>" + row[2] + "</td><td>" + row[3] + "</td></tr>";
-					counter += 1;
-				});
-				html += "</table>";
-				document.getElementById("rate_new").innerHTML = html;
-
-			}
-			catch(err) {
-				// console.log("no ratebeer data");
-				document.getElementById("rate_new").innerHTML = "Either RateBeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
-			}
-			// console.log(data);
-			// console.log(data.query.results.body.div[0].div[2].div.div[1].div[1].table[1].tbody.tr);
-	// 		try {
-	// 		var temp = data.query.results.body.div[0].div[2].div.div[1].div[1];
-	// 		console.log(JSON.stringify(temp));
-	// 		var i = temp.h2.indexOf("beers");
-	// 		if (i != 0 && i != 1) {
-	// 			console.log("no ratebeer data");
-	// 		} else {
-	// 			console.log(temp.table[i].tbody.tr);
-	// 		}
-	// 	}
-	// 	catch(err){console.log("no ratebeer data");
-	// }
-
-
-		},
-		error: function (err) {
-			// alert("error: could not fetch data from ratebeer");
-			document.getElementById("rate_new").innerHTML = "Error fetching RateBeer data for the last query";
-		}
-	});
-}
-
-
-
-function save(id){
-	vals = id.split('_');
-	console.log(id);
-	if (vals[1] != 0) {
-		if (vals[0] == "rate") {
-			do_save(rating_obj[vals[1]], "rate");
-		}else {
-			do_save(veg_obj[vals[1]], "veg");
+	document.onkeypress = function(e) {
+		if (!e) e = window.event;
+		var keyCode = e.keyCode || e.which;
+		if (keyCode == '13') {
+			// Enter pressed
+			go();
+			return false;
 		}
 	}
-}
 
-first_save = {"rate": true, "veg": true};
+	function go() {
 
-headers = {"rate": "<tr class='shade'><td>Name</td> <td>ABV</td><td> Score</td><td> Ratings</td></tr>", "veg": "<tr class='shade'><td>Name</td><td> Status</tr>"};
+		var keyword = document.getElementById("query").value.split(' ').join('%2B')
 
-function do_save(info, table){
-	the_table = document.getElementById(table);
+		veg_obj = [];
 
-	html = "<tr>";
-	info.forEach(function(infum){
-		html += "<td>" + infum + "</td>";
-	});
-	html += "</tr>";
+		$.ajax({
+			type: "GET",
+			url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22http%3A%2F%2Fwww.barnivore.com%2Fsearch%3Fkeyword%3D" + keyword + "%22%20&format=json&diagnostics=true&callback=",
+			crossDomain: true,
 
-	if (first_save[table]) {
-		the_table.innerHTML = headers[table];
-		first_save[table] = false;
-		document.getElementById("rate_slot").innerHTML += "<br><br>";
-		document.getElementById("veg_slot").innerHTML += "<br><br>";
+			success: function(data) {
+				try {
+					var temp = data.query.results.body.div[1].div[2].ul.li;
+					temp.forEach(function(item) {
+						key = item.div[2].div[0].a.content;
+						val = item.div[1].content;
+						veg_obj.push([key, val]);
+					});
+					console.log(veg_obj);
 
-		// the_table.innerHTML += html;
-		// console.log(info,table);
-		do_save(info, table);
+					veg_obj.sort(function(a, b) {
+						a = a[0];
+						b = b[0];
+						var a1 = typeof a,
+							b1 = typeof b;
+						return a1 < b1 ? -1 : a1 > b1 ? 1 : a < b ? -1 : a > b ? 1 : 0;
+					});
+					console.log(veg_obj);
+					veg_obj = [
+						["Name", "Status"]
+					].concat(veg_obj);
+					var html = "<table>";
+					var counter = 0;
+					veg_obj.forEach(function(row) {
+						var id = "veg_" + counter;
+						html = html + "<tr onclick=save(this.id) id='" + id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td></tr>";
+						counter += 1;
+					});
+					html += "</table>";
+					document.getElementById("veg_new").innerHTML = html;
+				} catch (err) {
+					document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
+				}
+			},
+			error: function(err) {
+				document.getElementById("veg_new").innerHTML = "Error fetching Barnivore data for the last query";
+			}
+		});
+
+		rating_obj = [
+			["Name", "ABV", "Score", "Ratings"]
+		];
+
+		$.ajax({
+			type: "GET",
+			url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22https%3A%2F%2Fwww.ratebeer.com%2Fsearch%3Fbeername%3D" + keyword + "%22&format=json&diagnostics=true&callback=",
+			crossDomain: true,
+
+			success: function(data) {
+				try {
+					morph = JSON.stringify(data).split('[null,"ABV",null," score ","ratings"]},')[1].split('"}]}]')[0]
+					morph = "[" + morph + '"}]}]';
+					JSON.parse(morph).forEach(function(beer) {
+						beer = beer.td;
+						row = [beer[0].a.content || "", beer[1].small || "", beer[3].small || "", beer[4].small || ""];
+						rating_obj.push(row);
+					});
+					console.log(rating_obj);
+					var html = "<table>";
+					var counter = 0;
+					rating_obj.forEach(function(row) {
+						var id = "rate_" + counter;
+						html = html + "<tr onclick=save(this.id) id='" + id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td><td>" + row[2] + "</td><td>" + row[3] + "</td></tr>";
+						counter += 1;
+					});
+					html += "</table>";
+					document.getElementById("rate_new").innerHTML = html;
+
+				} catch (err) {
+					document.getElementById("rate_new").innerHTML = "Either RateBeer doesn't have data for this query, or something went wrong when I tried to grab it. Please try again!";
+				}
+			},
+			error: function(err) {
+				document.getElementById("rate_new").innerHTML = "Error fetching RateBeer data for the last query";
+			}
+		});
 	}
-	else {
 
-	the_table.innerHTML += html;
-}
-}
+	function save(id) {
+		vals = id.split('_');
+		console.log(id);
+		if (vals[1] != 0) {
+			if (vals[0] == "rate") {
+				do_save(rating_obj[vals[1]], "rate");
+			} else {
+				do_save(veg_obj[vals[1]], "veg");
+			}
+		}
+	}
+
+	first_save = {
+		"rate": true,
+		"veg": true
+	};
+
+	headers = {
+		"rate": "<tr class='shade'><td>Name</td> <td>ABV</td><td> Score</td><td> Ratings</td></tr>",
+		"veg": "<tr class='shade'><td>Name</td><td> Status</tr>"
+	};
+
+	function do_save(info, table) {
+		the_table = document.getElementById(table);
+
+		html = "<tr>";
+		info.forEach(function(infum) {
+			html += "<td>" + infum + "</td>";
+		});
+		html += "</tr>";
+
+		if (first_save[table]) {
+			the_table.innerHTML = headers[table];
+			first_save[table] = false;
+			document.getElementById("rate_slot").innerHTML += "<br><br>";
+			document.getElementById("veg_slot").innerHTML += "<br><br>";
+			do_save(info, table);
+		} else {
+			the_table.innerHTML += html;
+		}
+	}
 </script>
