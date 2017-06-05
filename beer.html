@@ -1,5 +1,6 @@
 <head>
 	<title>Vegan Beer Picker</title>
+	<meta charset="utf-8" />
 	<link rel="icon"
 		  type="image/png"
 		  href="beer.png">
@@ -143,7 +144,8 @@
 					morph = "[" + morph + '"}]}]';
 					JSON.parse(morph).forEach(function(beer) {
 						beer = beer.td;
-						row = [beer[0].a.content || "", beer[1].small || "", beer[3].small || "", beer[4].small || ""];
+						// this is NOT the optimal fix for weird characters in beer names
+						row = [beer[0].a.content.replace(/[^\x00-\x7F]/g, "") || "", beer[1].small || "", beer[3].small || "", beer[4].small || ""];
 						rating_obj.push(row);
 					});
 					var html = "<table>";
