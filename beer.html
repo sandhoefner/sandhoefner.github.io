@@ -195,6 +195,7 @@ function go() {
 
 function save(id){
 	vals = id.split('_');
+	console.log(id);
 	if (vals[1] != 0) {
 		if (vals[0] == "rate") {
 			do_save(rating_obj[vals[1]], "rate");
@@ -223,14 +224,13 @@ function do_save(info, table){
 		document.getElementById("rate_slot").innerHTML += "<br>";
 		document.getElementById("veg_slot").innerHTML += "<br>";
 
-		the_table.innerHTML += html;
-
+		// the_table.innerHTML += html;
+		// console.log(info,table);
+		do_save(info, table);
 	}
+	else {
 
-	console.log(the_table);
 	the_table.innerHTML += html;
-	console.log(the_table);
-	console.log(html);
-	console.log(info);
+}
 }
 </script>
