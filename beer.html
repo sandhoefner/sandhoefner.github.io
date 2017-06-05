@@ -8,7 +8,10 @@
 
 <div align="center">
 
-	<br>
+
+	<br><br><span class="header">Vegan Beer Picker</span><br><br>
+
+
 
 	<p class="paragraph">Search for a beer by name or keyword. The left table shows vegan information from <a href="http://www.barnivore.com">Barnivore</a>, and the right table shows general information from <a href="https://www.ratebeer.com/">RateBeer</a>. Click or touch a row in either table to save it for the remainder of your session in a personal table - if you search for a new beer, those saved ones will stick around for comparison. Aesthetics and functionality are still in early development, but I hope you find it useful even at this stage. This little app was inspired by my experiences browsing for nice beers in shops, when I found it frustrating to hold information for several beers in my head at once, especially given that I had to keep switching between 2 different sites on mobile to get that information in the first place. Most vegans probably don't know that beer is sometimes nonvegan. Even after finding out, it might be hard to remember or to take it seriously. With that in mind, the goal of this app is to make picking high-quality vegan beer as easy as possible, so we can all do our part as conscientious consumers with a minimum of personal inconvenience.</p>
 
@@ -51,6 +54,12 @@
 		border-collapse: separate;
 		border-spacing: 30px 0;
 	}
+	.header {
+		font: 24px sans-serif;
+	}
+	* {
+		font: 14px sans-serif;
+	}
 </style>
 
 <script src="jquery.js"></script>
@@ -80,8 +89,8 @@
 
 	function go() {
 
-		document.getElementById("veg_new").innerHTML = "Loading...";
-		document.getElementById("rate_new").innerHTML = "Loading...";
+		document.getElementById("veg_new").innerHTML = "Fetching data from Barnivore...";
+		document.getElementById("rate_new").innerHTML = "Fetching data from RateBeer...";
 
 		var keyword = document.getElementById("query").value.split(' ').join('%2B')
 
