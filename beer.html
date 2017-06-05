@@ -86,6 +86,19 @@
 	// overhaul architecture now that the api stuff works and you know where you're going?
 	// links to full pages?
 
+	// document.addEventListener("orientationchange", function(event){
+	// switch(window.orientation)
+	// 	{
+	// 		case -90: case 90:
+	// 			/* Device is in landscape mode */
+	// 			break;
+	// 		default:
+	// 			/* Device is in portrait mode */
+	// 	}
+	// });
+
+	screen.orientation.lock('landscape');
+
 	document.onkeypress = function(e) {
 		if (!e) e = window.event;
 		var keyCode = e.keyCode || e.which;
