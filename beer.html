@@ -62,6 +62,10 @@
 	// definitely needs to be more mobile-friendly
 	// ability to remove rows from save table upon click
 	// clean up mystery characters in data
+	// have a general function create_table(rows)
+	// replace whole table on interaction - easier than row search
+	// make temp row go away when saved
+	// store global variables for rows in each table, update array then recreate table
 
 	document.onkeypress = function(e) {
 		if (!e) e = window.event;
@@ -74,6 +78,9 @@
 	}
 
 	function go() {
+
+		document.getElementById("veg_new").innerHTML = "Loading...";
+		document.getElementById("rate_new").innerHTML = "Loading...";
 
 		var keyword = document.getElementById("query").value.split(' ').join('%2B')
 
@@ -92,7 +99,6 @@
 						val = item.div[1].content;
 						veg_obj.push([key, val]);
 					});
-					console.log(veg_obj);
 
 					veg_obj.sort(function(a, b) {
 						a = a[0];
@@ -101,7 +107,6 @@
 							b1 = typeof b;
 						return a1 < b1 ? -1 : a1 > b1 ? 1 : a < b ? -1 : a > b ? 1 : 0;
 					});
-					console.log(veg_obj);
 					veg_obj = [
 						["Name", "Status"]
 					].concat(veg_obj);
@@ -141,7 +146,6 @@
 						row = [beer[0].a.content || "", beer[1].small || "", beer[3].small || "", beer[4].small || ""];
 						rating_obj.push(row);
 					});
-					console.log(rating_obj);
 					var html = "<table>";
 					var counter = 0;
 					rating_obj.forEach(function(row) {
@@ -164,7 +168,6 @@
 
 	function save(id) {
 		vals = id.split('_');
-		console.log(id);
 		if (vals[1] != 0) {
 			if (vals[0] == "rate") {
 				do_save(rating_obj[vals[1]], "rate");
@@ -175,8 +178,8 @@
 	}
 
 	first_save = {
-		"rate": true,
-		"veg": true
+		"rate": 0,
+		"veg": 0
 	};
 
 	headers = {
@@ -184,23 +187,41 @@
 		"veg": "<tr class='shade'><td>Name</td><td> Status</tr>"
 	};
 
+	existing_rows = {
+		"rate": [],
+		"veg": []
+	};
+
 	function do_save(info, table) {
-		the_table = document.getElementById(table);
+		console.log(existing_rows[table]);
+		if (existing_rows[table].indexOf(info) == -1 || first_save[table] <= 1) {
 
-		html = "<tr>";
-		info.forEach(function(infum) {
-			html += "<td>" + infum + "</td>";
-		});
-		html += "</tr>";
+			existing_rows[table].push(info);
+			the_table = document.getElementById(table);
 
-		if (first_save[table]) {
-			the_table.innerHTML = headers[table];
-			first_save[table] = false;
-			document.getElementById("rate_slot").innerHTML += "<br><br>";
-			document.getElementById("veg_slot").innerHTML += "<br><br>";
-			do_save(info, table);
+			html = "<tr>";
+			info.forEach(function(infum) {
+				html += "<td>" + infum + "</td>";
+			});
+			html += "</tr>";
+
+			if (first_save[table] == 1) {
+				first_save[table] += 1;
+			}
+
+			if (first_save[table] == 0) {
+				first_save[table] += 1;
+				the_table.innerHTML = headers[table];
+
+				document.getElementById("rate_slot").innerHTML += "<br><br>";
+				document.getElementById("veg_slot").innerHTML += "<br><br>";
+				do_save(info, table);
+			} else {
+				the_table.innerHTML += html;
+			}
+
 		} else {
-			the_table.innerHTML += html;
+			console.log("row already in table");
 		}
 	}
 </script>
