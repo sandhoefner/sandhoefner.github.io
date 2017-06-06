@@ -12,6 +12,13 @@
 			vertical-align: top;
 		}
 
+		.no_pad {
+			padding: 0;
+			margin: 0;
+			border-collapse: collapse;
+			border-spacing: 0;
+		}
+
 		.paragraph {
 			padding-left: 70px;
 			padding-right: 70px;
@@ -109,6 +116,8 @@
 		}
 	}
 
+	var save_size = 14;
+
 	function go() {
 
 		document.getElementById("veg_new").innerHTML = "Fetching data from Barnivore...";
@@ -144,9 +153,16 @@
 					].concat(veg_obj);
 					var html = "<table>";
 					var counter = 0;
+					var save_icon;
+
 					veg_obj.forEach(function(row) {
+						if (counter > 0) {
+							save_icon = '<td class="no_pad"><img src="save.png" width="'+save_size+'" height="'+save_size+'" alt="Save"></td>';
+						} else {
+							save_icon = '<td></td>';
+						}
 						var id = "veg_" + counter;
-						html = html + "<tr onclick=save(this.id) id='" + id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td></tr>";
+						html = html + "<tr onclick=save(this.id) id='" + id + "'>"+save_icon+"<td>" + row[0] + "</td><td>" + row[1] + "</td></tr>";
 						counter += 1;
 					});
 					html += "</table>";
@@ -183,7 +199,13 @@
 					var counter = 0;
 					rating_obj.forEach(function(row) {
 						var id = "rate_" + counter;
-						html = html + "<tr onclick=save(this.id) id='" + id + "'><td>" + row[0] + "</td><td>" + row[1] + "</td><td>" + row[2] + "</td><td>" + row[3] + "</td></tr>";
+						var save_icon;
+						if (counter > 0) {
+							save_icon = '<td class="no_pad"><img src="save.png" width="'+save_size+'" height="'+save_size+'" alt="Save"></td>';
+						} else {
+							save_icon = '<td></td>';
+						}
+						html = html + "<tr onclick=save(this.id) id='" + id + "'>"+save_icon+"<td>" + row[0] + "</td><td>" + row[1] + "</td><td>" + row[2] + "</td><td>" + row[3] + "</td></tr>";
 						counter += 1;
 					});
 					html += "</table>";
