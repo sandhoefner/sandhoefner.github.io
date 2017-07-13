@@ -23,16 +23,16 @@
 body {
 	text-align: center;
 	font-family: Arial;
-	margin-top: 2%;
-	font-size: 250%;
+	margin-top: 12%;
+	font-size: 32px;
 }
 
 #result {
-	font-size: 300%;
+	font-size: 64px;
 }
 
 #go {
-	font-size: 250%;
+	font-size: 32px;
 }
 
 /* from https://stackoverflow.com/questions/306924/checkbox-size-in-html-css */
@@ -48,7 +48,7 @@ input[type=checkbox] {
 }
 
 .small {
-	font-size: 100%;
+	font-size: 16px;
 }
 
 </style>
@@ -65,28 +65,20 @@ If I give up
 <input checked type="checkbox" onclick="go()" id="chicken">chicken</input>
 <input checked type="checkbox" onclick="go()" id="fish">fish</input>
 <input checked type="checkbox" onclick="go()" id="eggs">eggs</input>
-<br>
 <input type="checkbox" onclick="go()" id="turkey">turkey</input>
 <input type="checkbox" onclick="go()" id="pork">pork</input>
 <input type="checkbox" onclick="go()" id="beef">beef</input>
 <input type="checkbox" onclick="go()" id="dairy">dairy</input>,
 <br>
-I'll reduce the farm animal
-<br>
-suffering in my food by about
-<br>
+I'll reduce the farm animal suffering in my food by about
 <span id="result"></span>
-<br>
+<br><br>
 <!-- <button id="go" onclick="go()">Recalculate</button>
 <br><br> -->
 <span class="small">
-	Play around with the checkboxes
+	Play around with the checkboxes to find a plan that works for you.
 	<br>
-	to find a plan that works for you.
-	<br>
-	(Hint: the products are sorted
-	<br>
-	from most suffering to least!)
+	(Hint: the products are sorted from most suffering to least!)
 </span>
 
 <script>
