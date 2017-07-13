@@ -23,7 +23,7 @@
 body {
 	text-align: center;
 	font-family: Arial;
-	margin-top: 16%;
+	margin-top: 12%;
 	font-size: 32px;
 }
 
@@ -57,21 +57,29 @@ input[type=checkbox] {
 
 <body>
 
+<!-- no need for button. I am a design genius -->
+<!-- start with pre-fill. advertising genius -->
+
+
 If I give up
-<input type="checkbox" id="chicken">chicken</input>
-<input type="checkbox" id="fish">fish</input>
-<input type="checkbox" id="eggs">eggs</input>
-<input type="checkbox" id="turkey">turkey</input>
-<input type="checkbox" id="pork">pork</input>
-<input type="checkbox" id="beef">beef</input>
-<input type="checkbox" id="dairy">dairy</input>,
+<input checked type="checkbox" onclick="go()" id="chicken">chicken</input>
+<input checked type="checkbox" onclick="go()" id="fish">fish</input>
+<input checked type="checkbox" onclick="go()" id="eggs">eggs</input>
+<input type="checkbox" onclick="go()" id="turkey">turkey</input>
+<input type="checkbox" onclick="go()" id="pork">pork</input>
+<input type="checkbox" onclick="go()" id="beef">beef</input>
+<input type="checkbox" onclick="go()" id="dairy">dairy</input>,
 <br>
-I'll reduce the farm animal suffering behind my diet by about
+I'll reduce the farm animal suffering in my food by about
 <span id="result"></span>
 <br><br>
-<button id="go" onclick="go()">Recalculate</button>
-<br><br>
-<span class="small">Hint: the products are sorted from most suffering to least!</span>
+<!-- <button id="go" onclick="go()">Recalculate</button>
+<br><br> -->
+<span class="small">
+	Play around with the checkboxes to find a plan that works for you.
+	<br>
+	(Hint: the products are sorted from most suffering to least!)
+</span>
 
 <script>
 
@@ -137,15 +145,15 @@ function go() {
 	document.getElementById("result").innerText = Math.round(result * 10) / 10 + "%!";
 }
 
-document.onkeypress = function(e) {
-	if (!e) e = window.event;
-	var keyCode = e.keyCode || e.which;
-	if (keyCode == '13') {
-		// Enter pressed
-		go();
-		return false;
-	}
-}
+// document.onkeypress = function(e) {
+// 	if (!e) e = window.event;
+// 	var keyCode = e.keyCode || e.which;
+// 	if (keyCode == '13') {
+// 		// Enter pressed
+// 		go();
+// 		return false;
+// 	}
+// }
 
 go();
 
