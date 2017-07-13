@@ -3,20 +3,20 @@
 <link rel="shortcut icon" href="http://faviconist.com/icons/102eeb5a310a41dd6f4f3c8ef5082270/favicon.ico" />
 
 <!-- from https://stackoverflow.com/questions/5023602/facebook-share-link-can-you-customize-the-message-body-text -->
-<meta name="description" content="Lightweight web app suggesting priorities for ethical omnivores. Example takeaways: just giving up chicken reduces the farm animal suffering behind your diet by about 41%, and you can get to 92% by giving up fish and eggs too."/>
+<!-- <meta name="description" content="Lightweight web app suggesting priorities for ethical omnivores. Example takeaways: just giving up chicken reduces the farm animal suffering behind your diet by about 41%, and you can get to 92% by giving up fish and eggs too."/>
 
 <meta property="og:url"           content="http://sandhoefner.github.io/omnivore.html" />
 <meta property="og:type"          content="website" />
 <meta property="og:title"         content="Evan Sandhoefner" />
 <meta property="og:description"   content="Lightweight web app suggesting priorities for ethical omnivores. Example takeaways: just giving up chicken reduces the farm animal suffering behind your diet by about 41%, and you can get to 92% by giving up fish and eggs too." />
 <meta property="og:image"         content="http://sandhoefner.github.io/cow.png" />
-<link rel="image_src" href="cow.png" / >
+<link rel="image_src" href="cow.png" / > -->
 
 <title>Ethical Omnivore Calculator</title>
 
 <head>
-<meta property="og:image"     content="https://raw.githubusercontent.com/sandhoefner/sandhoefner.github.io/master/cow.png" />
-<meta property="og:description"   content="Why you should give up chicken first" />
+<!-- <meta property="og:image"     content="https://raw.githubusercontent.com/sandhoefner/sandhoefner.github.io/master/cow.png" />
+<meta property="og:description"   content="Why you should give up chicken first" /> -->
 
 <style>
 
@@ -91,13 +91,27 @@ var percentages = {
 	// and make it aesthetic! then get feedback then share it.
 
 	// oh shit, it's all wrong. I've done days of life + 1 slaughter. I need to do total slaughters. and those days should also be multiplied by badness and brain. I'll fix the data tomorrow in a more orderly fashion when I'm awake.
-	"beef": (0.75*1*3062.5+30)/8108.96375,
-	"dairy": (0.25*2*3062.5+15)/8108.96375,
-	"pork": (3*2.5*3062.5+12)/8108.96375,
-	"turkey": (4*3*3062.5+10)/8108.96375,
-	"chicken": (36*3*3062.5+10)/8108.96375,
-	"fish": (44*2*3062.5+15)/8108.96375,
-	"eggs": (12*4*3062.5+7.5)/8108.96375 /* assuming all are cage */
+
+	// ok updated numbers in order (disregard above)
+	// sentience
+	// suffering per day
+	// percent of days
+	// total days
+	// slaughter days
+	// normalizer
+
+	// gotta fix slaughter nums though
+	// and ofc normalizer
+	"chicken": 0.8*3*(36*3062.5+10*36*3062.5/42)/6593.01095136,
+	"fish": 0.5*2*(44*3062.5+15*44*3062.5/((820+639)/2))/6593.01095136,
+	"eggs": 0.9*4*(12*3062.5+7.5*12*3062.5/501)/6593.01095136,
+	"turkey": 0.8*3*(4*3062.5+10*4*3062.5/133)/6593.01095136,
+	"pork": 1*2.5*(3*3062.5+12*3*3062.5/183)/6593.01095136,
+	"beef": 0.95*1*(0.75*3062.5+30*0.75*3062.5/395)/6593.01095136,
+	"dairy": 0.95*2*(0.25*3062.5+15*0.25*3062.5/1825)/6593.01095136
+
+	/* assuming all are cage */
+	// assuming all are catfish, salmon in equal proportion
 	/* http://www.cnn.com/2016/11/17/health/cage-free-chicken-better-life/index.html */
 	// http://www.npr.org/sections/thesalt/2016/01/15/463190984/most-new-hen-houses-are-now-cage-free
 }
@@ -113,6 +127,7 @@ function bool_to_bin(bool) {
 }
 
 function go() {
+	console.log(percentages);
 	var result = 0;
 	products.forEach(function(product) {
 		result += percentages[product] * bool_to_bin(document.getElementById(product).checked);
