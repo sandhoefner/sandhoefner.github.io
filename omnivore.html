@@ -1,0 +1,131 @@
+<head>
+
+<style>
+
+body {
+	text-align: center;
+	font-family: Arial;
+	margin-top: 16%;
+	font-size: 32px;
+}
+
+#result {
+	font-size: 64px;
+}
+
+#go {
+	font-size: 32px;
+}
+
+/* from https://stackoverflow.com/questions/306924/checkbox-size-in-html-css */
+input[type=checkbox] {
+	/* Double-sized Checkboxes */
+	-ms-transform: scale(2); /* IE */
+	-moz-transform: scale(2); /* FF */
+	-webkit-transform: scale(2); /* Safari and Chrome */
+	-o-transform: scale(2); /* Opera */
+	 padding: 10px;
+	 margin-right: 5px;
+	 margin-left: 9px;
+}
+
+.small {
+	font-size: 16px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+If I give up
+<input type="checkbox" id="chicken">chicken</input>
+<input type="checkbox" id="fish">fish</input>
+<input type="checkbox" id="eggs">eggs</input>
+<input type="checkbox" id="turkey">turkey</input>
+<input type="checkbox" id="pork">pork</input>
+<input type="checkbox" id="beef">beef</input>
+<input type="checkbox" id="dairy">dairy</input>,
+<br>
+I'll reduce the farm animal suffering behind my diet by about
+<span id="result"></span>
+<br><br>
+<button id="go" onclick="go()">Recalculate</button>
+<br><br>
+<span class="small">Hint: the products are sorted from most suffering to least!</span>
+
+<script>
+
+var percentages = {
+	// multipliers from http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/#link_ajs-fn-id_2-450
+
+	// ok so let's keep it straight
+	// first number is percent of days from veganomics
+	// second number is badness per day from tomasik
+	// third number is total days from veganomics
+	// fourth number is extra slaughter days from tomasik
+	// also the veganomics percentages are rounded, some of them.
+	// last number, if i did it right, is sum/100 to get back to pct.
+	// now if i add elasticities i'll be slaying it
+	// what do @ likely substituion. maybe just ignore in this context for advocacy
+	// write a SEPARATE post with clear complete data explanation and link it. keep this one minimal
+	// and make it aesthetic! then get feedback then share it.
+	"beef": (0.75*1*3062.5+30)/8108.96375,
+	"dairy": (0.25*2*3062.5+15)/8108.96375,
+	"pork": (3*2.5*3062.5+12)/8108.96375,
+	"turkey": (4*3*3062.5+10)/8108.96375,
+	"chicken": (36*3*3062.5+10)/8108.96375,
+	"fish": (44*2*3062.5+15)/8108.96375,
+	"eggs": (12*4*3062.5+7.5)/8108.96375 /* assuming all are cage */
+	/* http://www.cnn.com/2016/11/17/health/cage-free-chicken-better-life/index.html */
+	// http://www.npr.org/sections/thesalt/2016/01/15/463190984/most-new-hen-houses-are-now-cage-free
+}
+
+var products = ['beef', 'dairy', 'pork', 'turkey', 'chicken', 'fish', 'eggs'];
+
+function bool_to_bin(bool) {
+	if (bool) {
+		return 1;
+	} else {
+		return 0;
+	}
+}
+
+function go() {
+	var result = 0;
+	products.forEach(function(product) {
+		result += percentages[product] * bool_to_bin(document.getElementById(product).checked);
+	});
+	// from https://stackoverflow.com/questions/11832914/round-to-at-most-2-decimal-places-only-if-necessary
+	// & maybe imperfect!!
+	document.getElementById("result").innerText = Math.round(result * 10) / 10 + "%!";
+}
+
+document.onkeypress = function(e) {
+	if (!e) e = window.event;
+	var keyCode = e.keyCode || e.which;
+	if (keyCode == '13') {
+		// Enter pressed
+		go();
+		return false;
+	}
+}
+
+go();
+
+</script>
+
+<!-- for evan -->
+<!-- Twitter universal website tag code -->
+<script>
+!function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
+},s.version='1.1',s.queue=[],u=t.createElement(n),u.async=!0,u.src='//static.ads-twitter.com/uwt.js',
+a=t.getElementsByTagName(n)[0],a.parentNode.insertBefore(u,a))}(window,document,'script');
+// Insert Twitter Pixel ID and Standard Event data below
+twq('init','nxsbx');
+twq('track','PageView');
+</script>
+<!-- End Twitter universal website tag code -->
+
+</body>
