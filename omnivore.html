@@ -63,8 +63,8 @@ input[type=checkbox] {
 
 If I give up
 <input checked type="checkbox" onclick="go()" id="chicken">chicken</input>
-<input checked type="checkbox" onclick="go()" id="fish">fish</input>
 <input checked type="checkbox" onclick="go()" id="eggs">eggs</input>
+<input checked type="checkbox" onclick="go()" id="fish">fish</input>
 <input type="checkbox" onclick="go()" id="turkey">turkey</input>
 <input type="checkbox" onclick="go()" id="pork">pork</input>
 <input type="checkbox" onclick="go()" id="beef">beef</input>
@@ -111,13 +111,14 @@ var percentages = {
 
 	// gotta fix slaughter nums though
 	// and ofc normalizer
-	"chicken": 0.8*3*(36*3062.5+10*36*3062.5/42)/6593.01095136,
-	"fish": 0.5*2*(44*3062.5+15*44*3062.5/((820+639)/2))/6593.01095136,
-	"eggs": 0.9*4*(12*3062.5+7.5*12*3062.5/501)/6593.01095136,
-	"turkey": 0.8*3*(4*3062.5+10*4*3062.5/133)/6593.01095136,
-	"pork": 1*2.5*(3*3062.5+12*3*3062.5/183)/6593.01095136,
-	"beef": 0.95*1*(0.75*3062.5+30*0.75*3062.5/395)/6593.01095136,
-	"dairy": 0.95*2*(0.25*3062.5+15*0.25*3062.5/1825)/6593.01095136
+	// data info now lives at https://docs.google.com/spreadsheets/d/1a0gSw1j3V7bvcQXUUGPWZ0Lgu_EOq-Jubd9Ua_XEnc4/edit#gid=0
+	"chicken": 48.28487604,
+	"eggs": 23.48947167,
+	"fish": 19.59239459,
+	"turkey": 4.659066987,
+	"pork": 3.505298585,
+	"beef": 0.3096102633,
+	"dairy": 0.1592818619
 
 	/* assuming all are cage */
 	// assuming all are catfish, salmon in equal proportion
