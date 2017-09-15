@@ -112,6 +112,29 @@
 	// 			/* Device is in portrait mode */
 	// 	}
 	// });
+	var keyword = 'dogfish';
+// $.get('http://www.barnivore.com/search?keyword=' + keyword, function(response) {
+//   console.log(response);
+// });
+
+
+window.onload = function() {
+// 	console.log('jquery ready');
+// $.getJSON('http://anyorigin.com/go?url=http%3A//www.barnivore.com/search%3Fkeyword%3D'+keyword+'&callback=?', function(data){
+// 	console.log('something');
+// 	console.log(data.contents);
+// });
+// }
+// console.log('jequery');
+// $.getJSON('http://allorigins.us/get?url=http%3A//www.barnivore.com/search%3Fkeyword%3Ddogfish&callback=?', function(data){
+// 	console.log(data);
+// });
+
+// $.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent('http://google.com') + '&callback=?', function(data){
+// 	alert(data.contents);
+// });
+
+}
 
 	screen.orientation.lock('landscape');
 
@@ -136,14 +159,18 @@
 
 		veg_obj = [];
 
-		$.ajax({
-			type: "GET",
-			url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22http%3A%2F%2Fwww.barnivore.com%2Fsearch%3Fkeyword%3D" + keyword + "%22%20&format=json&diagnostics=true&callback=",
-			crossDomain: true,
+		var url = 'http://www.barnivore.com/search?keyword='+keyword;
 
-			success: function(data) {
-				try {
-					var temp = data.query.results.body.div[1].div[2].ul.li;
+		var data_ext = 0;
+
+		$.getJSON('http://www.whateverorigin.org/get?url=' + encodeURIComponent(url) + '&callback=?', function(data){
+	console.log(data.contents);
+	data_ext = data;
+});
+
+
+		try {
+					var temp = data_ext.query.results.body.div[1].div[2].ul.li;
 					temp.forEach(function(item) {
 						key = item.div[2].div[0].a.content;
 						val = item.div[1].content;
@@ -179,11 +206,55 @@
 				} catch (err) {
 					document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again, perhaps with a different keyword.";
 				}
-			},
-			error: function(err) {
-				document.getElementById("veg_new").innerHTML = "Error fetching Barnivore data for the last query";
-			}
-		});
+
+		// $.ajax({
+		// 	type: "GET",
+		// 	url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20%0Awhere%20url%3D%22http%3A%2F%2Fwww.barnivore.com%2Fsearch%3Fkeyword%3D" + keyword + "%22%20&format=json&diagnostics=true&callback=",
+		// 	crossDomain: true,
+
+		// 	success: function(data) {
+		// 		try {
+		// 			var temp = data.query.results.body.div[1].div[2].ul.li;
+		// 			temp.forEach(function(item) {
+		// 				key = item.div[2].div[0].a.content;
+		// 				val = item.div[1].content;
+		// 				veg_obj.push([key, val]);
+		// 			});
+
+		// 			veg_obj.sort(function(a, b) {
+		// 				a = a[0];
+		// 				b = b[0];
+		// 				var a1 = typeof a,
+		// 					b1 = typeof b;
+		// 				return a1 < b1 ? -1 : a1 > b1 ? 1 : a < b ? -1 : a > b ? 1 : 0;
+		// 			});
+		// 			veg_obj = [
+		// 				["Name", "Status"]
+		// 			].concat(veg_obj);
+		// 			var html = "<table>";
+		// 			var counter = 0;
+		// 			var save_icon;
+
+		// 			veg_obj.forEach(function(row) {
+		// 				if (counter > 0) {
+		// 					save_icon = '<td class="no_pad"><img src="save.png" width="'+save_size+'" height="'+save_size+'" alt="Save"></td>';
+		// 				} else {
+		// 					save_icon = '<td></td>';
+		// 				}
+		// 				var id = "veg_" + counter;
+		// 				html = html + "<tr onclick=save(this.id) id='" + id + "'>"+save_icon+"<td>" + row[0] + "</td><td>" + row[1] + "</td></tr>";
+		// 				counter += 1;
+		// 			});
+		// 			html += "</table>";
+		// 			document.getElementById("veg_new").innerHTML = html;
+		// 		} catch (err) {
+		// 			document.getElementById("veg_new").innerHTML = "Either Barnivore doesn't have data for this query, or something went wrong when I tried to grab it. Please try again, perhaps with a different keyword.";
+		// 		}
+		// 	},
+		// 	error: function(err) {
+		// 		document.getElementById("veg_new").innerHTML = "Error fetching Barnivore data for the last query";
+		// 	}
+		// });
 
 		rating_obj = [
 			["Name", "ABV", "Score", "Ratings"]
