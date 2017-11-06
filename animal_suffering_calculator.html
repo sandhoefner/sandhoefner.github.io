@@ -133,7 +133,7 @@
 	<div id="article" align="left" class='row'>
 
 		<h3>Discussion</h3>
-		<p>First written: February 8, 2017. Last update: February 8, 2017.</p>
+		<p>First written: February 8, 2017. Last update: November 6, 2017.</p>
 		<p>The chart expresses the amount of direct suffering you should expect to cause by buying a unit of a given animal product. Direct suffering here means suffering experienced by the primary animal subject, not including externalities.</p>
 		<p> I started with data on suffering per kilogram from <a target="_blank" href="http://reducing-suffering.org/how-much-direct-suffering-is-caused-by-various-animal-foods/">an article</a> by Brian Tomasik. Please refer to his post for the methodological details. Basically, he combines subjective assessments of suffering per day (as well as pain of death) with objective data on days of life necessary to yield a kilogram of product. It's clear that animal size and productivity matter a lot. Eating chickens is much worse than eating cows, largely because cows are several orders of magnitude heavier, so several orders of magnitude fewer cows than chickens have to suffer to produce the same amount of food.</p>
 		<p>I updated his figures by factoring in elasticity effects. The principle here is discussed at some length in a book where I found the elasticity data - "Compassion by the Pound" by Norwood and Lusk. Basically, when you purchase a kilogram of product, you increase demand, which increases price, so other consumers end up buying less. The result is that purchasing an additional kilogram of product causes only some fraction of an additional kilogram of product to be produced. The value of that fraction depends on the demand and supply elasticities for the product - i.e., how much price changes in response to your purchase, and how much other consumers change their behavior in response to the increase in price. </p>
@@ -153,7 +153,7 @@
 		<p>A few notes on my data contributions:
 			<ul>
 				<li>Conversions from kilogram to calories/protein are not entirely straightforward, because, for example, "beef" is such a general category, and I haven't been able to find a weighted average of nutritional information across all cuts of beef. I did my best to pick data in the midfield in these cases (2% milk, for example, because - although I couldn't find data on this - I perceive it to be the most commonly drunk in my communities). </li>
-				<li>"Synapse max" in the weighting options means the maximum number of synapses possible given the number of neurons - i.e., s = n*(n-1)/2. The max (rather than the expectation) is chosen to provide a limiting case, and for simplicity. </li>
+				<li>"Synapse max" in the weighting options means the maximum number of synapses possible given the number of neurons - i.e., s = n*(n-1)/2. The max (rather than the expectation) is chosen to provide a limiting case, and for simplicity. (EDIT: Brian Tomasik very astutely pointed out that this should probably just be n^2, because there are autapses & direction matters. I haven't adjusted the data accordingly yet, so I'm just flagging it here for now.)</li>
 				<li>All logarithms are base 10.</li>
 				<li>Don't compare the suffering numbers literally between units. Because there are so many calories and grams of protein in a kilogram of food, I've multiplied the final suffering figures for those smaller units by 1000 to get nicer outputs. </li>
 			</ul>
