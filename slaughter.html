@@ -1,0 +1,49 @@
+<html>
+	Every <span id="period">day</span>, <span id="number">25000000</span> <span id="animal">chickens</span> are slaughtered <span id="place">in the United States</span>.
+
+	<br>
+
+	<button id="pause" onclick="pause()">Pause</button>
+
+	<script>
+		var data = [
+			["day", 25000000, "chickens", "in the United States"],
+			["year", 9000000000, "chickens", "in the United States"]
+			];
+
+		var paused = false;
+
+		// returns a random integer between 0 and max
+		function randInt(max) {
+			return Math.floor(Math.random() * (max + 1));
+		}
+
+		function refresh() {
+			if (!paused) {
+				var words = data[randInt(data.length - 1)];
+
+				document.getElementById("period").innerText = words[0];
+				document.getElementById("number").innerText = words[1];
+				document.getElementById("animal").innerText = words[2];
+				document.getElementById("place").innerText = words[3];
+
+				setTimeout(function() {
+					refresh();
+				}, 500);
+			}
+		}
+
+		function pause() {
+			if (paused) {
+				document.getElementById("pause").innerText = "Pause";
+				paused = false;
+				refresh();
+			} else {
+				document.getElementById("pause").innerText = "Play";
+				paused = true;
+			}
+		}
+
+		refresh();
+	</script>
+</html>
