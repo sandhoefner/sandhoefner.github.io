@@ -1,15 +1,52 @@
 <html>
-	Every <span id="period">day</span>, <span id="number">25000000</span> <span id="animal">chickens</span> are slaughtered <span id="place">in the United States</span>.
+	<style>
+		body {
+			text-align: center;
+			margin-top: 16%;
+			margin-left: 8%;
+			margin-right: 8%;
+			font-size: 32px;
+			font-family: Lucida;
+		}
+	</style>
 
-	<br>
+	Every <span id="period">day</span>, <span id="number">25000000</span> <span id="animal">chickens</span><br> are slaughtered <span id="place">in the United States</span>.
+
+	<br><br>
 
 	<button id="pause" onclick="pause()">Pause</button>
+	<button id="hitme" onclick="hitme()">One more</button>
 
 	<script>
+		var one = false;
+
+		function hitme() {
+			one = true;
+			refresh();
+		}
+
+		// from http://animalclock.org/#section-stats on 2018 May 4
 		var data = [
-			["day", 25000000, "chickens", "in the United States"],
-			["year", 9000000000, "chickens", "in the United States"]
-			];
+			["chickens", 8822695000],
+			["pigs", 115425000],
+			["turkeys", 232398000],
+			["cattle", 28752000],
+			["shellfish", 43109000000],
+			["fish", 3797000000],
+			["sheep", 2224000],
+			["ducks", 27749000]
+		];
+
+		var periods = ["year", "month", "week", "day", "hour", "minute"];
+
+		var multipliers = {
+			year: 1,
+			month: 12,
+			week: 52,
+			day: 365,
+			hour: 365*24,
+			minute: 365*24*60
+		};
 
 		var paused = false;
 
@@ -18,18 +55,43 @@
 			return Math.floor(Math.random() * (max + 1));
 		}
 
+		// https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+		function putcomma(x) {
+			return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		}
+
+		// only handles up to billions
+		function prettify(num) {
+			var billion = 1000000000;
+			var million = 1000000;
+			num = Math.round(num);
+			if (num >= billion) {
+				return Math.round(num / billion) + " billion";
+			} else if (num >= million) {
+				return Math.round(num / million) + " million";
+			} else {
+				return putcomma(num);
+			}
+		}
+
 		function refresh() {
-			if (!paused) {
-				var words = data[randInt(data.length - 1)];
-
-				document.getElementById("period").innerText = words[0];
-				document.getElementById("number").innerText = words[1];
-				document.getElementById("animal").innerText = words[2];
-				document.getElementById("place").innerText = words[3];
-
-				setTimeout(function() {
-					refresh();
-				}, 500);
+			if (!paused || one) {
+				var old_words = words;
+				var words;
+				while (old_words == words) {
+					var words = data[randInt(data.length - 1)];
+				}
+				var period = periods[Math.floor(Math.random() * periods.length)];
+				document.getElementById("period").innerText = period;
+				document.getElementById("number").innerText = prettify(words[1] / multipliers[period]);
+				document.getElementById("animal").innerText = words[0];
+				document.getElementById("place").innerText = "in the United States";
+				if (!one) {
+					setTimeout(function() {
+						refresh();
+					}, 3000);
+				}
+				one = false;
 			}
 		}
 
