@@ -6,11 +6,15 @@
 	<style>
 		body {
 			text-align: center;
-			margin-top: 10%;
+			margin-top: 0.7em;
 			margin-left: 8%;
 			margin-right: 8%;
 			font-size: 320%;
 			font-family: Lucida;
+		}
+
+		.smaller {
+			font-size: 50%;
 		}
 
 		button {
@@ -24,15 +28,23 @@
 		.bold {
 			font-weight: bold;
 		}
+
+		#conversion_header {
+			font-size: 0.3em;
+		}
 	</style>
 
 	Every <span id="period" class="bold">day</span><span class="bold">,</span> <span id="number">25000000</span> <span id="animal">chickens</span><br> are slaughtered <span id="place">in the United States</span>.
 
+	<span class="smaller">
 	<br><br>
+	</span>
 
 	<button id="pause" onclick="pause()">Pause</button>
-	&nbsp;&nbsp;&nbsp;&nbsp;
+	&nbsp;
 	<button id="hitme" onclick="hitme()">One more</button>
+
+
 
 	<script>
 		var one = false;
@@ -125,4 +137,10 @@
 
 		refresh();
 	</script>
+
+
+
+	<div id="conversion_header"> <br><br><br><br> </div>
+
+	<script src="conversion.js"></script>
 </html>
