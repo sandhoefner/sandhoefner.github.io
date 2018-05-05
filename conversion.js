@@ -5,6 +5,8 @@
 /*	<div id="conversion_header"></div>
 	<script src="conversion.js"></script>           */
 
+// wise man knows that this renders differently online than local
+
 window.onload = function() {
 
 	// See more on my <a href="https://sandhoefner.wordpress.com/">personal website</a> or my <a href="https://twitter.com/MonkeyMorality">Twitter</a>, or subscribe to my mailing list for rare &amp; exciting news!
