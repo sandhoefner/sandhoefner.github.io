@@ -6,6 +6,18 @@
 	<script src="conversion.js"></script>           */
 
 // wise man knows that this renders differently online than local
+/* currently used in:
+	chess.html
+	slaughter.html
+	beer.html
+	animal_suffering_calculator.html
+	climb.html
+	omnivore.html
+
+	may not be exhaustive!
+
+
+*/
 
 window.onload = function() {
 
