@@ -17,6 +17,10 @@
 			font-size: 50%;
 		}
 
+	/*	#fade_wrap {
+			height: 2em;
+		}*/
+
 		button {
 			font-family: Lucida;
 			width: 5.6em;
@@ -37,13 +41,23 @@
 			font-weight: bold;
 		}
 
+		#hitme {
+			display: none;
+		}
+
 		#conversion_header {
 			font-size: 0.3em;
+			text-align: center;
 			font-family: Lucida;
 		}
 	</style>
 
+	<script src="jquery.js"></script>
+	<!-- <div id="fade_wrap"> -->
+	<span id="fade">
 	Every <span id="period" class="bold">day</span><span class="bold">,</span> <span id="number">25000000</span> <span id="animal">chickens</span><br> are slaughtered <span id="place">in the United States</span>.
+	</span>
+	<!-- </div> -->
 
 	<span class="smaller">
 	<br><br>
@@ -88,6 +102,20 @@
 
 		var paused = false;
 
+		function toggle_visibility() {
+			var x = document.getElementById("hitme");
+			if (x.style.display === "none") {
+				x.style.display = "inline";
+			} else {
+				x.style.display = "none";
+			}
+			if (first_time) {
+				first_time = false;
+				toggle_visibility();
+
+			}
+		}
+
 		// returns a random integer between 0 and max
 		function randInt(max) {
 			return Math.floor(Math.random() * (max + 1));
@@ -112,8 +140,13 @@
 			}
 		}
 
+		var fade_duration = 700;
+		var display_duration=4000;
+
+
 		function refresh() {
 			if (!paused || one) {
+				// move these outside maybe so you don't bottleneck
 				var old_words = words;
 				var words;
 				while (old_words == words) {
@@ -124,23 +157,50 @@
 				document.getElementById("number").innerText = prettify(words[1] / multipliers[period]);
 				document.getElementById("animal").innerText = words[0];
 				document.getElementById("place").innerText = "in the United States";
+
 				if (!one) {
+						$("#fade").fadeIn(fade_duration);
+						setTimeout(function() {
+								if (!paused) {
+								$("#fade").fadeOut(fade_duration);
+							}
+							}, display_duration-fade_duration);
 					setTimeout(function() {
 						refresh();
-					}, 3000);
+					}, display_duration);
 				}
 				one = false;
 			}
 		}
 
+		function refresh_just_played() {
+			$("#fade").fadeOut(fade_duration);
+			setTimeout(function() {
+				refresh();
+			}, fade_duration);
+		}
+
+
+		var first_time = true;
+		var just_played = false;
+
 		function pause() {
+			toggle_visibility();
 			if (paused) {
 				document.getElementById("pause").innerText = "Pause";
 				paused = false;
-				refresh();
+			// 	$("#fade").fadeOut(fade_duration);
+			// 	setTimeOut(function() {
+			// 		$("#fade").fadeIn(fade_duration);
+			just_played = true;
+			refresh_just_played();
+				// refresh();
+
+			// }, fade_duration-100);
 			} else {
 				document.getElementById("pause").innerText = "Play";
 				paused = true;
+				$("#fade").fadeIn(1);
 			}
 		}
 
