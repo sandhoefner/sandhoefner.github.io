@@ -1,0 +1,72 @@
+<html>
+
+	<style>
+		table, td {
+			border: 1px solid black;
+		}
+		td {
+			width: 15px;
+			height: 20px;
+		}
+	</style>
+
+	<div id="all">
+
+	</div>
+
+	<script>
+	var num_row = 24;
+	var num_col = 10;
+	var interval = 800;
+	var tet_x = [];
+	var tet_y = [];
+
+		// build table
+		var table = "<table id='box'>";
+		var row;
+		var column;
+		for (row = 0; row < num_row + 1; row++) {
+			table += "<tr>";
+			for (column=0; column<num_col + 1; column++) {
+				table += "<td id='" + String(column) +"_"+ String(row) + "'></td>";
+			}
+			table += "</tr>";
+		}
+		table += "</table>";
+
+		// insert table
+		document.getElementById("all").innerHTML += table;
+
+		// tick
+		function tick() {
+			console.log("tick");
+			for (i=0;i<tet_y.length;i++) {
+				tet_y.length[i] += 1;
+			}
+
+
+			setTimeout(function() {tick();}, interval);
+
+		}
+
+		function pick_tetrino() {
+			var tet = ["4_0", "5_0", "4_1", "5_1"];
+			tet_x = [4, 5, 4, 5];
+			tet_y = [0, 0, 1, 1];
+			return tet;
+		}
+
+		function new_tetrino() {
+			var coords = pick_tetrino();
+			coords.forEach(function(coord) {
+				document.getElementById(coord).style.backgroundColor = "yellow";
+			});
+		}
+
+
+		new_tetrino();
+		tick();
+
+	</script>
+
+</html>
