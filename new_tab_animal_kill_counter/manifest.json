@@ -1,0 +1,9 @@
+{
+	"manifest_version": 2,
+	"name": "New Tab Animal Kill Counter",
+	"description": "Replaces the new tab page with a photo of a farm & an animal kill counter.",
+	"version": "1",
+	"author": "Evan Sandhoefner",
+	"chrome_url_overrides" : {"newtab": "newtab.html"},
+	"permissions": ["activeTab"]
+}
