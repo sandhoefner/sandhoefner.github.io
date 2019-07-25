@@ -1,0 +1,35 @@
+Body weight (pounds):
+<input type="text" id="weight">
+
+
+        <!-- can't press enter? -->
+        <button onclick="calc()">Calculate</button><br>
+
+
+
+<br>Recommended daily grams of protein intake<span id="per"> per pound of body weight</span>:<br><br>Normal sedentary person: <span id="sedentary">0.36 </span><br>
+Endurance athlete: <span id="endurance">0.54-0.64 </span><br>
+Strength athlete: <span id="strength">0.64-0.82 </span><br>
+Athlete using restricted-calorie diet for weight loss: <span id="loss">0.82-0.91 </span><br>
+Maximum: <span id="max">0.91-1.13 </span><br>
+
+
+        <span id="result_lb"> </span>
+
+ <script src="http://d3js.org/d3.v3.min.js"></script>
+        <script>
+
+ var pretty = d3.format(".0f");
+
+function calc() {
+	console.log('fish');
+var weight = document.getElementById("weight").value;
+document.getElementById("sedentary").innerText = pretty(.36*weight)  ;
+document.getElementById("endurance").innerText = pretty(.54*weight) +"-" + pretty(.64*weight) ;
+document.getElementById("strength").innerText = pretty(.64*weight) +"-" + pretty(.82*weight) ;
+document.getElementById("loss").innerText = pretty(.82*weight) +"-" + pretty(.91*weight) ;
+document.getElementById("max").innerText = pretty(.91*weight) +"-" + pretty(1.13*weight) ;
+document.getElementById("per").innerText ="";
+}
+
+        </script>
