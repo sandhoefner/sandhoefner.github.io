@@ -1,35 +1,71 @@
-Body weight (pounds):
-<input type="text" id="weight">
+<style>
+    body,
+    button,
+    input {
+        text-align: center;
+        font-size: 28;
+        font-family: "Helvetica";
+    }
 
+    .num {
+        font-weight: bold;
+    }
+</style>
+<br> Body weight (pounds):
+<br>
+<br>
+<input type="text" id="weight" autofocus>
+<br>
 
-        <!-- can't press enter? -->
-        <button onclick="calc()">Calculate</button><br>
+<br>
+<!-- can't press enter? -->
+<button onclick="calc()" id="btn">Calculate</button>
+<br>
 
+<br><strong>Recommended daily grams of protein<span id="per"><br>per pound of body weight</span>:</strong>
+<br>
+<br>Normal sedentary person: <span id="sedentary" class="num"><strong>0.36 </strong></span>
+<br>
+<br> Endurance athlete: up to <span id="endurance" class="num"><strong>0.54-0.64 </strong></span>
+<br>
+<br> Strength athlete: up to <span id="strength" class="num"><strong>0.64-0.82 </strong></span>
+<br>
+<br> Athlete using restricted-calorie
+<br> diet for weight loss: up to <span id="loss" class="num"><strong>0.82-0.91 </strong></span>
+<br>
+<br> Maximum: up to <span id="max" class="num"><strong>0.91-1.13 </strong></span>
+<br>
 
+<span id="result_lb"> </span>
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
 
-<br>Recommended daily grams of protein intake<span id="per"> per pound of body weight</span>:<br><br>Normal sedentary person: <span id="sedentary">0.36 </span><br>
-Endurance athlete: up to <span id="endurance">0.54-0.64 </span><br>
-Strength athlete: up to <span id="strength">0.64-0.82 </span><br>
-Athlete using restricted-calorie diet for weight loss: up to <span id="loss">0.82-0.91 </span><br>
-Maximum: up to <span id="max">0.91-1.13 </span><br>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+    var pretty = d3.format(".0f");
 
+    function calc() {
+        console.log('fish');
+        var weight = document.getElementById("weight").value;
+        document.getElementById("sedentary").innerText = pretty(.36 * weight);
+        document.getElementById("endurance").innerText = pretty(.54 * weight) + "-" + pretty(.64 * weight);
+        document.getElementById("strength").innerText = pretty(.64 * weight) + "-" + pretty(.82 * weight);
+        document.getElementById("loss").innerText = pretty(.82 * weight) + "-" + pretty(.91 * weight);
+        document.getElementById("max").innerText = pretty(.91 * weight) + "-" + pretty(1.13 * weight);
+        document.getElementById("per").innerText = "";
+    }
 
-        <span id="result_lb"> </span>
+    // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+    // Get the input field
+    var input = document.getElementById("weight");
 
- <script src="http://d3js.org/d3.v3.min.js"></script>
-        <script>
-
- var pretty = d3.format(".0f");
-
-function calc() {
-	console.log('fish');
-var weight = document.getElementById("weight").value;
-document.getElementById("sedentary").innerText = pretty(.36*weight)  ;
-document.getElementById("endurance").innerText = pretty(.54*weight) +"-" + pretty(.64*weight) ;
-document.getElementById("strength").innerText = pretty(.64*weight) +"-" + pretty(.82*weight) ;
-document.getElementById("loss").innerText = pretty(.82*weight) +"-" + pretty(.91*weight) ;
-document.getElementById("max").innerText = pretty(.91*weight) +"-" + pretty(1.13*weight) ;
-document.getElementById("per").innerText ="";
-}
-
-        </script>
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("btn").click();
+        }
+    });
+</script>
