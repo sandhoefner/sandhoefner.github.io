@@ -1,0 +1,75 @@
+<style>
+    body,
+    button,
+    input {
+        text-align: center;
+        font-size: 3.8vmin;
+        font-family: "Helvetica";
+    }
+
+    .num {
+        font-weight: bold;
+    }
+</style>
+<br> BPM:
+<br>
+<br>
+<input type="text" id="bpm" autofocus>
+<br>
+
+<br>
+<!-- can't press enter? -->
+<button onclick="go()" id="btn">start</button>
+
+
+<span id="result_lb"> </span>
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+    var pretty = d3.format(".0f");
+
+    var already_ticking = false;
+
+    function go() {
+
+        console.log('fish');
+        var bpm = document.getElementById("bpm").value;
+        lowbeep.play();
+        setTimeout(function(){ go() }, 6000/bpm);
+
+    }
+
+    // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+    // Get the input field
+    var input = document.getElementById("bpm");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("btn").click();
+        }
+    });
+
+
+
+var lowbeep = new Audio('lowbeep.wav');
+var highbeep = new Audio('highbeep.wav');
+		// lowbeep.play();
+
+
+// function PlaySound(soundObj) {
+//   var sound = document.getElementById(soundObj);
+//   sound.Play();
+// }
+</script>
+
+<!-- <embed src="lowbeep.wav" autostart="false" width="0" height="0" id="lowbeep"
+enablejavascript="true">
+
+<embed src="highbeep.wav" autostart="false" width="0" height="0" id="highbeep"
+enablejavascript="true"> -->

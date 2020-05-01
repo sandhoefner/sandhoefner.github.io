@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="600" height="600" style="border:1px solid #d3d3d3;">
+Your browser does not support the HTML5 canvas tag.</canvas>
+
+<script>
+
+function drawline(a,b,c,d) {
+	var canvas = document.getElementById("myCanvas");
+	var context = canvas.getContext("2d");
+	context.beginPath();
+	context.moveTo(a,b);
+	context.lineTo(c,d);
+	context.stroke();
+}
+
+var size=600;
+
+drawline(0,size/Math.sqrt(2),size/2,0);
+drawline(size/2,0,size,size/Math.sqrt(2));
+drawline(0,size/Math.sqrt(2),size,size/Math.sqrt(2));
+</script>
+
+</body>
+</html>
