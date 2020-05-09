@@ -5,7 +5,7 @@
 		background-color: rgb(160, 230, 250);
 	}
 
-	#go {
+	.main {
 		background-color: rgb(130, 200, 250);
 	}
 
@@ -13,14 +13,15 @@
 		background-color: rgb(160, 190, 250);
 		border: none;
 		border-radius: 1vh;
-		width: 20vh;
+		width: 21vh;
 		height:7vh;
 
 	}
 </style>
 
 <br>
-<button id="go" onclick="play(this.id)">Quiz me</button>
+<button id="go" class="main" onclick="play()">New prompt</button>
+<button id="repeat" class="main" onclick="repeat()">Repeat prompt</button>
 <br><br>
 
 
@@ -60,10 +61,12 @@
 
 	var seed;
 	var length = 1;
-	var type = "triangle";
+	var type = "sine";
 	var right = 0;
 	var total = 0;
 	var pending = false;
+	var base = 440;
+	var something_to_repeat = false;
 
 	function guess(choice) {
 		if (pending) {
@@ -82,20 +85,40 @@
 		}
 	}
 
-	function playfree(name) {
-		var mult = intervals[names.indexOf(name)];
-		playTone(440,type,length);
-		setTimeout(function(){ playTone(mult*440,type,length); }, 1000*length);
+	function interval(mult) {
+		playTone(base,type,length);
+		setTimeout(function(){ playTone(mult*base,type,length); }, 1000*length);
+
+		/* nice idea but distorts too badly with these crappy tones
+		setTimeout(function(){
+			playTone(base,type,length);
+			playTone(mult*base,type,length);
+		}, 2000*length);
+		*/
 	}
 
-	function play(choice) {
+	function playfree(name) {
+		document.getElementById("answer").innerText=".";
+		var mult = intervals[names.indexOf(name)];
+		something_to_repeat = false;
+		interval(mult);
+	}
+
+	function repeat() {
+		if (something_to_repeat) {
+			interval(intervals[seed]);
+		}
+	}
+
+	function play() {
+		something_to_repeat = true;
 		pending = true;
 		document.getElementById("answer").innerText=".";
 
-		playTone(440,type,length);
+		playTone(base,type,length);
 		seed = rand();
-		setTimeout(function(){ playTone(intervals[seed]*440,type,length); }, 1000*length);
-		// document.getElementById("answer").innerText=names[seed];
+		var mult = intervals[seed];
+		interval(mult);
 	}
 
 	// return a random number between 0 and 11
