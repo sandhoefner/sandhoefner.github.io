@@ -3,6 +3,7 @@
 		text-align:center;
 		font-size: 2.8vh;
 		background-color: rgb(160, 230, 250);
+		font-family:"Helvetica";
 	}
 
 	.main {
@@ -75,8 +76,10 @@
 			var answer = names[seed];
 			if (choice == answer) {
 				right++;
+				document.getElementById("answer").style.color = "green";
 				document.getElementById("answer").innerText= "Right. "+answer;
 			} else {
+				document.getElementById("answer").style.color = "red";
 				document.getElementById("answer").innerText= "Wrong. "+answer;
 			}
 			document.getElementById("score").innerText = right + "/" + total;
@@ -97,8 +100,14 @@
 		*/
 	}
 
-	function playfree(name) {
+
+	function reset_answer() {
+		document.getElementById("answer").style.color = "black";
 		document.getElementById("answer").innerText=".";
+	}
+
+	function playfree(name) {
+		reset_answer();
 		var mult = intervals[names.indexOf(name)];
 		something_to_repeat = false;
 		interval(mult);
@@ -113,8 +122,7 @@
 	function play() {
 		something_to_repeat = true;
 		pending = true;
-		document.getElementById("answer").innerText=".";
-
+		reset_answer();
 		playTone(base,type,length);
 		seed = rand();
 		var mult = intervals[seed];
