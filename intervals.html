@@ -1,4 +1,4 @@
-<button id="go" onclick="play(this.id)">Go</button>
+<button id="go" onclick="play(this.id)">Quiz me</button>
 <br><br>
 
 
@@ -25,29 +25,41 @@
 <script src="simpleTones.js"></script>
 
 <script>
-	console.log("ready");
 
 	var seed;
 	var length = 1;
 	var type = "triangle";
 	var right = 0;
 	var total = 0;
+	var pending = false;
 
 	function guess(choice) {
-		total++;
-		var answer = names[seed];
-		if (choice == answer) {
-			right++;
-			document.getElementById("answer").innerText= "Right. "+answer;
+		if (pending) {
+			pending = false;
+			total++;
+			var answer = names[seed];
+			if (choice == answer) {
+				right++;
+				document.getElementById("answer").innerText= "Right. "+answer;
+			} else {
+				document.getElementById("answer").innerText= "Wrong. "+answer;
+			}
+			document.getElementById("score").innerText = right + "/" + total;
 		} else {
-			document.getElementById("answer").innerText= "Wrong. "+answer;
+			playfree(choice);
 		}
-		document.getElementById("score").innerText = right + "/" + total;
+	}
+
+	function playfree(name) {
+		var mult = intervals[names.indexOf(name)];
+		playTone(440,type,length);
+		setTimeout(function(){ playTone(mult*440,type,length); }, 1000*length);
 	}
 
 	function play(choice) {
+		pending = true;
 		document.getElementById("answer").innerText=".";
-		console.log(choice);
+
 		playTone(440,type,length);
 		seed = rand();
 		setTimeout(function(){ playTone(intervals[seed]*440,type,length); }, 1000*length);
