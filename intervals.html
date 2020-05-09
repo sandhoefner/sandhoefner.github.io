@@ -131,7 +131,12 @@
 
 	// return a random number between 0 and 11
 	function rand() {
-		return Math.floor((Math.random() * 11));
+		var tryseed = Math.floor((Math.random() * 11));
+		if (tryseed != seed) {
+			return tryseed;
+		} else {
+			return rand();
+		}
 	}
 
 	// https://en.wikipedia.org/wiki/Equal_temperament#Comparison_with_Just_Intonation
