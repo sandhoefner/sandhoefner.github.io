@@ -10,6 +10,11 @@
 		background-color: rgb(130, 200, 250);
 	}
 
+	.check {
+		height: 2.8vh;
+		width: 2.8vh;
+	}
+
 	button {
 		background-color: rgb(160, 190, 250);
 		border: none;
@@ -57,8 +62,8 @@
 <div id="score">0/0</div>
 
 <br>
-<input type="checkbox" onclick="togglehints(this.checked)" id="showhints" checked>Hints</input>
-<input type="checkbox" id="reinforcement" checked>Reinforcement</input>
+<input class="check" type="checkbox" onclick="togglehints(this.checked)" id="showhints" checked>Hints</input>
+<input class="check" type="checkbox" id="reinforcement" checked>Reinforcement</input>
 
 <br><br>
 <div id="hints">
