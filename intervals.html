@@ -56,9 +56,38 @@
 <br>
 <div id="score">0/0</div>
 
+<br>
+<input type="checkbox" onclick="togglehints(this.checked)" id="showhints" checked>Hints</input>
+<input type="checkbox" id="reinforcement" checked>Reinforcement</input>
+
+<br><br>
+<div id="hints">
+
+Minor second: jaws
+<br>Major second: happy birthday
+<br>Minor third: lullaby/plastic bag/greensleeves
+<br>Major third: o when the saints go marching in
+<br>Perfect fourth: here comes the bride
+<br>Tritone: the simpsons
+<br>Perfect fifth: smashmouth/star wars/twinkle twinkle
+<br>Minor sixth: entertainer
+<br>Major sixth: nbc
+<br>Minor seventh: ???
+<br>Major seventh: take on me
+<br>Octave: somewhere over the rainbow
+
+</div>
 <script src="simpleTones.js"></script>
 
 <script>
+
+function togglehints(on) {
+	if (on) {
+		document.getElementById("hints").style.display = "block";
+	} else {
+		document.getElementById("hints").style.display = "none";
+	}
+}
 
 	var seed;
 	var length = 1;
@@ -91,14 +120,16 @@
 	}
 
 	function conditioning(win) {
-		if (win) {
-			playTone(base*4,type,length);
-		} else {
-			playTone(base,type,length);
-			playTone(base*1.122462,type,length);
-			playTone(base*1.414214,type,length);
-			playTone(base*1.887749,type,length);
-			playTone(base*2,type,length);
+		if (document.getElementById("reinforcement").checked) {
+			if (win) {
+				playTone(base*4,type,length);
+			} else {
+				playTone(base,type,length);
+				playTone(base*1.122462,type,length);
+				playTone(base*1.414214,type,length);
+				playTone(base*1.887749,type,length);
+				playTone(base*2,type,length);
+			}
 		}
 	}
 
