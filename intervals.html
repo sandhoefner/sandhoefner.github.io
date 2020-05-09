@@ -1,0 +1,66 @@
+<button id="go" onclick="play(this.id)">Go</button>
+<br><br>
+
+
+
+<button id="Minor second" onclick="guess(this.id)">Minor second</button>
+<button id="Major second" onclick="guess(this.id)">Major second</button>
+<button id="Minor third" onclick="guess(this.id)">Minor third</button>
+<button id="Major third" onclick="guess(this.id)">Major third</button>
+<button id="Perfect fourth" onclick="guess(this.id)">Perfect fourth</button>
+<button id="Tritone" onclick="guess(this.id)">Tritone</button>
+<button id="Perfect fifth" onclick="guess(this.id)">Perfect fifth</button>
+<button id="Minor sixth" onclick="guess(this.id)">Minor sixth</button>
+<button id="Major sixth" onclick="guess(this.id)">Major sixth</button>
+<button id="Minor seventh" onclick="guess(this.id)">Minor seventh</button>
+<button id="Major seventh" onclick="guess(this.id)">Major seventh</button>
+<button id="Octave" onclick="guess(this.id)">Octave</button>
+<br><br>
+
+<div id="answer">.</div>
+
+<br>
+<div id="score">0/0</div>
+
+<script src="simpleTones.js"></script>
+
+<script>
+	console.log("ready");
+
+	var seed;
+	var length = 1;
+	var type = "triangle";
+	var right = 0;
+	var total = 0;
+
+	function guess(choice) {
+		total++;
+		var answer = names[seed];
+		if (choice == answer) {
+			right++;
+			document.getElementById("answer").innerText= "Right. "+answer;
+		} else {
+			document.getElementById("answer").innerText= "Wrong. "+answer;
+		}
+		document.getElementById("score").innerText = right + "/" + total;
+	}
+
+	function play(choice) {
+		document.getElementById("answer").innerText=".";
+		console.log(choice);
+		playTone(440,type,length);
+		seed = rand();
+		setTimeout(function(){ playTone(intervals[seed]*440,type,length); }, 1000*length);
+		// document.getElementById("answer").innerText=names[seed];
+	}
+
+	// return a random number between 0 and 11
+	function rand() {
+		return Math.floor((Math.random() * 11));
+	}
+
+	// https://en.wikipedia.org/wiki/Equal_temperament#Comparison_with_Just_Intonation
+	var intervals = [1.059463,1.122462,1.189207,1.259921,1.33484,1.414214,1.498307,1.587401,1.681793,1.781797,1.887749,2];
+
+	var names = ["Minor second","Major second","Minor third","Major third","Perfect fourth","Tritone","Perfect fifth","Minor sixth","Major sixth","Minor seventh","Major seventh","Octave"];
+</script>
