@@ -152,11 +152,16 @@ factor/prettify/etc the code
 too much work but ideally identify problem areas, toggle song hints, etc
 */
 
+var used_intervals = [];
 
 	// return a random number between 0 and 11
 	function rand() {
-		var tryseed = Math.floor((Math.random() * 11));
-		if (tryseed != seed) {
+		if (used_intervals.length == 12) {
+			used_intervals = [];
+		}
+		var tryseed = Math.floor((Math.random() * 12));
+		if (!used_intervals.includes(tryseed)) {
+			used_intervals.push(tryseed);
 			return tryseed;
 		} else {
 			return rand();
