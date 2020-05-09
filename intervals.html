@@ -76,15 +76,29 @@
 			var answer = names[seed];
 			if (choice == answer) {
 				right++;
+				conditioning(true);
 				document.getElementById("answer").style.color = "green";
 				document.getElementById("answer").innerText= "Right. "+answer;
 			} else {
+				conditioning(false);
 				document.getElementById("answer").style.color = "red";
 				document.getElementById("answer").innerText= "Wrong. "+answer;
 			}
 			document.getElementById("score").innerText = right + "/" + total;
 		} else {
 			playfree(choice);
+		}
+	}
+
+	function conditioning(win) {
+		if (win) {
+			playTone(base*4,type,length);
+		} else {
+			playTone(base,type,length);
+			playTone(base*1.122462,type,length);
+			playTone(base*1.414214,type,length);
+			playTone(base*1.887749,type,length);
+			playTone(base*2,type,length);
 		}
 	}
 
@@ -129,6 +143,16 @@
 		interval(mult);
 	}
 
+
+/*ideas
+instead of just preventing duplicates in a row, make it go through the whole array each loop
+explore library's chord/sound functionality for better tone?
+give a lil right/wrong sound
+factor/prettify/etc the code
+too much work but ideally identify problem areas, toggle song hints, etc
+*/
+
+
 	// return a random number between 0 and 11
 	function rand() {
 		var tryseed = Math.floor((Math.random() * 11));
@@ -138,6 +162,7 @@
 			return rand();
 		}
 	}
+
 
 	// https://en.wikipedia.org/wiki/Equal_temperament#Comparison_with_Just_Intonation
 	var intervals = [1.059463,1.122462,1.189207,1.259921,1.33484,1.414214,1.498307,1.587401,1.681793,1.781797,1.887749,2];
