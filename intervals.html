@@ -140,7 +140,23 @@ function togglehints(on) {
 
 	function interval(mult) {
 		playTone(base,type,length);
-		setTimeout(function(){ playTone(mult*base,type,length); }, 1000*length);
+		setTimeout(function(){
+		 playTone(mult*base,type,length);
+
+		}, 1000*length);
+
+setTimeout(function(){
+			console.log(document.querySelectorAll("oscillator"));
+		console.log(document.querySelectorAll("gain"));
+		console.log(document.querySelectorAll("AudioNode"));
+// AudioNode.disconnect();
+// oscillatorNode.stop();
+
+var sounds = document.getElementsByTagName('audio');
+console.log(sounds);
+  for(i=0; i<sounds.length; i++) sounds[i].pause();
+
+		}, 2000*length);
 
 		/* nice idea but distorts too badly with these crappy tones
 		setTimeout(function(){
@@ -148,6 +164,8 @@ function togglehints(on) {
 			playTone(mult*base,type,length);
 		}, 2000*length);
 		*/
+
+
 	}
 
 
