@@ -33,6 +33,7 @@
 <br><br><br>
 <span id="scoreboard_whole">current score: <span id="scoreboard">0</span></span>
 <br>session high: <span id="scorebest">0</span>
+<br>(<span id="realscoreboard">0</span>)
 
 <script src="simpleTones.js"></script>
 
@@ -76,12 +77,22 @@
 			console.log('win');
 			document.getElementById("scoreboard_whole").style.color = "black";
 			score += 1;
+
+
+
+
 			document.getElementById("scoreboard").innerText = score;
 			setTimeout(interval(), 500);
 
 			if (score > bestscore) {
 				bestscore = score;
 				document.getElementById("scorebest").innerText = score;
+
+
+				var realscore = mult;
+				if (realscore > 1) {realscore = 1 / realscore;}
+				realscore = 100 * realscore;
+				document.getElementById("realscoreboard").innerText = realscore.toFixed(9);
 			}
 
 		} else {
