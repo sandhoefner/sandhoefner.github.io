@@ -1,0 +1,99 @@
+<style>
+	body, button {
+	text-align:center;
+	font-size: 2.8vh;
+	background-color: rgb(160, 230, 250);
+	font-family:"Helvetica";
+	}
+
+	.main {
+	background-color: rgb(130, 200, 250);
+	}
+
+	.check {
+	height: 2.8vh;
+	width: 2.8vh;
+	}
+
+	button {
+	background-color: rgb(160, 190, 250);
+	border: none;
+	border-radius: 1vh;
+	width: 21vh;
+	height:7vh;
+	}
+</style>
+
+<br><br>click the higher tone<br><br><br>
+<button id="first" onclick="grade(this.id)">first</button>
+<button id="second" onclick="grade(this.id)">second</button>
+
+<br><br><button onclick="repeat()">(repeat)</button>
+
+<br><br><br>
+<span id="scoreboard_whole">current score: <span id="scoreboard">0</span></span>
+<br>session high: <span id="scorebest">0</span>
+
+<script src="simpleTones.js"></script>
+
+<script>
+	var type = "triangle";
+	var length = .5;
+	var mult = 1.059463;
+	var correct = "";
+	var score = 0;
+	var bestscore = 0;
+	var base;
+	// lower is harder
+	var difficulty = .6;
+
+	function repeat() {
+		playTone(base, type, length);
+		setTimeout(function(){
+			playTone(mult * base, type, length);
+		}, 1000 * length);
+	}
+
+	function interval() {
+		base = 293.66 + Math.random() * 146.34;
+
+		mult = 1 + Math.abs(mult - 1) * difficulty;
+		if (Math.random() < .5) {
+			mult = 1 / mult;
+		}
+
+		console.log(mult);
+
+		playTone(base, type, length);
+
+		setTimeout(function(){
+			playTone(mult * base, type, length);
+		}, 1000 * length);
+	}
+
+	function grade(choice) {
+		if ((choice == "first" && mult < 1) || (choice == "second" && mult > 1)) {
+			console.log('win');
+			document.getElementById("scoreboard_whole").style.color = "black";
+			score += 1;
+			document.getElementById("scoreboard").innerText = score;
+			setTimeout(interval(), 500);
+
+			if (score > bestscore) {
+				bestscore = score;
+				document.getElementById("scorebest").innerText = score;
+			}
+
+		} else {
+			console.log('lose');
+			score = 0;
+			document.getElementById("scoreboard_whole").style.color = "red";
+			mult = 1.059463;
+			document.getElementById("scoreboard").innerText = score;
+			setTimeout(interval(), 500);
+		}
+	}
+
+	// start
+	setTimeout(interval(), 1000);
+</script>
