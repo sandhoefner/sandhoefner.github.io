@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<br>
+<canvas id="myCanvas" width="1190" height="530"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+
+ctx.fillStyle = "red";
+var last_pos = [50,50,70,70];
+ctx.fillRect(last_pos[0],last_pos[1],last_pos[2],last_pos[3]);
+
+
+    // Execute a function when the user releases a key on the keyboard
+    document.addEventListener("keydown", function(event) {
+        // key is right arrow
+        if (event.keyCode >= 37 && event.keyCode <= 40) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+
+            if (event.keyCode == 39) {
+            	move(10,0,0,0);
+            } else if (event.keyCode == 38) {
+            	move(0,-10,0,0);
+            } else if (event.keyCode == 37) {
+            	move(-10,0,0,0);
+            } else {
+            			move(0,10,0,0);
+            }
+        }
+    });
+
+function move(a, b, c, d) {
+	ctx.fillStyle = "white";
+	ctx.fillRect(last_pos[0],last_pos[1],last_pos[2],last_pos[3]);
+	ctx.fillStyle = "red";
+	ctx.fillRect(last_pos[0]+a,last_pos[1]+b,last_pos[2]+c,last_pos[3]+d);
+	last_pos = [last_pos[0]+a,last_pos[1]+b,last_pos[2]+c,last_pos[3]+d];
+}
+
+
+</script>
+
+</body>
+</html>
+
