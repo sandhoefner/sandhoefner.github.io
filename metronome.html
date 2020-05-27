@@ -14,7 +14,7 @@
 <br> BPM:
 <br>
 <br>
-<input type="text" id="bpm" autofocus>
+<input type="number" id="bpm" autofocus>
 <br>
 
 <br>
@@ -23,6 +23,8 @@
 
 
 <span id="result_lb"> </span>
+<script src="simpleTones.js"></script>
+
 <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
@@ -33,12 +35,14 @@
 
     function go() {
 
-        console.log('fish');
-        var bpm = document.getElementById("bpm").value;
-        lowbeep.play();
-        setTimeout(function(){ go() }, 6000/bpm);
+            console.log('fish');
+            var bpm = document.getElementById("bpm").value;
+    // console.log(typeof(bpm));
+            if (bpm==""){bpm=80}
+            playTone(440, "triangle", .1);
+            setTimeout(function(){ go() }, 60000/bpm);
+        }
 
-    }
 
     // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
     // Get the input field
@@ -57,8 +61,8 @@
 
 
 
-var lowbeep = new Audio('lowbeep.wav');
-var highbeep = new Audio('highbeep.wav');
+// var lowbeep = new Audio('lowbeep.wav');
+// var highbeep = new Audio('highbeep.wav');
 		// lowbeep.play();
 
 
