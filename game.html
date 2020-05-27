@@ -88,7 +88,7 @@ var bullet_width=20;
 
 // Will execute myCallback every 0.5 seconds
 var tick = 100;
-var newenemytick=500;
+var newenemytick=2000;
 var intervalID = window.setInterval(draw_enemies, tick);
 var bullet_drawer = window.setInterval(draw_bullets, tick);
 var enemy_width=40;
@@ -107,11 +107,26 @@ bullets.forEach(function(bullet, i){
 		ctx.fillRect(bullet[0],bullet[1],bullet_width,bullet_height);
 		ctx.fillStyle = "green";
 		ctx.fillRect(bullet[0]+bullet_speed,bullet[1],bullet_width,bullet_height);
+		// oughta garbage collect the dead ones
 		bullets[i][0] +=bullet_speed;
 	});
  }
 
+var test = [[1,2],[3,4],[5,6]];
+test.splice(1,1);
+console.log(test);
+
+
 var bullet_speed = 30;
+
+function remove_bullet(i) {
+	console.log(bullets);
+	console.log(i);
+	bullets.splice[i,1];}
+	console.log(bullets);
+function remove_enemy(i) {
+	enemies.splice[i,1];
+}
 
 function draw_enemies() {
 
@@ -119,8 +134,22 @@ function draw_enemies() {
 		// console.log(enemy,i);
 		ctx.fillStyle = "white";
 		ctx.fillRect(enemy[0],enemy[1],enemy_width,enemy_height);
+
+		bullets.forEach(function(bullet,j){
+			//make the x criterion more precise
+			if (bullet[1] + bullet_height > enemy[1] && bullet[1] < enemy[1] + enemy_height && bullet[0] > .9*enemy[0] && bullet[0] < 1.1*enemy[0]) {
+				console.log('hit');
+				remove_enemy(i);
+				remove_bullet(j);
+				// bullets.splice[j,1];
+				// enemies.splice[i,1];
+			}
+		});
+
 		ctx.fillStyle = "blue";
 		ctx.fillRect(enemy[0]-10,enemy[1],enemy_width,enemy_height);
+
+		// oughta garbage collect the dead ones
 		enemies[i][0] -=10;
 	});
 
