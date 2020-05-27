@@ -1,10 +1,16 @@
 <style>
+    body {
+        margin-left:100px;
+    }
     body,
     button,
     input {
-        text-align: center;
-        font-size: 3.8vmin;
+        text-align: left;
+        font-size: 2.6vmin;
         font-family: "Helvetica";
+    }
+    #lefties {
+        text-align: left;
     }
 
     .num {
@@ -12,17 +18,40 @@
     }
 </style>
 <br> BPM:
-<br>
-<br>
-<input type="number" id="bpm" autofocus>
-<br>
 
-<br>
+<input type="number" id="bpm" autofocus>
+
 <!-- can't press enter? -->
 <button onclick="go()" id="btn">start</button>
 
+<br><br>
+<div id="lefties">
+<button name="12" onclick="request(this.name)">Larghissimo</button> – very, very slow (24 bpm and under)<br>
+<button name="24" onclick="request(this.name)">Adagissimo</button> – very slowly<br>
+<button name="35" onclick="request(this.name)">Grave</button> – very slow (25–45 bpm)<br>
+<button name="50" onclick="request(this.name)">Largo</button> – broadly (40–60 bpm)<br>
+<button name="53" onclick="request(this.name)">Lento</button> – slowly (45–60 bpm)<br>
+<button name="63" onclick="request(this.name)">Larghetto</button> – rather broadly (60–66 bpm)<br>
+<button name="71" onclick="request(this.name)">Adagio</button> – slowly with great expression (66–76 bpm)<br>
+<button name="75" onclick="request(this.name)">Adagietto</button> – slower than andante (72–76 bpm) or slightly faster than adagio (70–80 bpm)<br>
+<button name="84" onclick="request(this.name)">Marcia moderato</button> – moderately, in the manner of a march (83–85 bpm)<br>
+<button name="92" onclick="request(this.name)">Andante</button> – at a walking pace (76–108 bpm)<br>
+<button name="94" onclick="request(this.name)">Andantino</button> – slightly faster than andante (although, in some cases, it can be taken to mean slightly slower than andante) (80–108 bpm)<br>
 
-<span id="result_lb"> </span>
+<button name="95" onclick="request(this.name)">Andante moderato</button> – between andante and moderato (thus the name) (92–98 bpm)<br>
+<button name="105" onclick="request(this.name)">Moderato</button> – at a moderate speed (98–112 bpm)<br>
+<button name="106" onclick="request(this.name)">Allegretto</button> – by the mid-19th century, moderately fast (102–110 bpm); see paragraph above for earlier usage<br>
+<button name="118" onclick="request(this.name)">Allegro moderato</button> – close to, but not quite allegro (116–120 bpm)<br>
+<button name="138" onclick="request(this.name)">Allegro</button> – fast, quickly, and bright (120–156 bpm) (molto allegro is slightly faster than allegro, but always in its range)<br>
+<button name="166" onclick="request(this.name)">Vivace</button> – lively and fast (156–176 bpm)<br>
+<button name="174" onclick="request(this.name)">Vivacissimo</button> – very fast and lively (172–176 bpm)<br>
+<button name="174" onclick="request(this.name)">Allegrissimo</button> or Allegro vivace – very fast (172–176 bpm)<br>
+<button name="184" onclick="request(this.name)">Presto</button> – very, very fast (168–200 bpm)<br>
+<button name="200" onclick="request(this.name)">Prestissimo</button> – even faster than presto (200 bpm and over)
+</div>
+
+
+
 <script src="simpleTones.js"></script>
 
 <script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
@@ -39,10 +68,13 @@
             var bpm = document.getElementById("bpm").value;
     // console.log(typeof(bpm));
             if (bpm==""){bpm=80}
-            playTone(440, "triangle", .1);
+            playTone(880, "triangle", .075);
             setTimeout(function(){ go() }, 60000/bpm);
         }
 
+function request(tempo) {
+    document.getElementById("bpm").value = tempo;
+}
 
     // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
     // Get the input field
