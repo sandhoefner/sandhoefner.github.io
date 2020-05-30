@@ -17,12 +17,18 @@
         font-weight: bold;
     }
 </style>
+
+<br>
+<button id="tap" onclick=tapping()>Tap</button>
+<span id="tap_result">___</span>
+<button onclick=reset()>Reset</button>
+<br>
 <br> BPM:
 
 <input type="number" id="bpm" autofocus>
 
 <!-- can't press enter? -->
-<button onclick="go()" id="btn">start</button>
+<button onclick="go()" id="btn">Start</button>
 
 <br><br>
 <div id="lefties">
@@ -58,6 +64,37 @@
 
 <script src="http://d3js.org/d3.v3.min.js"></script>
 <script>
+
+var time = 0;
+var taps = 0;
+var already_timing = false;
+
+function reset() {
+    time = 0;
+    taps = 0;
+    already_timing = false;
+}
+
+function tapping() {
+    console.log('tapping');
+    taps++;
+    // 100 ms = .001... min
+    if (!already_timing) {
+        already_timing = true;
+        clock();
+    }
+    document.getElementById("tap_result").innerText = pretty(taps/time);
+}
+
+function clock() {
+    if (already_timing) {
+        // alre/ady_timing = true;
+    setTimeout(function(){time += 0.00166667; clock();}, 100);
+    }
+}
+
+
+
     var pretty = d3.format(".0f");
 
     var already_ticking = false;
