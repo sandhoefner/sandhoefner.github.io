@@ -22,6 +22,7 @@
 <button id="tap" onclick=tapping()>Tap</button>
 <span id="tap_result">___</span>
 <button onclick=reset()>Reset</button>
+<span id="memory"></span>
 <br>
 <br> BPM:
 
@@ -73,6 +74,10 @@ function reset() {
     time = 0;
     taps = 0;
     already_timing = false;
+    document.getElementById("memory").innerText = document.getElementById("tap_result").innerText + " " + document.getElementById("memory").innerText;
+    // maybe add average too?
+    document.getElementById("tap_result").innerText = "___";
+
 }
 
 function tapping() {
