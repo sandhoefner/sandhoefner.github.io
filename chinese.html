@@ -84,11 +84,13 @@ var firsttime = true;
 
 // could make wrong ones bold, or make editable -- basicllyl, i wont care about most of them wso what of that
 if (!firsttime) {
+	var sauce = "";
+	if (score==0) {sauce="***";}
 	var lastcall = document.getElementById("chinese").innerText;
 	var lastcorrect = english[chinese.indexOf(lastcall)]
 
 	var currenthistory = document.getElementById("history").innerText;
-	document.getElementById("history").innerText = lastcall + " = " + lastcorrect + "\n" + currenthistory;
+	document.getElementById("history").innerText = sauce + lastcall + " = " + lastcorrect + sauce + "\n" + currenthistory;
 
 }
 
