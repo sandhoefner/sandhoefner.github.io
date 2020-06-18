@@ -36,6 +36,7 @@
 <br><br>
 current score: <span id="score">0</span>
 <br>session best: <span id="bestscore">0</span>
+<br><br><span id="history"></span>
 
 <script>
 
@@ -77,7 +78,22 @@ quiz();
 }
 	}
 
+var firsttime = true;
+
 	function quiz() {
+
+// could make wrong ones bold, or make editable -- basicllyl, i wont care about most of them wso what of that
+if (!firsttime) {
+	var lastcall = document.getElementById("chinese").innerText;
+	var lastcorrect = english[chinese.indexOf(lastcall)]
+
+	var currenthistory = document.getElementById("history").innerText;
+	document.getElementById("history").innerText = lastcall + " = " + lastcorrect + "\n" + currenthistory;
+
+}
+
+firsttime=false;
+
 		round++;
 		var call_i = Math.floor(Math.random() * chinese.length);
 		var call = chinese[call_i];
@@ -93,7 +109,8 @@ quiz();
 
 // expiration = true;
 var fish = round;
-setTimeout(function(){expire(fish);},5000);
+// uncomment below to bring timer back
+// setTimeout(function(){expire(fish);},5000);
 
 document.getElementById("chinese").innerText = call;
 document.getElementById("english").innerText = response;
