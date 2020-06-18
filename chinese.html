@@ -34,28 +34,51 @@
 <button onclick="guess(this.id)" id="true">true</button>
 <button onclick="guess(this.id)" id="false">false</button>
 <br><br>
-<span id="score"></span>
+current score: <span id="score">0</span>
+<br>session best: <span id="bestscore">0</span>
+
 <script>
 
 
  // maybe preferred gameplay is timer & score goes to zero when die, with session/alltime max. want it to be snackable automatic competitive
  // multiple choice also might be better than t/f
+ // lol if u just pure guess ur score is constant on avg. maybe make wrong worth more than righ
+ // and sound or color or something to make right/wrong crunchier
+ // and tune in on the right words
 
 var score = 0;
 var answer = "";
+// var expiration;
+var bestscore = 0;
+var round = 0;
 
 function guess(theguess) {
+	expiration = false;
 	if (theguess == answer) {
 		score++;
+
+		if (score > bestscore) {
+			bestscore = score;
+			document.getElementById("bestscore").innerText = bestscore;
+		}
 	} else {
-		score--;
+		score=0;
 	}
 	document.getElementById("score").innerText = score;
 quiz();
 
 }
 
+function expire(tryround) {
+	if (tryround == round) {
+score=0;
+document.getElementById("score").innerText = score;
+quiz();
+}
+	}
+
 	function quiz() {
+		round++;
 		var call_i = Math.floor(Math.random() * chinese.length);
 		var call = chinese[call_i];
 		var response;
@@ -67,6 +90,10 @@ quiz();
 	response = english[Math.floor(Math.random() * english.length)];
 
 }
+
+// expiration = true;
+var fish = round;
+setTimeout(function(){expire(fish);},5000);
 
 document.getElementById("chinese").innerText = call;
 document.getElementById("english").innerText = response;
