@@ -1,5 +1,37 @@
 <!-- need mobile css, git, subl settings -->
 
+
+<style>
+	body, button {
+	text-align:center;
+	font-size: 2.8vh;
+	background-color: rgb(160, 230, 250);
+	font-family:"Helvetica";
+	}
+
+	.bigger {
+		font-size: 5.6vh;
+	}
+
+	.main {
+	background-color: rgb(130, 200, 250);
+	}
+
+	.check {
+	height: 2.8vh;
+	width: 2.8vh;
+	}
+
+	button {
+	background-color: rgb(160, 190, 250);
+	border: none;
+	border-radius: 1vh;
+	width: 21vh;
+	height:7vh;
+	}
+</style>
+
+<br><br>
 <div id="main">
 	Question <span id="progress"></span>/30
 	
@@ -41,6 +73,9 @@
 	// for 80% confidence
 	// https://www.dummies.com/education/math/statistics/how-to-calculate-a-confidence-interval-for-a-population-mean-when-you-know-its-standard-deviation/
 	var z = 1.28;
+	var width = 45;
+	var height = 67;
+	var scale = 4;
 
 	function putmovie() {
 		document.getElementById("progress").innerText = trials + 1;
@@ -49,7 +84,7 @@
 			var movie = movies[i];
 			document.getElementById("prompt").innerText = movie;
 			var link = images[movie];
-			document.getElementById("pic").innerHTML = "<img src='" + link + "'>";
+			document.getElementById("pic").innerHTML = "<img src='" + link + "' style='width:" + (scale * width) + "px;height:" + (scale * height) + "px;'>";
 			movies.splice(i, 1);
 		} else {
 			var p = successes / trials;
@@ -69,7 +104,7 @@
 			}
 			// judgment call whether to give raw score. it's always in the midpoint anyway
 			var median = Math.round(p * 100);
-			var blob = "You've probably seen" + answer + "of IMDb's Top 250 (as of 10 September 2020).";
+			var blob = "<br><br><br><br><br><br>You've probably seen<br><span class='bigger'>" + answer + "</span><br>of IMDb's Top 250<br>(as of 10 September 2020).";
 			// better to hide prev div & put in new one
 			document.getElementById("main").innerHTML = blob;
 		}
