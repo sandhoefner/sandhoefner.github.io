@@ -76,8 +76,7 @@
 
 	var width = 45;
 	var height = 67;
-	var scale = 4;
-	var vh = .2;
+	var scale = .67;
 
 	function putmovie() {
 		document.getElementById("progress").innerText = trials + 1;
@@ -86,7 +85,7 @@
 			var movie = movies[i];
 			document.getElementById("prompt").innerText = movie;
 			var link = images[movie];
-			document.getElementById("pic").innerHTML = "<img src='" + link + "' style='width:" + (vh * scale * width) + "vh;height:" + (vh * scale * height) + "vh;'>";
+			document.getElementById("pic").innerHTML = "<img src='" + link + "' style='width:" + (scale * width) + "vh;height:" + (scale * height) + "vh;'>";
 			movies.splice(i, 1);
 		} else {
 			var p = successes / trials;
