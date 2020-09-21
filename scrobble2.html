@@ -8,6 +8,7 @@
 <div id="complement"><br></div>
 <div id='hideme'>
 lastfm username: <input id="user" value="sandhoefner"></input>
+<!-- do i want enter-enter? -->
 <button id="go" onclick="mvp()">go</button>
 </div>
 <div id="output"></div>
@@ -41,7 +42,8 @@ lastfm username: <input id="user" value="sandhoefner"></input>
 			        // programatize the 27 as max length minus one for later array changes
 			        // throws an error for zzero but i think thats fine
 			        if (score > 80) {score = 80; overflow = 1;}
-			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + artist + " | " + "-".repeat(score);
+			        var outlink = "https://www.last.fm/user/"+user+"/library/music/"+artist;
+			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "-".repeat(score);
 			        if (overflow == 1) {str += "+"; overflow = 0;}
 			        document.getElementById("output").innerHTML += str;	
 
