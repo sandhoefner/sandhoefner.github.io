@@ -38,12 +38,13 @@ lastfm username: <input id="user" value="sandhoefner"></input>
 	
 			        // gotta buffer to get in order?
 			        console.log(data);
-			        var score = Math.round(data.artist.stats.userplaycount / 20);
+			        var scrobbles = data.artist.stats.userplaycount;
+			        var score = Math.round(scrobbles / 20);
 			        // programatize the 27 as max length minus one for later array changes
 			        // throws an error for zzero but i think thats fine
 			        if (score > 80) {score = 80; overflow = 1;}
 			        var outlink = "https://www.last.fm/user/"+user+"/library/music/"+artist;
-			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "-".repeat(score);
+			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "&nbsp;".repeat(4-(scrobbles+"").length) + scrobbles +" "+ "-".repeat(score);
 			        if (overflow == 1) {str += "+"; overflow = 0;}
 			        document.getElementById("output").innerHTML += str;	
 
@@ -74,7 +75,7 @@ lastfm username: <input id="user" value="sandhoefner"></input>
     	var title = "rym top artist";
     	var str = "<br><span id='header' class='underline'>" + "&nbsp;".repeat(27-title.length) + title + " | " + user + "'s scrobbles (units of 20)</span>";
         document.getElementById("output").innerHTML += str;	
-        var extra = 111 - document.getElementById("header").innerText.length;
+        var extra = 116 - document.getElementById("header").innerText.length;
         document.getElementById("header").innerHTML += "&nbsp;".repeat(extra);
 		for (i = 0; i < chart.length; i++) {
 			var artist = chart[i];
