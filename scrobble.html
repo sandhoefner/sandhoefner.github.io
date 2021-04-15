@@ -1,0 +1,111 @@
+<style>
+	body, input, button {font-family: "Courier New";}
+
+	#complement {display: none;}
+</style>
+
+<div id="complement"><br></div>
+<div id='hideme'>
+user: <input id="user" value="sandhoefner"></input>
+<!-- <br>artist: <input id="artist" value="mitski"></input>  -->
+<!-- <br>album: <input id="album" value="be the cowboy"></input> -->
+<button id="go" onclick="go()">go</button>
+</div>
+<div id="output"></div>
+<script>
+
+	// seriously fuck nico
+	var chart = [["OK Computer","Radiohead"],["The Dark Side of the Moon","Pink Floyd"],["Kid A","Radiohead"],["The Velvet Underground & Nico","The Velvet Underground & Nico"],["Wish You Were Here","Pink Floyd"],["In the Court of the Crimson King","King Crimson"],["Loveless","My Bloody Valentine"],["Pet Sounds","The Beach Boys"],["In Rainbows","Radiohead"],["In the Aeroplane Over the Sea","Neutral Milk Hotel"],["Abbey Road","The Beatles"],["To Pimp a Butterfly","Kendrick Lamar"],["Kind of Blue","Miles Davis"],["Paranoid","Black Sabbath"],["Lift Yr. Skinny Fists Like Antennas to Heaven!","Godspeed You Black Emperor!"],["The Rise and Fall of Ziggy Stardust and the Spiders From Mars","David Bowie"],["Remain in Light","Talking Heads"],["Led Zeppelin [IV]","Led Zeppelin"],["Revolver","The Beatles"],["Unknown Pleasures","Joy Division"],["My Beautiful Dark Twisted Fantasy","Kanye West"],["Doolittle","Pixies"],["A Love Supreme","John Coltrane"],["Animals","Pink Floyd"],["good kid, m.A.A.d city","Kendrick Lamar"],["Pink Moon","Nick Drake"],["The Queen Is Dead","The Smiths"],["Madvillainy","Madvillain"],["Illmatic","Nas"],["The Doors","The Doors"],["Low","David Bowie"],["Sgt. Pepper's Lonely Hearts Club Band","The Beatles"],["Highway 61 Revisited","Bob Dylan"],["Enter the Wu-Tang (36 Chambers)","Wu-Tang Clan"],["Funeral","Arcade Fire"],["Nevermind","Nirvana"],["Spiderland","Slint"],["Red","King Crimson"],["The Black Saint and the Sinner Lady","Mingus"],["Disintegration","The Cure"],["The Bends","Radiohead"],["The Beatles [White Album]","The Beatles"],["Marquee Moon","Television"],["Closer","Joy Division"],["F♯A♯∞","Godspeed You Black Emperor!"],["Ágætis byrjun","Sigur Rós"],["Daydream Nation","Sonic Youth"],["Master of Puppets","Metallica"],["Endtroducing.....","DJ Shadow"],["Blonde on Blonde","Bob Dylan"],["Master of Reality","Black Sabbath"],["London Calling","The Clash"],["Are You Experienced","The Jimi Hendrix Experience"],["Ride the Lightning","Metallica"],["In a Silent Way","Miles Davis"],["Bitches Brew","Miles Davis"],["Led Zeppelin","Led Zeppelin"],["The Low End Theory","A Tribe Called Quest"],["Dummy","Portishead"],["Blood on the Tracks","Bob Dylan"],["Illinois","Sufjan Stevens"],["Souvlaki","Slowdive"],["Close to the Edge","Yes"],["Tago Mago","Can"],["Black Sabbath","Black Sabbath"],["Rubber Soul","The Beatles"],["Homogenic","Björk"],["In utero","Nirvana"],["Electric Ladyland","The Jimi Hendrix Experience"],["Songs of Leonard Cohen","Leonard Cohen"],["Led Zeppelin II","Led Zeppelin"],["Selected Ambient Works 85-92","Aphex Twin"],["Rain Dogs","Tom Waits"],["After the Gold Rush","Neil Young"],["Laughing Stock","Talk Talk"],["White Light / White Heat","The Velvet Underground"],["Station to Station","David Bowie"],["Hounds of Love","Kate Bush"],["Spirit of Eden","Talk Talk"],["Meddle","Pink Floyd"],["Amnesiac","Radiohead"],["★ [Blackstar]","David Bowie"],["Hot Rats","Frank Zappa"],["The College Dropout","Kanye West"],["Bringing It All Back Home","Bob Dylan"],["Hunky Dory","David Bowie"],["Future Days","Can"],["Fun House","The Stooges"],["Surfer Rosa","Pixies"],["Liquid Swords","Genius/GZA"],["What's Going On","Marvin Gaye"],["Either / Or","Elliott Smith"],["The Velvet Underground","The Velvet Underground"],["The Piper at the Gates of Dawn","Pink Floyd"],["Forever Changes","Love"],["Soundtracks for the Blind","Swans"],["Atrocity Exhibition","Danny Brown"],["Odessey and Oracle","The Zombies"],["Magical Mystery Tour","The Beatles"],["Turn On the Bright Lights","Interpol"],["Sticky Fingers","The Rolling Stones"],["Another Green World","Eno"],["Heroes","David Bowie"],["Who's Next","The Who"],["The Money Store","Death Grips"],["Five Leaves Left","Nick Drake"],["Siamese Dream","Smashing Pumpkins"],["The Wall","Pink Floyd"],["Music Has the Right to Children","Boards of Canada"],["Vespertine","Björk"],["Ege Bamyasi","Can"],["On the Beach","Neil Young"],["Reign in Blood","Slayer"],["Mezzanine","Massive Attack"],["The Glow Pt. 2","The Microphones"],["Rust in Peace","Megadeth"],["Aquemini","OutKast"],["The Smile Sessions","The Beach Boys"],["Long Season","Fishmans"],["The Lonesome Crowded West","Modest Mouse"],["Donuts","J Dilla"],["Violator","Depeche Mode"],["Carrie & Lowell","Sufjan Stevens"],["Let It Bleed","The Rolling Stones"],["Midnight Marauders","A Tribe Called Quest"],["If You're Feeling Sinister","Belle and Sebastian"],["Giant Steps","John Coltrane"],["Innervisions","Stevie Wonder"],["Grace","Jeff Buckley"],["Everybody Knows This Is Nowhere","Neil Young with Crazy Horse"],["Harvest","Neil Young"],["Late Registration","Kanye West"],["Mingus Ah Um","Charles Mingus"],["Astral Weeks","Van Morrison"],["The Downward Spiral","Nine Inch Nails"],["Heaven or Las Vegas","Cocteau Twins"],["Exile on Main St.","The Rolling Stones"],["Yankee Hotel Foxtrot","Wilco"],["Hatful of Hollow","The Smiths"],["Crooked Rain, Crooked Rain","Pavement"],["Songs in the Key of Life","Stevie Wonder"],["Symbolic","Death"],["Selling England by the Pound","Genesis"],["Led Zeppelin III","Led Zeppelin"],["Larks' Tongues in Aspic","King Crimson"],["Houses of the Holy","Led Zeppelin"],["Pornography","The Cure"],["To Be Kind","Swans"],["Fear of Music","Talking Heads"],["Raw Power","Iggy and The Stooges"],["My Favorite Things","John Coltrane"],["Physical Graffiti","Led Zeppelin"],["Since I Left You","The Avalanches"],["Die Mensch-Maschine","Kraftwerk"],["Songs of Love and Hate","Leonard Cohen"],["The Kinks Are the Village Green Preservation Society","The Kinks"],["Lateralus","Tool"],["The Freewheelin' Bob Dylan","Bob Dylan"],["A Moon Shaped Pool","Radiohead"],["Blue","Joni Mitchell"],["Purple Rain","Prince and The Revolution"],["Rage Against the Machine","Rage Against the Machine"],["Ys","Joanna Newsom"],["The Stone Roses","The Stone Roses"],["Powerslave","Iron Maiden"],["Blonde","Frank Ocean"],["Trans Europa Express","Kraftwerk"],["The Moon & Antarctica","Modest Mouse"],["Thick as a Brick","Jethro Tull"],["Fragile","Yes"],["Ænima","Tool"],["Rumours","Fleetwood Mac"],["( )","Sigur Rós"],["Strange Days","The Doors"],["Cosmo's Factory","Creedence Clearwater Revival"],["Axis: Bold as Love","The Jimi Hendrix Experience"],["Blackwater Park","Opeth"],["Weezer [Blue Album]","Weezer"],["Born to Run","Bruce Springsteen"],["The Soft Bulletin","The Flaming Lips"],["Sabbath Bloody Sabbath","Black Sabbath"],["Music for 18 Musicians","Steve Reich"],["Ready to Die","The Notorious B.I.G."],["Superfly","Curtis Mayfield"],["Perfect From Now On","Built to Spill"],["Swordfishtrombones","Tom Waits"],["Karma","Pharoah Sanders"],["The Number of the Beast","Iron Maiden"],["Is This It","The Strokes"],["ATLiens","OutKast"],["Thriller","Michael Jackson"],["Geogaddi","Boards of Canada"],["Songs for the Deaf","Queens of the Stone Age"],["The Infamous","Mobb Deep"],["Blue Train","John Coltrane"],["Soundtrack From Twin Peaks","Angelo Badalamenti"],["Hail to the Thief","Radiohead"],["Post","Björk"],["Bryter Layter","Nick Drake"],["Third","Portishead"]];
+
+	var autocorrect = "&autocorrect=1";
+	// var autocorrect = "";
+
+	var errorcount = 0;
+	var totalcount = 0;
+	function call_album(user,artist,album) {
+		var url = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&artist="+artist+"&album="+album+"&user="+user+"&format=json"+autocorrect;
+
+		// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+		request.onload = function () {
+			totalcount++;
+		    // Begin accessing JSON data here
+		    var data = JSON.parse(this.response);
+		    if (request.status >= 200 && request.status < 400) {
+		        // console.log(album);
+		        // console.log(data.album.listeners);
+		        // console.log(data);
+		        // console.log("");
+
+
+
+
+if (data.album.listeners < 1000 ) {console.log('insufficient listeners');}
+	if (data.album.tracks.track.length == 0) {console.log('zero tracks');}
+	if ( data.album.userplaycount == 0) {console.log('zero user listens');}
+
+
+		        
+		        // this is based on my playcount for debugging; gotta take it out for other people
+		        if (data.album.listeners < 1000 || data.album.tracks.track.length == 0 || data.album.userplaycount == 0) {
+		        	errorcount++;
+		        	console.log(errorcount);
+		        	console.log('check ' + album);
+		        	console.log(data);
+		        	
+		        } else {
+			        // gotta buffer to get in order?
+			        var score = Math.round(data.album.userplaycount / data.album.tracks.track.length);
+			        var str = "<br>" + "&nbsp;".repeat(61-album.length) + album + "&nbsp;" + "-".repeat(score);
+			        document.getElementById("output").innerHTML += str;	
+
+			        // its not unhiding the second time
+			        // top 200 becomes boring immediately. gotta make it draw wildly from any list and just ditch the failures. 
+			        if (totalcount == chart.length) {
+			        	totalcount = 0;
+			        	document.getElementById("hideme").style.display = "block";
+			        	document.getElementById("complement").style.display = "none";
+			        }	        	
+		        }
+
+
+
+		    } else {
+		        console.log('api error');
+		    }
+		}
+		request.send();
+	}
+
+	function go() {
+		// var user = document.getElementById("user").value;
+		// var artist = document.getElementById("artist").value;
+		// var album = document.getElementById("album").value;
+		// console.log(artist, album, user);
+		// call_album(user,artist,album);
+		mvp();
+	}
+
+
+	// pro tips, they don't return in order & you gotta do something about &s etc
+	function mvp() {
+		document.getElementById("output").innerText = "";
+				document.getElementById("hideme").style.display = "none";
+							        	document.getElementById("complement").style.display = "block";
+
+
+		for (i=0; i<chart.length; i++) {
+			var user = document.getElementById("user").value;
+			var artist = chart[i][1];
+			var album = chart[i][0];
+			call_album(user,artist,album);
+
+
+
+		}
+		
+	}
+	
+
+</script>

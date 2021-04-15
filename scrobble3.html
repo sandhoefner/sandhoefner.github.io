@@ -1,0 +1,137 @@
+<style>
+	body { margin: 50px 50px 50px 50px;}
+	body, input, button {font-family: "Courier New";}
+	#complement {display: none;}
+	.underline {text-decoration: underline;}
+</style>
+
+<div id="complement"><br></div>
+<div id='hideme'>
+lastfm username: <input id="user" value="sandhoefner"></input>
+<!-- do i want enter-enter? -->
+<button id="go" onclick="mvp()">go</button>
+</div>
+<div id="output"></div>
+<script>
+
+	// mainstream genres on everynoise sorted by popularity, as of 2020 sep 22
+	// http://everynoise.com/everynoise1d.cgi?scope=mainstream%20only&vector=popularity
+	var chart = ["pop","dance pop","rap","pop rap","rock","latin","post-teen pop","hip hop","modern rock","trap","edm","tropical house","reggaeton","pop rock","latin pop","classic rock","southern hip hop","melodic rap","mellow gold","electropop","soft rock","album rock","indie pop","r&b","alternative metal","tropical","permanent wave","contemporary country","neo mellow","urban contemporary","k-pop","electro house","hard rock","uk pop","nu metal","alternative rock","canadian pop","folk rock","country","pop punk","rock en espanol","viral pop","country road","grupera","gangster rap","german hip hop","atl hip hop","underground hip hop","regional mexican","alternative r&b","trap latino","indie r&b","latin hip hop","chicago rap","art rock","dance rock","new wave pop","modern alternative rock","banda","reggaeton colombiano","indie rock","adult standards","soul","europop","french hip hop","norteno","emo rap","house","country rock","big room","mexican pop","latin alternative","latin rock","sertanejo universitario","reggaeton flow","funk carioca","indie folk","hip pop","pop urbaine","k-pop boy group","art pop","neo soul","nuevo regional mexicano","j-pop","metal","latin arena pop","indie poptimism","stomp and holler","ranchera","pop edm","post-grunge","spanish pop","new wave","boy band","folk","psychedelic rock","funk","lo-fi beats","indie soul","roots rock","colombian pop","singer-songwriter","miami hip hop","blues rock","progressive house","canadian hip hop","conscious hip hop","quiet storm","vapor trap","motown","german pop","italian hip hop","new romantic","modern country rock","pop r&b","sertanejo","desi pop","progressive electro house","toronto rap","sad rap","australian pop","swedish pop","east coast hip hop","electronica","puerto rican pop","italian pop","uk dance","indietronica","disco","rap metal","talent show","escape room","modern bollywood","sertanejo pop","hoerspiel","ccm","punk","uk hip hop","turkish pop","mpb","brooklyn drill","glam rock","canadian contemporary r&b","rap francais","christian music","metropopolis","k-pop girl group","world worship","social media pop","hollywood","cali rap","corridos tumbados","dark trap","alternative dance","indonesian pop","argentine rock","hardcore hip hop","bedroom pop","brill building pop","worship","otacore","pagode","heartland rock","brazilian edm","filmi","pop nacional","indie cafe pop","metalcore","detroit hip hop","vocal jazz","rap rock","west coast rap","francoton","piano rock","vapor soul","emo","new americana","bolero","folk-pop","perreo","sleep","yacht rock","alternative hip hop","lounge","brazilian hip hop","new rave","rap conscient","christian alternative rock","show tunes","soundtrack","dirty south rap","turkish rock","lgbtq+ hip hop","trap argentino","british invasion","acoustic pop","dutch pop","country pop","classical","cantautor","chillhop","opm","disco house","dutch hip hop","j-rock","trap queen","glam metal","background music","dfw rap","new french touch","melodic metalcore","beatlesque","north carolina hip hop","classic soul","synthpop","trap espanol","forro","brazilian rock","brostep","deep house","russian hip hop","rock-and-roll","indiecoustica","nova mpb","funk metal","german dance","dance-punk","la indie","indie anthem-folk","british soul","melancholia","new jack swing","italian arena pop","anthem worship","garage rock","argentine hip hop","viral rap","lilith","electronic trap","baroque pop","deep big room","german cloud rap","mandopop","kleine hoerspiel","german rock","mexican rock","latin viral pop","atl trap","eurodance","progressive rock","funk ostentacao","bass trap","chillwave","freak folk","australian hip hop","scorecore","girl group","turkish trap pop","grunge","mexican hip hop","funk rock","calming instrumental","outlaw country","reggae","queens hip hop","symphonic rock","french pop","meme rap","britpop","polish hip hop","australian dance","salsa","deep tropical house","turkish hip hop"];
+
+
+	var autocorrect = "&autocorrect=1";
+	// var autocorrect = "";
+
+	var totalcount = 0;
+	var overflow = 0;
+
+
+
+
+
+
+function getplays(user, artist) {
+		var url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&username=" + user;
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+		request.onload = function () {
+		    var data = JSON.parse(this.response);
+		    if (request.status >= 200 && request.status < 400) {
+			        var ret = data.artist.stats.userplaycount;
+			        // console.log(ret);
+			        return ret;
+		    } else {
+		    	console.log('api error');
+		        return 'api error';
+		    }
+		}
+		request.send();
+	}
+
+
+
+
+
+
+
+
+
+
+	function call(user, query) {
+		var url = "http://ws.audioscrobbler.com/2.0/?method=tag.gettopartists&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&limit=10&tag=" + query;
+
+		// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+		request.onload = function () {
+			totalcount++;
+		    // Begin accessing JSON data here
+		    var data = JSON.parse(this.response);
+		    if (request.status >= 200 && request.status < 400) {
+	
+			        // gotta buffer to get in order?
+			        console.log(data);
+			        var genre = data.topartists["@attr"].tag;
+			        console.log(genre);
+			        var messy_artists = data.topartists.artist;
+			        var artists = [];
+			        for (i=0; i<messy_artists.length; i++) {
+			        	artists.push(messy_artists[i].name);
+			        }
+			        console.log(artists);
+
+
+			        var totalplays = 0;
+			        for (i=0;i<artists.length;i++)   {
+			        	var plays = getplays('sandhoefner',artists[i]);
+			        	totalplays += plays;
+			        }
+			        console.log(genre + ": " + totalplays);
+
+
+			        console.log("");
+			        var scrobbles = data.artist.stats.userplaycount;
+			        var score = Math.round(scrobbles / 20);
+			        // programatize the 27 as max length minus one for later array changes
+			        // throws an error for zzero but i think thats fine
+			        if (score > 80) {score = 80; overflow = 1;}
+			        var outlink = "https://www.last.fm/user/"+user+"/library/music/"+artist;
+			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "&nbsp;".repeat(4-(scrobbles+"").length) + scrobbles +" "+ "-".repeat(score);
+			        if (overflow == 1) {str += "+"; overflow = 0;}
+			        document.getElementById("output").innerHTML += str;	
+
+			        // its not unhiding the second time
+			        // top 200 becomes boring immediately. gotta make it draw wildly from any list and just ditch the failures. 
+			        if (totalcount == chart.length) {
+			        	totalcount = 0;
+			        	document.getElementById("hideme").style.display = "block";
+			        	document.getElementById("complement").style.display = "none";
+			        }	        	
+		        
+
+
+
+		    } else {
+		        console.log('api error');
+		    }
+		}
+		request.send();
+	}
+
+	function mvp() {
+		document.getElementById("output").innerText = "";
+		document.getElementById("hideme").style.display = "none";
+    	document.getElementById("complement").style.display = "block";
+    	var user = document.getElementById("user").value;
+
+    	var title = "everynoise genre";
+    	var str = "<br><span id='header' class='underline'>" + "&nbsp;".repeat(27-title.length) + title + " | " + user + "'s scrobbles (units of 20)</span>";
+        document.getElementById("output").innerHTML += str;	
+        var extra = 116 - document.getElementById("header").innerText.length;
+        document.getElementById("header").innerHTML += "&nbsp;".repeat(extra);
+		for (i = 0; i < chart.length; i++) {
+			var tag = chart[i];
+			call(user, tag);
+		}
+	}
+</script>

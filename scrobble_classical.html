@@ -1,0 +1,138 @@
+<style>
+	body { margin: 50px 50px 50px 50px;}
+	body, input, button {font-family: "Courier New";}
+	#complement {display: none;}
+	.underline {text-decoration: underline;}
+</style>
+
+<div id="complement"><br></div>
+<div id='hideme'>
+lastfm username: <input id="user" value="sandhoefner"></input>
+<!-- do i want enter-enter? -->
+<button id="go" onclick="mvp()">go</button>
+</div>
+<div id="output"></div>
+<script>
+
+	// name tweaks (fuck it not summing): hendrix, eno, prince, godspeed (minor)
+	// alt mode for compare to GP would be nice
+	// did i hallucinate one of the numbers just being wrong one time? what is my error check?
+	// oh fuck do i have a record of how many there were supposed to be? resort might be lossy
+	// looks like 172 on oct 30 2020
+	// can do minor major changes manually
+	// and it is definitely somewhat random so dont be anal
+	// dont find remove hyphens lmao camille korsakov jean lobos jean antoine maybe more in zeros
+	var chart = ["Johann Sebastian Bach","Ludwig van Beethoven","Frédéric Chopin","Wolfgang Amadeus Mozart","Antonín Dvořák","Georg Philipp Telemann","Dmitri Shostakovich","Camille Saint-Saëns","Niccolò Paganini","Felix Mendelssohn","Jean Sibelius","Max Bruch","Sergei Rachmaninoff","Arthur Honegger","Béla Bartók","Fritz Kreisler","Antonio Vivaldi","Johannes Brahms","Pablo de Sarasate","Gustav Holst","Arnold Schoenberg","Claude Debussy","Nikolai Rimsky-Korsakov","Darius Milhaud","Modest Mussorgsky","Pyotr Ilyich Tchaikovsky","Franz Liszt","Gustav Mahler","John Cage","Paul Hindemith","Edvard Grieg","Richard Wagner","Richard Strauss","Maurice Ravel","Leonard Bernstein","Igor Stravinsky","Philip Glass","Leoš Janáček","Johann Strauss II","Johann Pachelbel","George Gershwin","Giacinto Scelsi","Isaac Albéniz","Alban Berg","Sergei Prokofiev","Georges Bizet","Giuseppe Verdi","Krzysztof Penderecki","Sofia Gubaidulina","Anton Webern","Manuel de Falla","Alexander Borodin","Charles Ives","Karlheinz Stockhausen","Alexander Scriabin","Erik Satie","Gabriel Fauré","Hector Berlioz","Joseph Haydn","Jules Massenet","Aaron Copland","Franz Schubert","George Frideric Handel","Robert Schumann","Luigi Boccherini","Bedřich Smetana","Olivier Messiaen","Ralph Vaughan Williams","César Franck","Alfred Schnittke","Samuel Barber","Witold Lutosławski","Alexander Glazunov","Anton Bruckner","György Ligeti","Edward Elgar","Pierre Boulez","Arcangelo Corelli","Kurt Weill","Iannis Xenakis","Արամ Խաչատրյան","Domenico Scarlatti","Arvo Pärt","Gioacchino Rossini","Nino Rota","Charles Gounod","Carl Orff","Luciano Berio","Antonio Caldara","Josquin des Prez","Henry Purcell","Giovanni Gabrieli","John Dowland","Marin Marais","Jordi Savall","Tobias Hume","Frederick Delius","Jan Dismas Zelenka","Girolamo Frescobaldi","François Couperin","Claudio Monteverdi","Antonio Salieri","Dietrich Buxtehude","Pietro Mascagni","Ottorino Respighi","John Adams","Heitor Villa-Lobos","Joaquín Rodrigo","John Tavener","Enrique Granados","Giuseppe Tartini","Max Reger","Federico Mompou","Amilcare Ponchielli","Marc-Antoine Charpentier","Adrian Willaert","William Lawes","Léo Delibes","Henryk Górecki","Carl Nielsen","Jan Pieterszoon Sweelinck","Alfonso X El Sabio","Francis Poulenc","Giuseppe Torelli","Guillaume de Machaut","Jean-Baptiste Lully","Mikhail Glinka","Hugo Wolf","William Byrd","Gregorio Allegri","Tomaso Albinoni","Christoph Willibald Gluck","Alessandro Scarlatti","Arthur Sullivan","Carl Philipp Emanuel Bach","Carl Maria von Weber","Giacomo Puccini","Don Carlo Gesualdo","Giacomo Meyerbeer","Guillaume DuFay","Giovanni Battista Pergolesi","Benjamin Britten","Hildegard von Bingen","Jacques Offenbach","Heinrich Isaac","Heinrich Schütz","Jean-Philippe Rameau","Johannes Ockeghem","Orlande de Lassus","Orlando Gibbons","Thomas Tallis","William Walton","Vincenzo Bellini","Tomás Luis de Victoria","Carlo Gesualdo","Michael Praetorius","Cipriano de Rore","John Taverner","Pierre de La Rue","John Dunstable","Pérotin","Gaetano Donizetti","Christopher Tye","Francesco Cavalli","Nicolas Gombert","Thomas Weelkes","Léonin","Jean Mouton","Thomas Tomkins","Alexander Agricola","Antoine Brumel","Jacob Obrecht"];
+
+	var autocorrect = "&autocorrect=1";
+	var sea = [];
+	// var autocorrect = "";
+
+	var totalcount = 0;
+	var overflow = 0;
+	function call(user, artist) {
+		var url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&autocorrect=" + autocorrect + "&username=" + user;
+
+		// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+		request.onload = function () {
+			totalcount++;
+		    // Begin accessing JSON data here
+		    var data = JSON.parse(this.response);
+		    if (request.status >= 200 && request.status < 400) {
+	
+			        // gotta buffer to get in order?
+			        // console.log(data);
+			        var fish = data.artist.name;
+			        sea.push(fish);
+			        var scrobbles = data.artist.stats.userplaycount;
+			        var score = Math.round(scrobbles / 10);
+			        // programatize the 27 as max length minus one for later array changes
+			        // throws an error for zzero but i think thats fine
+			        if (score > 80) {score = 80; overflow = 1;}
+			        var outlink = "https://www.last.fm/user/"+user+"/library/music/"+artist;
+			     // sometimes invalid is fine?
+			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "&nbsp;".repeat(4-(scrobbles+"").length) + scrobbles +" "+ "-".repeat(score);
+			        if (overflow == 1) {str += "+"; overflow = 0;}
+			        document.getElementById("output").innerHTML += str;	
+
+			        // its not unhiding the second time
+			        // top 200 becomes boring immediately. gotta make it draw wildly from any list and just ditch the failures. 
+			        if (totalcount == chart.length) {
+			        	totalcount = 0;
+			        	document.getElementById("hideme").style.display = "block";
+			        	document.getElementById("complement").style.display = "none";
+			        }	        	
+		        
+
+
+
+		    } else {
+		        console.log('api error');
+		    }
+		}
+		request.send();
+	}
+
+	function mvp() {
+		document.getElementById("output").innerText = "";
+		document.getElementById("hideme").style.display = "none";
+    	document.getElementById("complement").style.display = "block";
+    	var user = document.getElementById("user").value;
+
+    	var title = "rym top artist";
+    	var str = "<br><span id='header' class='underline'>" + "&nbsp;".repeat(27-title.length) + title + " | " + user + "'s scrobbles (units of 10)</span>";
+        document.getElementById("output").innerHTML += str;	
+        var extra = 116 - document.getElementById("header").innerText.length;
+        document.getElementById("header").innerHTML += "&nbsp;".repeat(extra);
+		for (i = 0; i < chart.length; i++) {
+			var artist = chart[i];
+			call(user, artist);
+			callsim(artist);
+		}
+	}
+
+
+
+
+
+	var excluded = {};
+
+	function callsim(artist) {
+		// limit?
+	var urll = "http://ws.audioscrobbler.com/2.0/?method=artist.getsimilar&artist="+artist+"&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&autocorrect="+autocorrect;
+		// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
+		var requestt = new XMLHttpRequest();
+		requestt.open('GET', urll, true);
+		requestt.onload = function () {
+			
+		    // Begin accessing JSON data here
+		    var dataa = JSON.parse(this.response);
+		    if (requestt.status >= 200 && requestt.status < 400) {
+	
+			        // gotta buffer to get in order?
+			        var outliers = dataa.similarartists.artist;
+			        
+			        for (z=0; z<outliers.length; z++) {
+			        	var noodle = outliers[z].name;
+			        	// changed from chart to hopefully alleviate spelling false positives?
+			        	if (!sea.includes(noodle) && !chart.includes(noodle)) {
+			        		if (typeof excluded[noodle] == 'undefined') {
+			        			excluded[noodle] = 1;
+			        		} else {
+			        			excluded[noodle] += 1;
+			        		}
+			        	}
+			        }
+			      console.log(excluded);
+		     
+
+
+		    } else {
+		        console.log('api error');
+		    }
+		}
+		requestt.send();
+	}
+</script>

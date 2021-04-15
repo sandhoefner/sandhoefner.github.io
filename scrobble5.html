@@ -1,0 +1,85 @@
+<style>
+	body { margin: 50px 50px 50px 50px;}
+	body, input, button {font-family: "Courier New";}
+	#complement {display: none;}
+	.underline {text-decoration: underline;}
+</style>
+
+<div id="complement"><br></div>
+<div id='hideme'>
+lastfm username: <input id="user" value="sandhoefner"></input>
+<!-- do i want enter-enter? -->
+<button id="go" onclick="mvp()">go</button>
+</div>
+<div id="output"></div>
+<script>
+
+	// name tweaks (fuck it not summing): hendrix, eno, prince, godspeed (minor)
+	// alt mode for compare to GP would be nice
+	// did i hallucinate one of the numbers just being wrong one time? what is my error check?
+	var chart = ["Radiohead","David Bowie","Led Zeppelin","Pink Floyd","The Beatles","Bob Dylan","Black Sabbath","John Coltrane","Neil Young","Björk","Can","Kanye West","King Crimson","Miles Davis","Nick Drake","Jimi Hendrix","The Rolling Stones","The Velvet Underground","A Tribe Called Quest","Aphex Twin","Boards of Canada","Godspeed You! Black Emperor","Iron Maiden","Joy Division","Kendrick Lamar","Kraftwerk","Leonard Cohen","Metallica","Modest Mouse","Nirvana","OutKast","Pixies","Portishead","Sigur Rós","Stevie Wonder","Sufjan Stevens","Swans","Talk Talk","Talking Heads","The Beach Boys","The Cure","The Doors","The Smiths","Tom Waits","Tool","Yes","Angelo Badalamenti","Belle and Sebastian","Bruce Springsteen","Built to Spill","Charles Mingus","Cocteau Twins","Creedence Clearwater Revival","Curtis Mayfield","Danny Brown","Death","Death Grips","Depeche Mode","DJ Shadow","Elliott Smith","Brian Eno","Fishmans","Fleetwood Mac","Frank Ocean","Frank Zappa","Genesis","Genius/GZA","Iggy and The Stooges","Interpol","J Dilla","Jeff Buckley","Jethro Tull","Joanna Newsom","Joni Mitchell","Kate Bush","Love","Madvillain","Marvin Gaye","Massive Attack","Megadeth","Michael Jackson","Mingus","Mobb Deep","My Bloody Valentine","Nas","Neutral Milk Hotel","Nine Inch Nails","Opeth","Pavement","Pharoah Sanders","Prince","Queens of the Stone Age","Rage Against the Machine","Slayer","Slint","Slowdive","Smashing Pumpkins","Sonic Youth","Steve Reich","Television","The Avalanches","The Clash","The Flaming Lips","The Kinks","The Microphones","The Notorious B.I.G.","The Stone Roses","The Stooges","The Strokes","The Who","The Zombies","Van Morrison","Weezer","Wilco","Wu-Tang Clan"];
+
+	var autocorrect = "&autocorrect=1";
+	// var autocorrect = "";
+
+	var totalcount = 0;
+	var overflow = 0;
+	function call(user, artist) {
+		var url = "http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&autocorrect=" + autocorrect + "&username=" + user;
+
+		// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
+		var request = new XMLHttpRequest();
+		request.open('GET', url, true);
+		request.onload = function () {
+			totalcount++;
+		    // Begin accessing JSON data here
+		    var data = JSON.parse(this.response);
+		    if (request.status >= 200 && request.status < 400) {
+	
+			        // gotta buffer to get in order?
+			        console.log(data);
+			        var scrobbles = data.artist.stats.userplaycount;
+			        var score = Math.round(scrobbles / 20);
+			        // programatize the 27 as max length minus one for later array changes
+			        // throws an error for zzero but i think thats fine
+			        if (score > 80) {score = 80; overflow = 1;}
+			        var outlink = "https://www.last.fm/user/"+user+"/library/music/"+artist;
+			        var str = "<br>" + "&nbsp;".repeat(27-artist.length) + "<a target='_blank' href='" + outlink + "'>" + artist + "</a> | " + "&nbsp;".repeat(4-(scrobbles+"").length) + scrobbles +" "+ "-".repeat(score);
+			        if (overflow == 1) {str += "+"; overflow = 0;}
+			        document.getElementById("output").innerHTML += str;	
+
+			        // its not unhiding the second time
+			        // top 200 becomes boring immediately. gotta make it draw wildly from any list and just ditch the failures. 
+			        if (totalcount == chart.length) {
+			        	totalcount = 0;
+			        	document.getElementById("hideme").style.display = "block";
+			        	document.getElementById("complement").style.display = "none";
+			        }	        	
+		        
+
+
+
+		    } else {
+		        console.log('api error');
+		    }
+		}
+		request.send();
+	}
+
+	function mvp() {
+		document.getElementById("output").innerText = "";
+		document.getElementById("hideme").style.display = "none";
+    	document.getElementById("complement").style.display = "block";
+    	var user = document.getElementById("user").value;
+
+    	var title = "rym top artist";
+    	var str = "<br><span id='header' class='underline'>" + "&nbsp;".repeat(27-title.length) + title + " | " + user + "'s scrobbles (units of 20)</span>";
+        document.getElementById("output").innerHTML += str;	
+        var extra = 116 - document.getElementById("header").innerText.length;
+        document.getElementById("header").innerHTML += "&nbsp;".repeat(extra);
+		for (i = 0; i < chart.length; i++) {
+			var artist = chart[i];
+			call(user, artist);
+		}
+	}
+</script>
