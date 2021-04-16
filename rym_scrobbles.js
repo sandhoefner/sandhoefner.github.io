@@ -25,15 +25,25 @@ function call(user, artist, index) {
 	    var data = JSON.parse(this.response);
 	    if (request.status >= 200 && request.status < 400) {
 	    		var scrobbles;
+	    		var score = "(undefined)";
 		        try {
 		        	scrobbles = data.artist.stats.userplaycount;
+		        	if (scrobbles == 0) {
+		        		score = "(*)";
+		        	} else if (scrobbles < 10) {
+		        		score = "(**)";
+		        	} else if (scrobbles < 100) {
+		        		score = "(***)";
+		        	} else if (scrobbles >= 100) {
+		        		score = "(****)";
+		        	} 
 		        } catch (error) {
 		        	console.error(artist + " throws the following error: " + error);
 		        }
 
 		        var outlink = "https://www.last.fm/user/" + user + "/library/music/" + artist;
 		        var insert = document.createElement("div");
-		        var stuff = "<a target='_blank' style='color:red; text-decoration-line: underline;' href='" + outlink + "'>" + user + "'s artist scrobbles: " + scrobbles + "</a>";
+		        var stuff = "<a target='_blank' style='color:red; text-decoration-line: underline;' href='" + outlink + "'>" + user + "'s artist scrobbles: " + scrobbles + " " + score + "</a>";
 		        insert.innerHTML = stuff;
 		        artists[index].insertAdjacentElement("afterend", insert);
 	    } else {
