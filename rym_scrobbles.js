@@ -1,9 +1,11 @@
-/* to fix:
+// console script to act as chrome extension adding scrobble data to rym site
+
+// https://rateyourmusic.com/charts/top/album/1990-2029/g:pop/d:-male-vocals/
+
+/* known issues:
 		collab scrobbles get put into the mouseover
 		remove either bracketed romanization or original characters to give lastfm a chance to autocorrect
 */
-
-// console script to act as chrome extension adding scrobble data to rym site
 
 var artists = document.getElementsByClassName("artist");
 
