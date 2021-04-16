@@ -1,4 +1,9 @@
-// conscole script to act as chrome extension adding scrobble data to rym site
+/* to fix:
+		collab scrobbles get put into the mouseover
+		remove either bracketed romanization or original characters to give lastfm a chance to autocorrect
+*/
+
+// console script to act as chrome extension adding scrobble data to rym site
 
 var artists = document.getElementsByClassName("artist");
 
@@ -7,7 +12,7 @@ var username = "sandhoefner";
 var autocorrect = "&autocorrect=1";
 // var autocorrect = "";
 
-function call(user, artist) {
+function call(user, artist, index) {
 	var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&autocorrect=" + autocorrect + "&username=" + user;
 
 	// https://www.taniarascia.com/how-to-connect-to-an-api-with-javascript/
@@ -23,8 +28,12 @@ function call(user, artist) {
 		        } catch (error) {
 		        	console.error(artist + " throws the following error: " + error);
 		        }
+
 		        var outlink = "https://www.last.fm/user/" + user + "/library/music/" + artist;
-		        console.log(user + " has scrobbled " + artist + " " + scrobbles + " times");
+		        var insert = document.createElement("div");
+		        var stuff = "<a target='_blank' style='color:red; text-decoration-line: underline;' href='" + outlink + "'>" + user + "'s artist scrobbles: " + scrobbles + "</a>";
+		        insert.innerHTML = stuff;
+		        artists[index].insertAdjacentElement("afterend", insert);
 	    } else {
 	        console.log("api error for " + artist);
 	    }
@@ -32,11 +41,8 @@ function call(user, artist) {
 	request.send();
 }
 
-// just an example
-// call(username, "stereolab");
+console.log("\n\n\n\n\n\n\n\n\n\nsome data may be wrong due to e.g. special characters or naming differences between rym & lastfm");
 
-// the real thing
-console.log("\n\n\nsome data may be wrong due to e.g. naming differences between rym & lastfm");
 for (i = 0; i < artists.length; i++) {
-	call(username, artists[i].innerText);
+	call(username, artists[i].innerText, i);
 }
