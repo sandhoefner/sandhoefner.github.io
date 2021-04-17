@@ -1,10 +1,9 @@
 // console script to act as chrome extension adding scrobble data to rym site
 
-// https://rateyourmusic.com/charts/top/album/1990-2029/g:pop/d:-male-vocals/
+// https://rateyourmusic.com/charts/top/album/1990-2029/g:pop/ge:-video-game-music,-television-music,-film-soundtrack/d:-male-vocals/
 
 /* known issues:
 		collab scrobbles get put into the mouseover
-		remove either bracketed romanization or original characters to give lastfm a chance to autocorrect
 */
 
 var artists = document.getElementsByClassName("artist");
@@ -30,6 +29,7 @@ function call(user, artist, index) {
 		        	scrobbles = data.artist.stats.userplaycount;
 		        	if (scrobbles == 0) {
 		        		score = "(*)";
+		        		console.log(url);
 		        	} else if (scrobbles < 10) {
 		        		score = "(**)";
 		        	} else if (scrobbles < 100) {
@@ -39,6 +39,7 @@ function call(user, artist, index) {
 		        	} 
 		        } catch (error) {
 		        	console.error(artist + " throws the following error: " + error);
+		        	console.log(url);
 		        }
 
 		        var outlink = "https://www.last.fm/user/" + user + "/library/music/" + artist;
@@ -48,6 +49,7 @@ function call(user, artist, index) {
 		        artists[index].insertAdjacentElement("afterend", insert);
 	    } else {
 	        console.log("api error for " + artist);
+        	console.log(url);
 	    }
 	}
 	request.send();
@@ -56,11 +58,10 @@ function call(user, artist, index) {
 console.log("\n\n\n\n\n\n\n\n\n\nsome data may be wrong due to e.g. special characters or naming differences between rym & lastfm");
 
 for (i = 0; i < artists.length; i++) {
-	// best score on test page (mind it doesn't change!): 13 zeroes, 1 undefined
-	// ideal test page would be one i know very well but which still has corners like collabs & specchars & weird names
-	// can just make this one into that by listening to them
 	// if there are cases where main does work better than sub, i can try both & keep the defined/>0... but thats work
 	// perhaps see if such cases advertise themselves as existing before you write it?
+	// all failures right now have been confirmed Not My Problem
+	// loona's spelling (krn doesn't work either), neko saito's not being a primary artist
 	var noodle = artists[i];
 	var wheat = artists[i].innerText;
 	var chaff;
