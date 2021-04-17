@@ -3,7 +3,7 @@
 // https://rateyourmusic.com/charts/top/album/1990-2029/g:pop/ge:-video-game-music,-television-music,-film-soundtrack/d:-male-vocals/
 
 /* known issues:
-		collab scrobbles get put into the mouseover
+	none
 */
 
 var artists = document.getElementsByClassName("artist");
@@ -42,11 +42,16 @@ function call(user, artist, index) {
 		        	console.log(url);
 		        }
 
+		        // turns out insertadjacenttext and insertadjacenthmtl exist too
 		        var outlink = "https://www.last.fm/user/" + user + "/library/music/" + artist;
 		        var insert = document.createElement("div");
 		        var stuff = "<a target='_blank' style='color:red; text-decoration-line: underline;' href='" + outlink + "'>" + user + "'s artist scrobbles: " + scrobbles + " " + score + "</a>";
 		        insert.innerHTML = stuff;
-		        artists[index].insertAdjacentElement("afterend", insert);
+		        if (artists[index].parentElement.className == "credited_list_inner") {
+		        	artists[index].parentElement.parentElement.parentElement.parentElement.insertAdjacentElement("afterend", insert);
+		        } else {
+		        	artists[index].insertAdjacentElement("afterend", insert);
+		        }
 	    } else {
 	        console.log("api error for " + artist);
         	console.log(url);
