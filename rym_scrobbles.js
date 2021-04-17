@@ -56,32 +56,17 @@ function call(user, artist, index) {
 console.log("\n\n\n\n\n\n\n\n\n\nsome data may be wrong due to e.g. special characters or naming differences between rym & lastfm");
 
 for (i = 0; i < artists.length; i++) {
+	// best score on test page (mind it doesn't change!): 13 zeroes, 1 undefined
+	// ideal test page would be one i know very well but which still has corners like collabs & specchars & weird names
+	// can just make this one into that by listening to them
+	// if there are cases where main does work better than sub, i can try both & keep the defined/>0... but thats work
+	// perhaps see if such cases advertise themselves as existing before you write it?
 	var noodle = artists[i];
 	var wheat = artists[i].innerText;
 	var chaff;
 	if (noodle.children.length > 0) {
 		chaff = noodle.children[0].innerText;
-		wheat = chaff.substring(1, chaff.length - 1); // plot twist!!
-		// ok loona was always gonna be fucked but i got sheena & one less undefined. 
-
-		// special characters stay weird i guess
-		// chaff = noodle.children[0].innerText;
-		// remove the chaff
-		// var difference = wheat.length - chaff.length;
-		// if (wheat.substring(difference) == chaff) {
-		// 	wheat = wheat.substring(0, difference)
-		// } else {
-		// 	console.log("unknown naming issue");
-		// }
+		wheat = chaff.substring(1, chaff.length - 1);
 	}
 	call(username, wheat, i);
-
-	// this gives 2 undefineds & at least 2 distinct false zeroes (14 zeroes total) 	
-	// so ima try using url instead cause subtext is weird (though there should be a way)
-	// call(username, artists[i].innerText, i);
-
-	// fails on hyphens damn
-	// call(username, artists[i].href.substring(33), i);	
 }
-
-
