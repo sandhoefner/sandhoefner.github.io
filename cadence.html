@@ -1,0 +1,68 @@
+
+
+
+<style>
+    body,
+    button,
+    input {
+        text-align: center;
+        font-size: 3.8vmin;
+        font-family: "Helvetica";
+    }
+
+    .num {
+        /*font-weight: bold;*/
+    }
+</style>
+<br> Running pace (minutes / mile):
+<br>
+<br>
+<input type="text" id="miletime" autofocus>
+<br>
+
+<br>
+<!-- can't press enter? -->
+<button onclick="calc()" id="btn">Calculate</button>
+<br>
+
+<br>Recommended cadence<br>(steps / minute):
+<br>
+<br><span id="result" class="num">180</span>
+<br>
+
+<script src="libs/jquery/jquery-2.1.1.min.js" charset="utf-8"></script>
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+
+
+    // just a lookup table might have been better
+    // add tools for calculating necessary redemption pace midrun etc?
+
+    var pretty = d3.format(".0f");
+
+
+
+    function calc() {
+        console.log("calculating");
+        var pace = 1609.34/(60*document.getElementById("miletime").value);
+        var strides =  277.0376 - 119.156/Math.pow(1 + Math.pow(pace/2519.656,2.897887),22100870);
+        console.log(strides);
+        document.getElementById("result").innerText = pretty(strides);
+    }
+
+    // https://www.w3schools.com/howto/howto_js_trigger_button_enter.asp
+    // Get the input field
+    var input = document.getElementById("miletime");
+
+    // Execute a function when the user releases a key on the keyboard
+    input.addEventListener("keyup", function(event) {
+        // Number 13 is the "Enter" key on the keyboard
+        if (event.keyCode === 13) {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("btn").click();
+        }
+    });
+</script>
