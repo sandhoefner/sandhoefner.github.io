@@ -13,6 +13,9 @@ var username = "sandhoefner";
 var autocorrect = "&autocorrect=1";
 // var autocorrect = "";
 
+var heard = 0;
+var unheard = 0;
+
 function call(user, artist, index) {
 	var url = "https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=" + artist + "&api_key=1cdf9cbf8e7dd2873137483e6cb9ccf5&format=json&autocorrect=" + autocorrect + "&username=" + user;
 
@@ -28,15 +31,21 @@ function call(user, artist, index) {
 		        try {
 		        	scrobbles = data.artist.stats.userplaycount;
 		        	if (scrobbles == 0) {
+		        		unheard += 1;
 		        		score = "(*)";
 		        		console.log(url);
 		        	} else if (scrobbles < 10) {
+		        		unheard += 1;
 		        		score = "(**)";
 		        	} else if (scrobbles < 100) {
+		        		heard += 1;
 		        		score = "(***)";
 		        	} else if (scrobbles >= 100) {
+		        		heard += 1;
 		        		score = "(****)";
 		        	} 
+		        	console.log('rough familiarity score: ' + Math.round(100 * heard / (heard + unheard)) + '%');
+		        	console.log('rough bc it doesnt distinguish between depth and breadth, multi-counts artists, excludes errors,...');
 		        } catch (error) {
 		        	console.error(artist + " throws the following error: " + error);
 		        	console.log(url);
