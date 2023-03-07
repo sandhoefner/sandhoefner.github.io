@@ -1,11 +1,24 @@
 <style>
     body,
     button,
-    input {
+    input,
+    #repo {
         text-align: center;
-        font-size: 3.8vmin;
+        font-size: 4vmin;
         font-family: "Helvetica";
     }
+
+    
+    input {
+	    width:  2.5vmin;
+	    height: 2.5vmin;
+	}
+
+	button {
+	    width:  14vmin;
+	    height: 7vmin;
+	}
+	
 
     body {
     	margin-left: 10%;
@@ -29,6 +42,11 @@ Topics:<br>
 <div id="repo"></div>
 
 <script>
+
+	// input[type=checkbox] {
+    // 	transform: scale(2.5);
+	// }
+
 	var questions;
 
 	function ran(tryy) {
