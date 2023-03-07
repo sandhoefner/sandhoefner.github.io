@@ -3,7 +3,7 @@
     button,
     input,
     #repo {
-        text-align: center;
+        text-align: left;
         font-size: 4vmin;
         font-family: "Helvetica";
     }
@@ -17,12 +17,13 @@
 	button {
 	    width:  14vmin;
 	    height: 7vmin;
+	    text-align: center;
 	}
 	
 
     body {
-    	margin-left: 10%;
-    	margin-right: 10%;
+    	margin-left: 50vmin;
+    	margin-right: 50vmin;
     }
 
     .num {
@@ -33,10 +34,10 @@
 <br>Picks random questions from 2016-2022 <a target="blank" href="https://www.asc.ox.ac.uk/examination-fellowships-general-information">All Souls College exams.</a><br><br>
 
 Topics:<br>
-<input type="checkbox" id="gen" checked>General<br>
-<input type="checkbox" id="pol" checked>Politics<br>
-<input type="checkbox" id="phi" checked>Philosophy<br>
-<input type="checkbox" id="eco" checked>Economics<br><br>
+<input type="checkbox" id="gen" checked> General<br>
+<input type="checkbox" id="pol" checked> Politics<br>
+<input type="checkbox" id="phi" checked> Philosophy<br>
+<input type="checkbox" id="eco" checked> Economics<br><br>
 
 <button onclick="go()">Go</button><br><br>
 <div id="repo"></div>
@@ -52,7 +53,7 @@ Topics:<br>
 	function ran(tryy) {
 		// console.log(tryy);
 		if (!document.getElementById("gen").checked && !document.getElementById("eco").checked && !document.getElementById("phi").checked && !document.getElementById("pol").checked) {
-			alert("At least one box must be checked");
+			alert("At least one box must be checked.");
 			return "fail";
 		} else if (!document.getElementById("gen").checked && 525 <= tryy && tryy <= 863) {
 			// console.log("refused gen");
