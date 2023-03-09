@@ -41,10 +41,10 @@
 <br>Picks random questions from 2016-2022 <a target="blank" href="https://www.asc.ox.ac.uk/examination-fellowships-general-information">All Souls College exams.</a><br><br>
 
 Topics:<br>
-<input type="checkbox" id="gen" checked> General<br>
-<input type="checkbox" id="pol" checked> Politics<br>
-<input type="checkbox" id="phi" checked> Philosophy<br>
-<input type="checkbox" id="eco" checked> Economics<br><br>
+<input type="checkbox" id="gen" checked ><span onclick="toggle('gen')"> General</span><br>
+<input type="checkbox" id="pol" checked ><span onclick="toggle('pol')"> Politics</span><br>
+<input type="checkbox" id="phi" checked ><span onclick="toggle('phi')"> Philosophy</span><br>
+<input type="checkbox" id="eco" checked ><span onclick="toggle('eco')"> Economics</span><br><br>
 
 <button onclick="go()">Go</button><br><br>
 <div id="repo"></div>
@@ -60,6 +60,11 @@ Topics:<br>
 	// input[type=checkbox] {
     // 	transform: scale(2.5);
 	// }
+
+	function toggle(which) {
+		document.getElementById(which).checked = !document.getElementById(which).checked;
+		// which.children[0].checked = !which.children[0].checked;
+	}
 
 	var questions;
 
