@@ -5,7 +5,7 @@
     input,
     #repo {
         text-align: left;
-        font-size: 3.785vh;
+        font-size: 2vh; /*3.785 is the best-yet terrorist*/
         font-family: "Helvetica";
         line-height: 1;
     }
@@ -14,8 +14,8 @@
 
     
     input {
-	    width:  3.785vh;
-	    height: 3.785vh;
+	    width:  2vh; /*=font*/
+	    height: 2vh; /*=font*/
 	}
 
 	button {
@@ -23,14 +23,14 @@
     font-size: inherit;
 	    width:  100%;
 /*	    width: 14vmin;*/
-	    height: 7.57vh; /*(font times two)*/
+	    height: 4vh; /*(font times two)*/
 	    text-align: center;
 	}
 	
 
     body {
-    	margin-left: 4.785vh; /*(font plus one)*/
-    	margin-right: 4.785vh;
+    	margin-left: 3vh; /*(font plus one)*/
+    	margin-right: 3vh; /*(font plus one)*/
     }
 
     .num {
@@ -106,6 +106,7 @@ Topics:<br>
 		}
 		if (tried != "fail") {
 			document.getElementById("repo").innerHTML = /* tried + " (" + topicof(tried) + "): " + */ (questions[tried]) + "<br><br>" + document.getElementById("repo").innerHTML;
+			document.getElementById("repo").style.fontSize = "2vh"; /*=font*/
 		}
 	}
 
