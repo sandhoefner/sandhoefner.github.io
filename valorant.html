@@ -1,0 +1,10 @@
+<button onclick="go()">go</button>
+
+<div id="main"></div>
+
+<script>
+	var agents = ["Cypher","Sova","Fade","Viper","Harbor","Brimstone","Omen","Astra","Sage","Gekko","Reyna","Breach","Skye","Yoru","KAY/O","Jett","Raze","Killjoy","Neon","Chamber","Phoenix"];
+	function go() {
+		document.getElementById("main").innerText = agents[Math.floor(Math.random()*agents.length)];
+	}
+</script>
